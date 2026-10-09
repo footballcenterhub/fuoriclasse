@@ -800,6 +800,35 @@ body.big .fc-face b{font-size:1.5em}
 .ptier.got{opacity:.65}.ptier.got .pn{color:var(--ok)}
 .ptier.lock{opacity:.55}.ptier.next{border-style:dashed;border-color:var(--flood)}
 .ptier .btn{min-height:34px;font-size:.95rem;padding:0 12px;margin-top:4px}
+/* Pass mensile: ogni stagione ha i suoi colori (--s1 chiaro, --s2 scuro) */
+.passhead.season{position:relative;overflow:hidden;background:radial-gradient(120% 120% at 100% 0%,color-mix(in srgb,var(--s1) 55%,transparent),transparent 62%),linear-gradient(160deg,color-mix(in srgb,var(--s2) 85%,#000),#0c1611);border-color:color-mix(in srgb,var(--s1) 70%,transparent)}
+.passhead.season::after{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;border:18px solid var(--s1);opacity:.12;pointer-events:none}
+.phtop{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:flex-start;justify-content:space-between}
+.ptheme{font-size:clamp(1.9rem,7vw,2.8rem);line-height:.95;text-transform:uppercase;color:#fff;margin-top:2px}
+.pleft{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;background:rgba(0,0,0,.35);border:1px solid color-mix(in srgb,var(--s1,#ffd23f) 60%,transparent);font-weight:700;font-size:.85rem;white-space:nowrap}
+.passcta .pleft{padding:2px 8px;font-size:.78rem;margin-top:6px;background:rgba(0,0,0,.25)}
+.phlv{gap:14px;align-items:center}
+.pbig{display:flex;align-items:baseline;gap:3px;font-family:var(--display);font-weight:900;line-height:1}.pbig b{font-size:3rem}.pbig small{font-size:1rem;color:var(--muted);text-transform:uppercase}
+.passhead.season .xpbar i,.passcta.season .xpbar i,.pmonth .bar i{background:linear-gradient(90deg,var(--s1),#ffd23f)}
+.pkeys{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pkey{display:flex;gap:10px;align-items:center;text-align:left;padding:8px;border-radius:14px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.12);min-width:0}
+.pkey .pcard{flex:none;width:52px}.pkey small{display:block;color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}.pkey b{display:block;font-size:.92rem;line-height:1.15}
+.pkey:not(.got) .pcard{filter:saturate(.35) brightness(.7)}.pkey.got{border-color:var(--ok)}
+.pcard{display:block;aspect-ratio:100/112;border-radius:8px;overflow:hidden;border:2px solid #c9d3dc;box-shadow:0 4px 10px rgba(0,0,0,.4)}.pcard.r-oro{border-color:#ffd23f}.pcard.r-olo{border-color:#c79bff}.pcard .art{width:100%;height:100%;display:block}
+.prw.pcardw{width:58px;height:auto;background:none}.prw.pcardw .pcard{width:100%}
+.ptier.cardt{background:linear-gradient(160deg,color-mix(in srgb,var(--s1,#8e5bd9) 30%,#14101f),#0f1a2a)}
+.pmonth{border-color:color-mix(in srgb,var(--s1) 55%,transparent);background:linear-gradient(120deg,color-mix(in srgb,var(--s2) 60%,var(--panel)),var(--panel))}
+.passcta.season{background:radial-gradient(120% 160% at 100% 0%,color-mix(in srgb,var(--s1) 45%,transparent),transparent 65%),linear-gradient(110deg,color-mix(in srgb,var(--s2) 85%,#000),#14101f);border-color:color-mix(in srgb,var(--s1) 75%,transparent);padding:14px 16px}
+.passcta.season .tag{color:var(--s1)}
+.passcta .pclv{width:54px;height:54px;flex-direction:column;line-height:.9;background:linear-gradient(150deg,var(--s1,#ffd23f),#ffd23f)}.passcta .pclv small{display:block;font-size:.65rem;letter-spacing:.06em;text-transform:uppercase}
+.recapcta{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:12px 14px;border-radius:16px;background:linear-gradient(110deg,color-mix(in srgb,var(--s2) 85%,#000),#10161b);border:2px solid var(--s1);animation:pulse 1.8s ease-in-out infinite}
+.recapcta>div{flex:1;min-width:0}.recapcta .tag{display:block;font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:.85rem;letter-spacing:.08em;color:var(--s1)}.recapcta .pclv{background:var(--s1)}
+.recap .rlead{margin:0;font-size:1.05rem;line-height:1.45}
+.rtiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.rtiles div{padding:12px;border-radius:14px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1)}
+.rtiles b{display:block;font-family:var(--display);font-weight:900;font-size:2rem;line-height:1;color:var(--s1)}.rtiles span{font-size:.82rem;color:var(--muted)}
+.swt .lk{font-size:.62rem;padding:1px 4px;white-space:nowrap}
+@media (prefers-reduced-motion:reduce){.recapcta{animation:none}}
 /* esultanza Robot */
 .av.c-robot .av-arm.l{animation-name:robL;animation-timing-function:steps(1,end)}.av.c-robot .av-arm.r{animation-name:robR;animation-timing-function:steps(1,end)}.av.c-robot .av-body{animation-name:robB;animation-timing-function:steps(1,end)}
 @keyframes robL{0%{transform:none}15%{transform:rotate(90deg)}35%{transform:rotate(160deg)}55%{transform:rotate(90deg)}75%{transform:rotate(30deg)}}
@@ -2973,7 +3002,8 @@ const SECTIONS = [
   { key: 'mosse', title: 'Mosse da Fuoriclasse', en: 'Skill moves', note: 'Le giocate da imparare in campo' },
   { key: 'speciali', title: 'Speciali Fuoriclasse', en: 'Specials', note: 'Figurine esclusive di questo album' },
   { key: 'coppa', title: 'Trofei leggendari', en: 'Legendary trophies', note: 'Non escono dalle bustine: si vincono solo con la Coppa settimanale' },
-  { key: 'fc', title: 'Football Center', en: 'Football Center specials', note: 'Figurine speciali: non escono nelle bustine, si sbloccano con le imprese più difficili' }
+  { key: 'fc', title: 'Football Center', en: 'Football Center specials', note: 'Figurine speciali: non escono nelle bustine, si sbloccano con le imprese più difficili' },
+  { key: 'stagioni', title: 'Stagioni del Pass', en: 'Seasons', note: 'Due figurine esclusive al mese, solo con il Pass della stagione (livelli 15 e 30). Chi ne perde una la ritrova lo stesso mese dell\'anno dopo. Non contano per completare l\'album' }
 ];
 // [nome, nazione, ruolo, nascita, morte|0, rarità, curiosità]
 const P = (sec, rows) => rows.map(r => ({ sec, name: r[0], nat: r[1], role: r[2], born: r[3], died: r[4] || 0, rar: r[5], fact: r[6] }));
@@ -3499,6 +3529,27 @@ CARDS.push(
   { sec: 'fc', fc: 'coppa', name: 'Coppa Football Center', rar: 'oro', en: 'Cup = coppa', fact: 'Il trofeo della Coppa settimanale di Fuoriclasse. Lo alza chi non molla mai: quattro turni, ogni settimana.' },
   { sec: 'fc', fc: 'gallo', name: 'Il Gallo', rar: 'olo', en: 'Rooster = gallo', fact: 'La mascotte di Football Center: sveglio all\'alba, coraggioso e sempre pronto a lottare su ogni pallone. Solo i veri campioni lo trovano nell\'album.' }
 );
+
+// --- Stagioni del Pass: una stagione al mese, con tema, colori, colore esclusivo della divisa e 2 figurine (livelli 15 e 30 del Pass)
+const MESI = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
+const SEASONS = [
+  { t: 'Ghiaccio e grinta', c1: '#a9d6f5', c2: '#0b2a4a', ic: 'neve', kit: ['#a9d6f5', 'Blu ghiaccio'], en: 'Winter = inverno', fact: 'A gennaio si gioca anche con il freddo: per questo il riscaldamento è più lungo. Muscoli caldi vuol dire meno infortuni.' },
+  { t: 'Carnevale in campo', c1: '#c9a0ff', c2: '#2a1048', ic: 'stelle', kit: ['#c9a0ff', 'Lilla'], en: 'Mask = maschera', fact: 'A Carnevale ogni scherzo vale, ma in campo vale il fair play: rispetto per compagni, avversari e arbitro.' },
+  { t: 'Primavera in fuga', c1: '#7be0b0', c2: '#0c3a26', ic: 'fiore', kit: ['#7be0b0', 'Verde menta'], en: 'Spring = primavera', fact: 'Intorno al 20 marzo c\'è l\'equinozio di primavera: il giorno e la notte durano quasi uguale. Da lì in poi c\'è più luce per allenarsi.' },
+  { t: 'Camp di Pasqua', c1: '#ffe873', c2: '#4a3a06', ic: 'pallone', kit: ['#ffe873', 'Giallo pulcino'], en: 'Easter = Pasqua', fact: 'Nelle vacanze di Pasqua Football Center organizza i camp: giornate intere di calcio, giochi e amici.' },
+  { t: 'Notti di finale', c1: '#ffb347', c2: '#3a1d00', ic: 'coppa', kit: ['#ff7f6b', 'Corallo'], en: 'Final = finale', fact: 'Maggio è il mese delle finali: in tutta Europa si decidono campionati e coppe.' },
+  { t: 'Estate mondiale', c1: '#19c3c9', c2: '#063a3c', ic: 'sole', kit: ['#19c3c9', 'Turchese'], en: 'Summer = estate', fact: 'Mondiali ed Europei di solito si giocano d\'estate, quando i campionati sono fermi.' },
+  { t: 'Camp d\'estate', c1: '#4fd1ff', c2: '#06304a', ic: 'pallone', kit: ['#4fd1ff', 'Azzurro piscina'], en: 'Camp = campo estivo', fact: 'Nei camp estivi di Football Center si allenano tecnica e coordinazione, e ci si diverte insieme.' },
+  { t: 'Precampionato', c1: '#e2c28f', c2: '#3a2a12', ic: 'fischietto', kit: ['#e2c28f', 'Sabbia'], en: 'Pre-season = precampionato', fact: 'Ad agosto le squadre fanno la preparazione: corsa, forza e tanti test prima che inizi il campionato.' },
+  { t: 'Si torna in campo', c1: '#57b947', c2: '#0f3313', ic: 'stelle', kit: ['#57b947', 'Verde prato'], en: 'School = scuola', fact: 'Settembre: si torna a scuola e ricominciano i campionati giovanili. Zaino pronto, e anche la borsa da calcio!' },
+  { t: 'Derby d\'autunno', c1: '#e8772e', c2: '#3a1404', ic: 'foglia', kit: ['#e8772e', 'Zucca'], en: 'Autumn = autunno', fact: 'Si chiama derby la partita tra due squadre della stessa città, come Inter-Milan o Roma-Lazio.' },
+  { t: 'Nebbia e grinta', c1: '#8c9bab', c2: '#1a222b', ic: 'nuvola', kit: ['#8c9bab', 'Grigio nebbia'], en: 'Fog = nebbia', fact: 'In Pianura Padana a novembre arriva la nebbia: a volte una partita si sospende perché non si vede più la palla.' },
+  { t: 'Natale al campo', c1: '#e63946', c2: '#0d3a22', ic: 'albero', kit: ['#c8102e', 'Rosso Natale'], en: 'Christmas = Natale', fact: 'In Inghilterra si gioca anche il 26 dicembre, il Boxing Day: è una tradizione che dura da più di cent\'anni.' }
+];
+SEASONS.forEach((S, m) => CARDS.push(
+  { sec: 'stagioni', sm: m, sk: 'stemma', name: `Stemma di ${MESI[m]}`, rar: 'rara', en: 'Badge = stemma', fact: `Lo stemma della stagione «${S.t}». Si conquista al livello 15 del Pass di ${MESI[m].toLowerCase()}.` },
+  { sec: 'stagioni', sm: m, sk: 'tema', name: S.t, rar: 'oro', en: S.en, fact: S.fact }
+));
 CARDS.forEach((c, i) => { c.id = 'F' + String(i + 1).padStart(3, '0'); c.fem = c.sec === 'campionesse' || ['Mia Hamm', 'Birgit Prinz', 'Carolina Morace', 'Sun Wen', 'Sarina Wiegman'].includes(c.name); });
 // numero nell'album: ordine delle sezioni (i codici F… restano stabili)
 { let n = 0; for (const sec of SECTIONS) for (const c of CARDS) if (c.sec === sec.key) c.n = ++n; }
@@ -3509,7 +3560,7 @@ const RAR = { comune: { t: 'Comune', w: 58 }, rara: { t: 'Rara', w: 31 }, oro: {
 const STADIUM_EN = ['Pitch = campo', 'Stands = tribune', 'Crowd = folla', 'Floodlights = riflettori', 'Roof = tetto', 'Fans = tifosi', 'Kick-off = calcio d\'inizio', 'Seat = posto a sedere'];
 const WC_EN = ['World Cup = Coppa del Mondo', 'Final = finale', 'Trophy = trofeo', 'Champion = campione', 'Penalty shoot-out = serie di rigori', 'Extra time = tempi supplementari', 'Host country = Paese ospitante', 'Draw = pareggio', 'National team = nazionale'];
 function enWord(c) {
-  if (c.sec === 'fc') return c.en;
+  if (c.sec === 'fc' || c.sec === 'stagioni') return c.en;
   if (c.en) return c.en;
   if (c.sec === 'giro') return `${c.enName} = ${c.name}`;
   if (c.sec === 'stadi') return STADIUM_EN[c.n % STADIUM_EN.length];
@@ -3520,6 +3571,7 @@ function enWord(c) {
 }
 // mini-sfida di matematica sul retro, calcolata dai dati veri
 function backChallenge(c) {
+  if (c.sec === 'stagioni') return c.sk === 'tema' ? { q: 'Il Pass ha 30 livelli e ogni livello vale 150 punti. Quanti punti servono per completarlo?', a: '4.500 punti (30 × 150)' } : { q: 'Ogni settimana ci sono 4 missioni del Pass. In 4 settimane, quante missioni sono?', a: '16 missioni (4 × 4)' };
   if (c.sec === 'fc') return { q: 'In una partita di calcio a 7 ogni squadra ha 7 giocatori in campo. Quanti giocatori ci sono in campo in tutto, se ogni squadra fa anche 2 cambi?', a: '14: i cambi sostituiscono, non si aggiungono' };
   if (c.sec === 'regioni') return { q: `Qual è il capoluogo della regione ${c.name}?`, a: c.cap };
   if (c.sec === 'monumenti') return c.born ? { q: `Completato nel ${c.born}: quanti anni sono passati fino al 2026?`, a: `${2026 - c.born} anni` } : { q: `In quale Paese si trova: ${c.name}?`, a: NAT[c.nat] ? NAT[c.nat].n : '' };
@@ -3750,6 +3802,28 @@ function fcArt(c, uid) {
     `<path d="M24 66Q50 54 76 66" fill="none" stroke="#fff" stroke-width="1.4" stroke-dasharray="3 3" opacity=".7"/><circle cx="50" cy="88" r="8" fill="#fff"/><polygon points="50,84 53.6,86.6 52.2,90.8 47.8,90.8 46.4,86.6" fill="#10241a"/>` + logo(28, 8, 44);
   return `<svg class="art" viewBox="0 0 100 112" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${body}</svg>`;
 }
+
+// disegni delle Stagioni del Pass: icone semplici in un riquadro 40×40 centrato in 0,0
+const SEASON_IC = {
+  neve: '<g stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none">' + [0, 60, 120].map(a => `<g transform="rotate(${a})"><path d="M0-18V18"/><path d="M-6-13l6 5 6-5M-6 13l6-5 6 5"/></g>`).join('') + '</g>',
+  stelle: '<g fill="#fff"><path d="M0-18l4.6 9.8 10.7 1.2-8 7.3 2.3 10.5L0 5.5l-9.6 5.3 2.3-10.5-8-7.3 10.7-1.2z"/><path d="M14 8l1.8 3.8 4.2.5-3.1 2.8.9 4.1-3.8-2.1-3.8 2.1.9-4.1-3.1-2.8 4.2-.5z" opacity=".8"/><circle cx="-15" cy="10" r="2.4" opacity=".7"/></g>',
+  fiore: '<g>' + [0, 72, 144, 216, 288].map(a => `<ellipse cx="0" cy="-10" rx="6.5" ry="10" fill="#fff" opacity=".92" transform="rotate(${a})"/>`).join('') + '<circle r="6.5" fill="#ffd23f"/></g>',
+  pallone: '<g><circle r="17" fill="#fff" stroke="#1b1f2a" stroke-width="1.6"/><polygon points="0,-7 6.7,-2.2 4.1,5.7 -4.1,5.7 -6.7,-2.2" fill="#1b1f2a"/><path d="M0-7V-17M6.7-2.2l9.6-3.1M4.1 5.7l5.9 8.1M-4.1 5.7l-5.9 8.1M-6.7-2.2l-9.6-3.1" stroke="#1b1f2a" stroke-width="1.6"/></g>',
+  coppa: '<g><path d="M-11-16h22v8c0 9-5 14-11 15-6-1-11-6-11-15z" fill="#ffd23f" stroke="#7a4d06" stroke-width="1.4"/><path d="M-11-12h-6c0 6 3 10 8 11M11-12h6c0 6-3 10-8 11" fill="none" stroke="#ffd23f" stroke-width="2.4"/><path d="M-3 7h6v6h-6zM-9 13h18v5h-18z" fill="#ffd23f" stroke="#7a4d06" stroke-width="1.2"/></g>',
+  sole: '<g><circle r="9" fill="#ffd23f"/>' + Array.from({ length: 8 }, (_, i) => `<path d="M0-13V-19" stroke="#ffd23f" stroke-width="3.4" stroke-linecap="round" transform="rotate(${i * 45})"/>`).join('') + '</g>',
+  fischietto: '<g><path d="M-16-4h16a9 9 0 1 1-9 9h-7z" fill="#fff" stroke="#1b1f2a" stroke-width="1.6"/><circle cx="0" cy="5" r="3.2" fill="#1b1f2a"/><path d="M-16-4v-5h10v5" fill="#fff" stroke="#1b1f2a" stroke-width="1.6"/><path d="M8-6l5-8" stroke="#fff" stroke-width="2" stroke-linecap="round"/></g>',
+  foglia: '<g><path d="M0-19C10-12 15-2 12 8 9 15 3 18 0 19-3 18-9 15-12 8-15-2-10-12 0-19z" fill="#ffb347" stroke="#7a3a06" stroke-width="1.4"/><path d="M0-15V19M0-6l7-5M0 1l8-4M0 8l-7-5M0 1l-8-4" stroke="#7a3a06" stroke-width="1.3" fill="none"/></g>',
+  nuvola: '<g fill="#fff"><path d="M-17 8a7 7 0 0 1 2-13.6A10 10 0 0 1 3-9a8 8 0 0 1 14 5 6.5 6.5 0 0 1-1 13H-12a5 5 0 0 1-5-1z" opacity=".95"/><path d="M-18 14h30M-12 19h26" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".6"/></g>',
+  albero: '<g><path d="M0-20L12-4H6L15 9H-15L-6-4H-12z" fill="#1f8a4c" stroke="#0b3a1e" stroke-width="1.2"/><rect x="-3" y="9" width="6" height="7" fill="#7a4d26"/><circle cx="-5" cy="-1" r="2" fill="#ffd23f"/><circle cx="6" cy="4" r="2" fill="#e63946"/><circle cx="1" cy="-10" r="1.8" fill="#fff"/><path d="M0-24l1.6 3.3 3.6.4-2.7 2.4.8 3.5L0-16.2l-3.3 1.8.8-3.5-2.7-2.4 3.6-.4z" fill="#ffd23f"/></g>'
+};
+function seasonArt(c, uid) {
+  const S = SEASONS[c.sm], ic = SEASON_IC[S.ic] || SEASON_IC.stelle;
+  const bgd = `<defs><radialGradient id="sg${uid}" cx=".5" cy=".38" r=".85"><stop offset="0" stop-color="${S.c1}"/><stop offset="1" stop-color="${S.c2}"/></radialGradient><linearGradient id="sh${uid}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><rect width="100" height="112" fill="url(#sg${uid})"/>`;
+  let body;
+  if (c.sk === 'stemma') body = bgd + `<path d="M50 16l28 9v24c0 20-12 33-28 40-16-7-28-20-28-40V25z" fill="${S.c2}" stroke="#ffd23f" stroke-width="3"/><path d="M50 22l22 7v20c0 16-9 27-22 33-13-6-22-17-22-33V29z" fill="url(#sh${uid})"/><g transform="translate(50 50) scale(1.05)">${ic}</g><path d="M30 90h40" stroke="#ffd23f" stroke-width="2" stroke-linecap="round" opacity=".7"/>`;
+  else body = bgd + Array.from({ length: 14 }, (_, i) => { const a = i * Math.PI / 7, b = a + Math.PI / 18; return `<path d="M50 48L${(50 + 140 * Math.cos(a)).toFixed(1)} ${(48 + 140 * Math.sin(a)).toFixed(1)}L${(50 + 140 * Math.cos(b)).toFixed(1)} ${(48 + 140 * Math.sin(b)).toFixed(1)}z" fill="#fff" opacity=".1"/>`; }).join('') + `<circle cx="50" cy="48" r="30" fill="none" stroke="#fff" stroke-width="1.5" opacity=".45"/><circle cx="50" cy="48" r="25" fill="${S.c2}" opacity=".35"/><g transform="translate(50 48) scale(1.4)">${ic}</g>`;
+  return `<svg class="art" viewBox="0 0 100 112" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${body}</svg>`;
+}
 let artSeq = 0;
 function artSVG(c) {
   const uid = (++artSeq).toString(36);
@@ -3757,6 +3831,7 @@ function artSVG(c) {
   if (c.sec === 'mondiali' || c.sec === 'coppa' || c.sec === 'europei') return trophyArt(c, uid);
   if (c.sec === 'regioni') return regionArt(c, uid);
   if (c.sec === 'fc') return fcArt(c, uid);
+  if (c.sec === 'stagioni') return seasonArt(c, uid);
   if (c.sec === 'monumenti') return monumentArt(c, uid);
   if (c.sec === 'mosse') return moveArt(c, uid);
   if (c.sec === 'speciali') return mascotArt(c, uid);
@@ -3770,6 +3845,7 @@ function subtitle(c) {
   if (c.sec === 'speciali') return 'Esclusiva Fuoriclasse';
   if (c.sec === 'coppa') return 'Solo con la Coppa settimanale';
   if (c.sec === 'fc') return 'Speciale Football Center';
+  if (c.sec === 'stagioni') return `Pass di ${MESI[c.sm].toLowerCase()}`;
   if (c.sec === 'giro') return `Capitale: ${c.cap}`;
   if (c.sec === 'europei') return `${c.years.length} ${c.years.length === 1 ? 'titolo europeo' : 'titoli europei'}`;
   if (c.sec === 'regioni') return `Capoluogo: ${c.cap}`;
@@ -3969,7 +4045,7 @@ const coachBonus = c => c.ovr >= 94 ? 4 : c.ovr >= 91 ? 3 : c.ovr >= 88 ? 2 : 1;
 
 // forza in campo (La mia formazione): il punteggio della figurina, come nei videogiochi
 const rating = c => c.ovr || 70;
-const api = { FC_LOGO, NAT, ROLE, SECTIONS, CARDS, ALBUM, BY_ID, RAR, rating, statsOf, coachBonus, flagSVG, artSVG, subtitle, enWord, backChallenge };
+const api = { FC_LOGO, NAT, ROLE, SECTIONS, CARDS, SEASONS, MESI, ALBUM, BY_ID, RAR, rating, statsOf, coachBonus, flagSVG, artSVG, subtitle, enWord, backChallenge };
 if (typeof module !== 'undefined' && module.exports) module.exports = api; else G.FC = api;
 })(typeof window !== 'undefined' ? window : globalThis);
 
@@ -3979,7 +4055,7 @@ if (typeof module !== 'undefined' && module.exports) module.exports = api; else 
 (function () {
 'use strict';
 const { TOPICS, TOPIC, DECKS, makeQuestion, makeSet, makeVar } = window.QB;
-const { FC_LOGO, CARDS, ALBUM, rating, statsOf, coachBonus, BY_ID, SECTIONS, RAR, NAT, ROLE, flagSVG, artSVG, subtitle, enWord, backChallenge } = window.FC;
+const { FC_LOGO, CARDS, SEASONS, ALBUM, rating, statsOf, coachBonus, BY_ID, SECTIONS, RAR, NAT, ROLE, flagSVG, artSVG, subtitle, enWord, backChallenge } = window.FC;
 const $ = s => document.querySelector(s);
 const PHOTOS = window.FC_PHOTOS || {}, CREDITS = window.FC_CREDITS || {};
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -4068,7 +4144,7 @@ let warned = false;
 function save() { try { localStorage.setItem(KEY, JSON.stringify(DB)); } catch (e) { if (!warned) { warned = true; toast('Questo browser non sta salvando i progressi: usa il codice di salvataggio.'); } } }
 const prof = () => { const p = DB.profiles.find(p => p.id === UI.pid); return p ? ensure(p) : p; };
 function newProfile(nick, cls, color) {
-  return { id: uid(), nick, cls, color, created: today(), last: today(), packs: 2, cards: {}, opened: 0, pity: 0, stats: { s: 0, c: 0, t: 0 }, topics: {}, leit: {}, hist: [], errs: [], missions: [], daily: { d: '', n: 0 }, secDone: [], xpv: 2, log: [{ d: today(), t: '2 bustine di benvenuto' }] };
+  return { id: uid(), nick, cls, color, created: today(), last: today(), packs: 2, cards: {}, opened: 0, pity: 0, stats: { s: 0, c: 0, t: 0 }, topics: {}, leit: {}, hist: [], errs: [], missions: [], daily: { d: '', n: 0 }, secDone: [], xpv: 2, avv: 2, log: [{ d: today(), t: '2 bustine di benvenuto' }] };
 }
 
 /* ---------- stato interfaccia ---------- */
@@ -4126,7 +4202,9 @@ function cardHTML(c, opts) {
 const topBar = (title, back, right) => `<div class="top">${back ? `<button class="back" data-a="nav" data-to="${back}" aria-label="Indietro">${ICON.back}</button>` : ''}<h1>${title}</h1><span class="spacer"></span>${right || ''}</div>`;
 const packChip = p => `<span class="chip ${p.packs ? 'hot' : ''}" title="Bustine da aprire">${miniPack().replace('class="mini-pack"', 'width="14" height="20"')}<b>${p.packs}</b></span>`;
 const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
-const owned = p => CARDS.filter(c => p.cards[c.id]).length;
+// le figurine delle Stagioni del Pass sono un extra: non contano per completare l'album
+const ALB = CARDS.filter(c => c.sec !== 'stagioni');
+const owned = p => ALB.filter(c => p.cards[c.id]).length;
 function accClass(a) { return a >= 75 ? '' : a >= 50 ? 'mid' : 'low'; }
 
 /* ---------- logica di gioco ---------- */
@@ -4139,7 +4217,7 @@ function grant(p, n, why, capped) {
   if (g > 0) { p.packs += g; p.log.unshift({ d: today(), t: `+${g} ${g === 1 ? 'bustina' : 'bustine'}: ${why}` }); p.log = p.log.slice(0, 40); }
   return g;
 }
-const BYRAR = { comune: [], rara: [], oro: [], olo: [] }; CARDS.forEach(c => { if (c.sec !== 'coppa' && c.sec !== 'fc') BYRAR[c.rar].push(c); });
+const BYRAR = { comune: [], rara: [], oro: [], olo: [] }; CARDS.forEach(c => { if (c.sec !== 'coppa' && c.sec !== 'fc' && c.sec !== 'stagioni') BYRAR[c.rar].push(c); });
 function drawRarity(force) { if (force) return Math.random() < 0.12 ? 'olo' : 'oro'; const tot = Object.values(RAR).reduce((a, r) => a + r.w, 0); let x = Math.random() * tot; for (const k of ['comune', 'rara', 'oro', 'olo']) { x -= RAR[k].w; if (x < 0) return k; } return 'comune'; }
 function openPack(p) {
   const out = [], force = p.pity >= 10 ? 2 : -1; let high = false;
@@ -4156,11 +4234,14 @@ function openPack(p) {
 }
 function checkSections(p) {
   const done = [];
-  for (const s of SECTIONS) { if (p.secDone.includes(s.key)) continue; const cs = CARDS.filter(c => c.sec === s.key); if (cs.every(c => p.cards[c.id])) { p.secDone.push(s.key); grant(p, 2, `sezione "${s.title}" completata`, false); done.push(s.title); } }
+  for (const s of SECTIONS) { if (s.key === 'stagioni' || p.secDone.includes(s.key)) continue; const cs = CARDS.filter(c => c.sec === s.key); if (cs.every(c => p.cards[c.id])) { p.secDone.push(s.key); grant(p, 2, `sezione "${s.title}" completata`, false); done.push(s.title); } }
   return done;
 }
 /* ---------- progressi: livelli, ripasso errori, sfide, serie, trofei ---------- */
 function ensure(p) {
+  ensureBase(p); avMigrate(p); return p;
+}
+function ensureBase(p) {
   p.lv = p.lv || {}; p.rev = p.rev || []; p.streak = p.streak || { n: 0, last: '', best: 0 }; p.tro = p.tro || {};
   p.cnt = Object.assign({ perfect: 0, maxGoals: 0, read: 0, ch: 0, var: 0 }, p.cnt || {}); p.fm = p.fm || { xi: {}, coach: '', round: 0, wins: 0, played: 0, titles: 0 }; p.stats.rev = p.stats.rev || 0; p.day = p.day || { d: '', s: [] }; p.xp = p.xp || 0; xpMigrate(p); if (!p.av || !p.av.cel) p.av = Object.assign(defaultAv(p), p.av || {});
   return p;
@@ -4243,8 +4324,8 @@ const TROPHIES = [
   ['duello', 'Re del campetto', 'Vinci 3 sfide 1 contro 1', 'medal', p => (p.cnt.duel || 0) >= 3],
   ['tuttofare', 'Tuttofare', 'Gioca a tutti e 4 i minigiochi', 'star', p => Object.keys(p.cnt.mg || {}).length >= 4],
   ['sezione', 'Prima sezione', "Completa una sezione dell'album", 'album', p => p.secDone.length >= 1],
-  ['mezzo', 'Mezzo album', "Completa metà dell'album", 'album', p => owned(p) >= CARDS.length / 2],
-  ['album', 'Collezionista', "Completa tutto l'album", 'cup', p => owned(p) >= CARDS.length]
+  ['mezzo', 'Mezzo album', "Completa metà dell'album", 'album', p => owned(p) >= ALB.length / 2],
+  ['album', 'Collezionista', "Completa tutto l'album", 'cup', p => owned(p) >= ALB.length]
 ].map(([k, t, d, ic, f]) => ({ k, t, d, ic, f }));
 function checkTro(p) { for (const tr of TROPHIES) if (!p.tro[tr.k] && tr.f(p)) { p.tro[tr.k] = today(); grant(p, 1, `trofeo «${tr.t}»`, false); EV.tro.push(tr.k); xpAdd(p, 30, true); } }
 const TROIC = {
@@ -4320,7 +4401,7 @@ V.home = () => {
   const demo = [['demo4', '#e63946'], ['demo2', '#ffd23f'], ['demo3', '#2bb673']].map(([id, color]) => defaultAv({ id, color }));
   const team = ps.length >= 3 ? [ps[1].av, ps[0].av, ps[2].av] : ps.length === 2 ? [ps[1].av, ps[0].av, demo[2]] : ps.length === 1 ? [demo[0], ps[0].av, demo[2]] : demo;
   const many = ps.length > 6;
-  const row = p => `<button class="hplayer" data-a="pick" data-id="${p.id}" data-n="${esc(p.nick.toLowerCase())}">${pav(p)}<span class="hpn"><b>${esc(p.nick)}</b><span class="small muted">${p.cls}ª media · ${pct(owned(p), CARDS.length)}% album</span></span><span class="hlv"><small>Liv.</small>${plv(p)}${prestBadge(p)}</span></button>`;
+  const row = p => `<button class="hplayer" data-a="pick" data-id="${p.id}" data-n="${esc(p.nick.toLowerCase())}">${pav(p)}<span class="hpn"><b>${esc(p.nick)}</b><span class="small muted">${p.cls}ª media · ${pct(owned(p), ALB.length)}% album</span></span><span class="hlv"><small>Liv.</small>${plv(p)}${prestBadge(p)}</span></button>`;
   return `<div class="wrap homew">
   <section class="hhero">${homeScene()}
     <div class="hlogo"><span class="hkick">Stagione ${(() => { const d = new Date(), y = d.getMonth() >= 7 ? d.getFullYear() : d.getFullYear() - 1; return `${String(y).slice(2)}/${String(y + 1).slice(2)}`; })()}</span><h1>Fuori<span>classe</span></h1><p>Studia, gioca, completa l'album.</p><button class="hby" data-a="nav" data-to="fc" aria-label="Un prodotto Football Center: scopri di più"><img src="${FC_LOGO}" alt="" width="120" height="113"><span><small>Un prodotto</small><b>Football Center</b></span></button></div>
@@ -4329,7 +4410,7 @@ V.home = () => {
   <div class="hcta">${me ? `<button class="hgo" data-a="pick" data-id="${me.id}">${pav(me, 'hgoav')}<span><small>Bentornato!</small><b>Gioca come ${esc(me.nick)}</b></span><span class="hplay" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg></span></button>`
     : `<button class="hgo" data-a="nav" data-to="new"><span class="hplus">+</span><span><small>Si parte!</small><b>Crea il tuo giocatore</b></span><span class="hplay" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg></span></button>`}</div>
   ${installHint()}
-  <div class="hfeat"><div><b>${CARDS.length}</b><span>figurine da collezionare</span></div><div><b>4</b><span>materie: mate, italiano, inglese, geografia</span></div><div><b>${Object.keys(GAMES).length + Object.keys(GEO_MODES).length + 7}</b><span>modi di giocare, Coppa e Pass</span></div></div>
+  <div class="hfeat"><div><b>${ALB.length}</b><span>figurine da collezionare</span></div><div><b>4</b><span>materie: mate, italiano, inglese, geografia</span></div><div><b>${Object.keys(GAMES).length + Object.keys(GEO_MODES).length + 7}</b><span>modi di giocare, Coppa e Pass</span></div></div>
   <section class="stack hlocker">
     <div class="row"><div class="eyebrow">Spogliatoio · ${ps.length ? `${ps.length} ${ps.length === 1 ? 'giocatore' : 'giocatori'}` : 'ancora vuoto'}</div><span class="spacer"></span>${ps.length ? '<button class="btn sm ghost" data-a="nav" data-to="new">+ Nuovo giocatore</button>' : ''}</div>
     ${many ? '<input id="hsearch" class="hsearch" type="search" placeholder="Cerca il tuo nome…" aria-label="Cerca il tuo giocatore" autocomplete="off">' : ''}
@@ -4339,7 +4420,7 @@ V.home = () => {
 };
 document.addEventListener('input', e => { if (e.target.id !== 'hsearch') return; const q = e.target.value.trim().toLowerCase(); document.querySelectorAll('.hplayer').forEach(b => { b.hidden = q && !b.dataset.n.includes(q); }); });
 V.campo = () => {
-  const p = prof(), o = owned(p), mis = p.missions.filter(m => !m.done), ch = ensureCh(p), sn = streakNow(p), Lv = lvInfo(p.xp);
+  const p = prof(); passState(p); const o = owned(p), mis = p.missions.filter(m => !m.done), ch = ensureCh(p), sn = streakNow(p), Lv = lvInfo(p.xp);
   const lastTopic = Object.entries(p.topics).length, fm = fmState(p), opp = oppAt(fm);
   const cs = cupState(p), cupOn = !cs.done && cs.today < CUP_PER_DAY;
   return `<div class="wrap">${topBar('', 'home', `<button class="back" data-a="audio" aria-label="${FX.muted ? 'Attiva i suoni' : 'Disattiva i suoni'}" title="Suoni">${SPK(!FX.muted)}</button>${packChip(p)}`)}
@@ -4347,16 +4428,17 @@ V.campo = () => {
     <div class="me"><button class="meav" data-a="nav" data-to="me" aria-label="Il mio giocatore" style="--xp:${pct(Lv.cur, Lv.need)}%">${avatarSVG(p.av, { crop: 'bust', still: true })}<span class="lvbadge">${Lv.n}</span></button>
       <div class="mename"><h2>${esc(p.nick)}</h2><span class="small muted">${esc(p.av.title || 'Esordiente')} · ${p.cls}ª media</span><div class="xpline"><div class="xpbar sm"><i style="width:${pct(Lv.cur, Lv.need)}%"></i></div><span class="small muted">${Lv.cur}/${Lv.need} XP</span></div></div></div>
     <div class="kpis">
-      <div class="kpi"><b>${pct(o, CARDS.length)}%</b><span>album · ${o}/${CARDS.length}</span><div class="bar" style="margin-top:6px"><i style="width:${pct(o, CARDS.length)}%"></i></div></div>
+      <div class="kpi"><b>${pct(o, ALB.length)}%</b><span>album · ${o}/${ALB.length}</span><div class="bar" style="margin-top:6px"><i style="width:${pct(o, ALB.length)}%"></i></div></div>
       <div class="kpi streakk ${sn ? 'hot' : ''}" title="Sabato e domenica non interrompono la serie"><b>${FLAME} ${sn}</b><span>${sn === 1 ? 'giorno' : 'giorni'} di fila</span></div>
       <div class="kpi"><b>${p.stats.t ? pct(p.stats.c, p.stats.t) + '%' : '—'}</b><span>risposte giuste</span></div>
     </div>
+    ${p.recap && !p.recap.seen ? `<button class="recapcta" data-a="nav" data-to="recap" style="${seasonVars(p.recap.s)}"><span class="pclv">${p.recap.tier}</span><div><span class="tag">Stagione finita</span><b>Il tuo riepilogo di ${MESI[passMonth(p.recap.s)]} è pronto</b></div><span class="chip">Guarda</span></button>` : ''}
+    ${(() => { const ps = passState(p), t = passTier(ps), S = SEASONS[passMonth(ps.s)], todo = Array.from({ length: t }, (_, i) => i + 1).filter(n => !ps.cl.includes(n)).length; return `<button class="passcta season" data-a="nav" data-to="pass" style="${seasonVars(ps.s)}"><span class="pclv"><small>Liv.</small>${t}</span><div><span class="tag">Pass di ${MESI[passMonth(ps.s)].toLowerCase()} · ${esc(S.t)}</span><b>${todo ? `${todo} ${todo === 1 ? 'premio' : 'premi'} da riscattare!` : t >= PASS_TIERS ? 'Pass completato!' : `Livello ${t} di ${PASS_TIERS}`}</b><div class="xpbar sm"><i style="width:${t >= PASS_TIERS ? 100 : pct(ps.pts - t * PASS_STEP, PASS_STEP)}%"></i></div><span class="small pleft">${HOURGLASS} Finisce tra ${passLeft(ps.s)}</span></div>${todo ? '<span class="chip hot">Riscatta</span>' : '<span class="chip">Apri</span>'}</button>`; })()}
     ${fcPackReady(p) ? `<button class="packcta fcpk" data-a="nav" data-to="pack"><span class="fcpkimg"><img src="${FC_LOGO}" alt="" width="44" height="41"></span><div><b>Bustina Football Center!</b><div>Quella di questo mese è pronta: aprila subito</div></div></button>` : ''}
     ${p.packs ? `<button class="packcta" data-a="nav" data-to="pack">${miniPack()}<div><b>${p.packs === 1 ? 'Hai una bustina!' : `Hai ${p.packs} bustine!`}</b><div>Aprila e attacca le figurine nell'album</div></div></button>` : ''}
     <div class="panel daily"><div class="row"><h2>Sfide di oggi</h2><span class="spacer"></span><span class="small ${ch.done ? 'okc' : 'muted'}">${ch.done ? 'Completate! +1 bustina' : 'Tutte e 3: +1 bustina e 50 XP'}</span></div>
       ${ch.items.map(it => `<div class="chrow ${it.prog >= it.n ? 'done' : ''}"><span>${esc(CH[it.t].txt(it.n, it.s))}</span><b>${Math.min(it.prog, it.n)}/${it.n}</b><div class="bar"><i style="width:${pct(Math.min(it.prog, it.n), it.n)}%"></i></div></div>`).join('')}</div>
     ${mis.map(m => `<button class="mission" data-a="mission" data-id="${m.id}"><div><span class="tag">Missione dal tutor · +1 bustina</span><b>${MODE[m.mode]} · ${esc(missionLabel(m))}</b></div></button>`).join('')}
-    ${(() => { const ps = passState(p), t = passTier(ps), todo = Array.from({ length: t }, (_, i) => i + 1).filter(n => !ps.cl.includes(n)).length; return `<button class="passcta" data-a="nav" data-to="pass"><span class="pclv">${t}</span><div><span class="tag">Pass della stagione · ${MESI[passMonth(ps.s)]}</span><b>${todo ? `${todo} ${todo === 1 ? 'premio' : 'premi'} da riscattare!` : `Livello ${t} di ${PASS_TIERS}`}</b><div class="xpbar sm"><i style="width:${t >= PASS_TIERS ? 100 : pct(ps.pts - t * PASS_STEP, PASS_STEP)}%;background:linear-gradient(90deg,#ffd23f,#ff8a1f)"></i></div></div>${todo ? '<span class="chip hot">Riscatta</span>' : ''}</button>`; })()}
     ${p.rev.length ? `<button class="mission rev" data-a="review"><div><span class="tag">Ripasso errori · 15 XP a risposta</span><b>${p.rev.length} ${p.rev.length === 1 ? 'domanda da sistemare' : 'domande da sistemare'}</b></div><span class="spacer"></span><span class="chip">Rivedi</span></button>` : ''}
     ${cupOn ? `<button class="mission cup" data-a="nav" data-to="coppa"><span class="mic">${CUPIC}</span><div><span class="tag">Coppa · ${CUP_ROUNDS[cs.round][0]}</span><b>Contro ${esc(cs.opps[cs.round])}</b></div><span class="spacer"></span><span class="chip">Gioca</span></button>` : ''}
   </div><div class="stack">
@@ -4895,9 +4977,9 @@ function pkTear() {
 V.album = () => {
   const p = prof(), nw = p.newc || [], sec = UI.sec || (UI.sec = nw.length && BY_ID[nw[nw.length - 1]] ? BY_ID[nw[nw.length - 1]].sec : 'campioni'), cs = CARDS.filter(c => c.sec === sec), S = SECTIONS.find(s => s.key === sec), o = owned(p);
   const sw = UI.swipe; UI.swipe = null;
-  return `<div class="wrap">${topBar('Album', 'campo', `<span class="chip"><b>${o}</b>/${CARDS.length}</span>`)}
+  return `<div class="wrap">${topBar('Album', 'campo', `<span class="chip"><b>${o}</b>/${ALB.length}</span>`)}
   <div class="stack">
-    <div class="bar"><i style="width:${pct(o, CARDS.length)}%"></i></div>
+    <div class="bar"><i style="width:${pct(o, ALB.length)}%"></i></div>
     <div class="secs" role="group" aria-label="Sezioni">${SECTIONS.map(s => { const tot = CARDS.filter(c => c.sec === s.key), got = tot.filter(c => p.cards[c.id]).length; return `<button data-a="sec" data-s="${s.key}" aria-pressed="${s.key === sec}">${esc(s.title)}<small>${got}/${tot.length}</small>${tot.some(c => nw.includes(c.id)) ? '<i class="ndot"></i>' : ''}</button>`; }).join('')}</div>
     <div><h2 style="font-size:1.8rem;text-transform:uppercase">${esc(S.title)}</h2><span class="muted small">${esc(S.note)} · <i>${esc(S.en)}</i></span>${sec === 'fc' ? '<div class="row" style="margin-top:8px"><button class="btn sm" data-a="nav" data-to="fc">Come si sbloccano</button></div>' : ''}<span class="small muted swipehint"> · Scorri col dito per cambiare sezione</span></div>
     <div class="albumgrid ${sw ? 'sw-' + sw : ''}">${cs.map(c => { const n = p.cards[c.id] || 0; return n ? `<button data-a="card" data-id="${c.id}" aria-label="${esc(c.name)}" class="${nw.includes(c.id) ? 'isnew' : ''}">${cardHTML(c, LAZY)}${nw.includes(c.id) ? '<span class="badge new">Nuova</span>' : ''}${n > 1 ? `<span class="badge dup">×${n}</span>` : ''}</button>` : `<div class="slot" aria-label="Figurina ${c.n} mancante"><span class="no">${c.n}</span><span>${esc(c.name)}</span></div>`; }).join('')}</div>
@@ -4936,7 +5018,7 @@ function useSpares(p, n) {
   for (const [id] of list) { while (n > 0 && p.cards[id] > 1) { p.cards[id]--; n--; } if (!n) break; }
 }
 V.mercato = () => {
-  const p = prof(), sp = spare(p), tab = UI.tab || 'fondi', missing = CARDS.filter(c => !p.cards[c.id] && c.sec !== 'coppa' && c.sec !== 'fc');
+  const p = prof(), sp = spare(p), tab = UI.tab || 'fondi', missing = CARDS.filter(c => !p.cards[c.id] && c.sec !== 'coppa' && c.sec !== 'fc' && c.sec !== 'stagioni');
   const others = DB.profiles.filter(x => x.id !== p.id);
   let body = '';
   if (tab === 'fondi') {
@@ -4997,7 +5079,7 @@ V.tutor = () => {
     ${backupBanner()}
     ${nrep ? `<button class="mission rev" data-a="nav" data-to="reports"><div><span class="tag">Da controllare</span><b>${nrep} ${nrep === 1 ? 'domanda segnalata' : 'domande segnalate'} dai ragazzi</b></div><span class="spacer"></span><span class="chip">Apri</span></button>` : ''}
     <div class="kpis"><div class="kpi"><b>${ps.length}</b><span>giocatori</span></div><div class="kpi"><b>${ps.filter(p => p.last === today()).length}</b><span>attivi oggi</span></div><div class="kpi"><b>${ps.reduce((a, p) => a + p.missions.filter(m => !m.done).length, 0)}</b><span>missioni aperte</span></div></div>
-    ${ps.length ? `<div class="tlist">${ps.map(p => { const acc = p.stats.t ? pct(p.stats.c, p.stats.t) : null; const weak = weakTopics(p)[0]; return `<button class="trow" data-a="student" data-id="${p.id}">${pav(p)}<div><b>${esc(p.nick)}</b><div class="meta">${p.cls}ª media · ultimo accesso ${fmtDate(p.last)} · ${p.stats.s} allenamenti · album ${pct(owned(p), CARDS.length)}%${weak ? ` · da rinforzare: ${esc(TOPIC[weak.k].title)}` : ''}</div></div>${acc === null ? '<span class="pill warn">nuovo</span>' : `<span class="pill ${acc >= 75 ? 'ok' : acc >= 50 ? 'warn' : 'ko'}">${acc}%</span>`}</button>`; }).join('')}</div>` : '<p class="muted">Nessun giocatore ancora. I ragazzi si creano il profilo dallo Spogliatoio.</p>'}
+    ${ps.length ? `<div class="tlist">${ps.map(p => { const acc = p.stats.t ? pct(p.stats.c, p.stats.t) : null; const weak = weakTopics(p)[0]; return `<button class="trow" data-a="student" data-id="${p.id}">${pav(p)}<div><b>${esc(p.nick)}</b><div class="meta">${p.cls}ª media · ultimo accesso ${fmtDate(p.last)} · ${p.stats.s} allenamenti · album ${pct(owned(p), ALB.length)}%${weak ? ` · da rinforzare: ${esc(TOPIC[weak.k].title)}` : ''}</div></div>${acc === null ? '<span class="pill warn">nuovo</span>' : `<span class="pill ${acc >= 75 ? 'ok' : acc >= 50 ? 'warn' : 'ko'}">${acc}%</span>`}</button>`; }).join('')}</div>` : '<p class="muted">Nessun giocatore ancora. I ragazzi si creano il profilo dallo Spogliatoio.</p>'}
   </div></div>`;
 };
 function weakTopics(p) { return Object.entries(p.topics).filter(([, v]) => v[1] >= 5).map(([k, v]) => ({ k, acc: pct(v[0], v[1]), n: v[1] })).sort((a, b) => a.acc - b.acc).filter(x => x.acc < 70); }
@@ -5009,7 +5091,7 @@ V.student = () => {
   const deckOpts = DECKS.filter(d => d.subj === ms.subj).map(d => `<option value="${d.key}" ${ms.key === d.key ? 'selected' : ''}>${esc(d.title)}</option>`).join('');
   return `<div class="wrap">${topBar(esc(p.nick), 'tutor')}
   <div class="stack">
-    <div class="kpis"><div class="kpi"><b>${p.stats.t ? pct(p.stats.c, p.stats.t) + '%' : '—'}</b><span>risposte giuste (${p.stats.t})</span></div><div class="kpi"><b>${p.stats.s}</b><span>allenamenti</span></div><div class="kpi"><b>${pct(owned(p), CARDS.length)}%</b><span>album · ${p.opened} bustine aperte</span></div></div>
+    <div class="kpis"><div class="kpi"><b>${p.stats.t ? pct(p.stats.c, p.stats.t) + '%' : '—'}</b><span>risposte giuste (${p.stats.t})</span></div><div class="kpi"><b>${p.stats.s}</b><span>allenamenti</span></div><div class="kpi"><b>${pct(owned(p), ALB.length)}%</b><span>album · ${p.opened} bustine aperte</span></div></div>
     <div class="kpis"><div class="kpi"><b>${plv(p)}</b><span>livello giocatore · ${p.xp} XP</span></div><div class="kpi"><b>${streakNow(p)}</b><span>giorni di fila (record ${p.streak.best})</span></div><div class="kpi"><b>${p.rev.length}</b><span>errori da ripassare · ${p.stats.rev} sistemati</span></div><div class="kpi"><b>${Object.keys(p.tro).length}/${TROPHIES.length}</b><span>trofei</span></div></div>
     <div class="panel"><h2>Argomenti</h2><p class="small muted" style="margin-top:0">Il livello sale da solo con 8 risposte giuste su 10. Potete cambiarlo con − e +.</p>${ts.length ? `<div class="scroll-x"><table class="tbl"><thead><tr><th>Argomento</th><th>Livello</th><th>Precisione</th><th class="n">Risposte</th></tr></thead><tbody>${ts.map(t => `<tr><td>${TOPIC[t.k] ? `${TOPIC[t.k].cls ? TOPIC[t.k].cls + 'ª · ' : ''}${esc(TOPIC[t.k].title)}` : t.k} <span class="small muted">${TOPIC[t.k] ? SUBJ[TOPIC[t.k].subj] : ''}</span></td><td>${TOPIC[t.k] && !TOPIC[t.k].read && TOPIC[t.k].max > 1 ? `<span class="lvctl"><button data-a="lvset" data-k="${t.k}" data-v="-1" aria-label="Abbassa livello">−</button>${stars(levelOf(p, t.k), TOPIC[t.k].max)}<button data-a="lvset" data-k="${t.k}" data-v="1" aria-label="Alza livello">+</button></span>` : '—'}</td><td><div class="acc ${accClass(t.acc)}"><div class="bar"><i style="width:${t.acc}%"></i></div><span class="small">${t.acc}%</span></div></td><td class="n">${t.c}/${t.t}</td></tr>`).join('')}</tbody></table></div>` : '<p class="muted small">Ancora nessuna risposta.</p>'}</div>
     <div class="panel"><h2>Errori recenti</h2>${p.errs.length ? `<div class="scroll-x"><table class="tbl"><thead><tr><th>Domanda</th><th>Ha risposto</th><th>Corretta</th></tr></thead><tbody>${p.errs.slice(0, 12).map(e => `<tr><td>${esc(e.q)}<div class="small muted">${fmtDate(e.d)} · ${TOPIC[e.k] ? esc(TOPIC[e.k].title) : ''}</div></td><td style="color:var(--ko)">${esc(e.g)}</td><td style="color:var(--ok)">${esc(e.r)}</td></tr>`).join('')}</tbody></table></div>` : '<p class="muted small">Nessun errore registrato.</p>'}</div>
@@ -5128,7 +5210,7 @@ function clearNew(sec) { const p = prof(); if (!p || !p.newc || !p.newc.length) 
 // benvenuto per i nuovi giocatori
 const WSTEPS = [
   ['Allenati e sali di livello', 'Rigori, Partita, VAR e Allenamento: rispondi alle domande di matematica, italiano e inglese. Ogni risposta giusta vale XP: sali di livello e sblocchi esultanze, capelli e maglie nuove. Leggi con calma: chi risponde di corsa non guadagna niente.', () => avatarSVG(prof().av, { cel: prof().av.cel, cls: 'loop' })],
-  ['Completa l\'album', () => `${CARDS.length} figurine vere: campioni, leggende, stadi, mondiali. Ci sono quattro rarità: comune, rara, oro e olografica. Con le doppie fai calciomercato.`, () => `<div class="wcards">${['rara', 'olo', 'oro'].map(r => CARDS.find(c => c.rar === r && c.sec === 'stadi') || CARDS.find(c => c.rar === r)).map(c => cardHTML(c)).join('')}</div>`],
+  ['Completa l\'album', () => `${ALB.length} figurine vere: campioni, leggende, stadi, mondiali. Ci sono quattro rarità: comune, rara, oro e olografica. Con le doppie fai calciomercato.`, () => `<div class="wcards">${['rara', 'olo', 'oro'].map(r => CARDS.find(c => c.rar === r && c.sec === 'stadi') || CARDS.find(c => c.rar === r)).map(c => cardHTML(c)).join('')}</div>`],
   ['Squadra, Coppa e sfide', 'Schiera le tue figurine nella formazione e vinci il campionato. Ogni settimana c\'è la Coppa con un trofeo speciale in palio, e puoi sfidare un amico 1 contro 1.', () => `<div class="wpair">${miniPitch()}<span class="wcup">${ICON.cup}</span></div>`]
 ];
 V.welcome = () => {
@@ -5226,33 +5308,38 @@ V.duelres = () => {
 
 /* ---------- il mio giocatore: aspetto, livelli, carriera ---------- */
 function L(a) { return a.map(([v, t, lv]) => ({ v, t, lv })); }
-const KITC = [['#e63946', 'Rosso'], ['#9b1b30', 'Granata'], ['#1d6fe0', 'Blu'], ['#0d2a6b', 'Blu notte'], ['#6cc3ff', 'Celeste'], ['#2bb673', 'Verde'], ['#0f5132', 'Verde scuro'], ['#ffd23f', 'Giallo'], ['#ff8a1f', 'Arancione'], ['#8e5bd9', 'Viola'], ['#ff6fae', 'Rosa'], ['#f1f1f1', 'Bianco'], ['#1b1f2a', 'Nero'], ['#c9a227', 'Oro', 26]];
+const KITC = [['#e63946', 'Rosso'], ['#9b1b30', 'Granata', 6], ['#1d6fe0', 'Blu'], ['#0d2a6b', 'Blu notte', 9], ['#6cc3ff', 'Celeste', 4], ['#2bb673', 'Verde'], ['#0f5132', 'Verde scuro', 12], ['#ffd23f', 'Giallo'], ['#ff8a1f', 'Arancione', 16], ['#8e5bd9', 'Viola', 21], ['#ff6fae', 'Rosa', 33], ['#f1f1f1', 'Bianco'], ['#1b1f2a', 'Nero'], ['#c9a227', 'Oro', 26]];
+const KITK = ['shirt', 'shirt2', 'shorts', 'socks'];
+// possiede un oggetto: premi del Pass, Football Center, oggetti tenuti dalla versione precedente; i colori del Pass valgono per tutta la divisa
+const owns = (own, k, v) => !!own && (own.includes(k + ':' + v) || (KITK.includes(k) && own.includes('kit:' + v)));
 const kitItems = () => KITC.map(([v, t, lv]) => ({ v, t, lv, c: v }));
 const AVC = {
   skin: { t: 'Carnagione', type: 'sw', items: ['#ffe0c7', '#f6c9a0', '#e3ab7c', '#c1885a', '#8d5a3b', '#5c3a24'].map((c, i) => ({ v: i, t: 'Tono ' + (i + 1), c })) },
-  hair: { t: 'Capelli', type: 'tile', crop: 'bust', items: L([['corti', 'Corti'], ['rasati', 'Rasati'], ['ciuffo', 'Ciuffo'], ['ricci', 'Ricci'], ['afro', 'Afro'], ['lunghi', 'Lunghi'], ['mezzi', 'Mezzi lunghi'], ['coda', 'Coda'], ['treccine', 'Treccine'], ['chignon', 'Chignon'], ['cresta', 'Cresta'], ['calvo', 'Rasato a zero'], ['punte', 'Super punte', 7], ['onda', 'Onda', 23]]) },
-  hairC: { t: 'Colore dei capelli', type: 'sw', crop: 'bust', items: [['#1d1612', 'Nero'], ['#3b2416', 'Castano scuro'], ['#6b4226', 'Castano'], ['#a8662f', 'Ramato'], ['#e2b65a', 'Biondo'], ['#f3e6bd', 'Platino'], ['#b5462a', 'Rosso'], ['#2f6fdf', 'Blu', 3], ['#ff6fae', 'Rosa', 11], ['#2bb673', 'Verde', 16], ['#8e5bd9', 'Viola', 22]].map(([v, t, lv]) => ({ v, t, lv, c: v })) },
-  eyes: { t: 'Occhi', type: 'tile', crop: 'face', items: L([['tondi', 'Tondi'], ['felici', 'Felici'], ['decisi', 'Decisi'], ['occhiolino', 'Occhiolino', 6], ['stelle', 'Stelline', 18]]) },
-  mouth: { t: 'Bocca', type: 'tile', crop: 'face', items: L([['sorriso', 'Sorriso'], ['grande', 'Che gioia'], ['deciso', 'Concentrato'], ['fischio', 'Fischio'], ['lingua', 'Linguaccia', 13]]) },
-  face: { t: 'Viso', type: 'tile', crop: 'face', items: L([['no', 'Niente'], ['lentiggini', 'Lentiggini'], ['cerotto', 'Cerotto'], ['occhiali', 'Occhiali sportivi'], ['lenti', 'Occhiali da vista'], ['tricolore', 'Tricolore', 17], ['strisce', 'Strisce nere', 21]]) },
+  hair: { t: 'Capelli', type: 'tile', crop: 'bust', items: L([['corti', 'Corti'], ['rasati', 'Rasati'], ['ciuffo', 'Ciuffo', 2], ['ricci', 'Ricci'], ['afro', 'Afro'], ['lunghi', 'Lunghi'], ['mezzi', 'Mezzi lunghi', 5], ['coda', 'Coda'], ['treccine', 'Treccine'], ['chignon', 'Chignon'], ['cresta', 'Cresta', 36], ['calvo', 'Rasato a zero'], ['punte', 'Super punte', 7], ['onda', 'Onda', 23]]) },
+  hairC: { t: 'Colore dei capelli', type: 'sw', crop: 'bust', items: [['#1d1612', 'Nero'], ['#3b2416', 'Castano scuro'], ['#6b4226', 'Castano'], ['#a8662f', 'Ramato'], ['#e2b65a', 'Biondo'], ['#f3e6bd', 'Platino'], ['#b5462a', 'Rosso'], ['#2f6fdf', 'Blu', 3], ['#ff6fae', 'Rosa', 11], ['#2bb673', 'Verde', 16], ['#8e5bd9', 'Viola', 22], ['#ff7a1a', 'Arancio fluo', 43], ['#c0c6cc', 'Argento', 46], ['#6cc3ff', 'Azzurro', 48], ['#d4af37', 'Capelli d\'oro', 50]].map(([v, t, lv]) => ({ v, t, lv, c: v })) },
+  eyes: { t: 'Occhi', type: 'tile', crop: 'face', items: L([['tondi', 'Tondi'], ['felici', 'Felici'], ['decisi', 'Decisi', 3], ['occhiolino', 'Occhiolino', 6], ['stelle', 'Stelline', 18]]) },
+  mouth: { t: 'Bocca', type: 'tile', crop: 'face', items: L([['sorriso', 'Sorriso'], ['grande', 'Che gioia'], ['deciso', 'Concentrato', 5], ['fischio', 'Fischio', 34], ['lingua', 'Linguaccia', 13]]) },
+  face: { t: 'Viso', type: 'tile', crop: 'face', items: L([['no', 'Niente'], ['lentiggini', 'Lentiggini'], ['cerotto', 'Cerotto', 7], ['occhiali', 'Occhiali sportivi', 38], ['lenti', 'Occhiali da vista'], ['tricolore', 'Tricolore', 17], ['strisce', 'Strisce nere', 21]]) },
   beard: { t: 'Barba e baffi', type: 'tile', crop: 'face', items: L([['no', 'Niente'], ['barbetta', 'Barbetta'], ['pizzetto', 'Pizzetto'], ['baffi', 'Baffi'], ['barba', 'Barba']]) },
   shirt: { t: 'Colore della maglia', type: 'sw', crop: 'torso', items: kitItems() },
   shirt2: { t: 'Secondo colore', type: 'sw', crop: 'torso', items: kitItems() },
-  pat: { t: 'Motivo della maglia', type: 'tile', crop: 'torso', items: L([['tinta', 'Tinta unita'], ['righe', 'Righe'], ['cerchi', 'Cerchi'], ['meta', 'Metà e metà'], ['banda', 'Banda'], ['spalle', 'Maniche'], ['scacchi', 'Scacchi', 4], ['fulmine', 'Fulmine', 10], ['fiamme', 'Fiamme', 19], ['stella', 'Stella', 25], ['mimetica', 'Mimetica', 29]]) },
+  pat: { t: 'Motivo della maglia', type: 'tile', crop: 'torso', items: L([['tinta', 'Tinta unita'], ['righe', 'Righe', 2], ['cerchi', 'Cerchi', 6], ['meta', 'Metà e metà', 42], ['banda', 'Banda', 8], ['spalle', 'Maniche', 32], ['scacchi', 'Scacchi', 4], ['fulmine', 'Fulmine', 10], ['fiamme', 'Fiamme', 19], ['stella', 'Stella', 25], ['mimetica', 'Mimetica', 29]]) },
   num: { t: 'Numero di maglia', type: 'num', items: [] },
   shorts: { t: 'Pantaloncini', type: 'sw', crop: 'full', items: kitItems() },
   socks: { t: 'Calzettoni', type: 'sw', crop: 'full', items: kitItems() },
-  boots: { t: 'Scarpini', type: 'tile', crop: 'feet', items: L([['#1b1f2a', 'Neri'], ['#f1f1f1', 'Bianchi'], ['#e63946', 'Rossi'], ['#1d6fe0', 'Blu'], ['#d7ff3a', 'Giallo fluo'], ['#39ff88', 'Verde fluo'], ['#ff4fa3', 'Rosa fluo'], ['oro', 'Oro', 9], ['arco', 'Arcobaleno', 20]]) },
-  head: { t: 'In testa', type: 'tile', crop: 'bust', items: L([['no', 'Niente'], ['fascia', 'Fascia'], ['cuffie', 'Cuffie', 5], ['cappellino', 'Cappellino', 12], ['bandana', 'Bandana', 27], ['corona', 'Corona', 30]]) },
-  arm: { t: 'Alle braccia', type: 'tile', crop: 'upper', items: L([['no', 'Niente'], ['polsini', 'Polsini'], ['guanti', 'Guanti da portiere'], ['capitano', 'Fascia da capitano', 15]]) },
-  cel: { t: 'Esultanza', type: 'cel', crop: 'full', items: L([['braccia', 'Braccia al cielo'], ['pugno', 'Pugno'], ['balletto', 'Balletto'], ['cuore', 'Cuore'], ['aereo', 'Aeroplano', 2], ['brividi', 'Brividi', 8], ['scivolata', 'Scivolata', 14], ['siuu', 'Salto Siuuu', 24], ['inchino', 'Inchino', 28]]) },
+  boots: { t: 'Scarpini', type: 'tile', crop: 'feet', items: L([['#1b1f2a', 'Neri'], ['#f1f1f1', 'Bianchi'], ['#e63946', 'Rossi', 3], ['#1d6fe0', 'Blu', 4], ['#d7ff3a', 'Giallo fluo', 35], ['#39ff88', 'Verde fluo', 40], ['#ff4fa3', 'Rosa fluo', 44], ['oro', 'Oro', 9], ['arco', 'Arcobaleno', 20], ['#c0c6cc', 'Argento', 31], ['#8e5bd9', 'Viola elettrico', 47], ['#ff7a1a', 'Arancio fluo', 49]]) },
+  head: { t: 'In testa', type: 'tile', crop: 'bust', items: L([['no', 'Niente'], ['fascia', 'Fascia', 37], ['cuffie', 'Cuffie', 5], ['cappellino', 'Cappellino', 12], ['bandana', 'Bandana', 27], ['corona', 'Corona', 30]]) },
+  arm: { t: 'Alle braccia', type: 'tile', crop: 'upper', items: L([['no', 'Niente'], ['polsini', 'Polsini', 39], ['guanti', 'Guanti da portiere'], ['capitano', 'Fascia da capitano', 15]]) },
+  cel: { t: 'Esultanza', type: 'cel', crop: 'full', items: L([['braccia', 'Braccia al cielo'], ['pugno', 'Pugno'], ['balletto', 'Balletto', 41], ['cuore', 'Cuore', 45], ['aereo', 'Aeroplano', 2], ['brividi', 'Brividi', 8], ['scivolata', 'Scivolata', 14], ['siuu', 'Salto Siuuu', 24], ['inchino', 'Inchino', 28]]) },
   role: { t: 'Ruolo preferito', type: 'choice', items: L([['POR', 'Portiere'], ['DIF', 'Difensore'], ['CEN', 'Centrocampista'], ['ATT', 'Attaccante']]) },
   foot: { t: 'Piede preferito', type: 'choice', items: L([['dx', 'Destro'], ['sx', 'Sinistro']]) }
 };
 [['head', 'gallo', 'Cresta del gallo'], ['pat', 'fcgallo', 'Maglia Football Center'], ['cel', 'gallo', 'Esultanza del Gallo']].forEach(([k, v, t]) => AVC[k].items.push({ v, t, pass: true, fc: true }));
+SEASONS.forEach((S, m) => KITK.forEach(k => AVC[k].items.push({ v: S.kit[0], t: S.kit[1], c: S.kit[0], pass: true, sm: m })));
 [['pat', 'zigzag', 'Saetta'], ['pat', 'pois', 'Pois'], ['head', 'lana', 'Berretto di lana'], ['face', 'sole', 'Occhiali da sole'], ['cel', 'robot', 'Robot'], ['boots', 'galassia', 'Galassia']].forEach(([k, v, t]) => AVC[k].items.push({ v, t, pass: true }));
 const UNLOCKS = [];
-for (const [k, s] of Object.entries(AVC)) for (const it of s.items) if (it.lv && !UNLOCKS.some(u => u.lv === it.lv)) UNLOCKS.push({ k, v: it.v, t: it.t, lv: it.lv, sec: k === 'shirt' ? 'Divisa' : s.t });
+for (const [k, s] of Object.entries(AVC)) for (const it of s.items) if (it.lv && !(KITK.includes(k) && k !== 'shirt')) UNLOCKS.push({ k, v: it.v, t: it.t, lv: it.lv, sec: k === 'shirt' ? 'Colore della divisa' : s.t });
+UNLOCKS.sort((a, b) => a.lv - b.lv);
 const LVTITLES = [[1, 'Esordiente'], [5, 'Promessa'], [10, 'Titolare'], [15, 'Bomber di razza'], [20, 'Capitano'], [25, 'Fenomeno'], [30, 'Leggenda di Fuoriclasse'], [35, 'Stella del campionato'], [40, 'Icona'], [45, 'Mito del pallone'], [50, 'Fuoriclasse assoluto']];
 const rewardsAt = n => ({ items: UNLOCKS.filter(u => u.lv === n), title: (LVTITLES.find(t => t[0] === n) || [])[1], pack: n % 5 === 0 });
 // curva dei livelli (v2, ottobre 2026): il 14 in circa una settimana di gioco, il 30 in circa 3 mesi; massimo 50, poi Prestigio
@@ -5264,6 +5351,11 @@ const plv = p => lvInfo(p.xp).n;
 // livello che conta per gli sblocchi: chi è passato al Prestigio tiene tutto quello che aveva conquistato
 const ulv = p => p.prest ? LV_MAX : plv(p);
 // i salvataggi fatti con la vecchia curva restano allo stesso livello, con la stessa percentuale di barra
+function avMigrate(p) {
+  if (p.avv === 2 || !p.av) return; const lv = ulv(p), keep = [];
+  for (const [k, s] of Object.entries(AVC)) for (const it of s.items) if (it.lv && it.lv > lv && String(p.av[k]) === String(it.v)) keep.push(k + ':' + it.v);
+  if (keep.length) p.own = Array.from(new Set([...(p.own || []), ...keep])); p.avv = 2;
+}
 function xpMigrate(p) {
   if (p.xpv === 2) return; const old = n => 120 + 30 * (n - 1); let L = 1, x = p.xp || 0;
   while (x >= old(L)) { x -= old(L); L++; }
@@ -5274,7 +5366,7 @@ const prestBadge = p => p.prest ? `<span class="prest-b" title="Prestigio ${p.pr
 const titlesOf = p => [...LVTITLES.filter(t => t[0] <= ulv(p)).map(t => t[1]), ...(p.prest ? ['Prestigio'] : []), ...TROPHIES.filter(t => p.tro && p.tro[t.k]).map(t => t.t), ...(p.ptitles || [])];
 function xpAdd(p, n, quiet) {
   if (!n || !p) return;
-  const before = plv(p); p.xp = (p.xp || 0) + n; const w = weekKey();
+  const before = plv(p); p.xp = (p.xp || 0) + n; p.xpl = (p.xpl || 0) + n; const w = weekKey();
   if (!p.wxp || p.wxp.w !== w) p.wxp = { w, n: 0 }; p.wxp.n += n; EV.xp = (EV.xp || 0) + n;
   const after = plv(p);
   for (let k = before + 1; k <= after; k++) { if (rewardsAt(k).pack) grant(p, 1, `livello giocatore ${k}`, false); (EV.plv = EV.plv || []).push(k); p.newu = true; }
@@ -5285,13 +5377,13 @@ function floatXP(n) { if (!n) return; const el = document.createElement('div'); 
 // --- aspetto di partenza (anche per i profili già esistenti, sempre uguale per lo stesso ragazzo)
 function defaultAv(p) {
   const r = seeded('av' + (p.id || 'x')), pk = a => a[Math.floor(r() * a.length)], base = k => AVC[k].items.filter(i => !i.lv).map(i => i.v);
-  const shirt = KITC.some(k => k[0] === p.color) ? p.color : '#1d6fe0';
-  return { skin: Math.floor(r() * 6), hair: pk(base('hair')), hairC: pk(base('hairC').slice(0, 7)), eyes: pk(['tondi', 'felici', 'decisi']), mouth: pk(['sorriso', 'grande', 'sorriso']), face: 'no',
-    shirt, shirt2: lumC(shirt) > .6 ? '#1b1f2a' : '#f1f1f1', pat: pk(['tinta', 'righe', 'cerchi', 'banda']), num: pk([7, 9, 10, 11, 14, 17, 19, 21, 23]), shorts: lumC(shirt) > .6 ? '#1b1f2a' : '#f1f1f1', socks: shirt, boots: pk(['#1b1f2a', '#f1f1f1', '#d7ff3a', '#ff4fa3']),
-    head: 'no', arm: 'no', beard: 'no', cel: pk(['braccia', 'pugno', 'balletto', 'cuore']), role: pk(['DIF', 'CEN', 'ATT']), foot: r() < 0.8 ? 'dx' : 'sx', title: 'Esordiente' };
+  const shirt = KITC.some(k => k[0] === p.color && !k[2]) ? p.color : '#1d6fe0';
+  return { skin: Math.floor(r() * 6), hair: pk(base('hair')), hairC: pk(base('hairC').slice(0, 7)), eyes: pk(['tondi', 'felici']), mouth: pk(['sorriso', 'grande', 'sorriso']), face: 'no',
+    shirt, shirt2: lumC(shirt) > .6 ? '#1b1f2a' : '#f1f1f1', pat: 'tinta', num: pk([7, 9, 10, 11, 14, 17, 19, 21, 23]), shorts: lumC(shirt) > .6 ? '#1b1f2a' : '#f1f1f1', socks: shirt, boots: pk(['#1b1f2a', '#f1f1f1']),
+    head: 'no', arm: 'no', beard: 'no', cel: pk(['braccia', 'pugno']), role: pk(['DIF', 'CEN', 'ATT']), foot: r() < 0.8 ? 'dx' : 'sx', title: 'Esordiente' };
 }
 function randomAv(av, lv, own) {
-  own = own || []; const out = Object.assign({}, av), ok = k => AVC[k].items.filter(i => (!i.lv || i.lv <= lv) && (!i.pass || own.includes(k + ':' + i.v))).map(i => i.v), pk = a => a[Math.floor(Math.random() * a.length)];
+  own = own || []; const out = Object.assign({}, av), ok = k => AVC[k].items.filter(i => (!i.lv || i.lv <= lv || owns(own, k, i.v)) && (!i.pass || owns(own, k, i.v))).map(i => i.v), pk = a => a[Math.floor(Math.random() * a.length)];
   for (const k of ['skin', 'hair', 'hairC', 'eyes', 'mouth', 'pat', 'boots', 'cel']) out[k] = pk(ok(k));
   out.face = Math.random() < 0.6 ? 'no' : pk(ok('face')); out.head = Math.random() < 0.6 ? 'no' : pk(ok('head')); out.arm = Math.random() < 0.6 ? 'no' : pk(ok('arm'));
   const k1 = pk(ok('shirt')); let k2 = pk(ok('shirt2')); while (k2 === k1) k2 = pk(ok('shirt2'));
@@ -5472,7 +5564,7 @@ function meStats(p) {
     const lb = Object.entries(p.lv || {}).filter(([k]) => TOPIC[k] && TOPIC[k].subj === s).reduce((a, [, e]) => a + (e.l - 1) * 3, 0);
     return t ? Math.min(99, Math.round(40 + (c / t) * 35 * Math.min(1, t / 30) + Math.min(24, lb))) : 40; };
   const acc = p.stats.t ? p.stats.c / p.stats.t : 0;
-  const list = [['MAT', subj('mat')], ['ITA', subj('ita')], ['ENG', subj('eng')], ['PRE', Math.min(99, Math.round(40 + acc * 59 * Math.min(1, p.stats.t / 60)))], ['COS', Math.min(99, 40 + (p.streak.best || 0) * 4)], ['COL', Math.round(40 + owned(p) / CARDS.length * 59)]];
+  const list = [['MAT', subj('mat')], ['ITA', subj('ita')], ['ENG', subj('eng')], ['PRE', Math.min(99, Math.round(40 + acc * 59 * Math.min(1, p.stats.t / 60)))], ['COS', Math.min(99, 40 + (p.streak.best || 0) * 4)], ['COL', Math.round(40 + owned(p) / ALB.length * 59)]];
   return { list, ovr: Math.round(list.reduce((a, [, v]) => a + v, 0) / list.length) };
 }
 const TIER = n => n >= 20 ? 'olo' : n >= 10 ? 'oro' : n >= 5 ? 'argento' : 'bronzo';
@@ -5533,11 +5625,13 @@ function avSection(k, av, lv, p) {
   if (k === 'num') return `<div class="avsec"><b>Numero di maglia</b><div class="numctl"><button data-a="avnum" data-v="-1" aria-label="Meno">−</button><output>${av.num}</output><button data-a="avnum" data-v="1" aria-label="Più">+</button>${[1, 7, 9, 10, 11, 23].map(n => `<button class="q" data-a="avset" data-k="num" data-v="${n}" aria-pressed="${+av.num === n}">${n}</button>`).join('')}</div></div>`;
   if (k === 'title') { const ts = p ? titlesOf(p) : ['Esordiente']; return `<div class="avsec"><b>Titolo</b><p class="small muted" style="margin:0 0 8px">Nuovi titoli con i livelli e con i trofei.</p><div class="avgrid choice2">${ts.map(t => `<button class="avc" data-a="avset" data-k="title" data-v="${esc(t)}" aria-pressed="${av.title === t}"><span>${esc(t)}</span></button>`).join('')}</div></div>`; }
   const s = AVC[k];
-  return `<div class="avsec"><b>${s.t}</b><div class="avgrid ${s.type}">${s.items.map(it => {
-    const lock = (it.lv && it.lv > lv) || (it.pass && !(p && (p.own || []).includes(k + ':' + it.v))), on = String(av[k]) === String(it.v);
+  // dei colori delle stagioni si vedono solo quelli già presi e quelli del mese in corso e del prossimo
+  const cm = new Date().getMonth(), vis = it => it.sm === undefined || owns(p && p.own, k, it.v) || it.sm === cm || it.sm === (cm + 1) % 12;
+  return `<div class="avsec"><b>${s.t}</b><div class="avgrid ${s.type}">${s.items.filter(vis).map(it => {
+    const has = owns(p && p.own, k, it.v), lock = (it.lv && it.lv > lv && !has) || (it.pass && !has), on = String(av[k]) === String(it.v), pm = it.pass && !it.fc ? passMonthOf(k, it) : -1;
     const inner = s.type === 'tile' ? avatarSVG(Object.assign({}, av, { [k]: it.v }), { crop: s.crop, cls: 'mini', still: true }) : '';
     const cls = s.type === 'sw' ? 'swt' : s.type === 'tile' ? 'avt' : 'avc';
-    return `<button class="${cls} ${lock ? 'locked' : ''}" ${lock ? `data-a="avlock" data-lv="${it.lv || ''}" data-pass="${it.fc ? 'fc' : it.pass ? 1 : ''}"` : `data-a="avset" data-k="${k}" data-v="${it.v}"`} aria-pressed="${on}" aria-label="${esc(it.t)}${lock ? (it.fc ? ' (figurina speciale Football Center)' : it.pass ? ' (premio del Pass)' : ` (si sblocca al livello ${it.lv})`) : ''}" title="${esc(it.t)}" ${s.type === 'sw' ? `style="--c:${it.c}"` : ''}>${inner}${s.type !== 'sw' ? `<span>${esc(it.t)}</span>` : ''}${lock ? `<i class="lk">${ICON.lock}${it.fc ? 'FC' : it.pass ? 'Pass' : it.lv}</i>` : ''}</button>`;
+    return `<button class="${cls} ${lock ? 'locked' : ''}" ${lock ? `data-a="avlock" data-lv="${it.lv || ''}" data-pass="${it.fc ? 'fc' : it.pass ? 1 : ''}" data-m="${pm}"` : `data-a="avset" data-k="${k}" data-v="${it.v}"`} aria-pressed="${on}" aria-label="${esc(it.t)}${lock ? (it.fc ? ' (figurina speciale Football Center)' : it.pass ? ` (premio del Pass di ${MESI[pm].toLowerCase()})` : ` (si sblocca al livello ${it.lv})`) : ''}" title="${esc(it.t)}" ${s.type === 'sw' ? `style="--c:${it.c}"` : ''}>${inner}${s.type !== 'sw' ? `<span>${esc(it.t)}</span>` : ''}${lock ? `<i class="lk">${ICON.lock}${it.fc ? 'FC' : it.pass ? 'Pass ' + MESI[pm].slice(0, 3).toLowerCase() : 'Liv. ' + it.lv}</i>` : ''}</button>`;
   }).join('')}</div></div>`;
 }
 function avEditor(av, mode, tab, lv, p, nick) {
@@ -5918,7 +6012,7 @@ document.addEventListener('pointerup', e => { if (!FGD) return; const dx = e.cli
 
 /* ---------- Pass della stagione: gratuito, un mese per stagione, 25 livelli ---------- */
 const MESI = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
-const PASS_TIERS = 25, PASS_STEP = 150;
+const PASS_TIERS = 30, PASS_STEP = 150;
 // gli oggetti esclusivi tornano a rotazione ogni 3 mesi: chi li perde li ritrova
 const PASS_POOL = [['pat:zigzag', 'cel:robot'], ['head:lana', 'boots:galassia'], ['face:sole', 'pat:pois']];
 const PASS_PTS = { act: 20, daily: 60, cup: 40, duel: 30 };
@@ -5928,64 +6022,120 @@ const MISSIONS = [
   ['subj:ita', 25, 'Rispondi giusto a 25 domande di italiano'], ['subj:mat', 25, 'Rispondi giusto a 25 domande di matematica'], ['cup', 2, 'Supera 2 turni di Coppa'],
   ['duel', 1, 'Gioca una sfida 1 contro 1'], ['perfect', 1, 'Fai 5 gol su 5 ai Rigori'], ['rev', 5, 'Sistema 5 errori nel Ripasso'], ['match', 2, 'Gioca 2 partite di campionato con la tua formazione']
 ].map(([t, n, txt]) => ({ t, n, txt }));
+// missione del mese: una grande impresa, a rotazione
+const MONTH_MS = [['ok', 250, 'Rispondi giusto a 250 domande'], ['daily', 12, 'Completa 12 volte le sfide del giorno'], ['act', 30, 'Finisci 30 tra allenamenti, partite e minigiochi']];
+const MONTH_PTS = 600;
 const passKey = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'); };
 const passMonth = k => +k.slice(5, 7) - 1;
+const seasonCards = m => CARDS.filter(c => c.sec === 'stagioni' && c.sm === m);
+// in quale mese (a partire da quello in corso) torna un premio del Pass
+function passMonthOf(k, it) {
+  if (it.sm !== undefined) return it.sm; const id = k + ':' + it.v, now = new Date().getMonth();
+  for (let i = 0; i < 12; i++) { const m = (now + i) % 12; if (PASS_POOL[m % 3].includes(id)) return m; } return now;
+}
+function passLeft(s) {
+  const ms = new Date(+s.slice(0, 4), passMonth(s) + 1, 1) - new Date(), d = Math.floor(ms / 864e5), h = Math.max(1, Math.floor(ms % 864e5 / 36e5));
+  return d >= 2 ? `${d} giorni` : d === 1 ? `1 giorno e ${h} ${h === 1 ? 'ora' : 'ore'}` : `${h} ${h === 1 ? 'ora' : 'ore'}`;
+}
+// contatori del giocatore all'inizio della stagione: servono per il riepilogo di fine mese
+const passSnap = p => ({ t: p.stats.t || 0, c: p.stats.c || 0, own: owned(p), op: p.opened || 0, xp: p.xpl || 0 });
+function passClose(p, ps) {
+  const tier = passTier(ps); let auto = 0;
+  for (let n = 1; n <= tier; n++) if (passGive(p, ps, n)) auto++;
+  const a = ps.snap || passSnap(p), b = passSnap(p);
+  p.recap = { s: ps.s, tier, q: b.t - a.t, ok: b.c - a.c, cards: b.own - a.own, packs: b.op - a.op, xp: b.xp - a.xp, wd: ps.wd || 0, mm: !!(ps.mm && ps.mm.done), auto, seen: false };
+  p.passHist = [{ s: ps.s, tier }, ...(p.passHist || [])].slice(0, 24);
+}
 function passState(p) {
   const k = passKey();
-  if (!p.pass || p.pass.s !== k) p.pass = { s: k, pts: 0, cl: [], wk: '', ms: [] };
-  if (p.pass.wk !== weekKey()) {
+  if (!p.pass || p.pass.s !== k) { if (p.pass && p.pass.s < k) passClose(p, p.pass); p.pass = { s: k, pts: 0, cl: [], wk: '', ms: [], wd: 0 }; }
+  const ps = p.pass;
+  if (!ps.snap) ps.snap = passSnap(p);
+  if (!ps.mm) { const [t, n, txt] = MONTH_MS[passMonth(k) % MONTH_MS.length]; ps.mm = { t, n, txt, prog: 0, done: false }; }
+  if (ps.wk !== weekKey()) {
     const r = seeded(weekKey() + p.id), mg = shuffle(MISSIONS.filter(m => m.t.startsWith('mg:'))), other = MISSIONS.filter(m => !m.t.startsWith('mg:') && (m.t !== 'duel' || DB.profiles.length > 1));
     const pickO = []; while (pickO.length < 2) { const m = other[Math.floor(r() * other.length)]; if (!pickO.includes(m)) pickO.push(m); }
-    p.pass.wk = weekKey(); p.pass.ms = [...mg.slice(0, 2), ...pickO].map(m => ({ t: m.t, n: m.n, txt: m.txt, prog: 0, done: false }));
+    ps.wk = weekKey(); ps.ms = [...mg.slice(0, 2), ...pickO].map(m => ({ t: m.t, n: m.n, txt: m.txt, prog: 0, done: false }));
   }
-  return p.pass;
+  return ps;
 }
 const passTier = ps => Math.min(PASS_TIERS, Math.floor(ps.pts / PASS_STEP));
 function passReward(n, s) {
-  const mi = passMonth(s), items = PASS_POOL[mi % 3], M = MESI[mi];
-  if (n === 5) return { it: items[0] }; if (n === 12) return { it: items[1] };
-  if (n === 18) return { title: `Stella di ${M}` }; if (n === 25) return { title: `Campione di ${M}`, pack: 3 };
-  if (n % 2 === 0) return { pack: 1 }; return { xp: 40 + 10 * Math.floor(n / 5) };
+  const mi = passMonth(s), items = PASS_POOL[mi % 3], M = MESI[mi], cs = seasonCards(mi);
+  if (n === 5) return { it: items[0] };
+  if (n === 10) return { it: 'kit:' + SEASONS[mi].kit[0] };
+  if (n === 15) return { card: cs[0].id };
+  if (n === 20) return { it: items[1] };
+  if (n === 25) return { title: `Stella di ${M}` };
+  if (n === 30) return { card: cs[1].id, title: `Campione di ${M}`, pack: 3 };
+  if (n % 2 === 0) return { pack: 1 };
+  return { xp: 40 + 10 * Math.floor(n / 5) };
 }
-const itemLabel = id => { const [k, v] = id.split(':'), it = (AVC[k] || { items: [] }).items.find(x => String(x.v) === v); return { k, v, t: it ? it.t.replace(' (Pass)', '') : v, sec: AVC[k] ? AVC[k].t : '' }; };
+const itemLabel = id => { const [k, v] = id.split(':');
+  if (k === 'kit') { const S = SEASONS.find(S => S.kit[0] === v); return { k: 'shirt', v, t: S ? S.kit[1] : v, sec: 'Colore della divisa' }; }
+  const it = (AVC[k] || { items: [] }).items.find(x => String(x.v) === v); return { k, v, t: it ? it.t.replace(' (Pass)', '') : v, sec: AVC[k] ? AVC[k].t : '' }; };
 function passEv(p, t, n) {
   if (!p) return; const ps = passState(p), before = passTier(ps); n = n || 1;
   if (PASS_PTS[t]) ps.pts += PASS_PTS[t];
-  for (const m of ps.ms) if (!m.done && m.t === t) { m.prog = Math.min(m.n, m.prog + n); if (m.prog >= m.n) { m.done = true; ps.pts += 150; setTimeout(() => toast(`Missione del Pass completata: ${m.txt}! +150 punti`), 900); } }
+  for (const m of ps.ms) if (!m.done && m.t === t) { m.prog = Math.min(m.n, m.prog + n); if (m.prog >= m.n) { m.done = true; ps.wd = (ps.wd || 0) + 1; ps.pts += 150; setTimeout(() => toast(`Missione del Pass completata: ${m.txt}! +150 punti`), 900); } }
+  const mm = ps.mm;
+  if (mm && !mm.done && (mm.t === t || (mm.t === 'ok' && t.startsWith('subj:')))) { mm.prog = Math.min(mm.n, mm.prog + n); if (mm.prog >= mm.n) { mm.done = true; ps.pts += MONTH_PTS; grant(p, 2, 'missione del mese', false); setTimeout(() => { toast(`Missione del mese completata! +${MONTH_PTS} punti e 2 bustine`); FX.play('trophy'); }, 1300); } }
   const after = passTier(ps); if (after > before) { p.passNew = true; if (UI.s !== 'result') setTimeout(() => { toast(`Pass della stagione: livello ${after}! Riscatta il premio`); FX.play('rara'); }, 1400); }
 }
-function passClaim(p, n) {
-  const ps = passState(p); if (n > passTier(ps) || ps.cl.includes(n)) return null;
-  const r = passReward(n, ps.s); ps.cl.push(n);
-  if (r.pack) grant(p, r.pack, `Pass della stagione, livello ${n}`, false);
+function passGive(p, ps, n) {
+  if (n > passTier(ps) || ps.cl.includes(n)) return null;
+  const r = passReward(n, ps.s), M = MESI[passMonth(ps.s)]; ps.cl.push(n);
+  if (r.pack) grant(p, r.pack, `Pass di ${M.toLowerCase()}, livello ${n}`, false);
   if (r.xp) xpAdd(p, r.xp, true);
   if (r.it) p.own = Array.from(new Set([...(p.own || []), r.it]));
   if (r.title) p.ptitles = Array.from(new Set([...(p.ptitles || []), r.title]));
+  if (r.card) { p.cards[r.card] = (p.cards[r.card] || 0) + 1; p.newc = Array.from(new Set([...(p.newc || []), r.card])); p.log = [{ d: today(), t: `figurina del Pass: ${BY_ID[r.card].name}` }, ...(p.log || [])].slice(0, 40); }
   if (n === PASS_TIERS) p.passDone = Array.from(new Set([...(p.passDone || []), ps.s]));
   return r;
 }
+const passClaim = (p, n) => passGive(p, passState(p), n);
 function rewardHTML(r, p) {
+  if (r.card) { const c = BY_ID[r.card]; return `<span class="prw pcardw">${miniArt(c)}</span><b>${esc(c.name)}</b><small>Figurina esclusiva${r.title ? ` + titolo «${esc(r.title)}»` : ''}${r.pack ? ` + ${r.pack} bustine` : ''}</small>`; }
   if (r.it) { const L = itemLabel(r.it); return `<span class="prw it">${avatarSVG(Object.assign({}, p.av, { [L.k]: L.v }), { crop: L.k === 'cel' ? 'full' : (AVC[L.k].crop || 'bust'), still: true, cls: 'mini' })}</span><b>${esc(L.t)}</b><small>${esc(L.sec)} · esclusivo</small>`; }
   if (r.title) return `<span class="prw">${ICON.medal}</span><b>«${esc(r.title)}»</b><small>Titolo${r.pack ? ` + ${r.pack} bustine` : ''}</small>`;
   if (r.pack) return `<span class="prw">${miniPack()}</span><b>+${r.pack} bustina</b><small>Premio</small>`;
   return `<span class="prw xp">+${r.xp}</span><b>${r.xp} XP</b><small>Esperienza</small>`;
 }
+const miniArt = c => `<span class="pcard r-${c.rar}">${cardArtCached(c)}</span>`;
+const seasonVars = s => { const S = SEASONS[passMonth(s)]; return `--s1:${S.c1};--s2:${S.c2}`; };
+const HOURGLASS = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12M6 21h12M7 3c0 5 10 6 10 9s-10 4-10 9M17 3c0 5-10 6-10 9"/></svg>';
+const mrow = m => `<div class="chrow ${m.done ? 'done' : ''}"><span>${esc(m.txt)}</span><b>${m.prog}/${m.n}</b><div class="bar"><i style="width:${pct(m.prog, m.n)}%"></i></div></div>`;
 V.pass = () => {
-  const p = prof(), ps = passState(p), tier = passTier(ps), M = MESI[passMonth(ps.s)], next = Math.min(PASS_TIERS, tier + 1), into = ps.pts - tier * PASS_STEP;
-  const end = new Date(+ps.s.slice(0, 4), passMonth(ps.s) + 1, 0), days = Math.max(0, Math.ceil((end - new Date()) / 864e5));
+  const p = prof(), ps = passState(p), tier = passTier(ps), mi = passMonth(ps.s), M = MESI[mi], S = SEASONS[mi], next = Math.min(PASS_TIERS, tier + 1), into = ps.pts - tier * PASS_STEP, ch = ensureCh(p);
   const todo = Array.from({ length: tier }, (_, i) => i + 1).filter(n => !ps.cl.includes(n)); p.passNew = false;
-  const tiles = Array.from({ length: PASS_TIERS }, (_, i) => { const n = i + 1, r = passReward(n, ps.s), got = ps.cl.includes(n), can = n <= tier && !got;
-    return `<div class="ptier ${got ? 'got' : can ? 'can' : n === next ? 'next' : 'lock'} ${r.it || r.title ? 'big' : ''}"><span class="pn">${n}</span>${rewardHTML(r, p)}${can ? `<button class="btn sm" data-a="passclaim" data-n="${n}">Riscatta</button>` : got ? (r.it ? `<button class="btn sm ghost" data-a="avtry" data-k="${itemLabel(r.it).k}" data-v="${itemLabel(r.it).v}">Usa</button>` : '<span class="small okc">Preso</span>') : ''}</div>`; }).join('');
+  const tiles = Array.from({ length: PASS_TIERS }, (_, i) => { const n = i + 1, r = passReward(n, ps.s), got = ps.cl.includes(n), can = n <= tier && !got, L = r.it ? itemLabel(r.it) : null;
+    return `<div class="ptier ${got ? 'got' : can ? 'can' : n === next ? 'next' : 'lock'} ${r.it || r.title || r.card ? 'big' : ''} ${r.card ? 'cardt' : ''}" id="pt${n}"><span class="pn">${n}</span>${rewardHTML(r, p)}${can ? `<button class="btn sm" data-a="passclaim" data-n="${n}">Riscatta</button>` : got ? (L ? `<button class="btn sm ghost" data-a="avtry" data-k="${L.k}" data-v="${L.v}">Usa</button>` : r.card ? `<button class="btn sm ghost" data-a="card" data-id="${r.card}">Guarda</button>` : '<span class="small okc">Preso</span>') : ''}</div>`; }).join('');
   return `<div class="wrap">${topBar('Pass della stagione', 'campo', packChip(p))}
-  <div class="stack"><div class="passhead"><div><span class="eyebrow">Stagione di ${M} · gratis per tutti</span><h2>Livello ${tier}<small>/${PASS_TIERS}</small></h2><span class="small muted">Finisce tra ${days} ${days === 1 ? 'giorno' : 'giorni'}. Gli oggetti esclusivi tornano più avanti: nessuno li perde per sempre.</span></div>
-    <div class="passbar"><div class="row small"><b>${tier >= PASS_TIERS ? 'Pass completato!' : `${into}/${PASS_STEP} punti`}</b><span class="spacer"></span><span class="muted">${tier >= PASS_TIERS ? '' : `verso il livello ${next}`}</span></div><div class="xpbar"><i style="width:${tier >= PASS_TIERS ? 100 : pct(into, PASS_STEP)}%;background:linear-gradient(90deg,#ffd23f,#ff8a1f)"></i></div></div>
-    ${todo.length > 1 ? `<button class="btn" data-a="passall">Riscatta tutti i premi (${todo.length})</button>` : ''}</div>
-    <div class="panel"><div class="row"><h2>Missioni della settimana</h2><span class="spacer"></span><span class="small muted">+150 punti ciascuna</span></div>
-      ${ps.ms.map(m => `<div class="chrow ${m.done ? 'done' : ''}"><span>${esc(m.txt)}</span><b>${m.prog}/${m.n}</b><div class="bar"><i style="width:${pct(m.prog, m.n)}%"></i></div></div>`).join('')}
-      <p class="small muted" style="margin:8px 0 0">Punti anche da ogni allenamento finito (+20), dalle sfide del giorno (+60), dai turni di Coppa (+40) e dalle sfide 1 contro 1 (+30).</p></div>
+  <div class="stack"><div class="passhead season" style="${seasonVars(ps.s)}"><div class="phtop"><div><span class="eyebrow">Stagione di ${M} · gratis per tutti</span><h2 class="ptheme">${esc(S.t)}</h2></div><span class="pleft">${HOURGLASS} Finisce tra ${passLeft(ps.s)}</span></div>
+    <div class="row phlv"><div class="pbig"><small>Livello</small><b>${tier}</b><small>/${PASS_TIERS}</small></div><div class="passbar" style="flex:1;min-width:0"><div class="row small"><b>${tier >= PASS_TIERS ? 'Pass completato!' : `${into}/${PASS_STEP} punti`}</b><span class="spacer"></span><span class="muted">${tier >= PASS_TIERS ? '' : `verso il livello ${next}`}</span></div><div class="xpbar"><i style="width:${tier >= PASS_TIERS ? 100 : pct(into, PASS_STEP)}%"></i></div></div></div>
+    <div class="pkeys">${[[15, seasonCards(mi)[0]], [30, seasonCards(mi)[1]]].map(([n, c]) => `<button class="pkey ${ps.cl.includes(n) ? 'got' : ''}" data-a="${ps.cl.includes(n) ? 'card' : 'passgo'}" data-id="${c.id}" data-n="${n}">${miniArt(c)}<span><small>Livello ${n}</small><b>${esc(c.name)}</b></span></button>`).join('')}</div>
+    ${todo.length > 1 ? `<button class="btn" data-a="passall">Riscatta tutti i premi (${todo.length})</button>` : todo.length ? `<button class="btn" data-a="passgo" data-n="${todo[0]}">Hai un premio da riscattare</button>` : ''}</div>
+    <div class="panel pmonth ${ps.mm.done ? 'done' : ''}" style="${seasonVars(ps.s)}"><div class="row"><h2>Impresa del mese</h2><span class="spacer"></span><span class="small ${ps.mm.done ? 'okc' : 'muted'}">${ps.mm.done ? 'Completata!' : `+${MONTH_PTS} punti e 2 bustine`}</span></div>${mrow(ps.mm)}</div>
+    <div class="panel"><div class="row"><h2>Oggi</h2><span class="spacer"></span><span class="small ${ch.done ? 'okc' : 'muted'}">${ch.done ? 'Fatto! +60 punti' : 'Tutte e 3: +60 punti'}</span></div>
+      ${ch.items.map(it => mrow({ txt: CH[it.t].txt(it.n, it.s), prog: Math.min(it.prog, it.n), n: it.n, done: it.prog >= it.n })).join('')}</div>
+    <div class="panel"><div class="row"><h2>Questa settimana</h2><span class="spacer"></span><span class="small muted">+150 punti ciascuna</span></div>${ps.ms.map(mrow).join('')}
+      <p class="small muted" style="margin:8px 0 0">Punti anche da ogni allenamento finito (+20), dai turni di Coppa (+40) e dalle sfide 1 contro 1 (+30). Tutto si guadagna giocando: nel Pass non si compra niente. A fine mese i premi raggiunti e non riscattati arrivano da soli.</p></div>
     <div class="ptiers">${tiles}</div></div></div>`;
 };
-
+// riepilogo della stagione appena finita
+V.recap = () => {
+  const p = prof(), r = p.recap;
+  if (!r) return `<div class="wrap">${topBar('Riepilogo', 'campo')}<p class="muted">Il primo riepilogo arriva alla fine di questo mese.</p></div>`;
+  r.seen = true; save();
+  const mi = passMonth(r.s), S = SEASONS[mi], M = MESI[mi], now = MESI[new Date().getMonth()], acc = r.q ? pct(r.ok, r.q) : 0;
+  const tiles = [[r.q, 'domande a cui hai risposto'], [r.q ? acc + '%' : '—', 'risposte giuste'], [r.cards, 'figurine nuove nell\'album'], [r.packs, 'bustine aperte'], [r.xp.toLocaleString('it-IT'), 'XP guadagnati'], [r.wd + (r.mm ? 1 : 0), 'missioni completate']];
+  return `<div class="wrap">${topBar('Riepilogo', 'campo')}
+  <div class="stack"><div class="passhead season recap" style="${seasonVars(r.s)}"><span class="eyebrow">La tua stagione di ${M}</span><h2 class="ptheme">${esc(S.t)}</h2>
+    <p class="rlead">${r.q ? `Questo mese hai risposto a <b>${r.q}</b> ${r.q === 1 ? 'domanda' : 'domande'}${r.cards ? ` e hai attaccato <b>${r.cards}</b> ${r.cards === 1 ? 'figurina nuova' : 'figurine nuove'}` : ''}.` : 'Questo mese hai giocato poco: la nuova stagione è l\'occasione giusta!'} Pass arrivato al livello <b>${r.tier}</b> su ${PASS_TIERS}.</p>
+    <div class="rtiles">${tiles.map(([v, t]) => `<div><b>${v}</b><span>${t}</span></div>`).join('')}</div>
+    ${r.auto ? `<p class="small" style="margin:0">Avevi ${r.auto} ${r.auto === 1 ? 'premio' : 'premi'} da riscattare: te li abbiamo già consegnati.</p>` : ''}
+    <button class="btn" data-a="nav" data-to="pass">Inizia la stagione di ${now}</button></div></div></div>`;
+};
 /* ---------- Geografia: Bandiere, Capitali, Mappa (stile Seterra), Dove si trova? (stile GeoGuessr) ---------- */
 const GEOD = window.GEO || null;
 const GCO = GEOD ? GEOD.countries : [], GBY = Object.fromEntries(GCO.map(c => [c.iso, c]));
@@ -6316,7 +6466,8 @@ const A = {
   ccheck: () => cCheck(),
   cnext: () => { const g = UI.g; g.i++; if (g.i >= g.rounds.length) return finish(); render(); window.scrollTo(0, 0); },
   fgdec: d => fgDecide(+d.v),
-  passclaim: d => { const p = prof(), r = passClaim(p, +d.n); if (!r) return; save(); FX.play(r.it || r.title ? 'oro' : 'coin'); if (r.it || r.title) FX.confetti(90); render(); toast(r.it ? `Nuovo oggetto: ${itemLabel(r.it).t}! Lo trovi in Personalizza.` : r.title ? `Nuovo titolo: «${r.title}»` : r.pack ? 'Bustina aggiunta!' : `+${r.xp} XP`); },
+  passclaim: d => { const p = prof(), r = passClaim(p, +d.n); if (!r) return; save(); if (r.card) { render(); return walkout(BY_ID[r.card], () => { render(); toast(r.title ? `Figurina esclusiva e titolo «${r.title}»!` : 'Figurina esclusiva della stagione!'); }); } FX.play(r.it || r.title ? 'oro' : 'coin'); if (r.it || r.title) FX.confetti(90); render(); toast(r.it ? `Nuovo oggetto: ${itemLabel(r.it).t}! Lo trovi in Personalizza.` : r.title ? `Nuovo titolo: «${r.title}»` : r.pack ? 'Bustina aggiunta!' : `+${r.xp} XP`); },
+  passgo: d => { const n = +d.n, r = passReward(n, passState(prof()).s); if (n <= passTier(passState(prof())) && !passState(prof()).cl.includes(n)) return A.passclaim(d); const el = document.getElementById('pt' + n); if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' }); },
   passall: () => { const p = prof(), ps = passState(p); let n = 0; for (let t = 1; t <= passTier(ps); t++) if (passClaim(p, t)) n++; save(); FX.play('oro'); FX.confetti(120); render(); toast(`${n} premi riscattati!`); },
   audio: () => { const m = FX.toggle(); render(); toast(m ? 'Suoni disattivati.' : 'Suoni attivi.'); },
   cupplay: () => startCup(),
@@ -6355,7 +6506,7 @@ const A = {
   avrand: () => { const t = avTarget(), r = randomAv(t, UI.s === 'new' ? 1 : ulv(prof()), UI.s === 'new' ? [] : prof().own); Object.assign(t, r); if (UI.s === 'avatar') { prof().color = t.shirt; save(); } UI.celAt = Date.now(); FX.play('flip'); render(); },
   avcel: () => { UI.celAt = Date.now(); FX.play('goal'); render(); },
   avnum: d => { const t = avTarget(); t.num = ((+t.num || 10) + +d.v + 98) % 99 + 1; if (UI.s === 'avatar') save(); render(); },
-  avlock: d => { FX.play('ko'); if (d.pass === 'fc') return toast('Oggetto esclusivo Football Center: si sblocca con una figurina speciale. Guarda la pagina Football Center!'); toast(d.pass ? 'Oggetto esclusivo del Pass della stagione: guarda i premi del Pass!' : `Si sblocca al livello giocatore ${d.lv}. Guarda la Carriera!`); },
+  avlock: d => { FX.play('ko'); if (d.pass === 'fc') return toast('Oggetto esclusivo Football Center: si sblocca con una figurina speciale. Guarda la pagina Football Center!'); toast(d.pass ? `Premio del Pass di ${MESI[+d.m] ? MESI[+d.m].toLowerCase() : 'stagione'}: arriva con la stagione di quel mese.` : `Si sblocca al livello giocatore ${d.lv}. Guarda la Carriera!`); },
   avtry: d => { const p = prof(); p.av[d.k] = d.k === 'skin' ? +d.v : d.v; if (d.k === 'cel') UI.celAt = Date.now(); save(); UI.avtab = AVTABS.aspetto.includes(d.k) ? 'aspetto' : AVTABS.divisa.includes(d.k) ? 'divisa' : 'stile'; go('avatar', { avtab: UI.avtab, celAt: UI.celAt }); toast('Fatto! Ecco il tuo giocatore.'); },
   bkdown: () => backupDown(),
   rankset: d => { DB.settings.rank = d.v === 'true'; save(); render(); },
