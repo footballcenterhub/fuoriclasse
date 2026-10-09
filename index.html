@@ -631,6 +631,15 @@ body.big .fc-face b{font-size:1.5em}
 .fut-ovr{font-family:var(--display);font-weight:900;font-size:2.6rem}
 .fut-role,.fut-lv{font-family:var(--display);font-weight:800;font-size:.95rem;letter-spacing:.06em}
 .fut-lv{font-size:.75rem;margin-top:4px;padding:1px 6px;border-radius:6px;background:rgba(0,0,0,.15)}
+/* Prestigio: bordo dorato animato sulla scheda, stellina accanto al livello */
+.fut.prest{box-shadow:0 0 0 3px #ffd23f,0 0 0 6px rgba(255,210,63,.35),0 18px 40px rgba(0,0,0,.45)}
+.fut.prest::after{content:'';position:absolute;inset:-3px;border-radius:inherit;padding:3px;background:conic-gradient(from var(--pa,0deg),#ffd23f,#fff6c2,#c08f12,#ffd23f);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:prestspin 6s linear infinite;pointer-events:none}
+@property --pa{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes prestspin{to{--pa:360deg}}
+.fut-prest{position:absolute;top:12px;right:12px;z-index:3;white-space:nowrap;font-family:var(--display);font-weight:800;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 10px;border-radius:999px;background:#ffd23f;color:#2b1f00;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.prest-b{display:inline-block;margin-left:3px;color:#ffd23f;font-size:.8em;vertical-align:top}
+.road-n.prestn .rn{background:#ffd23f}.road-n.prestn .rn b{color:#2b1f00}
+@media (prefers-reduced-motion:reduce){.fut.prest::after{animation:none}}
 .fut-av{grid-row:1/3;display:grid;place-items:end center;padding:8px 6px 0 26px}
 .fut-av .av{width:84%;height:auto}
 .fut-name{display:grid;justify-items:center;padding:4px 8px 2px;border-top:2px solid rgba(0,0,0,.15)}
@@ -4059,7 +4068,7 @@ let warned = false;
 function save() { try { localStorage.setItem(KEY, JSON.stringify(DB)); } catch (e) { if (!warned) { warned = true; toast('Questo browser non sta salvando i progressi: usa il codice di salvataggio.'); } } }
 const prof = () => { const p = DB.profiles.find(p => p.id === UI.pid); return p ? ensure(p) : p; };
 function newProfile(nick, cls, color) {
-  return { id: uid(), nick, cls, color, created: today(), last: today(), packs: 2, cards: {}, opened: 0, pity: 0, stats: { s: 0, c: 0, t: 0 }, topics: {}, leit: {}, hist: [], errs: [], missions: [], daily: { d: '', n: 0 }, secDone: [], log: [{ d: today(), t: '2 bustine di benvenuto' }] };
+  return { id: uid(), nick, cls, color, created: today(), last: today(), packs: 2, cards: {}, opened: 0, pity: 0, stats: { s: 0, c: 0, t: 0 }, topics: {}, leit: {}, hist: [], errs: [], missions: [], daily: { d: '', n: 0 }, secDone: [], xpv: 2, log: [{ d: today(), t: '2 bustine di benvenuto' }] };
 }
 
 /* ---------- stato interfaccia ---------- */
@@ -4153,7 +4162,7 @@ function checkSections(p) {
 /* ---------- progressi: livelli, ripasso errori, sfide, serie, trofei ---------- */
 function ensure(p) {
   p.lv = p.lv || {}; p.rev = p.rev || []; p.streak = p.streak || { n: 0, last: '', best: 0 }; p.tro = p.tro || {};
-  p.cnt = Object.assign({ perfect: 0, maxGoals: 0, read: 0, ch: 0, var: 0 }, p.cnt || {}); p.fm = p.fm || { xi: {}, coach: '', round: 0, wins: 0, played: 0, titles: 0 }; p.stats.rev = p.stats.rev || 0; p.day = p.day || { d: '', s: [] }; p.xp = p.xp || 0; if (!p.av || !p.av.cel) p.av = Object.assign(defaultAv(p), p.av || {});
+  p.cnt = Object.assign({ perfect: 0, maxGoals: 0, read: 0, ch: 0, var: 0 }, p.cnt || {}); p.fm = p.fm || { xi: {}, coach: '', round: 0, wins: 0, played: 0, titles: 0 }; p.stats.rev = p.stats.rev || 0; p.day = p.day || { d: '', s: [] }; p.xp = p.xp || 0; xpMigrate(p); if (!p.av || !p.av.cel) p.av = Object.assign(defaultAv(p), p.av || {});
   return p;
 }
 let EV = { lvUps: [], tro: [], ch: false, streak: 0, xp: 0, plv: [] };
@@ -4311,7 +4320,7 @@ V.home = () => {
   const demo = [['demo4', '#e63946'], ['demo2', '#ffd23f'], ['demo3', '#2bb673']].map(([id, color]) => defaultAv({ id, color }));
   const team = ps.length >= 3 ? [ps[1].av, ps[0].av, ps[2].av] : ps.length === 2 ? [ps[1].av, ps[0].av, demo[2]] : ps.length === 1 ? [demo[0], ps[0].av, demo[2]] : demo;
   const many = ps.length > 6;
-  const row = p => `<button class="hplayer" data-a="pick" data-id="${p.id}" data-n="${esc(p.nick.toLowerCase())}">${pav(p)}<span class="hpn"><b>${esc(p.nick)}</b><span class="small muted">${p.cls}ª media · ${pct(owned(p), CARDS.length)}% album</span></span><span class="hlv"><small>Liv.</small>${plv(p)}</span></button>`;
+  const row = p => `<button class="hplayer" data-a="pick" data-id="${p.id}" data-n="${esc(p.nick.toLowerCase())}">${pav(p)}<span class="hpn"><b>${esc(p.nick)}</b><span class="small muted">${p.cls}ª media · ${pct(owned(p), CARDS.length)}% album</span></span><span class="hlv"><small>Liv.</small>${plv(p)}${prestBadge(p)}</span></button>`;
   return `<div class="wrap homew">
   <section class="hhero">${homeScene()}
     <div class="hlogo"><span class="hkick">Stagione ${(() => { const d = new Date(), y = d.getMonth() >= 7 ? d.getFullYear() : d.getFullYear() - 1; return `${String(y).slice(2)}/${String(y + 1).slice(2)}`; })()}</span><h1>Fuori<span>classe</span></h1><p>Studia, gioca, completa l'album.</p><button class="hby" data-a="nav" data-to="fc" aria-label="Un prodotto Football Center: scopri di più"><img src="${FC_LOGO}" alt="" width="120" height="113"><span><small>Un prodotto</small><b>Football Center</b></span></button></div>
@@ -4535,7 +4544,7 @@ function answer(i) {
   const p = prof(), ok = i === g.q.a;
   g.answered = true; g.choice = i; g.res.push(ok); g.sim = null;
   g.lastFast = Date.now() - (g.shownAt || 0) < minRead(g.q); if (g.lastFast) g.fast++;
-  if (ok && !g.lastFast) { g.combo = (g.combo || 0) + 1; g.lastXp = (g.mode === 'ripasso' ? 15 : 10) + (g.combo >= 3 ? 5 : 0); if (g.combo === 5) passEv(p, 'combo5'); } else { g.combo = 0; g.lastXp = 0; }
+  if (ok && !g.lastFast) { g.combo = (g.combo || 0) + 1; g.lastXp = (g.mode === 'ripasso' ? 15 : g.q.topic && levelOf(p, g.q.topic) === 1 ? 8 : 10) + (g.combo >= 3 ? 5 : 0); if (g.combo === 5) passEv(p, 'combo5'); } else { g.combo = 0; g.lastXp = 0; }
   xpAdd(p, g.lastXp); setTimeout(() => floatXP(g.lastXp), 30);
   const lvBefore = EV.lvUps.length;
   if (g.mode === 'geoq') recordLite(p, g.q.topic, ok, plain(g.q.q).slice(0, 140), plain(g.q.opts[i]), plain(g.q.opts[g.q.a]));
@@ -5244,12 +5253,25 @@ const AVC = {
 [['pat', 'zigzag', 'Saetta'], ['pat', 'pois', 'Pois'], ['head', 'lana', 'Berretto di lana'], ['face', 'sole', 'Occhiali da sole'], ['cel', 'robot', 'Robot'], ['boots', 'galassia', 'Galassia']].forEach(([k, v, t]) => AVC[k].items.push({ v, t, pass: true }));
 const UNLOCKS = [];
 for (const [k, s] of Object.entries(AVC)) for (const it of s.items) if (it.lv && !UNLOCKS.some(u => u.lv === it.lv)) UNLOCKS.push({ k, v: it.v, t: it.t, lv: it.lv, sec: k === 'shirt' ? 'Divisa' : s.t });
-const LVTITLES = [[1, 'Esordiente'], [5, 'Promessa'], [10, 'Titolare'], [15, 'Bomber di razza'], [20, 'Capitano'], [25, 'Fenomeno'], [30, 'Leggenda di Fuoriclasse']];
+const LVTITLES = [[1, 'Esordiente'], [5, 'Promessa'], [10, 'Titolare'], [15, 'Bomber di razza'], [20, 'Capitano'], [25, 'Fenomeno'], [30, 'Leggenda di Fuoriclasse'], [35, 'Stella del campionato'], [40, 'Icona'], [45, 'Mito del pallone'], [50, 'Fuoriclasse assoluto']];
 const rewardsAt = n => ({ items: UNLOCKS.filter(u => u.lv === n), title: (LVTITLES.find(t => t[0] === n) || [])[1], pack: n % 5 === 0 });
-const xpNeed = n => 120 + 30 * (n - 1);
-function lvInfo(xp) { let n = 1, x = xp || 0; while (x >= xpNeed(n)) { x -= xpNeed(n); n++; } return { n, cur: x, need: xpNeed(n) }; }
+// curva dei livelli (v2, ottobre 2026): il 14 in circa una settimana di gioco, il 30 in circa 3 mesi; massimo 50, poi Prestigio
+const LV_MAX = 50;
+const xpNeed = n => 200 + 70 * (n - 1) + 4 * (n - 1) * (n - 1);
+const xpTo = L => { let s = 0; for (let n = 1; n < L; n++) s += xpNeed(n); return s; };
+function lvInfo(xp) { let n = 1, x = xp || 0; while (n < LV_MAX && x >= xpNeed(n)) { x -= xpNeed(n); n++; } const need = xpNeed(n), full = n === LV_MAX && x >= need; return { n, cur: full ? need : x, need, full }; }
 const plv = p => lvInfo(p.xp).n;
-const titlesOf = p => [...LVTITLES.filter(t => t[0] <= plv(p)).map(t => t[1]), ...TROPHIES.filter(t => p.tro && p.tro[t.k]).map(t => t.t), ...(p.ptitles || [])];
+// livello che conta per gli sblocchi: chi è passato al Prestigio tiene tutto quello che aveva conquistato
+const ulv = p => p.prest ? LV_MAX : plv(p);
+// i salvataggi fatti con la vecchia curva restano allo stesso livello, con la stessa percentuale di barra
+function xpMigrate(p) {
+  if (p.xpv === 2) return; const old = n => 120 + 30 * (n - 1); let L = 1, x = p.xp || 0;
+  while (x >= old(L)) { x -= old(L); L++; }
+  if (L > LV_MAX) { L = LV_MAX; x = 0; }
+  p.xp = xpTo(L) + Math.floor(x / old(L) * xpNeed(L)); p.xpv = 2;
+}
+const prestBadge = p => p.prest ? `<span class="prest-b" title="Prestigio ${p.prest}">★${p.prest > 1 ? p.prest : ''}</span>` : '';
+const titlesOf = p => [...LVTITLES.filter(t => t[0] <= ulv(p)).map(t => t[1]), ...(p.prest ? ['Prestigio'] : []), ...TROPHIES.filter(t => p.tro && p.tro[t.k]).map(t => t.t), ...(p.ptitles || [])];
 function xpAdd(p, n, quiet) {
   if (!n || !p) return;
   const before = plv(p); p.xp = (p.xp || 0) + n; const w = weekKey();
@@ -5456,7 +5478,7 @@ function meStats(p) {
 const TIER = n => n >= 20 ? 'olo' : n >= 10 ? 'oro' : n >= 5 ? 'argento' : 'bronzo';
 function futCard(p) {
   const st = meStats(p), n = plv(p);
-  return `<div class="fut t-${TIER(n)} tilt"><div class="fut-in">
+  return `<div class="fut t-${TIER(n)} ${p.prest ? 'prest' : ''} tilt"><div class="fut-in">${p.prest ? `<span class="fut-prest">★ Prestigio${p.prest > 1 ? ' ' + p.prest : ''}</span>` : ''}
     <div class="fut-top"><b class="fut-ovr">${st.ovr}</b><span class="fut-role">${p.av.role}</span><span class="fut-lv">Liv. ${n}</span></div>
     <div class="fut-av">${avatarSVG(p.av, { crop: 'upper', still: true })}</div>
     <div class="fut-name"><b>${esc(p.nick)}</b><span>${esc(p.av.title || 'Esordiente')}</span></div>
@@ -5471,7 +5493,7 @@ function rewardLine(r) {
 
 // --- profilo
 V.me = () => {
-  const p = prof(), L = lvInfo(p.xp), nx = rewardLine(rewardsAt(L.n + 1)), w = weekKey();
+  const p = prof(), L = lvInfo(p.xp), nr = rewardsAt(L.n + 1), nx = rewardLine(p.prest ? Object.assign({}, nr, { items: [] }) : nr), w = weekKey();
   const rank = DB.settings.rank !== false && DB.profiles.length > 1 ? DB.profiles.map(q => ensure(q)).map(q => ({ q, n: q.wxp && q.wxp.w === w ? q.wxp.n : 0 })).sort((a, b) => b.n - a.n).slice(0, 10) : null;
   const k = [[p.stats.s, 'allenamenti'], [p.stats.c, 'risposte giuste'], [p.streak.best, 'record di giorni di fila'], [(p.cup && p.cup.wins) || 0, 'coppe vinte'], [p.cnt.duel || 0, 'sfide 1 contro 1 vinte'], [(p.fm && p.fm.titles) || 0, 'campionati vinti']];
   return `<div class="wrap">${topBar('Il mio giocatore', 'campo', packChip(p))}
@@ -5490,7 +5512,7 @@ V.me = () => {
 };
 // --- carriera: la strada dei livelli
 V.carriera = () => {
-  const p = prof(), L = lvInfo(p.xp), max = Math.max(30, L.n + 6); p.newu = false; save();
+  const p = prof(), L = lvInfo(p.xp), max = Math.min(LV_MAX, Math.max(30, L.n + 6)); p.newu = false; save();
   const rows = [];
   for (let n = 2; n <= max; n++) {
     const r = rewardsAt(n), stc = n <= L.n ? 'done' : n === L.n + 1 ? 'now' : 'lock';
@@ -5500,8 +5522,8 @@ V.carriera = () => {
   }
   return `<div class="wrap">${topBar('Carriera', 'me', `<span class="chip">Livello <b>${L.n}</b></span>`)}
   <div class="stack"><div class="panel lvpanel"><div class="row small"><b>${L.cur} / ${L.need} XP</b><span class="spacer"></span><span class="muted">verso il livello ${L.n + 1}</span></div>${xpBar(p)}
-  <p class="small muted" style="margin:8px 0 0">Ogni risposta giusta vale XP (+5 con la combo di 3 di fila, +15 nel Ripasso). Ogni livello sblocca qualcosa per il tuo giocatore; ogni 5 livelli anche una bustina.</p></div>
-  <div class="road">${rows.join('')}</div></div></div>`;
+  <p class="small muted" style="margin:8px 0 0">Ogni risposta giusta vale XP (+5 con la combo di 3 di fila, +15 nel Ripasso). Ogni livello sblocca qualcosa per il tuo giocatore; ogni 5 livelli anche una bustina. Al livello ${LV_MAX} puoi passare al Prestigio.${p.prest ? ` Sei al Prestigio ${p.prest}.` : ''}</p></div>
+  <div class="road">${rows.join('')}${max === LV_MAX ? `<div class="road-n prestn ${L.full ? 'now' : 'lock'}"><div class="rn"><b>★</b></div><div class="rr"><div class="rw"><span class="rwic">${ICON.star}</span><span><b>Prestigio${p.prest ? ' ' + (p.prest + 1) : ''}</b><small>Riparti dal livello 1 con il bordo speciale sulla scheda e 2 bustine. Tieni tutto quello che hai sbloccato.</small></span></div>${L.full ? '<button class="btn" data-a="prestige" style="width:100%;margin-top:8px">Passa al Prestigio</button>' : ''}</div></div>` : ''}</div></div></div>`;
 };
 V.carriera.after = () => { if (UI.scrolledTo === 'carriera') return; UI.scrolledTo = 'carriera'; setTimeout(() => { const el = document.querySelector('.road-n.now'); if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }, 60); };
 
@@ -5542,7 +5564,7 @@ V.new = () => {
 };
 V.avatar = () => {
   const p = prof(); p.newu = false;
-  return `<div class="wrap">${topBar('Personalizza', 'me', `<span class="chip">Livello <b>${plv(p)}</b></span>`)}${avEditor(p.av, 'edit', UI.avtab || 'aspetto', plv(p), p, p.nick)}</div>`;
+  return `<div class="wrap">${topBar('Personalizza', 'me', `<span class="chip">Livello <b>${plv(p)}</b></span>`)}${avEditor(p.av, 'edit', UI.avtab || 'aspetto', ulv(p), p, p.nick)}</div>`;
 };
 const avTarget = () => UI.s === 'new' ? UI.form.av : prof().av;
 function avSet(k, v) {
@@ -5876,14 +5898,14 @@ function cCheck() {
   r.answers.forEach((a, k) => { const given = r.bank[r.fill[k]], ok = given === a; g.res.push(ok); if (ok) n++;
     if (r.qs) record(p, r.qs[k], ok, given, 'completa'); else recordLite(p, r.key, ok, plain(r.lines.map(L => L.map(x => x.b !== undefined ? '___' : x.t).join('')).join(' ')).slice(0, 140), given, a); });
   g.lastXp = 0; for (let k = 0; k < n; k++) { g.combo = (g.combo || 0) + 1; } if (n < r.answers.length) g.combo = 0;
-  g.lastXp = n * 6; xpAdd(p, g.lastXp); setTimeout(() => floatXP(g.lastXp), 30);
+  g.lastXp = n * 5; xpAdd(p, g.lastXp); setTimeout(() => floatXP(g.lastXp), 30);
   FX.play(n === r.answers.length ? 'goal' : n ? 'ok' : 'ko'); save(); render();
 }
 function fgDecide(v) {
   const g = UI.g; if (!g || g.flash || g.time <= 0) return;
   const p = prof(), c = g.card, ok = (v === 1) === c.right, fast = Date.now() - g.shownAt < 900;
   if (fast) g.fast++;
-  g.res.push(ok); record(p, c.q, ok, v === 1 ? c.opt : 'Fuorigioco', 'fuorigioco'); mgXp(g, ok && !fast, 6);
+  g.res.push(ok); record(p, c.q, ok, v === 1 ? c.opt : 'Fuorigioco', 'fuorigioco'); mgXp(g, ok && !fast, 5);
   FX.play(ok ? 'ok' : 'ko'); if (!ok) FX.buzz(50);
   g.flash = { k: ok ? 'ok' : 'ko' }; g.paused = !ok; save(); render();
   setTimeout(() => { if (UI.g !== g || UI.s !== 'play') return; g.flash = null; g.paused = false; if (g.time <= 0) return finish(); g.card = fgCard(g, prof()); g.shownAt = Date.now(); render(); }, ok ? 550 : 1700);
@@ -6198,7 +6220,7 @@ function screenEnter() { if (UI.s === LAST_S) return; LAST_S = UI.s; const w = $
 const FC_IG = 'https://www.instagram.com/footballcenter2024/';
 const FC_GOALS = {
   lab: { t: 'Completa 3 sezioni dell\'album', prog: p => [Math.min(3, (p.secDone || []).filter(k => k !== 'fc').length), 3], item: ['head', 'gallo'], it: 'Cresta del gallo (In testa)' },
-  maglia: { t: 'Raggiungi il livello giocatore 20', prog: p => [Math.min(20, plv(p)), 20], item: ['pat', 'fcgallo'], it: 'Maglia Football Center (Divisa)' },
+  maglia: { t: 'Raggiungi il livello giocatore 20', prog: p => [Math.min(20, ulv(p)), 20], item: ['pat', 'fcgallo'], it: 'Maglia Football Center (Divisa)' },
   coppa: { t: 'Vinci 2 volte la Coppa Football Center', prog: p => [Math.min(2, cupState(p).wins || 0), 2], title: 'Campione Football Center', it: 'Titolo «Campione Football Center»' },
   gallo: { t: 'Vinci il campionato battendo i Football Center All Stars', prog: p => [Math.min(1, (p.fm && p.fm.titles) || 0), 1], item: ['cel', 'gallo'], it: 'Esultanza del Gallo' }
 };
@@ -6329,7 +6351,8 @@ const A = {
   vtpick: d => { const t = UI.vt, i = +d.i; if (i === VAR_EX.wrong) { t.sel = i; FX.play('ok'); FX.confetti(50); } else { if (!t.miss.includes(i)) t.miss.push(i); FX.play('ko'); } render(); },
   vartutok: () => { const p = prof(); p.tut = Object.assign({}, p.tut, { var: 1 }); save(); go('varpick'); },
   avtab: d => { const n = $('#nick'); if (UI.form && n) UI.form.nick = n.value; if (UI.s === 'new') UI.form.tab = d.t; else UI.avtab = d.t; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
-  avrand: () => { const t = avTarget(), r = randomAv(t, UI.s === 'new' ? 1 : plv(prof()), UI.s === 'new' ? [] : prof().own); Object.assign(t, r); if (UI.s === 'avatar') { prof().color = t.shirt; save(); } UI.celAt = Date.now(); FX.play('flip'); render(); },
+  prestige: () => { const p = prof(), L = lvInfo(p.xp); if (!L.full) return; const extra = Math.max(0, (p.xp || 0) - xpTo(LV_MAX) - xpNeed(LV_MAX)); p.prest = (p.prest || 0) + 1; p.xp = extra; grant(p, 2, `Prestigio ${p.prest}`, false); save(); toast(`Prestigio ${p.prest}! Si riparte dal livello 1 con 2 bustine in più`); FX.play('trophy'); FX.confetti(140); render(); },
+  avrand: () => { const t = avTarget(), r = randomAv(t, UI.s === 'new' ? 1 : ulv(prof()), UI.s === 'new' ? [] : prof().own); Object.assign(t, r); if (UI.s === 'avatar') { prof().color = t.shirt; save(); } UI.celAt = Date.now(); FX.play('flip'); render(); },
   avcel: () => { UI.celAt = Date.now(); FX.play('goal'); render(); },
   avnum: d => { const t = avTarget(); t.num = ((+t.num || 10) + +d.v + 98) % 99 + 1; if (UI.s === 'avatar') save(); render(); },
   avlock: d => { FX.play('ko'); if (d.pass === 'fc') return toast('Oggetto esclusivo Football Center: si sblocca con una figurina speciale. Guarda la pagina Football Center!'); toast(d.pass ? 'Oggetto esclusivo del Pass della stagione: guarda i premi del Pass!' : `Si sblocca al livello giocatore ${d.lv}. Guarda la Carriera!`); },
