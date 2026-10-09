@@ -1159,6 +1159,48 @@ button.hby:hover{border-color:rgba(255,255,255,.35);transform:translateY(-1px)}
 button,a,input,select,label{touch-action:manipulation}
 .lazyflag{display:block;width:17cqw;aspect-ratio:3/2;border-radius:1.5cqw;background:rgba(255,255,255,.25)}
 .albumgrid>button,.albumgrid>.slot,.pickgrid>button{content-visibility:auto;contain-intrinsic-size:auto 170px}
+
+/* ===== Navigazione nuova (Oggi, Gioca, Album, Pass, Io) ===== */
+.nextup{display:flex;align-items:center;gap:12px;width:100%;padding:14px 14px 14px 12px;border:0;border-radius:20px;text-align:left;color:var(--flood-ink);background:linear-gradient(180deg,#ffe066,#ffc81f);box-shadow:0 6px 0 #b88f10,0 16px 30px rgba(0,0,0,.4);transition:transform .12s}
+.nextup:active{transform:translateY(4px);box-shadow:0 2px 0 #b88f10,0 8px 18px rgba(0,0,0,.4)}
+.nextup .nxic{width:52px;height:52px;flex:none;border-radius:14px;display:grid;place-items:center;background:#1d1600;color:var(--flood)}.nextup .nxic svg{width:28px;height:28px}
+.nextup .nxt{flex:1;min-width:0;display:grid;gap:2px}
+.nextup small{font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.7rem;opacity:.75}
+.nextup b{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:1.45rem;line-height:1.02}
+.nextup .nxt>span{font-size:.88rem;font-weight:600;opacity:.85}
+.nsban{display:flex;gap:12px;align-items:center;width:100%;text-align:left;padding:12px 14px;border-radius:16px;background:linear-gradient(110deg,#5a1a8a,#14324a);border:2px solid #c79bff}
+.nsban>div{flex:1;min-width:0;display:grid;gap:2px}.nsban b{font-size:1.02rem}
+.nsb{flex:none;font-family:var(--display);font-weight:900;letter-spacing:.08em;padding:6px 8px;border-radius:10px;background:#c79bff;color:#1a0833;transform:rotate(-6deg)}
+.secs .secnew{border-color:#c79bff;color:#e6d4ff}
+.mission.cup.off{opacity:.7}
+/* ===== Retri delle figurine ===== */
+.cardback.pb{background:none;border:0;padding:0;display:block;border-radius:9px;overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,.45)}
+.cardback.pb svg{width:100%;height:100%;display:block}
+.cardback.holo::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(125deg,transparent 20%,rgba(255,0,180,.28) 35%,rgba(0,220,255,.28) 50%,rgba(255,240,0,.28) 65%,transparent 80%);background-size:300% 300%;mix-blend-mode:color-dodge;animation:holo 4s ease-in-out infinite alternate;pointer-events:none}
+@keyframes holo{from{background-position:0% 0%}to{background-position:100% 100%}}
+.bkhero{display:grid;grid-template-columns:minmax(120px,180px) 1fr;gap:16px;align-items:center;padding:16px;border-radius:18px;background:var(--panel);border:1px solid var(--line)}
+.bkbig{aspect-ratio:5/7;border-radius:12px}.bkbig .cardback{height:100%}
+.bkgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:12px}
+.bk{display:grid;gap:4px;justify-items:center;text-align:center;padding:8px 6px 10px;border-radius:14px;background:var(--panel);border:2px solid transparent}
+.bk.sel{border-color:var(--flood)}.bk b{font-size:.86rem;line-height:1.1}.bk small{font-size:.72rem;color:var(--muted);line-height:1.2}
+.bkimg{position:relative;width:100%;max-width:96px;aspect-ratio:5/7;display:block}.bkimg .cardback{height:100%}
+.bk.locked .bkimg .cardback{filter:grayscale(.85) brightness(.55)}.bk.locked{opacity:1;filter:none}
+.prw.pbk{width:46px;height:64px;background:none}.prw.pbk .cardback,.rwic.pbk .cardback{height:100%;width:100%}
+.rwic.pbk{width:40px;height:56px;background:none}
+/* ===== Tour del Gallo e suggerimenti ===== */
+.gallo{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,#fff,#e9e9e9);box-shadow:0 0 0 3px #e41e25,0 6px 14px rgba(0,0,0,.4)}.gallo img{width:80%;height:auto}
+.tour{position:fixed;inset:0;z-index:80}
+.tspot{position:fixed;border-radius:16px;box-shadow:0 0 0 9999px rgba(3,10,7,.78),0 0 0 3px var(--flood) inset;pointer-events:none;transition:all .35s cubic-bezier(.2,.8,.2,1);animation:tpulse 1.6s ease-in-out infinite}
+@keyframes tpulse{50%{box-shadow:0 0 0 9999px rgba(3,10,7,.78),0 0 0 5px var(--flood) inset}}
+.tbub{position:fixed;width:min(330px,calc(100vw - 24px));display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:18px;background:#fffdf3;color:#13241a;box-shadow:0 18px 40px rgba(0,0,0,.5);animation:wpop .35s cubic-bezier(.2,1.4,.3,1) both}
+.tbub>div{flex:1;min-width:0}.tbub .eyebrow{color:#b8860b}.tbub h3{margin:2px 0 4px;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:1.3rem;line-height:1}.tbub h3 b{color:#c8102e}
+.tbub p{margin:0 0 10px;font-size:.92rem;line-height:1.35}.tbub .link{color:#4a5a50}
+.tbub.up::after{content:'';position:absolute;left:clamp(16px,var(--ax),calc(100% - 16px));bottom:-9px;width:18px;height:18px;margin-left:-9px;background:#fffdf3;transform:rotate(45deg)}
+.tbub.side::after{content:'';position:absolute;left:-9px;top:clamp(16px,var(--ay),calc(100% - 16px));width:18px;height:18px;margin-top:-9px;background:#fffdf3;transform:rotate(45deg)}
+.ghint{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(80px + env(safe-area-inset-bottom,0px));z-index:29;width:min(560px,calc(100vw - 24px));display:flex;gap:12px;align-items:center;padding:10px 12px;border-radius:16px;background:#fffdf3;color:#13241a;box-shadow:0 12px 30px rgba(0,0,0,.45);animation:wpop .35s cubic-bezier(.2,1.4,.3,1) both}
+.ghint p{flex:1;margin:0;font-size:.9rem;line-height:1.3}.ghint .gallo{width:42px;height:42px}
+@media (min-width:1100px){.ghint{bottom:20px;left:calc(50% + 48px)}}
+@media (prefers-reduced-motion:reduce){.tspot,.cardback.holo::before{animation:none}}
 </style>
 <div id="boot" class="boot"><div><b>Fuoriclasse</b><p id="bootmsg">Caricamento in corso…</p>
 <p class="bh">Se resti fermo su questa schermata, il browser non sta facendo partire il gioco. Su iPhone succede quando il file si apre in <i>anteprima</i> (app File, WhatsApp, Mail, AirDrop): l'anteprima mostra la pagina ma non esegue i programmi. Apri il link del gioco con Safari.</p></div></div>
@@ -3552,9 +3594,26 @@ SEASONS.forEach((S, m) => CARDS.push(
 ));
 CARDS.forEach((c, i) => { c.id = 'F' + String(i + 1).padStart(3, '0'); c.fem = c.sec === 'campionesse' || ['Mia Hamm', 'Birgit Prinz', 'Carolina Morace', 'Sun Wen', 'Sarina Wiegman'].includes(c.name); });
 // numero nell'album: ordine delle sezioni (i codici F… restano stabili)
-{ let n = 0; for (const sec of SECTIONS) for (const c of CARDS) if (c.sec === sec.key) c.n = ++n; }
+// --- Serie: le figurine nuove escono da sole alla data giusta, senza ripubblicare l'app.
+// Per preparare una Serie: aggiungere le figurine IN FONDO a CARDS con serie: N (l'ordine conta per i codici di salvataggio).
+const SERIES = [
+  { n: 1, t: 'Serie 1', sub: 'Si parte', d: '2026-09-01' },
+  { n: 2, t: 'Serie 2', sub: 'Natale', d: '2026-12-01' },
+  { n: 3, t: 'Serie 3', sub: 'Inverno', d: '2027-02-01' },
+  { n: 4, t: 'Serie 4', sub: 'Primavera', d: '2027-04-01' }
+];
+const dayStr = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
+const serieOf = c => SERIES.find(s => s.n === (c.serie || 1)) || SERIES[0];
+const released = c => serieOf(c).d <= dayStr();
+// numeri dell'album: prima la Serie 1 per sezioni, poi la Serie 2 e così via (i numeri già usati non cambiano)
+{ let n = 0; for (const S of SERIES) for (const sec of SECTIONS) for (const c of CARDS) if (c.sec === sec.key && (c.serie || 1) === S.n) c.n = ++n; }
+const CARDS_ALL = CARDS.slice();
+const BY_ID = Object.fromEntries(CARDS_ALL.map(c => [c.id, c]));
+// da qui in poi CARDS contiene solo le figurine già uscite
+CARDS.splice(0, CARDS.length, ...CARDS_ALL.filter(released));
 const ALBUM = CARDS.slice().sort((a, b) => a.n - b.n);
-const BY_ID = Object.fromEntries(CARDS.map(c => [c.id, c]));
+// la Serie uscita da meno di 14 giorni (per il banner «Novità» e le bustine)
+function newSerie() { const t = dayStr(); for (const S of SERIES.slice().reverse()) { if (S.n === 1 || S.d > t) continue; const end = new Date(S.d + 'T12:00:00'); end.setDate(end.getDate() + 14); const e = end.toISOString().slice(0, 10); return t < e && CARDS.some(c => c.serie === S.n) ? Object.assign({ until: e }, S) : null; } return null; }
 const RAR = { comune: { t: 'Comune', w: 58 }, rara: { t: 'Rara', w: 31 }, oro: { t: 'Oro', w: 9.5 }, olo: { t: 'Olografica', w: 1.5 } };
 
 const STADIUM_EN = ['Pitch = campo', 'Stands = tribune', 'Crowd = folla', 'Floodlights = riflettori', 'Roof = tetto', 'Fans = tifosi', 'Kick-off = calcio d\'inizio', 'Seat = posto a sedere'];
@@ -4045,7 +4104,7 @@ const coachBonus = c => c.ovr >= 94 ? 4 : c.ovr >= 91 ? 3 : c.ovr >= 88 ? 2 : 1;
 
 // forza in campo (La mia formazione): il punteggio della figurina, come nei videogiochi
 const rating = c => c.ovr || 70;
-const api = { FC_LOGO, NAT, ROLE, SECTIONS, CARDS, SEASONS, MESI, ALBUM, BY_ID, RAR, rating, statsOf, coachBonus, flagSVG, artSVG, subtitle, enWord, backChallenge };
+const api = { FC_LOGO, NAT, ROLE, SECTIONS, CARDS, CARDS_ALL, SERIES, newSerie, serieOf, SEASONS, SEASON_IC, MESI, ALBUM, BY_ID, RAR, rating, statsOf, coachBonus, flagSVG, artSVG, subtitle, enWord, backChallenge };
 if (typeof module !== 'undefined' && module.exports) module.exports = api; else G.FC = api;
 })(typeof window !== 'undefined' ? window : globalThis);
 
@@ -4055,7 +4114,7 @@ if (typeof module !== 'undefined' && module.exports) module.exports = api; else 
 (function () {
 'use strict';
 const { TOPICS, TOPIC, DECKS, makeQuestion, makeSet, makeVar } = window.QB;
-const { FC_LOGO, CARDS, SEASONS, ALBUM, rating, statsOf, coachBonus, BY_ID, SECTIONS, RAR, NAT, ROLE, flagSVG, artSVG, subtitle, enWord, backChallenge } = window.FC;
+const { FC_LOGO, MESI, CARDS, CARDS_ALL, SERIES, newSerie, SEASON_IC, SEASONS, ALBUM, rating, statsOf, coachBonus, BY_ID, SECTIONS, RAR, NAT, ROLE, flagSVG, artSVG, subtitle, enWord, backChallenge } = window.FC;
 const $ = s => document.querySelector(s);
 const PHOTOS = window.FC_PHOTOS || {}, CREDITS = window.FC_CREDITS || {};
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -4218,12 +4277,16 @@ function grant(p, n, why, capped) {
   return g;
 }
 const BYRAR = { comune: [], rara: [], oro: [], olo: [] }; CARDS.forEach(c => { if (c.sec !== 'coppa' && c.sec !== 'fc' && c.sec !== 'stagioni') BYRAR[c.rar].push(c); });
+// nelle prime 2 settimane di una Serie nuova, metà delle figurine arrivano dalle novità
+const NSER = newSerie(), NEWR = { comune: [], rara: [], oro: [], olo: [] }; if (NSER) CARDS.forEach(c => { if (c.serie === NSER.n && BYRAR[c.rar].includes(c)) NEWR[c.rar].push(c); });
+const SECV = () => SECTIONS.filter(s => CARDS.some(c => c.sec === s.key));
 function drawRarity(force) { if (force) return Math.random() < 0.12 ? 'olo' : 'oro'; const tot = Object.values(RAR).reduce((a, r) => a + r.w, 0); let x = Math.random() * tot; for (const k of ['comune', 'rara', 'oro', 'olo']) { x -= RAR[k].w; if (x < 0) return k; } return 'comune'; }
 function openPack(p) {
   const out = [], force = p.pity >= 10 ? 2 : -1; let high = false;
   for (let i = 0; i < 3; i++) {
     const r = drawRarity(i === force), pool = BYRAR[r]; let c = pick(pool);
     if (p.cards[c.id] && Math.random() < 0.35) c = pick(pool);
+    if (NEWR[r].length && Math.random() < 0.4) c = pick(NEWR[r]);
     if (r === 'oro' || r === 'olo') high = true;
     const isNew = !p.cards[c.id] && !out.some(o => o.id === c.id);
     p.cards[c.id] = (p.cards[c.id] || 0) + 1; out.push({ id: c.id, isNew });
@@ -4423,46 +4486,88 @@ V.campo = () => {
   const p = prof(); passState(p); const o = owned(p), mis = p.missions.filter(m => !m.done), ch = ensureCh(p), sn = streakNow(p), Lv = lvInfo(p.xp);
   const lastTopic = Object.entries(p.topics).length, fm = fmState(p), opp = oppAt(fm);
   const cs = cupState(p), cupOn = !cs.done && cs.today < CUP_PER_DAY;
+  const nx = nextUp(p), NS = newSerie();
   return `<div class="wrap">${topBar('', 'home', `<button class="back" data-a="audio" aria-label="${FX.muted ? 'Attiva i suoni' : 'Disattiva i suoni'}" title="Suoni">${SPK(!FX.muted)}</button>${packChip(p)}`)}
   <div class="campo"><div class="stack">
     <div class="me"><button class="meav" data-a="nav" data-to="me" aria-label="Il mio giocatore" style="--xp:${pct(Lv.cur, Lv.need)}%">${avatarSVG(p.av, { crop: 'bust', still: true })}<span class="lvbadge">${Lv.n}</span></button>
       <div class="mename"><h2>${esc(p.nick)}</h2><span class="small muted">${esc(p.av.title || 'Esordiente')} · ${p.cls}ª media</span><div class="xpline"><div class="xpbar sm"><i style="width:${pct(Lv.cur, Lv.need)}%"></i></div><span class="small muted">${Lv.cur}/${Lv.need} XP</span></div></div></div>
+    <button class="nextup" data-a="nextup" data-k="${nx.k}"><span class="nxic">${nx.ic}</span><span class="nxt"><small>Prossima cosa da fare</small><b>${nx.t}</b><span>${nx.s}</span></span><span class="hplay" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg></span></button>
     <div class="kpis">
       <div class="kpi"><b>${pct(o, ALB.length)}%</b><span>album · ${o}/${ALB.length}</span><div class="bar" style="margin-top:6px"><i style="width:${pct(o, ALB.length)}%"></i></div></div>
       <div class="kpi streakk ${sn ? 'hot' : ''}" title="Sabato e domenica non interrompono la serie"><b>${FLAME} ${sn}</b><span>${sn === 1 ? 'giorno' : 'giorni'} di fila</span></div>
       <div class="kpi"><b>${p.stats.t ? pct(p.stats.c, p.stats.t) + '%' : '—'}</b><span>risposte giuste</span></div>
     </div>
-    ${p.recap && !p.recap.seen ? `<button class="recapcta" data-a="nav" data-to="recap" style="${seasonVars(p.recap.s)}"><span class="pclv">${p.recap.tier}</span><div><span class="tag">Stagione finita</span><b>Il tuo riepilogo di ${MESI[passMonth(p.recap.s)]} è pronto</b></div><span class="chip">Guarda</span></button>` : ''}
-    ${(() => { const ps = passState(p), t = passTier(ps), S = SEASONS[passMonth(ps.s)], todo = Array.from({ length: t }, (_, i) => i + 1).filter(n => !ps.cl.includes(n)).length; return `<button class="passcta season" data-a="nav" data-to="pass" style="${seasonVars(ps.s)}"><span class="pclv"><small>Liv.</small>${t}</span><div><span class="tag">Pass di ${MESI[passMonth(ps.s)].toLowerCase()} · ${esc(S.t)}</span><b>${todo ? `${todo} ${todo === 1 ? 'premio' : 'premi'} da riscattare!` : t >= PASS_TIERS ? 'Pass completato!' : `Livello ${t} di ${PASS_TIERS}`}</b><div class="xpbar sm"><i style="width:${t >= PASS_TIERS ? 100 : pct(ps.pts - t * PASS_STEP, PASS_STEP)}%"></i></div><span class="small pleft">${HOURGLASS} Finisce tra ${passLeft(ps.s)}</span></div>${todo ? '<span class="chip hot">Riscatta</span>' : '<span class="chip">Apri</span>'}</button>`; })()}
-    ${fcPackReady(p) ? `<button class="packcta fcpk" data-a="nav" data-to="pack"><span class="fcpkimg"><img src="${FC_LOGO}" alt="" width="44" height="41"></span><div><b>Bustina Football Center!</b><div>Quella di questo mese è pronta: aprila subito</div></div></button>` : ''}
-    ${p.packs ? `<button class="packcta" data-a="nav" data-to="pack">${miniPack()}<div><b>${p.packs === 1 ? 'Hai una bustina!' : `Hai ${p.packs} bustine!`}</b><div>Aprila e attacca le figurine nell'album</div></div></button>` : ''}
     <div class="panel daily"><div class="row"><h2>Sfide di oggi</h2><span class="spacer"></span><span class="small ${ch.done ? 'okc' : 'muted'}">${ch.done ? 'Completate! +1 bustina' : 'Tutte e 3: +1 bustina e 50 XP'}</span></div>
       ${ch.items.map(it => `<div class="chrow ${it.prog >= it.n ? 'done' : ''}"><span>${esc(CH[it.t].txt(it.n, it.s))}</span><b>${Math.min(it.prog, it.n)}/${it.n}</b><div class="bar"><i style="width:${pct(Math.min(it.prog, it.n), it.n)}%"></i></div></div>`).join('')}</div>
-    ${mis.map(m => `<button class="mission" data-a="mission" data-id="${m.id}"><div><span class="tag">Missione dal tutor · +1 bustina</span><b>${MODE[m.mode]} · ${esc(missionLabel(m))}</b></div></button>`).join('')}
-    ${p.rev.length ? `<button class="mission rev" data-a="review"><div><span class="tag">Ripasso errori · 15 XP a risposta</span><b>${p.rev.length} ${p.rev.length === 1 ? 'domanda da sistemare' : 'domande da sistemare'}</b></div><span class="spacer"></span><span class="chip">Rivedi</span></button>` : ''}
-    ${cupOn ? `<button class="mission cup" data-a="nav" data-to="coppa"><span class="mic">${CUPIC}</span><div><span class="tag">Coppa · ${CUP_ROUNDS[cs.round][0]}</span><b>Contro ${esc(cs.opps[cs.round])}</b></div><span class="spacer"></span><span class="chip">Gioca</span></button>` : ''}
   </div><div class="stack">
-    <div class="row"><div class="eyebrow">Scegli l'allenamento</div><span class="spacer"></span>${DB.settings.cap ? `<span class="small muted" title="Bustine vinte oggi giocando. Livelli, sfide, trofei e Coppa ne danno altre in più.">Bustine di oggi <b style="color:var(--chalk)">${p.daily.d === today() ? p.daily.n : 0}/${DB.settings.cap}</b></span>` : ''}</div>
-    <div class="modes four">
-      <button class="mode" data-a="mode" data-m="rigori">${penSmall()}<b>Rigori</b><span>5 domande, 5 tiri. Con 3 gol vinci una bustina.</span></button>
-      <button class="mode" data-a="mode" data-m="partita">${boardSmall()}<b>Partita</b><span>${p.slow ? 135 : 90} secondi contro una squadra rivale. Ogni risposta giusta è un gol.</span></button>
-      <button class="mode" data-a="mode" data-m="var">${varSmall()}<b>VAR</b><span>Rivedi l'azione: trova il passaggio sbagliato.</span></button>
-      <button class="mode" data-a="mode" data-m="allenamento">${coneSmall()}<b>Allenamento</b><span>Carte da ripassare: scegli la risposta giusta.</span></button>
-    </div>
-    <button class="fmcta" data-a="nav" data-to="formazione"><div class="fmmini">${miniPitch()}</div><div><span class="tag">La mia formazione · giornata ${fm.round + 1}/${OPPONENTS.length}</span><b>${fm.ovr ? `La tua squadra: ${fm.ovr}` : 'Schiera la tua squadra'}</b><span class="small">Prossimo avversario: ${esc(opp.n)} (${opp.r})</span></div></button>
-    <button class="geocta" data-a="nav" data-to="geo"><span class="geoglobe">${GEO_ICON.dove}</span><div><span class="tag">Atlante · ${Object.keys(GEO_MODES).length} giochi</span><b>Geografia</b><span class="small">Bandiere, capitali, mappe da esplorare e «Dove si trova?»</span></div><span class="chip">Esplora</span></button>
-    <div class="eyebrow">Minigiochi</div>
-    <div class="mgrid">${Object.entries(GAMES).map(([k, G]) => `<button class="mgtile" data-a="mg" data-m="${k}">${MG_ICON[k]}<b>${G.t}</b></button>`).join('')}</div>
-    <button class="duelcta" data-a="nav" data-to="duelsetup"><span class="vsb">VS</span><div><b>Sfida un amico</b><span class="small">1 contro 1 sullo stesso dispositivo: stesse domande, vince chi ne fa di più</span></div></button>
+    ${p.recap && !p.recap.seen ? `<button class="recapcta" data-a="nav" data-to="recap" style="${seasonVars(p.recap.s)}"><span class="pclv">${p.recap.tier}</span><div><span class="tag">Stagione finita</span><b>Il tuo riepilogo di ${MESI[passMonth(p.recap.s)]} è pronto</b></div><span class="chip">Guarda</span></button>` : ''}
+    ${(() => { const ps = passState(p), t = passTier(ps), S = SEASONS[passMonth(ps.s)], todo = Array.from({ length: t }, (_, i) => i + 1).filter(n => !ps.cl.includes(n)).length; return `<button class="passcta season" data-a="nav" data-to="pass" style="${seasonVars(ps.s)}"><span class="pclv"><small>Liv.</small>${t}</span><div><span class="tag">Pass di ${MESI[passMonth(ps.s)].toLowerCase()} · ${esc(S.t)}</span><b>${todo ? `${todo} ${todo === 1 ? 'premio' : 'premi'} da riscattare!` : t >= PASS_TIERS ? 'Pass completato!' : `Livello ${t} di ${PASS_TIERS}`}</b><div class="xpbar sm"><i style="width:${t >= PASS_TIERS ? 100 : pct(ps.pts - t * PASS_STEP, PASS_STEP)}%"></i></div><span class="small pleft">${HOURGLASS} Finisce tra ${passLeft(ps.s)}</span></div>${todo ? '<span class="chip hot">Riscatta</span>' : '<span class="chip">Apri</span>'}</button>`; })()}
+    ${(() => { const xs = [NS ? `<button class="nsban" data-a="nsgo"><span class="nsb">NUOVA</span><div><b>È uscita la ${esc(NS.t)} · ${esc(NS.sub)}!</b><span class="small">${CARDS.filter(c => c.serie === NS.n).length} figurine nuove: fino al ${fmtD(NS.until)} escono più spesso nelle bustine</span></div></button>` : '', fcPackReady(p) ? `<button class="packcta fcpk" data-a="nav" data-to="pack"><span class="fcpkimg"><img src="${FC_LOGO}" alt="" width="44" height="41"></span><div><b>Bustina Football Center!</b><div>Quella di questo mese è pronta: aprila subito</div></div></button>` : '', p.packs ? `<button class="packcta" data-a="nav" data-to="pack">${miniPack()}<div><b>${p.packs === 1 ? 'Hai una bustina!' : `Hai ${p.packs} bustine!`}</b><div>Aprila e attacca le figurine nell'album</div></div></button>` : '', mis.map(m => `<button class="mission" data-a="mission" data-id="${m.id}"><div><span class="tag">Missione dal tutor · +1 bustina</span><b>${MODE[m.mode]} · ${esc(missionLabel(m))}</b></div></button>`).join(''), p.rev.length ? `<button class="mission rev" data-a="review"><div><span class="tag">Ripasso errori · 15 XP a risposta</span><b>${p.rev.length} ${p.rev.length === 1 ? 'domanda da sistemare' : 'domande da sistemare'}</b></div><span class="spacer"></span><span class="chip">Rivedi</span></button>` : '', cupOn ? `<button class="mission cup" data-a="nav" data-to="coppa"><span class="mic">${CUPIC}</span><div><span class="tag">Coppa · ${CUP_ROUNDS[cs.round][0]}</span><b>Contro ${esc(cs.opps[cs.round])}</b></div><span class="spacer"></span><span class="chip">Gioca</span></button>` : ''].join('').trim(); return xs ? '<div class="eyebrow">Da non perdere</div>' + xs : ''; })()}
     <div class="links">
       <button class="tilebtn fctile" data-a="nav" data-to="fc"><img src="${FC_LOGO}" alt="" width="30" height="28"> Football Center</button>
       <button class="tilebtn" data-a="nav" data-to="mercato">${ICON.swap} Calciomercato</button>
       <button class="tilebtn" data-a="nav" data-to="code">${ICON.key} Il mio salvataggio</button>
       <button class="tilebtn" data-a="nav" data-to="home">${ICON.users} Cambia giocatore</button>
     </div>
+  </div></div></div>`;
+};
+V.gioca = () => {
+  const p = prof(); passState(p); const o = owned(p), mis = p.missions.filter(m => !m.done), ch = ensureCh(p), sn = streakNow(p), Lv = lvInfo(p.xp);
+  const lastTopic = Object.entries(p.topics).length, fm = fmState(p), opp = oppAt(fm);
+  const cs = cupState(p), cupOn = !cs.done && cs.today < CUP_PER_DAY;
+  return `<div class="wrap">${topBar('Gioca', 'campo', packChip(p))}
+  <div class="campo"><div class="stack">
+    <div class="row"><div class="eyebrow">Allenamento sulle materie</div><span class="spacer"></span>${DB.settings.cap ? `<span class="small muted" title="Bustine vinte oggi giocando. Livelli, sfide, trofei e Coppa ne danno altre in più.">Bustine di oggi <b style="color:var(--chalk)">${p.daily.d === today() ? p.daily.n : 0}/${DB.settings.cap}</b></span>` : ''}</div>
+    <div class="modes four">
+      <button class="mode" data-a="mode" data-m="rigori">${penSmall()}<b>Rigori</b><span>5 domande, 5 tiri. Con 3 gol vinci una bustina.</span></button>
+      <button class="mode" data-a="mode" data-m="partita">${boardSmall()}<b>Partita</b><span>${p.slow ? 135 : 90} secondi contro una squadra rivale. Ogni risposta giusta è un gol.</span></button>
+      <button class="mode" data-a="mode" data-m="var">${varSmall()}<b>VAR</b><span>Rivedi l'azione: trova il passaggio sbagliato.</span></button>
+      <button class="mode" data-a="mode" data-m="allenamento">${coneSmall()}<b>Allenamento</b><span>Carte da ripassare: scegli la risposta giusta.</span></button>
+    </div>
+    ${p.rev.length ? `<button class="mission rev" data-a="review"><div><span class="tag">Ripasso errori · 15 XP a risposta</span><b>${p.rev.length} ${p.rev.length === 1 ? 'domanda da sistemare' : 'domande da sistemare'}</b></div><span class="spacer"></span><span class="chip">Rivedi</span></button>` : ''}
+    <div class="eyebrow">Partite e sfide</div>
+    <button class="fmcta" data-a="nav" data-to="formazione"><div class="fmmini">${miniPitch()}</div><div><span class="tag">La mia formazione · giornata ${fm.round + 1}/${OPPONENTS.length}</span><b>${fm.ovr ? `La tua squadra: ${fm.ovr}` : 'Schiera la tua squadra'}</b><span class="small">Prossimo avversario: ${esc(opp.n)} (${opp.r})</span></div></button>
+    ${cupOn ? `<button class="mission cup" data-a="nav" data-to="coppa"><span class="mic">${CUPIC}</span><div><span class="tag">Coppa Football Center · ${CUP_ROUNDS[cs.round][0]}</span><b>Contro ${esc(cs.opps[cs.round])}</b></div><span class="spacer"></span><span class="chip">Gioca</span></button>` : `<button class="mission cup off" data-a="nav" data-to="coppa"><span class="mic">${CUPIC}</span><div><span class="tag">Coppa Football Center</span><b>${cs.done ? 'Coppa di questa settimana finita: torna lunedì' : 'Turni di oggi giocati: torna domani'}</b></div></button>`}
+    <button class="duelcta" data-a="nav" data-to="duelsetup"><span class="vsb">VS</span><div><b>Sfida un amico</b><span class="small">1 contro 1 sullo stesso dispositivo: stesse domande, vince chi ne fa di più</span></div></button>
+  </div><div class="stack">
+    <div class="eyebrow">Minigiochi</div>
+    <div class="mgrid">${Object.entries(GAMES).map(([k, G]) => `<button class="mgtile" data-a="mg" data-m="${k}">${MG_ICON[k]}<b>${G.t}</b></button>`).join('')}</div>
+    <div class="eyebrow">Geografia</div>
+    <button class="geocta" data-a="nav" data-to="geo"><span class="geoglobe">${GEO_ICON.dove}</span><div><span class="tag">Atlante · ${Object.keys(GEO_MODES).length} giochi</span><b>Geografia</b><span class="small">Bandiere, capitali, mappe da esplorare e «Dove si trova?»</span></div><span class="chip">Esplora</span></button>
     ${lastTopic ? '' : '<p class="small muted">Consiglio: inizia dai Rigori della tua classe. Ogni argomento ha fino a 3 livelli: rispondi bene e sali di livello.</p>'}
   </div></div></div>`;
 };
+
+// --- «Prossima cosa da fare»: un solo pulsante grande che sceglie per il ragazzo
+const NXIC = { play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg>', pack: miniPack(), star: ICON.star, cup: ICON.cup, target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>' };
+function nextUp(p) {
+  const ch = ensureCh(p), ps = passState(p), todo = Array.from({ length: passTier(ps) }, (_, i) => i + 1).filter(n => !ps.cl.includes(n)).length, mis = p.missions.filter(m => !m.done), cs = cupState(p);
+  if (p.recap && !p.recap.seen) return { k: 'recap', ic: NXIC.star, t: `Il tuo mese di ${MESI[passMonth(p.recap.s)].toLowerCase()}`, s: 'Guarda il riepilogo della stagione finita' };
+  if (mis.length) return { k: 'mission', ic: NXIC.target, t: 'Missione dal tutor', s: `${MODE[mis[0].mode]} · ${missionLabel(mis[0])}` };
+  if (fcPackReady(p) || p.packs) return { k: 'pack', ic: NXIC.pack, t: p.packs > 1 ? `Apri le tue ${p.packs} bustine` : p.packs ? 'Apri la bustina' : 'Apri la bustina Football Center', s: p.packs ? 'Attacca le figurine nuove nell\'album' : 'Quella di questo mese è pronta' };
+  if (todo) return { k: 'pass', ic: NXIC.star, t: `Riscatta ${todo === 1 ? 'il premio' : `${todo} premi`} del Pass`, s: 'Li hai già guadagnati: vai a prenderli' };
+  const it = ch.items.find(x => x.prog < x.n);
+  if (it) return { k: 'ch:' + it.t + ':' + (it.s || ''), ic: NXIC.target, t: CH[it.t].txt(it.n, it.s), s: `Sfida di oggi ${ch.items.indexOf(it) + 1} di 3 · tutte e 3 valgono una bustina` };
+  if (p.rev.length) return { k: 'rev', ic: NXIC.play, t: 'Sistema i tuoi errori', s: `${p.rev.length} ${p.rev.length === 1 ? 'domanda' : 'domande'} nel Ripasso · 15 XP a risposta` };
+  if (!cs.done && cs.today < CUP_PER_DAY) return { k: 'cup', ic: NXIC.cup, t: `Coppa: ${CUP_ROUNDS[cs.round][0]}`, s: `Contro ${cs.opps[cs.round]}` };
+  return { k: 'rigori', ic: NXIC.play, t: 'Allenati ai Rigori', s: '5 domande, 5 tiri: con 3 gol vinci una bustina' };
+}
+function nextGo(k) {
+  const p = prof(), [t, c, sj] = k.split(':');
+  if (k === 'recap') return go('recap'); if (k === 'pass') return go('pass'); if (k === 'cup') return go('coppa'); if (k === 'rev') return startReview();
+  if (k === 'pack') return go('pack');
+  if (k === 'mission') { const m = p.missions.find(x => !x.done); return m ? A.mission({ id: m.id }) : go('gioca'); }
+  if (t === 'ch') {
+    if (c === 'goals' || c === 'new' || c === 'read') return go('pick', { mode: 'rigori', subj: p.cls ? 'mat' : 'mat' });
+    if (c === 'ok') return go('pick', { mode: 'rigori', subj: sj || 'mat' });
+    if (c === 'win') return go('pick', { mode: 'partita', subj: 'mat' });
+    if (c === 'flash') return go('decks', { subj: 'mat' });
+    if (c === 'rev') return startReview();
+    if (c === 'mg') return go('mgpick', { gm: pick(Object.keys(GAMES)) });
+  }
+  return go('pick', { mode: 'rigori', subj: 'mat' });
+}
+const fmtD = d => { const [y, m, g] = d.split('-'); return `${+g} ${MESI[+m - 1].toLowerCase()}`; };
 function penSmall() { let net = ''; for (let x = 32; x <= 88; x += 7) net += `<path d="M${x} 14V46"/>`; for (let y = 19; y <= 43; y += 6) net += `<path d="M28 ${y}H92"/>`; return `<svg viewBox="0 0 120 70" aria-hidden="true"><defs><linearGradient id="mpA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#061a10"/><stop offset=".66" stop-color="#0f3a24"/><stop offset=".66" stop-color="#1e7d46"/><stop offset="1" stop-color="#13552f"/></linearGradient><radialGradient id="mpB" cx=".5" cy="-.15" r=".85"><stop offset="0" stop-color="#fff3c4" stop-opacity=".5"/><stop offset="1" stop-color="#fff3c4" stop-opacity="0"/></radialGradient></defs><rect width="120" height="70" fill="url(#mpA)"/><rect width="120" height="70" fill="url(#mpB)"/><path d="M0 51h120M0 59h120" stroke="#2a9256" stroke-width="3" stroke-opacity=".5"/><g stroke="#e8f2ec" stroke-opacity=".22" stroke-width=".8">${net}</g><path d="M26 47V11h68v36" fill="none" stroke="#fff" stroke-width="3.4" stroke-linejoin="round"/><path d="M26 11l5 4h58l5-4" fill="none" stroke="#cfe3d6" stroke-opacity=".6"/><g transform="rotate(-24 72 30)"><rect x="62" y="25" width="22" height="10" rx="5" fill="#ffd23f"/><path d="M84 28l9-3M84 32l9 2" stroke="#ffd23f" stroke-width="3.4" stroke-linecap="round"/><circle cx="59" cy="30" r="4.6" fill="#3b2412"/><path d="M84 28l9-3" stroke="#ff8a1f" stroke-width="1.2"/></g><path d="M60 64Q50 44 42 23" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2.4" stroke-dasharray="2 3"/><circle cx="41" cy="21" r="5.4" fill="#fff"/><polygon points="41,18.2 43.6,20.1 42.6,23.1 39.4,23.1 38.4,20.1" fill="#0d1512"/><ellipse cx="60" cy="64" rx="5" ry="1.6" fill="#fff" fill-opacity=".7"/></svg>`; }
 function boardSmall() { return '<svg viewBox="0 0 120 70" aria-hidden="true"><defs><linearGradient id="mbA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d1712"/><stop offset="1" stop-color="#030605"/></linearGradient><filter id="mbG" x="-20%" y="-40%" width="140%" height="180%"><feGaussianBlur stdDeviation="2.2"/></filter></defs><rect width="120" height="70" fill="#020403"/><rect x="8" y="7" width="104" height="50" rx="7" fill="url(#mbA)" stroke="#2c4437" stroke-width="1.5"/><g fill="#ffd23f"><text x="60" y="42" text-anchor="middle" font-family="Saira Extra Condensed,sans-serif" font-weight="900" font-size="30" filter="url(#mbG)" opacity=".7">2 – 1</text><text x="60" y="42" text-anchor="middle" font-family="Saira Extra Condensed,sans-serif" font-weight="900" font-size="30">2 – 1</text></g><rect x="18" y="15" width="16" height="10" rx="2" fill="#3ddc84"/><rect x="86" y="15" width="16" height="10" rx="2" fill="#ff6b5e"/><rect x="47" y="60" width="26" height="9" rx="4.5" fill="#ff6b5e"/><text x="60" y="67" text-anchor="middle" font-family="Saira Extra Condensed,sans-serif" font-weight="800" font-size="8.5" fill="#fff">89\'</text><circle cx="16" cy="63" r="2" fill="#fff8d0"/><circle cx="104" cy="63" r="2" fill="#fff8d0"/></svg>'; }
 function coneSmall() { return '<svg viewBox="0 0 120 70" aria-hidden="true"><defs><linearGradient id="mcA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f3524"/><stop offset="1" stop-color="#174a31"/></linearGradient><linearGradient id="mcB" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffb04a"/><stop offset=".5" stop-color="#ff7a12"/><stop offset="1" stop-color="#d95a00"/></linearGradient></defs><rect width="120" height="70" fill="url(#mcA)"/><ellipse cx="60" cy="62" rx="50" ry="5" fill="#000" fill-opacity=".2"/><g transform="rotate(-9 40 32)"><rect x="17" y="13" width="46" height="34" rx="6" fill="#000" fill-opacity=".25" transform="translate(2 3)"/><rect x="17" y="13" width="46" height="34" rx="6" fill="#f6f8f4"/><text x="40" y="35" text-anchor="middle" font-family="Saira Extra Condensed,sans-serif" font-weight="900" font-size="14" fill="#10241a">7×8</text></g><g transform="rotate(8 78 34)"><rect x="55" y="17" width="46" height="34" rx="6" fill="#000" fill-opacity=".25" transform="translate(2 3)"/><rect x="55" y="17" width="46" height="34" rx="6" fill="#ffd23f"/><text x="78" y="39" text-anchor="middle" font-family="Saira Extra Condensed,sans-serif" font-weight="900" font-size="14" fill="#1d1600">56</text></g><path d="M86 64h24l-12-28z" fill="url(#mcB)"/><path d="M90.5 55h15M94 47h8" stroke="#fff" stroke-width="3"/><rect x="83" y="62" width="30" height="4" rx="1.5" fill="#d95a00"/></svg>'; }
@@ -4474,7 +4579,7 @@ V.pick = () => {
   const myT = TOPICS.filter(t => t.subj === subj && t.cls === p.cls && ok(t)), other = TOPICS.filter(t => t.subj === subj && t.cls !== p.cls && ok(t)).sort((a, b) => a.cls - b.cls);
   const row = t => { const a = p.topics[t.key], acc = a ? pct(a[0], a[1]) : null, L = levelOf(p, t.key);
     return `<button class="topic ${t.read ? 'readt' : ''}" data-a="start" data-k="${t.key}"><b>${esc(t.title)}</b><span class="small muted">${t.read ? 'testo + 5 domande' : stars(L, t.max)}${a ? ` · ${acc}%` : t.read ? '' : ' · nuovo'}</span>${a ? `<div class="bar"><i style="width:${acc}%;background:${acc >= 75 ? 'var(--ok)' : acc >= 50 ? 'var(--flood)' : 'var(--ko)'}"></i></div>` : ''}</button>`; };
-  return `<div class="wrap">${topBar(MODE[mode], 'campo', packChip(p))}
+  return `<div class="wrap">${topBar(MODE[mode], 'gioca', packChip(p))}
   <div class="stack">
     <div class="seg" role="group" aria-label="Materia">${['mat', 'ita', 'eng'].map(s => `<button data-a="subj" data-s="${s}" aria-pressed="${s === subj}">${SUBJ[s]}</button>`).join('')}</div>
     <p class="small muted" style="margin:0">Le stelle sono il tuo livello. Rispondi bene a 8 domande su 10 e sali di livello: +1 bustina.</p>
@@ -4490,7 +4595,7 @@ const VAR_EX = { title: 'Espressione', steps: ['3 + 4 × 2', '= 3 + 8', '= 12'],
 V.vartut = () => {
   const t = UI.vt || (UI.vt = { sel: -1, miss: [] }), ok = t.sel === VAR_EX.wrong;
   const hint = !ok && t.miss.length ? (t.miss[t.miss.length - 1] === 1 ? 'Il passaggio 1 è giusto: 4 × 2 fa davvero 8, e la moltiplicazione va fatta prima. Controlla il passaggio dopo!' : 'Il passaggio 2 è giusto: 3 + 8 è un\'addizione corretta da scrivere. Ora fai il conto: quanto fa 3 + 8?') : '';
-  return `<div class="wrap">${topBar('Come funziona il VAR', 'campo')}
+  return `<div class="wrap">${topBar('Come funziona il VAR', 'gioca')}
   <div class="stack"><div class="varbar"><b>VAR</b><span>Al VAR l'arbitro rivede l'azione al video per scoprire l'errore. Qui fai tu l'arbitro: ti mostriamo un esercizio già svolto e devi trovare il passaggio sbagliato.</span></div>
   ${VARHOW}
   <div class="eyebrow">Prova con questo esempio</div>
@@ -4501,7 +4606,7 @@ V.vartut = () => {
 };
 V.varpick = () => {
   const p = prof();
-  return `<div class="wrap">${topBar('VAR', 'campo', packChip(p))}
+  return `<div class="wrap">${topBar('VAR', 'gioca', packChip(p))}
   <div class="stack"><div class="varbar"><b>VAR</b><span>Trova l'errore in un esercizio già svolto o in alcune frasi. 5 azioni da rivedere: con 3 errori trovati vinci una bustina.</span></div>
   ${VARHOW}<button class="link" data-a="nav" data-to="vartut" style="justify-self:start">Rivedi l'esempio</button>
   <div class="eyebrow">Scegli la materia</div>
@@ -4783,7 +4888,7 @@ const flagMini = nat => nat ? flagSVG(nat, 'flagmini') : '';
 V.formazione = () => {
   const p = prof(), fm = fmState(p), opp = oppAt(fm), coach = fm.coach ? BY_ID[fm.coach] : null;
   const pMy = Math.round(matchP(fm.ovr, opp.r) * 100);
-  return `<div class="wrap">${topBar('La mia formazione', 'campo', packChip(p))}
+  return `<div class="wrap">${topBar('La mia formazione', 'gioca', packChip(p))}
   <div class="stack">
     <div class="fmhead"><div class="ovr"><b>${fm.ovr || '–'}</b><span>forza squadra</span></div>
       <div class="small"><div>Media giocatori: <b>${fm.filled ? Math.round(fm.avg) : '–'}</b>${fm.filled < 11 ? ` <span class="warnc">(${11 - fm.filled} ${11 - fm.filled === 1 ? 'ruolo vuoto' : 'ruoli vuoti'}: valgono 35)</span>` : ''}</div>
@@ -4843,7 +4948,7 @@ function matchEnd(p, g) {
 V.decks = () => {
   const p = prof(), subj = UI.subj || 'mat';
   const ds = DECKS.filter(d => d.subj === subj).sort((a, b) => (a.cls === p.cls ? -1 : 0) - (b.cls === p.cls ? -1 : 0));
-  return `<div class="wrap">${topBar('Allenamento', 'campo', packChip(p))}
+  return `<div class="wrap">${topBar('Allenamento', 'gioca', packChip(p))}
   <div class="stack"><div class="seg" role="group" aria-label="Materia">${['mat', 'ita', 'eng'].map(s => `<button data-a="subj" data-s="${s}" aria-pressed="${s === subj}">${SUBJ[s]}</button>`).join('')}</div>
   <p class="small muted">Leggi la carta e scegli la risposta giusta tra due. Le carte sbagliate tornano più spesso. Con 6 risposte giuste su 10 vinci una bustina.</p>
   <div class="topics">${ds.map(d => { const known = d.cards.filter((_, i) => (p.leit[d.key + ':' + i] || 0) >= 3).length; return `<button class="topic" data-a="deck" data-k="${d.key}"><b>${esc(d.title)}</b><span class="small muted">${known}/${d.cards.length} imparate</span><div class="bar"><i style="width:${pct(known, d.cards.length)}%;background:var(--ok)"></i></div></button>`; }).join('')}</div></div></div>`;
@@ -4916,7 +5021,7 @@ function packArt(kind) {
     <rect x="34" y="290" width="162" height="18" rx="9" fill="${acc}"/><text x="115" y="303" text-anchor="middle" font-family="Archivo,Arial,sans-serif" font-weight="800" font-size="9.5" letter-spacing="1.4" fill="${fc ? '#fff' : '#1d1600'}">${rib.toUpperCase()}</text>
   </svg>`;
 }
-const cardBack = kind => kind === 'fc' ? `<div class="cardback fcb"><img src="${FC_LOGO}" alt=""><b>Football<br>Center</b></div>` : '<div class="cardback"><b>Fuori<br>classe</b></div>';
+const cardBack = kind => backHTML(kind === 'fc' ? BACK_BY.fc : myBack(prof()));
 function openPackOf(p, kind) {
   if (kind !== 'fc') return openPack(p);
   // Bustina Football Center: una volta al mese, almeno una figurina Rara o migliore
@@ -4935,15 +5040,15 @@ V.pack = () => {
   if (st.kind === 'fc' && !fcOk && st.stage === 'sealed') st.kind = 'std';
   if (st.stage !== 'open') {
     const kind = st.kind, has = kind === 'fc' ? fcOk : p.packs > 0;
-    if (!has) return `<div class="wrap">${topBar('Bustine', 'campo')}<div class="result"><p>Non hai bustine da aprire. Vincile con Rigori, Partita e Allenamento!</p><button class="btn" data-a="nav" data-to="campo">Torna al campo</button></div></div>`;
+    if (!has) return `<div class="wrap">${topBar('Bustine', 'album')}<div class="result"><p>Non hai bustine da aprire. Vincile con Rigori, Partita e Allenamento!</p><button class="btn" data-a="nav" data-to="campo">Torna al campo</button></div></div>`;
     const sw = fcOk && p.packs ? `<div class="seg pkseg" role="group" aria-label="Quale bustina"><button data-a="pkkind" data-k="fc" aria-pressed="${kind === 'fc'}">Football Center</button><button data-a="pkkind" data-k="std" aria-pressed="${kind === 'std'}">Normali (${p.packs})</button></div>` : '';
-    return `<div class="wrap">${topBar(kind === 'fc' ? 'Bustina del mese' : 'Bustine', 'campo', packChip(p))}
+    return `<div class="wrap">${topBar(kind === 'fc' ? 'Bustina del mese' : 'Bustine', 'album', packChip(p))}
     <div class="packstage">${sw}<div class="pkwrap"><div class="pkglow k-${kind}"></div><button class="pack k-${kind} ${st.stage === 'tearing' ? 'tearing' : ''}" data-a="tear" aria-label="Apri la bustina">${packArt(kind)}<span class="tear"></span><span class="cutline"></span><span class="pkhint" aria-hidden="true">← strappa qui →</span></button></div>
     ${kind === 'fc' ? '<p class="small muted pkinfo">Una al mese, solo per te: dentro c\'è sempre almeno una figurina Rara o migliore, e sul retro c\'è il gallo di Football Center.</p>' : ''}
     <span class="small muted">Scorri il dito sulla striscia in alto per strapparla, oppure</span><button class="btn" data-a="tear">Apri la bustina</button>${kind === 'std' ? `<span class="small muted">Ne hai ${p.packs}</span>` : ''}</div></div>`;
   }
   const all = st.res.cards.every((_, i) => st.flipped[i]);
-  return `<div class="wrap">${topBar(st.kind === 'fc' ? 'Bustina Football Center' : 'Bustina aperta', 'campo', packChip(p))}
+  return `<div class="wrap">${topBar(st.kind === 'fc' ? 'Bustina Football Center' : 'Bustina aperta', 'album', packChip(p))}
   <div class="packstage"><div class="reveal ${st.intro ? 'intro' : ''}">${st.intro ? `<div class="packghost k-${st.kind}">${packArt(st.kind)}</div>` : ''}${st.res.cards.map((o, i) => { const c = BY_ID[o.id]; return `<button class="flip ${st.flipped[i] ? 'is-open' : ''} glow-${c.rar}" style="--i:${i}" data-a="flipcard" data-i="${i}" aria-label="Gira la figurina ${i + 1}"><div class="flip-in"><div class="flip-f">${cardBack(st.kind)}</div><div class="flip-b">${cardHTML(c)}</div></div>${st.flipped[i] ? `<span class="newtag ${o.isNew ? 'n' : 'd'}">${o.isNew ? 'Nuova!' : 'Doppia'}</span>` : ''}</button>`; }).join('')}</div>
   <div id="pkctl" class="pkctl">${pkCtl(p, st, all)}</div>
   </div></div>`;
@@ -4975,12 +5080,13 @@ function pkTear() {
 
 /* ---------- album ---------- */
 V.album = () => {
-  const p = prof(), nw = p.newc || [], sec = UI.sec || (UI.sec = nw.length && BY_ID[nw[nw.length - 1]] ? BY_ID[nw[nw.length - 1]].sec : 'campioni'), cs = CARDS.filter(c => c.sec === sec), S = SECTIONS.find(s => s.key === sec), o = owned(p);
+  const p = prof(), nw = p.newc || [], sec = UI.sec || (UI.sec = nw.length && BY_ID[nw[nw.length - 1]] ? BY_ID[nw[nw.length - 1]].sec : 'campioni'), NS = newSerie(), nov = sec === 'novita' && NS, cs = nov ? CARDS.filter(c => c.serie === NS.n) : CARDS.filter(c => c.sec === sec), S = nov ? { title: `${NS.t} · ${NS.sub}`, note: `Le figurine nuove: fino al ${fmtD(NS.until)} escono più spesso nelle bustine`, en: 'New = nuovo' } : SECTIONS.find(s => s.key === sec) || SECTIONS[0], o = owned(p);
   const sw = UI.swipe; UI.swipe = null;
-  return `<div class="wrap">${topBar('Album', 'campo', `<span class="chip"><b>${o}</b>/${ALB.length}</span>`)}
+  return `<div class="wrap">${topBar('Album', null, `<button class="btn sm ghost" data-a="nav" data-to="retri">Retri</button><span class="chip"><b>${o}</b>/${ALB.length}</span>`)}
   <div class="stack">
     <div class="bar"><i style="width:${pct(o, ALB.length)}%"></i></div>
-    <div class="secs" role="group" aria-label="Sezioni">${SECTIONS.map(s => { const tot = CARDS.filter(c => c.sec === s.key), got = tot.filter(c => p.cards[c.id]).length; return `<button data-a="sec" data-s="${s.key}" aria-pressed="${s.key === sec}">${esc(s.title)}<small>${got}/${tot.length}</small>${tot.some(c => nw.includes(c.id)) ? '<i class="ndot"></i>' : ''}</button>`; }).join('')}</div>
+    ${NS && !nov ? `<button class="nsban" data-a="sec" data-s="novita"><span class="nsb">NUOVA</span><div><b>È uscita la ${esc(NS.t)} · ${esc(NS.sub)}!</b><span class="small">${CARDS.filter(c => c.serie === NS.n).length} figurine nuove: guardale tutte</span></div></button>` : ''}
+    <div class="secs" role="group" aria-label="Sezioni">${NS ? `<button data-a="sec" data-s="novita" aria-pressed="${!!nov}" class="secnew">Novità<small>${CARDS.filter(c => c.serie === NS.n && p.cards[c.id]).length}/${CARDS.filter(c => c.serie === NS.n).length}</small></button>` : ''}${SECV().map(s => { const tot = CARDS.filter(c => c.sec === s.key), got = tot.filter(c => p.cards[c.id]).length; return `<button data-a="sec" data-s="${s.key}" aria-pressed="${s.key === sec}">${esc(s.title)}<small>${got}/${tot.length}</small>${tot.some(c => nw.includes(c.id)) ? '<i class="ndot"></i>' : ''}</button>`; }).join('')}</div>
     <div><h2 style="font-size:1.8rem;text-transform:uppercase">${esc(S.title)}</h2><span class="muted small">${esc(S.note)} · <i>${esc(S.en)}</i></span>${sec === 'fc' ? '<div class="row" style="margin-top:8px"><button class="btn sm" data-a="nav" data-to="fc">Come si sbloccano</button></div>' : ''}<span class="small muted swipehint"> · Scorri col dito per cambiare sezione</span></div>
     <div class="albumgrid ${sw ? 'sw-' + sw : ''}">${cs.map(c => { const n = p.cards[c.id] || 0; return n ? `<button data-a="card" data-id="${c.id}" aria-label="${esc(c.name)}" class="${nw.includes(c.id) ? 'isnew' : ''}">${cardHTML(c, LAZY)}${nw.includes(c.id) ? '<span class="badge new">Nuova</span>' : ''}${n > 1 ? `<span class="badge dup">×${n}</span>` : ''}</button>` : `<div class="slot" aria-label="Figurina ${c.n} mancante"><span class="no">${c.n}</span><span>${esc(c.name)}</span></div>`; }).join('')}</div>
   </div></div>`;
@@ -5037,7 +5143,7 @@ V.mercato = () => {
       <div class="panel"><h2>${esc(partner.nick)} dà</h2>${dupList(partner).length ? `<div class="pickgrid">${dupList(partner).map(c => `<button data-a="take" data-id="${c.id}" aria-pressed="${UI.take === c.id}">${cardHTML(c, LAZY)}</button>`).join('')}</div>` : '<p class="small muted">Nessuna doppia.</p>'}</div></div>
       <button class="btn wide" data-a="trade" ${UI.give && UI.take ? '' : 'disabled'}>Confermiamo lo scambio</button>` : ''}`;
   }
-  return `<div class="wrap">${topBar('Calciomercato', 'campo', `<span class="chip">Doppie <b>${sp}</b></span>`)}
+  return `<div class="wrap">${topBar('Calciomercato', 'album', `<span class="chip">Doppie <b>${sp}</b></span>`)}
   <div class="stack"><div class="seg" role="group">${[['fondi', 'Usa le doppie'], ['scambia', 'Scambia con un amico']].map(([k, t]) => `<button data-a="tab" data-t="${k}" aria-pressed="${tab === k}">${t}</button>`).join('')}</div>${body}</div></div>`;
 };
 
@@ -5045,13 +5151,13 @@ V.mercato = () => {
 const b64e = s => btoa(unescape(encodeURIComponent(s))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 const b64d = s => { s = s.trim().replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '='; return decodeURIComponent(escape(atob(s))); };
 function packProfile(p) {
-  const cd = CARDS.map(c => Math.min(35, p.cards[c.id] || 0).toString(36)).join('');
+  const cd = CARDS_ALL.map(c => Math.min(35, p.cards[c.id] || 0).toString(36)).join('');
   ensure(p); const lv = Object.fromEntries(Object.entries(p.lv).filter(([, e]) => e.l > 1).map(([k, e]) => [k, e.l]));
   return 'FC1-' + b64e(JSON.stringify({ i: p.id, n: p.nick, c: p.cls, k: p.color, pk: p.packs, o: p.opened, pi: p.pity, s: [p.stats.s, p.stats.c, p.stats.t, p.stats.rev], t: p.topics, l: p.leit, cd, sd: p.secDone, m: p.missions.filter(m => !m.done), lv, st: p.streak, tr: p.tro, cn: p.cnt, ps: p.pass, ow: p.own, pt: p.ptitles, pd: p.passDone, cu: p.cup, tu: p.tut, av: p.av, xp: p.xp, wx: p.wxp, gb: p.geoBest, gs: p.gsc, fp: p.fcPack, fq: p.fcPop, x: [p.slow ? 1 : 0, p.big ? 1 : 0], f: p.fm ? { xi: p.fm.xi, coach: p.fm.coach, round: p.fm.round, wins: p.fm.wins, played: p.fm.played, titles: p.fm.titles } : undefined }));
 }
 function unpackProfile(code) {
   const o = JSON.parse(b64d(code.trim().replace(/^FC1-/, '')));
-  const cards = {}; CARDS.forEach((c, i) => { const n = parseInt(o.cd[i] || '0', 36); if (n) cards[c.id] = n; });
+  const cards = {}; CARDS_ALL.forEach((c, i) => { const n = parseInt(o.cd[i] || '0', 36); if (n) cards[c.id] = n; });
   const lv = Object.fromEntries(Object.entries(o.lv || {}).map(([k, l]) => [k, { l, h: '' }]));
   return { id: o.i, nick: String(o.n).slice(0, 14), cls: [1, 2, 3].includes(o.c) ? o.c : 1, color: o.k, packs: o.pk | 0, opened: o.o | 0, pity: o.pi | 0, stats: { s: o.s[0], c: o.s[1], t: o.s[2], rev: o.s[3] || 0 }, topics: o.t || {}, leit: o.l || {}, cards, secDone: o.sd || [], missions: o.m || [], lv, streak: o.st || { n: 0, last: '', best: 0 }, tro: o.tr || {}, cnt: o.cn || {}, pass: o.ps, own: o.ow || [], ptitles: o.pt || [], passDone: o.pd || [], cup: o.cu, tut: o.tu, av: o.av, xp: o.xp | 0, wxp: o.wx, geoBest: o.gb, gsc: o.gs, fcPack: o.fp, fcPop: o.fq, slow: !!(o.x && o.x[0]), big: !!(o.x && o.x[1]), fm: o.f };
 }
@@ -5150,7 +5256,7 @@ V.coppa = () => {
   if (cs.done) action = `<div class="cupwon">${CUPIC}<div><b>Coppa vinta!</b><span>La prossima Coppa parte lunedì.</span></div></div>`;
   else if (left <= 0) action = `<p class="muted" style="margin:0">Hai già giocato ${CUP_PER_DAY} turni oggi. Torna domani per il prossimo!</p>`;
   else action = `<button class="btn wide" data-a="cupplay">Gioca ${rn.toLowerCase()} · servono ${need} risposte giuste su 5</button><p class="small muted" style="margin:6px 0 0">Oggi puoi giocare ancora ${left} ${left === 1 ? 'turno' : 'turni'}. Se perdi, riprovi lo stesso turno: nessuno ti elimina.</p>`;
-  return `<div class="wrap has-nav">${topBar('Coppa', 'campo', packChip(p))}
+  return `<div class="wrap has-nav">${topBar('Coppa', 'gioca', packChip(p))}
   <div class="stack">
     <div class="cuphead"><span class="eyebrow">Coppa Football Center · settimana ${weekRange()}</span><h2>${cs.done ? 'Campione di questa settimana!' : `Prossimo turno: ${rn}`}</h2><span class="small muted">Coppe vinte finora: ${cs.wins || 0}</span></div>
     <div class="bracket">${CUP_ROUNDS.map(([name, nd], i) => { const st = i < cs.round ? 'done' : i === cs.round && !cs.done ? 'now' : 'next'; const r = cs.res[i];
@@ -5179,17 +5285,19 @@ function cupEnd(p, g, rush) {
 
 /* ---------- navigazione in basso, benvenuto, uscita dalle partite, figurine nuove ---------- */
 const NICON = {
-  campo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5l4 2.9-1.5 4.6h-5L8 10.4z"/></svg>',
+  campo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 9.5V20h5v-5h4v5h5V9.5"/></svg>',
+  gioca: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5l4 2.9-1.5 4.6h-5L8 10.4z"/></svg>',
+  pass: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2.5a2.5 2.5 0 0 0 0 5V17a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2.5a2.5 2.5 0 0 0 0-5z"/><path d="M12 9l1.1 2.2 2.4.3-1.8 1.6.5 2.4-2.2-1.2-2.2 1.2.5-2.4-1.8-1.6 2.4-.3z" fill="currentColor" stroke="none"/></svg>',
   album: ICON.album,
   formazione: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M8 3L3 6l2 4.5 3-1.3V21h8V9.2l3 1.3L21 6l-5-3c-.6 1.8-2.1 3-4 3S8.6 4.8 8 3z"/></svg>',
   coppa: ICON.cup,
   trofei: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M8 3l4 7 4-7"/><circle cx="12" cy="15.5" r="5.5"/><path d="M12 13v5"/></svg>'
 };
-const NAVS = [['campo', 'Campo'], ['album', 'Album'], ['formazione', 'Squadra'], ['coppa', 'Coppa'], ['me', 'Io']];
-const NAVMAP = { trofei: 'me', carriera: 'me', mercato: 'campo', pack: 'album', pass: 'campo', mgpick: 'campo', geo: 'campo', fc: 'campo' };
+const NAVS = [['campo', 'Oggi'], ['gioca', 'Gioca'], ['album', 'Album'], ['pass', 'Pass'], ['me', 'Io']];
+const NAVMAP = { trofei: 'me', carriera: 'me', avatar: 'me', mercato: 'album', pack: 'album', retri: 'album', recap: 'pass', mgpick: 'gioca', geo: 'gioca', formazione: 'gioca', coppa: 'gioca', duelsetup: 'gioca', fc: 'campo', code: 'campo' };
 function bottomNav(cur) {
   const p = prof(); if (!p) return '';
-  const cs = cupState(p), dot = { album: (p.newc || []).length > 0 || p.packs > 0 || fcPackReady(p), coppa: !cs.done && cs.today < CUP_PER_DAY, me: !!p.newu };
+  const cs = cupState(p), ps = passState(p), dot = { campo: !!(p.recap && !p.recap.seen) || p.missions.some(m => !m.done), gioca: !cs.done && cs.today < CUP_PER_DAY, album: (p.newc || []).length > 0 || p.packs > 0 || fcPackReady(p) || !!newSerie(), pass: passTier(ps) > ps.cl.length || !!p.passNew, me: !!p.newu };
   return `<nav class="bnav" aria-label="Menu principale"><span class="railmark">FC</span>${NAVS.map(([k, t]) => `<button data-a="nav" data-to="${k}" ${k === cur ? 'aria-current="page"' : ''}>${k === 'me' ? avatarSVG(p.av, { crop: 'bust', still: true, cls: 'navav' }) : NICON[k]}<span>${t}</span>${dot[k] && k !== cur ? '<i class="dot" aria-label="novità"></i>' : ''}</button>`).join('')}</nav>`;
 }
 // barra in alto durante il gioco: la freccia chiede conferma prima di uscire
@@ -5226,7 +5334,7 @@ V.welcome = () => {
 const DUEL_N = 6;
 V.duelsetup = () => {
   const p = prof(), others = DB.profiles.filter(x => x.id !== p.id), ds = UI.ds || (UI.ds = { opp: null, subj: 'mix' }), opp = others.find(o => o.id === ds.opp);
-  return `<div class="wrap">${topBar('Sfida 1 contro 1', 'campo')}
+  return `<div class="wrap">${topBar('Sfida 1 contro 1', 'gioca')}
   <div class="stack">
     <div class="duelhero">${pav(p)}<b>VS</b>${opp ? pav(opp) : '<span class="jq">?</span>'}</div>
     <p class="muted" style="margin:0;text-align:center">Due giocatori, un dispositivo. ${DUEL_N} domande uguali per tutti e due: rispondete a turno, senza guardare. Vince chi fa più risposte giuste; in caso di parità, chi è stato più rapido sulle risposte giuste.</p>
@@ -5341,7 +5449,7 @@ const UNLOCKS = [];
 for (const [k, s] of Object.entries(AVC)) for (const it of s.items) if (it.lv && !(KITK.includes(k) && k !== 'shirt')) UNLOCKS.push({ k, v: it.v, t: it.t, lv: it.lv, sec: k === 'shirt' ? 'Colore della divisa' : s.t });
 UNLOCKS.sort((a, b) => a.lv - b.lv);
 const LVTITLES = [[1, 'Esordiente'], [5, 'Promessa'], [10, 'Titolare'], [15, 'Bomber di razza'], [20, 'Capitano'], [25, 'Fenomeno'], [30, 'Leggenda di Fuoriclasse'], [35, 'Stella del campionato'], [40, 'Icona'], [45, 'Mito del pallone'], [50, 'Fuoriclasse assoluto']];
-const rewardsAt = n => ({ items: UNLOCKS.filter(u => u.lv === n), title: (LVTITLES.find(t => t[0] === n) || [])[1], pack: n % 5 === 0 });
+const rewardsAt = n => ({ items: UNLOCKS.filter(u => u.lv === n), title: (LVTITLES.find(t => t[0] === n) || [])[1], pack: n % 5 === 0, back: [[10, 'argento'], [25, 'oro'], [40, 'diamante']].filter(x => x[0] === n).map(x => x[1])[0] });
 // curva dei livelli (v2, ottobre 2026): il 14 in circa una settimana di gioco, il 30 in circa 3 mesi; massimo 50, poi Prestigio
 const LV_MAX = 50;
 const xpNeed = n => 200 + 70 * (n - 1) + 4 * (n - 1) * (n - 1);
@@ -5579,7 +5687,7 @@ function futCard(p) {
 const xpBar = (p, cls) => { const L = lvInfo(p.xp); return `<div class="xpbar ${cls || ''}"><i style="width:${pct(L.cur, L.need)}%"></i></div>`; };
 function rewardLine(r) {
   const out = r.items.map(u => `${u.sec}: ${u.t}`);
-  if (r.title) out.push(`Titolo «${r.title}»`); if (r.pack) out.push('+1 bustina');
+  if (r.title) out.push(`Titolo «${r.title}»`); if (r.back) out.push(`Retro delle figurine «${BACK_BY[r.back].t}»`); if (r.pack) out.push('+1 bustina');
   return out;
 }
 
@@ -5588,11 +5696,12 @@ V.me = () => {
   const p = prof(), L = lvInfo(p.xp), nr = rewardsAt(L.n + 1), nx = rewardLine(p.prest ? Object.assign({}, nr, { items: [] }) : nr), w = weekKey();
   const rank = DB.settings.rank !== false && DB.profiles.length > 1 ? DB.profiles.map(q => ensure(q)).map(q => ({ q, n: q.wxp && q.wxp.w === w ? q.wxp.n : 0 })).sort((a, b) => b.n - a.n).slice(0, 10) : null;
   const k = [[p.stats.s, 'allenamenti'], [p.stats.c, 'risposte giuste'], [p.streak.best, 'record di giorni di fila'], [(p.cup && p.cup.wins) || 0, 'coppe vinte'], [p.cnt.duel || 0, 'sfide 1 contro 1 vinte'], [(p.fm && p.fm.titles) || 0, 'campionati vinti']];
-  return `<div class="wrap">${topBar('Il mio giocatore', 'campo', packChip(p))}
+  return `<div class="wrap">${topBar('Il mio giocatore', null, packChip(p))}
   <div class="mehero"><div class="futwrap">${futCard(p)}</div>
     <div class="stack" style="align-content:start">
       <div class="panel lvpanel"><div class="row"><div class="lvnum"><span>Livello</span><b>${L.n}</b></div><div style="flex:1;min-width:0"><div class="row small"><b>${L.cur} / ${L.need} XP</b><span class="spacer"></span><span class="muted">al livello ${L.n + 1}</span></div>${xpBar(p)}<div class="small muted" style="margin-top:6px">Prossimo premio: ${esc(nx.length ? nx.join(' · ') : 'gloria e +XP')}</div></div></div></div>
       <div class="row"><button class="btn" data-a="nav" data-to="avatar" style="flex:1">${ICON.brush} Personalizza</button><button class="btn ghost" data-a="nav" data-to="carriera" style="flex:1">${ICON.road} Carriera</button></div>
+      <button class="tilebtn" data-a="nav" data-to="retri">${ICON.album} Retri delle figurine <span class="spacer"></span><span class="muted small">${BACKS.filter(b => backOk(p, b)).length}/${BACKS.length}</span></button>
       <button class="tilebtn" data-a="nav" data-to="trofei">${ICON.cup} Trofei <span class="spacer"></span><span class="muted small">${Object.keys(p.tro).length}/${TROPHIES.length}</span></button>
       <p class="small muted" style="margin:0">La carta cresce con te: MAT, ITA ed ENG salgono con le risposte giuste e i livelli degli argomenti, PRE è la precisione, COS la costanza, COL l'album. Da livello 5 la carta diventa d'argento, da 10 d'oro, da 20 olografica.</p>
     </div></div>
@@ -5604,12 +5713,12 @@ V.me = () => {
 };
 // --- carriera: la strada dei livelli
 V.carriera = () => {
-  const p = prof(), L = lvInfo(p.xp), max = Math.min(LV_MAX, Math.max(30, L.n + 6)); p.newu = false; save();
+  const p = prof(), L = lvInfo(p.xp), max = LV_MAX; p.newu = false; save();
   const rows = [];
   for (let n = 2; n <= max; n++) {
     const r = rewardsAt(n), stc = n <= L.n ? 'done' : n === L.n + 1 ? 'now' : 'lock';
     const items = r.items.map(u => `<div class="rw">${avatarSVG(Object.assign({}, p.av, { [u.k]: u.v }), { crop: u.k === 'cel' || u.k === 'shorts' || u.k === 'socks' ? 'full' : AVC[u.k].crop || 'bust', still: true, cls: 'mini' })}<span><b>${esc(u.t)}</b><small>${esc(u.sec)}</small></span>${stc === 'done' ? `<button class="btn sm ghost" data-a="avtry" data-k="${u.k}" data-v="${u.v}">Usa</button>` : ''}</div>`).join('');
-    const extra = (r.title ? `<div class="rw"><span class="rwic">${ICON.medal}</span><span><b>«${esc(r.title)}»</b><small>Titolo</small></span></div>` : '') + (r.pack ? `<div class="rw"><span class="rwic">${miniPack()}</span><span><b>+1 bustina</b><small>Premio</small></span></div>` : '');
+    const extra = (r.back ? `<div class="rw"><span class="rwic pbk">${backHTML(BACK_BY[r.back])}</span><span><b>Retro «${BACK_BY[r.back].t}»</b><small>Retro delle figurine</small></span>${stc === 'done' ? `<button class="btn sm ghost" data-a="bkuse" data-id="${r.back}">Usa</button>` : ''}</div>` : '') + (r.title ? `<div class="rw"><span class="rwic">${ICON.medal}</span><span><b>«${esc(r.title)}»</b><small>Titolo</small></span></div>` : '') + (r.pack ? `<div class="rw"><span class="rwic">${miniPack()}</span><span><b>+1 bustina</b><small>Premio</small></span></div>` : '');
     rows.push(`<div class="road-n ${stc}" id="lv${n}"><div class="rn"><b>${n}</b></div><div class="rr">${items + extra || '<div class="rw"><span class="rwic">' + ICON.star + '</span><span><b>Solo gloria</b><small>Continua così</small></span></div>'}</div></div>`);
   }
   return `<div class="wrap">${topBar('Carriera', 'me', `<span class="chip">Livello <b>${L.n}</b></span>`)}
@@ -5742,8 +5851,8 @@ document.addEventListener('touchstart', e => { if (UI.s !== 'album' || e.touches
 document.addEventListener('touchend', e => {
   if (!TS || UI.s !== 'album') return; const t = e.changedTouches[0], dx = t.clientX - TS.x, dy = t.clientY - TS.y, s = TS; TS = null;
   if (s.secs || Math.abs(dx) < 70 || Math.abs(dy) > 60 || Date.now() - s.at > 700 || !$('#modal').hidden) return;
-  const i = SECTIONS.findIndex(x => x.key === UI.sec), j = i + (dx < 0 ? 1 : -1); if (i < 0 || j < 0 || j >= SECTIONS.length) return;
-  clearNew(); UI.sec = SECTIONS[j].key; UI.swipe = dx < 0 ? 'l' : 'r'; FX.play('flip'); render();
+  const SV = SECV(), i = SV.findIndex(x => x.key === UI.sec), j = i + (dx < 0 ? 1 : -1); if (i < 0 || j < 0 || j >= SV.length) return;
+  clearNew(); UI.sec = SV[j].key; UI.swipe = dx < 0 ? 'l' : 'r'; FX.play('flip'); render();
 }, { passive: true });
 let CUT = null;
 document.addEventListener('pointerdown', e => { const pk = e.target.closest && e.target.closest('.pack'); if (!pk || UI.s !== 'pack') return; const r = pk.getBoundingClientRect(); CUT = { x: e.clientX, w: r.width, el: pk, done: false }; });
@@ -5921,7 +6030,7 @@ function startMg(mode, subj) {
 function shuffleDiff(a) { if (a.length < 2) return a; let s; do s = shuffle(a); while (s.every((x, i) => x === a[i])); return s; }
 V.mgpick = () => {
   const p = prof(), m = UI.gm, G = GAMES[m];
-  return `<div class="wrap">${topBar(G.t, 'campo', packChip(p))}
+  return `<div class="wrap">${topBar(G.t, 'gioca', packChip(p))}
   <div class="stack"><div class="mghead">${MG_ICON[m]}<div><b>${G.t}</b><span>${G.d}</span></div></div>
   <div class="eyebrow">Scegli la materia · ${p.cls}ª media</div>
   <div class="topics">${['mat', 'ita', 'eng'].map(s => `<button class="topic" data-a="mgstart" data-s="${s}"><b>${SUBJ[s]}</b><span class="small muted">${G.how[s]}</span></button>`).join('')}</div>
@@ -6010,8 +6119,61 @@ document.addEventListener('pointerdown', e => { const c = e.target.closest && e.
 document.addEventListener('pointermove', e => { if (!FGD) return; const dx = e.clientX - FGD.x; FGD.el.style.transform = `translateX(${dx}px) rotate(${dx / 20}deg)`; FGD.el.style.borderColor = dx > 40 ? 'var(--ok)' : dx < -40 ? 'var(--ko)' : ''; });
 document.addEventListener('pointerup', e => { if (!FGD) return; const dx = e.clientX - FGD.x, el = FGD.el; FGD = null; el.style.transform = ''; el.style.borderColor = ''; if (Math.abs(dx) > 70) fgDecide(dx > 0 ? 1 : 0); });
 
+/* ---------- Retri delle figurine: si collezionano e ognuno sceglie il suo ---------- */
+const BACKS = [
+  { id: 'premium', t: 'Fuoriclasse', c1: '#17804f', c2: '#03140b', g: '#ffd23f' },
+  { id: 'classico', t: 'Classico', classic: true },
+  { id: 'argento', t: 'Argento', c1: '#9aa6b2', c2: '#161b21', g: '#eef3f7', lv: 10 },
+  { id: 'coppa', t: 'Notte di Coppa', c1: '#2350b0', c2: '#040a1d', g: '#ffd23f', ic: 'coppa', how: 'Vinci una Coppa Football Center', ok: p => !!(p.tro && p.tro.coppa1) },
+  { id: 'sezione', t: 'Collezionista', c1: '#8a3fc4', c2: '#12051c', g: '#ffd23f', ic: 'stelle', how: 'Completa una sezione dell\'album', ok: p => (p.secDone || []).some(k => k !== 'fc' && k !== 'stagioni') },
+  { id: 'oro', t: 'Oro', c1: '#d6a21a', c2: '#2e1f00', g: '#fff3bf', lv: 25 },
+  { id: 'fc', t: 'Football Center', fc: true, c1: '#9a1015', c2: '#060202', g: '#ffffff', how: 'Sblocca una figurina speciale Football Center', ok: p => CARDS.some(c => c.sec === 'fc' && p.cards[c.id]) },
+  { id: 'diamante', t: 'Diamante', c1: '#6fdcff', c2: '#081a33', g: '#e9fcff', lv: 40, holo: true },
+  { id: 'prestigio', t: 'Prestigio', c1: '#5a4300', c2: '#0b0700', g: '#ffd23f', ic: 'stelle', holo: true, how: 'Passa al Prestigio', ok: p => (p.prest || 0) >= 1 },
+  ...SEASONS.map((S, m) => ({ id: 's' + m, t: S.t, c1: S.c1, c2: S.c2, g: '#ffd23f', ic: S.ic, sm: m, how: `Pass di ${MESI[m].toLowerCase()}, livello 27` }))
+];
+const BACK_BY = Object.fromEntries(BACKS.map(b => [b.id, b]));
+const backOk = (p, b) => b.lv ? ulv(p) >= b.lv : b.sm !== undefined ? (p.backs || []).includes(b.id) : b.ok ? b.ok(p) : true;
+const myBack = p => { const b = p && BACK_BY[p.back]; return b && backOk(p, b) ? b : BACK_BY.premium; };
+const seasonLabel = () => { const d = new Date(), y = d.getMonth() >= 7 ? d.getFullYear() : d.getFullYear() - 1; return `${String(y).slice(2)}/${String(y + 1).slice(2)}`; };
+let BKSEQ = 0;
+function backSVG(b) {
+  const u = 'bk' + (++BKSEQ), g = b.g;
+  const ros = (cx, cy, r, n) => Array.from({ length: n }, (_, i) => `<ellipse cx="${cx}" cy="${cy}" rx="${r}" ry="${(r * 0.36).toFixed(1)}" transform="rotate(${(i * 180 / n).toFixed(1)} ${cx} ${cy})"/>`).join('');
+  const waves = Array.from({ length: 22 }, (_, i) => { const y = 9 + i * 5.7; return `<path d="M5 ${y.toFixed(1)}q4.5 -2.4 9 0t9 0t9 0t9 0t9 0t9 0t9 0t9 0t9 0t9 0"/>`; }).join('');
+  const emb = b.fc ? `<image href="${FC_LOGO}" x="33" y="45" width="34" height="32"/>` : b.ic && SEASON_IC[b.ic] ? `<g transform="translate(50 61) scale(.58)">${SEASON_IC[b.ic]}</g>` : `<path d="M50 47.5l1.9 3.9 4.3.6-3.1 3 .7 4.3-3.8-2-3.8 2 .7-4.3-3.1-3 4.3-.6z" fill="${b.c2}"/><text x="50" y="77" text-anchor="middle" font-family="Saira Extra Condensed,Impact,sans-serif" font-weight="900" font-size="21" fill="${b.c2}">F</text>`;
+  const shield = 'M50 37l21 6.5v17c0 15-8.5 24-21 29.5-12.5-5.5-21-14.5-21-29.5v-17z';
+  return `<svg viewBox="0 0 100 140" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>
+  <radialGradient id="${u}a" cx=".5" cy=".42" r=".75"><stop offset="0" stop-color="${b.c1}"/><stop offset="1" stop-color="${b.c2}"/></radialGradient>
+  <linearGradient id="${u}b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff8d6"/><stop offset=".45" stop-color="${g}"/><stop offset="1" stop-color="${b.fc ? '#9a9a9a' : '#9a6b00'}"/></linearGradient></defs>
+  <rect width="100" height="140" fill="url(#${u}a)"/>
+  <g fill="none" stroke="${g}" stroke-width=".35" opacity=".22">${waves}</g>
+  <g fill="none" stroke="${g}" stroke-width=".45" opacity=".4">${ros(50, 62, 34, 18)}</g>
+  <g fill="none" stroke="${g}" stroke-width=".4" opacity=".3">${ros(14, 16, 9, 10)}${ros(86, 16, 9, 10)}${ros(14, 124, 9, 10)}${ros(86, 124, 9, 10)}</g>
+  <rect x="3" y="3" width="94" height="134" rx="7" fill="none" stroke="url(#${u}b)" stroke-width="2.4"/><rect x="7" y="7" width="86" height="126" rx="4.5" fill="none" stroke="${g}" stroke-width=".6" opacity=".75"/>
+  <path d="${shield}" fill="#000" opacity=".45" transform="translate(1.4 2)"/><path d="${shield}" fill="url(#${u}b)"/><path d="M50 41.5l17 5.3v14.2c0 12.4-7 19.9-17 24.6-10-4.7-17-12.2-17-24.6V46.8z" fill="${b.c1}" opacity=".35" stroke="#fff" stroke-opacity=".6" stroke-width=".7"/>${emb}
+  <text x="50" y="106" text-anchor="middle" font-family="Saira Extra Condensed,Impact,sans-serif" font-weight="900" font-size="11" letter-spacing="1.2" fill="${g}">FUORICLASSE</text>
+  <text x="50" y="115.5" text-anchor="middle" font-family="Archivo,Arial,sans-serif" font-weight="700" font-size="4.6" letter-spacing="1" fill="${g}" opacity=".85">STAGIONE ${seasonLabel()}</text></svg>`;
+}
+const backHTML = b => b.classic ? '<div class="cardback"><b>Fuori<br>classe</b></div>' : `<div class="cardback pb ${b.holo ? 'holo' : ''}">${backSVG(b)}</div>`;
+const backHow = b => b.lv ? `Livello giocatore ${b.lv}` : b.how || 'Di serie';
+// avvisa quando si sblocca un retro nuovo (la prima volta segna solo quelli che ci sono già)
+function backCheck(p) {
+  if (!p) return; const seen = p.bkSeen || (p.bkSeen = []), first = !p.bkInit; let nw = null;
+  for (const b of BACKS) if (!seen.includes(b.id) && backOk(p, b)) { seen.push(b.id); if (!first && !b.classic && b.id !== 'premium') nw = b; }
+  p.bkInit = 1; if (nw) { p.bkNew = true; setTimeout(() => toast(`Nuovo retro per le figurine: «${nw.t}»! Lo trovi in Album → Retri`), 1800); }
+}
+V.retri = () => {
+  const p = prof(), cur = myBack(p), sel = BACK_BY[UI.bk] || cur, ok = backOk(p, sel), cm = new Date().getMonth(); p.bkNew = false;
+  const vis = b => b.sm === undefined || (p.backs || []).includes(b.id) || b.sm === cm || b.sm === (cm + 1) % 12;
+  return `<div class="wrap">${topBar('Retri delle figurine', 'album')}
+  <div class="stack"><div class="bkhero"><div class="bkbig tilt">${backHTML(sel)}</div><div class="stack" style="align-content:center"><span class="eyebrow">${sel === cur ? 'In uso' : ok ? 'Sbloccato' : 'Da conquistare'}</span><h2 style="font-size:2rem;text-transform:uppercase;line-height:1">${esc(sel.t)}</h2>
+    <p class="small muted" style="margin:0">${ok ? 'È il retro che vedi quando apri le bustine.' : `Come si sblocca: ${esc(backHow(sel))}.`}</p>${ok && sel !== cur ? `<button class="btn" data-a="bkuse" data-id="${sel.id}">Usa questo retro</button>` : ''}</div></div>
+  <p class="small muted" style="margin:0">Ogni mese il Pass regala il retro della stagione (livello 27). Altri arrivano con i livelli giocatore e con le imprese. Le bustine Football Center hanno sempre il gallo.</p>
+  <div class="bkgrid">${BACKS.filter(vis).map(b => { const o = backOk(p, b); return `<button class="bk ${b === sel ? 'sel' : ''} ${o ? '' : 'locked'}" data-a="bksel" data-id="${b.id}" aria-pressed="${b === sel}"><span class="bkimg">${backHTML(b)}${o ? '' : `<i class="lk">${ICON.lock}</i>`}</span><b>${esc(b.t)}</b><small>${b === cur ? 'In uso' : o ? 'Sbloccato' : esc(backHow(b))}</small></button>`; }).join('')}</div></div></div>`;
+};
+
 /* ---------- Pass della stagione: gratuito, un mese per stagione, 25 livelli ---------- */
-const MESI = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
 const PASS_TIERS = 30, PASS_STEP = 150;
 // gli oggetti esclusivi tornano a rotazione ogni 3 mesi: chi li perde li ritrova
 const PASS_POOL = [['pat:zigzag', 'cel:robot'], ['head:lana', 'boots:galassia'], ['face:sole', 'pat:pois']];
@@ -6067,6 +6229,7 @@ function passReward(n, s) {
   if (n === 15) return { card: cs[0].id };
   if (n === 20) return { it: items[1] };
   if (n === 25) return { title: `Stella di ${M}` };
+  if (n === 27) return { back: 's' + mi };
   if (n === 30) return { card: cs[1].id, title: `Campione di ${M}`, pack: 3 };
   if (n % 2 === 0) return { pack: 1 };
   return { xp: 40 + 10 * Math.floor(n / 5) };
@@ -6088,6 +6251,7 @@ function passGive(p, ps, n) {
   if (r.pack) grant(p, r.pack, `Pass di ${M.toLowerCase()}, livello ${n}`, false);
   if (r.xp) xpAdd(p, r.xp, true);
   if (r.it) p.own = Array.from(new Set([...(p.own || []), r.it]));
+  if (r.back) { p.backs = Array.from(new Set([...(p.backs || []), r.back])); (p.bkSeen = p.bkSeen || []).push(r.back); }
   if (r.title) p.ptitles = Array.from(new Set([...(p.ptitles || []), r.title]));
   if (r.card) { p.cards[r.card] = (p.cards[r.card] || 0) + 1; p.newc = Array.from(new Set([...(p.newc || []), r.card])); p.log = [{ d: today(), t: `figurina del Pass: ${BY_ID[r.card].name}` }, ...(p.log || [])].slice(0, 40); }
   if (n === PASS_TIERS) p.passDone = Array.from(new Set([...(p.passDone || []), ps.s]));
@@ -6095,6 +6259,7 @@ function passGive(p, ps, n) {
 }
 const passClaim = (p, n) => passGive(p, passState(p), n);
 function rewardHTML(r, p) {
+  if (r.back) { const b = BACK_BY[r.back]; return `<span class="prw pbk">${backHTML(b)}</span><b>Retro «${esc(b.t)}»</b><small>Retro delle figurine · esclusivo</small>`; }
   if (r.card) { const c = BY_ID[r.card]; return `<span class="prw pcardw">${miniArt(c)}</span><b>${esc(c.name)}</b><small>Figurina esclusiva${r.title ? ` + titolo «${esc(r.title)}»` : ''}${r.pack ? ` + ${r.pack} bustine` : ''}</small>`; }
   if (r.it) { const L = itemLabel(r.it); return `<span class="prw it">${avatarSVG(Object.assign({}, p.av, { [L.k]: L.v }), { crop: L.k === 'cel' ? 'full' : (AVC[L.k].crop || 'bust'), still: true, cls: 'mini' })}</span><b>${esc(L.t)}</b><small>${esc(L.sec)} · esclusivo</small>`; }
   if (r.title) return `<span class="prw">${ICON.medal}</span><b>«${esc(r.title)}»</b><small>Titolo${r.pack ? ` + ${r.pack} bustine` : ''}</small>`;
@@ -6109,8 +6274,8 @@ V.pass = () => {
   const p = prof(), ps = passState(p), tier = passTier(ps), mi = passMonth(ps.s), M = MESI[mi], S = SEASONS[mi], next = Math.min(PASS_TIERS, tier + 1), into = ps.pts - tier * PASS_STEP, ch = ensureCh(p);
   const todo = Array.from({ length: tier }, (_, i) => i + 1).filter(n => !ps.cl.includes(n)); p.passNew = false;
   const tiles = Array.from({ length: PASS_TIERS }, (_, i) => { const n = i + 1, r = passReward(n, ps.s), got = ps.cl.includes(n), can = n <= tier && !got, L = r.it ? itemLabel(r.it) : null;
-    return `<div class="ptier ${got ? 'got' : can ? 'can' : n === next ? 'next' : 'lock'} ${r.it || r.title || r.card ? 'big' : ''} ${r.card ? 'cardt' : ''}" id="pt${n}"><span class="pn">${n}</span>${rewardHTML(r, p)}${can ? `<button class="btn sm" data-a="passclaim" data-n="${n}">Riscatta</button>` : got ? (L ? `<button class="btn sm ghost" data-a="avtry" data-k="${L.k}" data-v="${L.v}">Usa</button>` : r.card ? `<button class="btn sm ghost" data-a="card" data-id="${r.card}">Guarda</button>` : '<span class="small okc">Preso</span>') : ''}</div>`; }).join('');
-  return `<div class="wrap">${topBar('Pass della stagione', 'campo', packChip(p))}
+    return `<div class="ptier ${got ? 'got' : can ? 'can' : n === next ? 'next' : 'lock'} ${r.it || r.title || r.card || r.back ? 'big' : ''} ${r.card ? 'cardt' : ''}" id="pt${n}"><span class="pn">${n}</span>${rewardHTML(r, p)}${can ? `<button class="btn sm" data-a="passclaim" data-n="${n}">Riscatta</button>` : got ? r.back ? `<button class="btn sm ghost" data-a="bkuse" data-id="${r.back}">Usa</button>` : (L ? `<button class="btn sm ghost" data-a="avtry" data-k="${L.k}" data-v="${L.v}">Usa</button>` : r.card ? `<button class="btn sm ghost" data-a="card" data-id="${r.card}">Guarda</button>` : '<span class="small okc">Preso</span>') : ''}</div>`; }).join('');
+  return `<div class="wrap">${topBar('Pass della stagione', null, packChip(p))}
   <div class="stack"><div class="passhead season" style="${seasonVars(ps.s)}"><div class="phtop"><div><span class="eyebrow">Stagione di ${M} · gratis per tutti</span><h2 class="ptheme">${esc(S.t)}</h2></div><span class="pleft">${HOURGLASS} Finisce tra ${passLeft(ps.s)}</span></div>
     <div class="row phlv"><div class="pbig"><small>Livello</small><b>${tier}</b><small>/${PASS_TIERS}</small></div><div class="passbar" style="flex:1;min-width:0"><div class="row small"><b>${tier >= PASS_TIERS ? 'Pass completato!' : `${into}/${PASS_STEP} punti`}</b><span class="spacer"></span><span class="muted">${tier >= PASS_TIERS ? '' : `verso il livello ${next}`}</span></div><div class="xpbar"><i style="width:${tier >= PASS_TIERS ? 100 : pct(into, PASS_STEP)}%"></i></div></div></div>
     <div class="pkeys">${[[15, seasonCards(mi)[0]], [30, seasonCards(mi)[1]]].map(([n, c]) => `<button class="pkey ${ps.cl.includes(n) ? 'got' : ''}" data-a="${ps.cl.includes(n) ? 'card' : 'passgo'}" data-id="${c.id}" data-n="${n}">${miniArt(c)}<span><small>Livello ${n}</small><b>${esc(c.name)}</b></span></button>`).join('')}</div>
@@ -6243,7 +6408,7 @@ function startGeo(mode, scope) {
 }
 V.geo = () => {
   const p = prof(), sc = p.gsc || geoDefaultScope(p), best = p.geoBest || {};
-  return `<div class="wrap">${topBar('Geografia', 'campo', packChip(p))}
+  return `<div class="wrap">${topBar('Geografia', 'gioca', packChip(p))}
   <div class="stack"><div class="geohead"><div><span class="eyebrow">Atlante di Fuoriclasse</span><h2>Geografia</h2><span class="small muted">Bandiere, capitali e mappe vere di Italia, Europa e mondo. In 1ª media si parte dall'Italia, in 2ª dall'Europa, in 3ª dal mondo: ma puoi scegliere tu.</span></div>${GEO_ICON.dove}</div>
   <div class="seg" role="group" aria-label="Zona">${Object.entries(GEO_SCOPES).map(([k, t]) => `<button data-a="gsc" data-s="${k}" aria-pressed="${sc === k}">${t}</button>`).join('')}</div>
   <div class="geomodes">${Object.entries(GEO_MODES).map(([k, M]) => `<button class="geotile" data-a="geostart" data-m="${k}">${GEO_ICON[k]}<div><b>${M.t}</b><span>${M.d}</span>${best[k + ':' + sc] !== undefined ? `<small class="okc">Record: ${k === 'dove' ? best[k + ':' + sc].toLocaleString('it-IT') + ' punti' : best[k + ':' + sc] + '/10'}</small>` : ''}</div></button>`).join('')}</div>
@@ -6421,7 +6586,7 @@ const FCPOP = [
 ];
 function fcPopClose() { const el = document.querySelector('.fcpop'); if (el) { el.classList.add('out'); setTimeout(() => el.remove(), 300); } }
 function fcPopMaybe() {
-  const p = UI.pid ? prof() : null; if (!p || UI.s !== 'campo' || (p.stats.s || 0) < 3) return;
+  const p = UI.pid ? prof() : null; if (!p || !p.tour || UI.s !== 'campo' || (p.stats.s || 0) < 3) return;
   const q = p.fcPop || { d: '', n: 0 }, days = q.d ? Math.round((Date.parse(today()) - Date.parse(q.d)) / 864e5) : 99;
   if (days < 4 || Math.random() < 0.5) return;
   setTimeout(() => {
@@ -6435,14 +6600,56 @@ function fcPopMaybe() {
 }
 
 /* ---------- render + azioni ---------- */
+/* ---------- Tour del Gallo (primo accesso) e suggerimenti alla prima visita di una sezione ---------- */
+const TOUR = [
+  ['campo', 'Questa è la pagina di <b>Oggi</b>', 'Il pulsante grande ti dice sempre la prossima cosa da fare. Qui trovi anche le sfide del giorno.'],
+  ['gioca', 'Tocca qui per <b>giocare</b>', 'Allenamenti sulle materie, partite e Coppa, minigiochi e geografia: tutti i giochi sono qui.'],
+  ['album', 'Qui trovi le <b>figurine</b>', 'Apri le bustine, completa l\'album, scambia le doppie e scegli il retro delle tue figurine.'],
+  ['pass', 'Il <b>Pass</b> della stagione', 'Ogni mese una stagione nuova con premi esclusivi. Tutto si guadagna giocando.']
+];
+const HINTS = {
+  gioca: 'Le sfide di oggi ti dicono da dove partire. Ogni argomento ha 3 livelli: rispondi bene e sali!',
+  album: 'Tocca una figurina per girarla e leggere la curiosità. Con le doppie fai calciomercato.',
+  pass: 'Completa le missioni per salire di livello: ai livelli 15 e 30 ci sono le figurine esclusive del mese.',
+  me: 'Questa è la tua carta giocatore: cresce con le risposte giuste. Da Personalizza cambi il tuo aspetto.',
+  geo: 'Scegli Italia, Europa o Mondo e poi il gioco. Prova «Dove si trova?»: più ti avvicini, più punti fai.',
+  coppa: 'Ogni settimana 4 turni, massimo 2 al giorno. Vincendo la Coppa sblocchi il retro «Notte di Coppa».',
+  formazione: 'Metti in campo le tue figurine migliori e affronta le 10 squadre del campionato.',
+  retri: 'Scegli il retro che vuoi vedere quando apri le bustine. I retri bloccati ti dicono come conquistarli.',
+  carriera: 'La strada dei livelli: ogni livello sblocca qualcosa. Al 50 puoi passare al Prestigio.'
+};
+const GALLO = () => `<span class="gallo"><img src="${FC_LOGO}" alt=""></span>`;
+function tourStart() { UI.tour = 0; tourDraw(); }
+function tourStep(d) { UI.tour = (UI.tour || 0) + d; if (UI.tour >= TOUR.length) return tourEnd(); FX.play('tap'); tourDraw(); }
+function tourEnd() { const p = prof(); if (p) { p.tour = 1; save(); } UI.tour = null; const o = document.getElementById('tour'); if (o) o.remove(); FX.play('ok'); }
+function tourDraw() {
+  const i = UI.tour, st = TOUR[i], old = document.getElementById('tour'); if (old) old.remove(); if (i == null || !st) return;
+  const t = document.querySelector(`.bnav [data-to="${st[0]}"]`); if (!t) return;
+  const r = t.getBoundingClientRect(), pad = 6, o = document.createElement('div'); o.id = 'tour'; o.className = 'tour'; o.setAttribute('role', 'dialog'); o.setAttribute('aria-label', 'Guida');
+  o.innerHTML = `<div class="tspot" style="left:${r.left - pad}px;top:${r.top - pad}px;width:${r.width + pad * 2}px;height:${r.height + pad * 2}px"></div>
+  <div class="tbub">${GALLO()}<div><span class="eyebrow">Il Gallo ti guida · ${i + 1}/${TOUR.length}</span><h3>${st[1]}</h3><p>${st[2]}</p>
+  <div class="row"><button class="link" data-a="tourx">Salta</button><span class="spacer"></span><button class="btn sm" data-a="tourn">${i === TOUR.length - 1 ? 'Iniziamo!' : 'Avanti'}</button></div></div></div>`;
+  document.body.appendChild(o);
+  const b = o.querySelector('.tbub'), bw = b.offsetWidth, bh = b.offsetHeight, side = r.left < 120 && r.top > 60 && r.width < 140 && innerWidth > 700;
+  let x, y; if (side) { x = r.right + 18; y = Math.min(innerHeight - bh - 12, Math.max(12, r.top + r.height / 2 - bh / 2)); } else { x = Math.min(innerWidth - bw - 12, Math.max(12, r.left + r.width / 2 - bw / 2)); y = r.top - bh - 18; }
+  b.style.left = x + 'px'; b.style.top = Math.max(12, y) + 'px'; b.classList.add(side ? 'side' : 'up'); b.style.setProperty('--ax', (r.left + r.width / 2 - x) + 'px'); b.style.setProperty('--ay', (r.top + r.height / 2 - y) + 'px');
+}
+addEventListener('resize', () => { if (UI.tour != null) tourDraw(); });
+function hintHTML(p) {
+  const k = UI.s; if (!p || !p.tour || UI.tour != null || !HINTS[k]) return '';
+  p.hints = p.hints || {}; if (!p.hints[k]) { p.hints[k] = 1; save(); UI.hint = k; }
+  return UI.hint === k ? `<div class="ghint" role="status">${GALLO()}<p>${HINTS[k]}</p><button class="btn sm" data-a="hintok">Ho capito</button></div>` : '';
+}
+
 function render() {
   const p = UI.pid ? prof() : null, cur = NAVMAP[UI.s] || UI.s, nav = p && NAVS.some(([k]) => k === cur);
-  AVN = 0; $('#app').innerHTML = (V[UI.s] || V.home)() + (nav ? bottomNav(cur) : '');
+  AVN = 0; $('#app').innerHTML = (V[UI.s] || V.home)() + (nav ? bottomNav(cur) + hintHTML(p) : '');
   document.body.classList.toggle('navon', !!nav); document.body.classList.toggle('big', !!(p && p.big));
   screenEnter(); lazyArt();
   const v = V[UI.s]; if (v && v.after) v.after();
   if (UI.s === 'play' && UI.g && UI.g.vb) geoMeasure();
   const bt = document.getElementById('boot'); if (bt) bt.remove();
+  if (nav && p) { backCheck(p); if (!p.tour && UI.s === 'campo' && UI.tour == null) setTimeout(() => { if (UI.s === 'campo' && !p.tour && UI.tour == null) tourStart(); }, 500); else if (UI.tour != null) tourDraw(); }
 }
 const A = {
   fcpopgo: d => { fcPopClose(); go(d.to); },
@@ -6466,7 +6673,7 @@ const A = {
   ccheck: () => cCheck(),
   cnext: () => { const g = UI.g; g.i++; if (g.i >= g.rounds.length) return finish(); render(); window.scrollTo(0, 0); },
   fgdec: d => fgDecide(+d.v),
-  passclaim: d => { const p = prof(), r = passClaim(p, +d.n); if (!r) return; save(); if (r.card) { render(); return walkout(BY_ID[r.card], () => { render(); toast(r.title ? `Figurina esclusiva e titolo «${r.title}»!` : 'Figurina esclusiva della stagione!'); }); } FX.play(r.it || r.title ? 'oro' : 'coin'); if (r.it || r.title) FX.confetti(90); render(); toast(r.it ? `Nuovo oggetto: ${itemLabel(r.it).t}! Lo trovi in Personalizza.` : r.title ? `Nuovo titolo: «${r.title}»` : r.pack ? 'Bustina aggiunta!' : `+${r.xp} XP`); },
+  passclaim: d => { const p = prof(), r = passClaim(p, +d.n); if (!r) return; save(); if (r.card) { render(); return walkout(BY_ID[r.card], () => { render(); toast(r.title ? `Figurina esclusiva e titolo «${r.title}»!` : 'Figurina esclusiva della stagione!'); }); } FX.play(r.it || r.title || r.back ? 'oro' : 'coin'); if (r.it || r.title || r.back) FX.confetti(90); render(); toast(r.back ? `Nuovo retro: «${BACK_BY[r.back].t}»! Lo scegli in Album → Retri.` : r.it ? `Nuovo oggetto: ${itemLabel(r.it).t}! Lo trovi in Personalizza.` : r.title ? `Nuovo titolo: «${r.title}»` : r.pack ? 'Bustina aggiunta!' : `+${r.xp} XP`); },
   passgo: d => { const n = +d.n, r = passReward(n, passState(prof()).s); if (n <= passTier(passState(prof())) && !passState(prof()).cl.includes(n)) return A.passclaim(d); const el = document.getElementById('pt' + n); if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' }); },
   passall: () => { const p = prof(), ps = passState(p); let n = 0; for (let t = 1; t <= passTier(ps); t++) if (passClaim(p, t)) n++; save(); FX.play('oro'); FX.confetti(120); render(); toast(`${n} premi riscattati!`); },
   audio: () => { const m = FX.toggle(); render(); toast(m ? 'Suoni disattivati.' : 'Suoni attivi.'); },
@@ -6483,6 +6690,13 @@ const A = {
   wskip: () => { const p = prof(); p.onb = 1; save(); go('campo'); },
   stool: d => { const p = DB.profiles.find(x => x.id === UI.sid); p[d.k] = !p[d.k]; save(); render(); },
   review: () => startReview(),
+  bksel: d => { UI.bk = d.id; FX.play('flip'); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+  bkuse: d => { const p = prof(), b = BACK_BY[d.id]; if (!b || !backOk(p, b)) return; p.back = b.id; save(); FX.play('coin'); toast(`Retro «${b.t}» scelto: lo vedrai aprendo le bustine.`); render(); },
+  hintok: () => { UI.hint = null; const h = document.querySelector('.ghint'); if (h) h.remove(); },
+  tourn: () => tourStep(1),
+  tourx: () => tourEnd(),
+  nextup: d => nextGo(d.k),
+  nsgo: () => go('album', { sec: 'novita' }),
   varstart: d => startVar(d.s),
   varpick: d => varPick(+d.i),
   sim: () => simStart(),
@@ -6494,7 +6708,7 @@ const A = {
   fmset: d => fmSet(d.id),
   fmplay: () => startMatch(),
   lvset: d => { const p = DB.profiles.find(x => x.id === UI.sid); ensure(p); const t = TOPIC[d.k], e = p.lv[d.k] = p.lv[d.k] || { l: 1, h: '' }; e.l = Math.max(1, Math.min(t.max, e.l + +d.v)); e.h = ''; save(); render(); },
-  nav: d => { const to = d.to; if (['campo', 'album', 'pack', 'mercato', 'code', 'trofei', 'formazione', 'coppa', 'duelsetup', 'me', 'carriera', 'avatar', 'welcome', 'pass', 'mgpick', 'geo'].includes(to) && !prof()) return go('home'); if (to === 'reports' && !UI.auth) return go('pin'); if (to === 'tutor' || to === 'settings') { if (!UI.auth) return go('pin'); return go(to, { auth: true }); } go(to, { auth: UI.auth }); },
+  nav: d => { const to = d.to; if (['campo', 'gioca', 'retri', 'recap', 'album', 'pack', 'mercato', 'code', 'trofei', 'formazione', 'coppa', 'duelsetup', 'me', 'carriera', 'avatar', 'welcome', 'pass', 'mgpick', 'geo'].includes(to) && !prof()) return go('home'); if (to === 'reports' && !UI.auth) return go('pin'); if (to === 'tutor' || to === 'settings') { if (!UI.auth) return go('pin'); return go(to, { auth: true }); } go(to, { auth: UI.auth }); },
   pick: d => { UI.pid = d.id; const p = prof(); p.last = today(); save(); go('campo'); FX.play('tap'); },
   form: d => { const f = UI.form, n = $('#nick'); if (n) f.nick = n.value; f[d.k] = d.k === 'cls' ? +d.v : d.v; render(); },
   create: () => { const f = UI.form, n = $('#nick'); if (n) f.nick = n.value; const nick = (f.nick || '').trim(); if (!nick) { f.tab = 'chi'; render(); toast('Scrivi il tuo soprannome.'); const m = $('#nick'); if (m) m.focus(); return; } const p = newProfile(nick, f.cls, f.av.shirt); p.av = f.av; DB.profiles.push(p); save(); UI.pid = p.id; go('welcome', { w: 0 }); FX.play('whistle'); },
@@ -6584,7 +6798,7 @@ document.addEventListener('keydown', e => {
   if (UI.s === 'play' && UI.g && UI.g.mode !== 'var' && !UI.g.answered && /^[1-4a-dA-D]$/.test(e.key)) { const i = '1234'.includes(e.key) ? +e.key - 1 : 'abcd'.indexOf(e.key.toLowerCase()); answer(i); }
   else if (UI.s === 'play' && UI.g && UI.g.answered && e.key === 'Enter' && document.querySelector('[data-a="next"]')) { e.preventDefault(); nextQ(); }
 });
-if (location.hash === '#debug') window.__fc = { ui: () => UI };
+if (location.hash === '#debug') window.__fc = { ui: () => UI, pack: () => openPack(prof()) };
 render();
 })();
 
