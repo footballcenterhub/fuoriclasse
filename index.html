@@ -1201,6 +1201,57 @@ button,a,input,select,label{touch-action:manipulation}
 .ghint p{flex:1;margin:0;font-size:.9rem;line-height:1.3}.ghint .gallo{width:42px;height:42px}
 @media (min-width:1100px){.ghint{bottom:20px;left:calc(50% + 48px)}}
 @media (prefers-reduced-motion:reduce){.tspot,.cardback.holo::before{animation:none}}
+
+/* ===== Comparto Superiori e adulti ===== */
+.adhero{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:16px;border-radius:18px;background:radial-gradient(120% 140% at 100% 0%,rgba(78,168,255,.35),transparent 60%),linear-gradient(150deg,#1d2a52,#0d1a2e);border:1px solid #3a5a9a}
+.adhero>div{flex:1;min-width:0;display:grid;gap:3px}.adhero .tag{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;color:#8fc6ff}
+.adhero b{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:1.9rem;line-height:1}
+.adgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.adtile{display:grid;gap:4px;padding:10px;border-radius:16px;background:var(--turf);border:1px solid var(--line);text-align:left;align-content:start;min-width:0}.adtile svg{width:100%;height:auto;border-radius:10px;margin-bottom:4px}.adtile b{font-family:var(--display);font-weight:900;font-size:1.25rem;text-transform:uppercase;line-height:1}.adtile span{font-size:.8rem;color:var(--muted)}.adtile .lvl{margin-top:2px}
+@media (min-width:1100px){.adgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.adwide{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 14px;border-radius:16px;border:1px solid var(--line);background:var(--turf)}
+.adwide>div{flex:1;min-width:0;display:grid;gap:2px}.adwide .tag{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.8rem;color:var(--flood)}
+.adwide b{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:1.4rem;line-height:1}
+.adwide.wdl{background:linear-gradient(120deg,#1f3a2a,#14241b);border-color:#3d7a52}
+.adwide.cnt{background:linear-gradient(120deg,#3a2a12,#1a140a);border-color:#8a6a2a}.adwide.c24{background:linear-gradient(120deg,#2b1640,#140b20);border-color:#6a3fa0}
+.wmini{display:grid;grid-template-columns:repeat(5,18px);gap:3px;flex:none}.wmini i{display:grid;place-items:center;height:22px;border-radius:4px;font-style:normal;font-family:var(--display);font-weight:900;font-size:.85rem;color:#fff;background:#3a3f44}
+.wmini i.g{background:#3a9d5d}.wmini i.y{background:#c9a227}
+.cmini{flex:none;width:76px;display:grid;justify-items:center;padding:6px 4px;border-radius:12px;background:rgba(0,0,0,.35)}.cmini b{font-family:var(--display);font-weight:900;font-size:1.8rem;line-height:1;color:var(--flood)}.cmini small{font-size:.66rem;color:var(--muted);white-space:nowrap}
+/* domande di logica */
+.logq .qt .prem{display:block;margin:6px 0;padding:8px 12px;border-left:4px solid #4ea8ff;background:#e8f0fb;border-radius:0 10px 10px 0;font-size:.95em}
+.logq .qt b{display:block;margin-top:10px}.logq .qt .prem b{display:inline;margin:0}
+.seqrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.seqrow span{min-width:42px;padding:6px 8px;border-radius:10px;background:#10241a;color:#fff;font-family:var(--display);font-weight:800;font-size:1.4rem;text-align:center}.seqrow .seqq{background:#ffd23f;color:#2b1f00}
+/* La parola del giorno */
+.wordle{display:grid;justify-items:center;gap:14px;max-width:520px;margin:0 auto}
+.wintro{margin:0;text-align:center}.wintro .lg{color:#5fd38a}.wintro .ly{color:#ffd23f}
+.wgrid{display:grid;gap:6px;width:min(100%,330px)}
+.wrow{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.wt{aspect-ratio:1;display:grid;place-items:center;border-radius:8px;border:2px solid rgba(255,255,255,.18);font-family:var(--display);font-weight:900;font-size:clamp(1.6rem,8vw,2.2rem);text-transform:uppercase;color:#fff;background:rgba(255,255,255,.03)}
+.wt.f{border-color:rgba(255,255,255,.55);animation:wpop .12s ease-out}
+.wt.g{background:#3a9d5d;border-color:#3a9d5d}.wt.y{background:#c9a227;border-color:#c9a227}.wt.b{background:#3a3f44;border-color:#3a3f44}
+.wrow.flip .wt{animation:wflip .5s ease both;animation-delay:var(--d)}
+@keyframes wflip{0%{transform:rotateX(0);background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.55)}49%{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.55)}50%{transform:rotateX(90deg)}100%{transform:rotateX(0)}}
+.wrow.shake{animation:wshake .4s}@keyframes wshake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.kb{display:grid;gap:6px;width:min(100%,520px);user-select:none}
+.kbr{display:flex;gap:5px;justify-content:center}
+.kk{flex:1;max-width:46px;min-height:52px;border:0;border-radius:8px;background:#5a6370;color:#fff;font-weight:800;font-size:1.05rem;text-transform:uppercase;display:grid;place-items:center;padding:0}
+.kk.wide{flex:1.6;max-width:72px;font-size:.78rem}.kk.g{background:#3a9d5d}.kk.y{background:#c9a227}.kk.b{background:#2a2f34;color:#8a939c}
+.kk:active{transform:scale(.94)}
+.wend{width:100%;display:grid;gap:12px;text-align:center}.wend h2{margin:0;font-size:2rem;text-transform:uppercase}.wans{font-family:var(--display);letter-spacing:.12em;font-size:1.3em;color:var(--flood)}
+.wstats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.wstats b{display:block;font-family:var(--display);font-weight:900;font-size:1.8rem;line-height:1}.wstats span{font-size:.72rem;color:var(--muted)}
+.wdist{display:grid;gap:4px;text-align:left}.wdist div{display:flex;gap:6px;align-items:center;font-size:.85rem}.wdist span{width:12px}.wdist i{display:block;font-style:normal;text-align:right;padding:2px 6px;border-radius:4px;background:#3a3f44;font-weight:800;font-size:.8rem}.wdist i.me{background:#3a9d5d}
+/* Il conto giusto */
+.conto{gap:14px}
+.ctarget{display:grid;justify-items:center;padding:12px;border-radius:18px;background:linear-gradient(160deg,#3a2a12,#120d05);border:2px solid #ffd23f}
+.ctarget small{font-weight:800;text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;color:#ffd98a}.ctarget b{font-family:var(--display);font-weight:900;font-size:clamp(3rem,16vw,4.4rem);line-height:1;color:var(--flood);font-variant-numeric:tabular-nums}
+.ctiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ctile{min-height:64px;border-radius:14px;border:2px solid var(--line);background:#f6f8f4;color:#10241a;font-family:var(--display);font-weight:900;font-size:1.9rem;box-shadow:0 5px 0 rgba(0,0,0,.3);transition:transform .1s}
+.ctile.made{background:#dff3ff}.ctile.sel{border-color:var(--flood);background:#ffe58a;transform:translateY(-3px)}.ctile.hit{background:#3ddc84;color:#06210f}
+.ctile:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+.cops{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.cop{min-height:58px;border-radius:14px;border:0;background:#1d2a52;color:#fff;font-size:2rem;font-weight:800;box-shadow:0 5px 0 rgba(0,0,0,.35)}.cop.on{background:var(--flood);color:#2b1f00}
+.chint{margin:0;text-align:center}.chist{display:flex;flex-wrap:wrap;gap:6px}.chist span{padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.08);font-size:.88rem;font-variant-numeric:tabular-nums}
+.cctl{gap:8px}
 </style>
 <div id="boot" class="boot"><div><b>Fuoriclasse</b><p id="bootmsg">Caricamento in corso…</p>
 <p class="bh">Se resti fermo su questa schermata, il browser non sta facendo partire il gioco. Su iPhone succede quando il file si apre in <i>anteprima</i> (app File, WhatsApp, Mail, AirDrop): l'anteprima mostra la pagina ma non esegue i programmi. Apri il link del gioco con Safari.</p></div></div>
@@ -4110,6 +4161,224 @@ if (typeof module !== 'undefined' && module.exports) module.exports = api; else 
 
 </script>
 <script>
+/* Parole di 5 lettere per «La parola del giorno».
+   Dizionario per controllare i tentativi: ricavato da Morph-it! di M. Baroni ed E. Zanchetta (Università di Bologna),
+   tramite i pacchetti italian-words-dict, italian-verbs-dict e italian-adjectives-dict. Licenza CC BY-SA 2.0 (e LGPL):
+   questo elenco ricavato è distribuito con la stessa licenza. Le soluzioni sono scelte a mano tra parole comuni. */
+(function (G) {
+const SOL = "abete abito acido acqua addio aereo aiola aiuto album alibi alito alone altro amaca amaro amica amico amore anima animo ansia apice arena arnia aroma ascia asilo asino astro atomo atrio babbo bacca bacio baffo bagno baita balla ballo balzo banca banco banda barba barca barra baule becco beffa bello belva benda birra bivio blusa boato bocca bolla bollo bomba bonus bordo borgo borsa bosco botta botte bozza brace brano bravo breve brodo bruco bruma buffo bugia bulbo burla burro busta busto cacao calce caldo calma calmo calza campo canna canoa canto cappa carne carpa carro carta casco cassa causa cavia cedro cella cenno cento ceppo certo cervo cesta cesto cetra chilo cieco cielo cifra cigno cinta circo citta clima cloro cobra cocco colla colle collo colmo colpa colpo conca conto copia coppa corda corno corpo corsa corso corte corvo cosmo costa costo cozza crema crepa creta crisi croce culla cuoco cuoio cuore curva daino danno danza dardo dente derby dieci dieta disco ditta dolce donna dorso drago duomo elica epoca erede esame esito esodo estro etica falce falco fango fante farsa fatto fauna felpa fermo ferro festa fetta fiaba fiato fibra fieno fiera finta fiore firma fiume fiuto flora folla fondo fonte forca forma forno forte forza fossa frana frase frate freno frigo fungo fuoco furbo furia furto fusto gallo gamba gamma garza gatto gazza gemma genio gente gesso gesto getto giada gioco gioia globo gnomo gomma gonna gorgo grado grano grave grido guaio guida gusto icona idolo igloo isola lacca ladro lampo lardo largo larva laser latta latte legge legno lembo lento lenza leone lepre letto liana libro liceo lieve limbo linea lista litro lotta lotto lungo luogo lusso madre magia magma magro mamma mango mania manto manzo mappa marca marea marmo marzo massa masso matto mazzo media melma mensa menta mente mento merce messa metro mezzo micio miele mille milza mirto molle molto mondo monte morsa morso mosca mossa motto mucca muffa multa museo nafta nervo netto ninfa nonna nonno norma notte nozze nuora nuoto nuovo oblio odore oliva olivo ombra onore opera orafo ovale pacco padre paese palco palio palla palma palmo panca panda panna panno pappa parco parte passo pasta pasto patto paura pausa pegno pelle penna perno pesca pesce peste pesto petto pezzo piano piede piega pieno pigro pinna pinza piolo pista piuma pizza podio poema poeta pollo polpo polso pompa ponte porta porto posta posto pozzo prato preda presa prete primo prosa prova pugno pulce punta punto quota radio ragno rampa rango razza razzo regia regno resto retta ricco rione ritmo robot rocca rombo ronda rospo rosso rotta rullo rumba ruolo ruota ruspa sacco saldo salsa salto salvo santo sarto sasso sauna scafo scala scalo scavo scena scopa scopo scudo scuro scusa secco sedia segno sella selva senso serie serra sette sfera sfida siepe sigla sogno solco soldo somma sonno sordo sorso sorte sosta spada spago sparo spesa spiga spina sport sposo stato stelo stile stima stiva stufa succo suola suolo suono svago tacco talpa tango tanto tappa tappo targa tarlo tasca tassa tasso tasto tazza tempo tenda terra terzo testa testo tetto tigre tinta tocco tomba tondo tonno torre torta tosse trama trave treno trono trota tuffo tuono turno tutto umido umore unico uscio utile vacca valle vanto vasca vasto venti vento verbo verde verme verso vespa veste vetro vetta viale video vigna villa viola virus vista vizio volpe volta volto vuoto zaino zampa zanna zappa zecca zitto zolla zucca zuppa".split(" ");
+const OK = "abateabatiabbaiabbuiabeteabetiabileabiliabitaabitiabitoaboliabusaabusiabusoacariacaroacidaacideacidiacidoaciniacinoacquaacqueacuiiacutaacuteacutiacutoadagiaddiiaddioaderiadibiadiraadireadiriadiroaditaaditeaditiaditoadivaadiviadivoadoraadoriadoroadulaaduliaduloadunaaduniadunoadusaaduseadusiadusoaeraiaereaaereeaereiaereoaffaiafonaafoneafoniafonoafosaafoseafosiafosoagapeagapiagileagiliagiraagireagiroagitaagiteagitiagitoagivaagiviagivoagoneagoniaiolaaioleaiutaaiutiaiutoaizzaaizziaizzoalanoalarealarialataalatealatialatoalavaalavialavoalbumalcolalcunalenaalenialenoaleraaleroalesaalesialesoalghealibialidaalidealidialidoalinoalitaalitialitoalleaalleialleoalonealonialtraaltrealtrialtroalveialveoalzaiamacaamanoamaraamareamariamaroamataamateamatiamatoamavaamaviamavoambiaambiiambioamenaameneameniamenoameraameroamicaamiciamicoaminoamoreamoriampiaampieampioamplianaleanaliancheandaiandraandroanelaanelianeloanimaanimeanimianimoannoiannuaannueannuiannuoansaiansiaansieantriantroapiceapiciappaiapriiarabaarabearabiaraboaranoararearataaratearatiaratoaravaaraviaravoarchiarcuaarcuiarcuoardiiarduaarduearduiarduoarenaareneareniarenoareraareroarguiaridaaridearidiaridoarinoarmaiarniaarniearomaaromiarpiaarpieasciaasiliasiloasiniasinoasolaasoleaspraaspreaspriasproassetastioastriastroatomiatomoatonaatoneatoniatonoatoutatrioattuaattuiattuoauliiaureaaureeaureiaureoavaraavareavariavaroavereaveriaveteavevaavevoavidaavideavidiavidoavoriavraiavutaavuteavutiavutoavviaavviiavvioazeraazereazeriazeroazimaazimeazimiazimobabbibabbobacaibaccabachibaciabaciobadaibaffibaffobagnabagnibagnobaitabaitebalbabalbebalbibalbobaldabaldebaldibaldobaliabalieballaballeballiballobalzabalzibalzobambubancabancobandabandebandibandobantubaraibarbabarbebarcabardabardibardobarrabarrebarribarrobasaibascabascobasiibassabassebassibassobastabastibastobattabattebattibattobaulebaulibazarbeanobearebeatabeatebeatibeatobeavabeavibeavobeccabeccobeerabeerobeffabeffebeffibeffobeghebeigebeigibeinobelaibelgabelgibellabellebellibellobeltabelvabelvebendabendebendibendobennabenneberciberraberrobertibevvebevvibidetbiecabiecobiffabiffibiffobighebigiabigiebigiobimbabimbebimbibimbobirrabirrebiscabissabissibissobiviibiviobizzabizzeblaseblesableseblesiblesoblitzblockblogsbluesbluffblusabluseboaraboareboariboaroboatiboatoboccaboccebocciboeraboereboeriboerobolgebollabollebollibollobolsabolsebolsibolsobombabombebombibombobontabonusbonzibonzobordabordibordoborgoboriaborieborioborraborriborroborsaborseboscobossabossebossibossobottabottebottibottoboxaiboxerbozzabozzebozzibozzobracebracibradabradebradibradobramabramebramibramobranibranobrasabrasibrasobravabravebravibravobreakbrevebrevibrigabrigobrinabrinibrinobrodibrodobrucabrucibrucobrumabrumebrunabrunebrunibrunobrutabrutebrutibrutobruttbucaibuccebuchebuchibuffabuffebuffibuffobugiabugiebugiobugnabugnibugnobulbibulbobullibullobuonabuonebuonibuonoburlaburleburliburloburriburrobuscabuscobussabussibussobustabustebustibustobuttabuttibuttobytescablacablicablocabracabricabrocacaicacaocaccacaccicachicaddecaddicadracadrocaffacaffecafficaffocagaicaghicaglicagnacagnecajuncalaicalarcalcacalcecalcicalcocaldacaldecaldicaldocaleicallecallicallocalmacalmecalmicalmocalvacalvecalvicalvocalzacalzecalzicalzocambicameicameocampacampicampocandicangicannacannecanoacanoecantacanticantocapeicapiicappacappecappicapricaptacapticaptocardacardicardocargocariacariocarnecarnicarpacarpecarpicarricarrocartacartecascacascocassacassecassicassocastacastecasticastocasuscausacausecausicausocautacautecauticautocavaicaviacaviecazzicazzocechecechicedricedrocefficeffocelaicellacellecenaicencicennicennocensacensecensicensocentoceppiceppoceraicercacercocereacereecereicereocernacernecernicernocertacertecerticertocervicervocesiocespicespocessacessicessocestacestecesticestocetracetrecheckchelachelechetachetechetichetochilichilochinachinechinichinocibaiciccacicceciccocicliciclociecacieciciecocielicielocifracifrecifricifrocignicignocimaicingacingecingicingocinsecinsicintacintecinticintocippicippocircacircocistecisticitaicittaclavaclavecleroclimaclimiclonaclonecloniclonocloricloroclubscobascobracoccicoccocoesacoesecoesicoesocoevacoevecoevicoevocoglicoiticoitocolaicolgacolgocollacollecollicollocolmacolmecolmicolmocoloncolorcolpacolpecolpicolpocolsecolsicoltacoltecolticoltocomiccommacommicompiconcaconcicondiconfaconiaconiocontaconteconticontocopiacopiecopiocoppacoppecopracoprecopricoprocoptacoptecopticoptocordacordecornicornocorpicorpocorracorrecorricorrocorsacorsecorsicorsocortacortecorticortocorvicorvocoscacoscecosmicosmocostacostecosticostocottacottecotticottocoupecovaicozzacozzecozzicozzocrackcranicreaicredacredecredicredocremacremecremicremocrepacrepecrepicrepocretacretecreticretocrisicrocecrocicromacromicromocronocrudacrudecrudicrudocubaicuccacuccecuccicuccocuciacuciicuciocullaculleculliculloculticultocuneicuneocuocacuocecuocicuococuoiocuorecuoricuraicurdacurdecurdicurdocuriacuriecurvacurvecurvicurvodaciadaciedaglidainidainodalladalledallodammidancedandydannadannidannodantedantidanzadanzedanzidanzodaraidardidardodareidarvidataidaziadaziodebbadebbidecordeglidegnadegnedegnidegnodeitadelladelledellodeltademmodensadensedensidensodentedentiderbydescodesiadesiodessedessidestadestedestidestodettadettedettidettodeviadeviodiamodianodiaridiatedicaidichidiecidiedediedidietadietedighediluidimmidiraidireidirvidiscodisfadisfidisfodissedissidistadistidistodittadittedivindoccedoccidogmadogmidolcedolcidoleidolsedomaidonaidonnadonnedoppidoraidormadormedormidormodorsidorsodosaidossidossodotaidottadottedottidottodovradovrodragadragodrenadrenidrenodrogadrogodrusadrusedrusidrusodubbiduchiduomiduomoduraiebbraebbreebbriebbroebeteebetiebreaebreeebreiebreoedileedilieditaediteeditieditoeducaeducoefebiefeboegiziegualelevaelevielevoelicaelidaelideelidielidoelisaeliseelisielisoeliteelogieludaeludeeludieludoelusaeluseelusielusoemaciemailemanaemaniemanoemiriemiroemiseemisiempiaempieempiiempioemulaemuliemuloenfiaenfioentraentrientroepicaepiciepicoepocaepuraepuriepuroeranoerarieredeeredierigaerigeerigierigoerniaernieerodaerodeerodierodoerogaerogoerosaeroseerosierosoerraierudiesalaesaliesaloesameesamiescheesibiesigaesigeesigiesigoesileesiliesimaesimeesimiesimoesitaesitiesitoesodiesodoesosaesoseesosiesosoespiaespiiespioestriestroesulaesuleesuliesuloesumaesumiesumoeticaeticieticoetniaetnieevadaevadeevadievadoevasaevaseevasievasoeviraevirieviroevitaevitievitoevocaevocoextraextreextrifaccefaccifaggifaidafaidefalcafalcefalcifalcofallafallefallifallofalsafalsefalsifalsofammifangofannofantefantifaraifarcifareifarsafarsefarvifascifastifastofattafattefattifattofatuafatuefatuifatuofatwafaucefaucifaunafaunefaunifaunofeccefelpafelpefemmefendafendefendifendoferiaferieferiifermafermefermifermoferraferriferroferryfervafervefervifervofessafessefessifessofestafestefettafettefeudifeudofiabafiabefialafialefiatafiatifiatofibrafibreficcaficcofichificusfidaifienifienofierafierefierifierofiggafiggefiggifiggofiglifilaifilmafilmifilmofilmsfingafingefingifingofiniifinsefinsifintafintefintifintofiocafiocofiorefiorifirmafirmefirmifirmofiscofissafissefissifissofittafittefittifittofiumefiumifiutafiutifiutoflashfleboflirtfloraflorefluiifobiafobiefochefoggefoggifoghefoglifognafognefognifognofoibafoibefollafollefollifollofoltafoltefoltifoltofondafondefondifondofontefontiforaiforbiforcaforgiformaformeformiformofornifornoforsefortefortiforumforviforzaforzeforziforzofoscafoscofossafossefossifossofottafottefottifottofoyerfranafranefranifranofrasefrasifratefratifreakfregafregifregofremafremefremifremofrenafrenifrenofresafresefresifresofrigifrigofrinifrisafrisifrisofrocifrodafrodefrodifrodofrugafrugofruiifugaifuggafuggefuggifuggofughefughifulgafulgefulgifulgofulsafulsefulsifulsofulvafulvefulvifulvofumaifummofungafungefungifungofunkyfunsefunsifuntafuntefuntifuntofuocofuorifurbafurbefurbifurbofuriafuriefurtifurtofustifustogabbagabbigabbogaffegallagalligallogambagambegambigambogamesgammagammegancigarbagarbigarbogarrigarzagarzegarzigarzogasaigattagattegattigattogazzagazzegelaigemeigemmagemmegemmigemmogenaigeniageniegeniigeniogentegentigergogermegermigessagessigessogestigestogettagettigettogiacegiacigiadagiadegigligiletgiocagiocogiogogioiagioiegioiigiovagiovigiovogiraigiuragiurigiuroglaceglebaglebeglobigloboglorignomignomogobbagobbegobbigobbogoccegoccigodeigoffagoffegoffigoffogognagognegolfigolfogolpegommagommegommigommogonfigonnagonnegonzagonzegonzigonzogorgogothagozzigozzogradigradogramagramegramigramogranagranegranigranogratagrategratigratogravagravegravigravograzigrecagrecigrecogremigretigretogrevegrevigridagridigridogrigegrigigrillgrumigrumoguadaguadiguadoguaiiguaioguariguataguatiguatogufaiguidaguideguidiguidoguisaguisegulagguscigustagustigustohannoharemhinduhippyhobbyhotelhousehumorhumusiconaiconeictusideaiidoliidoloiellaielleiglooilareilariimitaimitiimitoinalainaliinaloindiaindieindioingoiinibiiniziinputinstainstiinstointuiinumainumiinumoinveiinviainviiinvioiodiiiodioioniaionieionioiratairateiratiiratoiridairidiiridoirosairoseirosiirosoisolaisoleisoliisoloissaiitalaitaleitaliitaloiteraiteriiterojeansjellajellejointjollyjumbokanakkayakkhmerkitchkoinelabellaccalaccilaccoladraladreladriladrolagerlaghilagnalagnelagnilagnolaicalaicilaicolaidalaidelaidilaidolambilampolancelancilandalandelappalappilappolardilardolargalargilargolarvalarvelascilaserlassalasselassilassolatralatrilatrolattalattelattilaudelaudilautalautelautilautolavailazzalazzelazzilazzolealelealileccaleccileccolegaileggaleggeleggileggolegheleghilegnalegnelegnilegnolembilembolemmalemmileniilentalentelentilentolenzalenzeleoneleonilepreleprilercilessalesselessilessolestalestelestilestolettalettelettilettolevailezzilezzolianalianelibailibralibrilibroliceiliceoliderlietalietelietilietolievelieviligialigieligiolimailimbilimbolincilindalindelindilindolinealineelineilineolinfalinfelinksliscalisceliscilistalistelistilistolistslitrilitroliutiliutolobbylocailochilodailoggeloghilogoilogoslombilombolordalordelordilordoloscaloscolottalottelottilottoluceilucralucrilucrolunailungalungoluogolussalussilussoluttiluttomachomacramacremacrimacromadremadrimafiamafiemaghemagiamagiemagmamagmimagnamagnemagnimagnomagramagremagrimagromaiormajormalfamaliamaliemaltamaltemambimambomammamammemammimancamancemancomandamandimandomangimangomaniamaniemannamannemantimantomanzimanzomappamappemarcamarcemarcimarcomareamareemarmimarmomarzimarzomassamassemassimassomatchmattamattemattimattomazzamazzemazzimazzomeccamediamediemediomelmamelmemenaimencemencimensamensementamentementimentomercemercimerdamerdemescamescemescimescomessamessemessimessomestamestemestimestometalmetermetrimetromettamettemettimettomezzamezzemezzimezzomiccemiciomicromielemielimietamietemietimietomigramigrimigromillemilzamilzemimaiminaimingamingemingimingominiaminiominorminseminsimintamintemintimintomiopemiopimiraimirtimirtomistamistemistimistomitramodelmodemmodusmogiamogiemogiomoglimogulmoinamoinemolaimolcamolcemolcimolcomollamollemollimollomolsemolsimoltamoltemoltimoltomoncamoncomondamondemondimondomoneymontamontemontimontomorbimorbomordamordemordimordomoriamoriemoriimorsamorsemorsimorsomortamortemortimortomoscamoscemoscimossamossemossimossomostimostomotelmottimottomousemozzamozzemozzimozzomuccamuchimuffamuffemuffimuffomuftimuggimultamultemultimultomungamungemungimungomuniimunsemunsimuntamuntemuntimuntomuoiamuoiomuonemuonimuoremuorimuovamuovemuovimuovomuraimuseimuseomusicmussamussimussomutaimutuamutuemutuimutuonaftanappanappenarranarrinarronascanascenascinasconatianatienationegaineghineglinegranegrenegrinegronellanellenellonembinembonenianenienervinervonessinessonettanettenettinettonevainightninfaninfeninjaninnaninneninnininnonitrinomainomeanomeenonnanonnenonninonnonormanormenotainotesnottenottinozzenuchenullanullenullinullonunzinuocenuocinuoranuorenuotanuotinuotonuovanuovenuovinuovonutranutrenutrinutronylonoberaoberioberoobesaobeseobesiobesoobiceobiciobliaobliioblioobolioboloocchiodanoodiaiodinoodonoodoraodoreodoriodorooffraoffreoffrioffroogivaogiveoliaiolinoolivaoliveoliviolivooltreombraombreombriombroominiominoomiseomisiomoneomonionciaoneraonereonerioneroonestonoraonoreonorionoroopacaopaciopacooperaopereoperioperoopinaopiniopinooppiaoppioopraioptaiorafiorafooraleoralioranoorareorariorataorateoratioratooravaoravioravoorbaiorchiordiioreraoreroorgiaorinaoriniorinoorlaiornaiorzaiosanoosareosataosateosatiosatoosavaosaviosavooscaroseraoseroosinoosseaosseeosseiosseoostaiostiaostieotiteotitiovaiaovaieovaleovaliovinaovineoviniovinoovuliovuloovviaovvieovviiovviooziaiozinopacaipaccapaccopacespachipadrepadripaesepaesipagaipagespaggipaghepaghipalaipalcopaliopallapallepallipalmapalmepalmipalmopalpapalpipalpopampapanaipancapancepandapanelpaniapaniepannapannepannipannopappapappepappipappoparaiparcaparcopariaparieparioparlaparliparloparraparroparsaparseparsiparsopartapartepartipartopartyparveparvipascapascepascipascopassapassepassipassopastapastepastipastopatiipatiopatripattapattipattopaurapaurepausapausepazzapazzepazzipazzopeanapeccapeccopegnipegnopelaipellepellipenaipendapendependipendopennapennepensapensipensopentapentepentipentopeonepepaiperdaperdeperdiperdoperiiperlapernipernopersapersepersipersopesaipescapescepescipescopesospestapestepestipestopettipettopezzapezzepezzipezzopiacepiacipiagapiagopiamopianapianepianipianopiarepiatapiatepiatipiatopiavapiavipiavopiccapiccopiecepiedepiedipiegapiegopienapienepienipienopierapieropietapievepievipigiapigiopiglipigrapigrepigripigropillapillipillopingapingepingipingopinnapinnepinsepinsipintapintepintipintopinzapinzepinzipinzopiolipiolopiotapiotipiotopiovapiovepiovipiovopipaipipiapipiopiscipistapistepiumapiumepivotpizzapizzepizzipizzoplacaplacoplagaplagiplaidplanaplaniplanoplazaplebeplebiplicoploraploriploropluvipochepochipodiopoemapoemipoetapoetipoetopoggipokerpoliipolispolkapolkepollapollipollopolpapolpepolpipolpopolsipolsopompapompepompipompopongapongopontepontiponzaponziponzopoppapoppepoppipoppoporcaporciporcoporgaporgeporgiporgopornapornepornipornoporraporreporriporroporseporsiportaporteportiportoporviposaipossapossopostapostepostipostopotaipoteipotrapotropoverpozzapozzepozzipozzopratipratopravapravepravipravopredapredepredipredopregapregipregopremapremepremipremopresapresepresipresopretepretipreviprimaprimeprimiprimoprivaprivepriviprivoprobaprobeprobiproboprodeprodiproleprolipromopronapronepronipronoprosaproseprovaproveproviprovoprudaprudeprudiprudopuffipuffopugnapugnipugnopulcepulcipuliipulsapulsipulsopungapungepungipungopuniipunsepunsipuntapuntepuntipuntopurgapurgoputiiputtiputtopuzzapuzzepuzzipuzzoqualequaliquartquasiquotaquotequotiquotoraccaraccoradarradiaradioraggiragliragniragnorallyramairamboramparamperampiramporancerancirandaranderangorapairapiirasairasoirasparaspirasporatearateirateoratiorattaratterattirattoravvirazzarazzerazzirazzoreagirealerealireamereamireatireatorebusrecairechireggareggereggireggoregiaregieregioregnaregniregnorelaxremairendarenderendirendorennarenneressaresseressirestarestirestoretriretrorettaretterettirettoriamariamiriamoriccariccericciriccoridairiddaridderidiarierarieririerorifairifuirigairigherighirihairimairiodarioderiodiriodorionerionirisairiseirisiarisiirissarisserissirissoristaristiristoritmaritmiritmorittaritterittirittoriudiriuniriusiriusorivairizzarizzirizzorobotroccaroccerocherodairodiarodiorogairoggeroghirognarognerollarollirollorombarombiromboromearomeeromeiromeoromparomperompiromporondaronderonfaronfironforonzaronzironzorosearoseeroseiroseorospirosporossarosserossirossorotairotearoteiroteorottarotterottirottoroundroyalrozzarozzerozzirozzorubairublirublorugbyruggirugheruglirullarullirullorumbarumberumorruoliruoloruotaruoteruotiruotorupiarupierupperuppirusparusperuspirusporussarusserussirussoruttaruttiruttoruzzaruzziruzzosabbasabbisaccasaccosacrasacresacrisacrosaggesaggisaghesagrasagresalaisaldasaldesaldisaldosalgasalgosaliisalmasalmesalmisalmosalpasalpisalposalsasalsesalsisalsosaltasaltisaltosalvasalvesalvisalvosambasambesanaisancisannosantasantesantisantosappisaprasaprosardasardesardisardosartasartesartisartosassisassosaunasaunesaurasauresaurisaurosaviasaviesaviosaziasaziesaziosbafasbafisbafosbavasbavisbavosbucasbucoscadascadescadiscadoscafascafiscafoscalascalescaliscaloscavascaviscavoscemascemescemiscemoscenascenescerasceroscesascesescesiscesosciaiscinoscodascodiscodoscolascoliscoloscoopscopascopescopiscoposcorascorescoriscoroscoutscovascoviscovoscucescuciscudiscudoscuoiscurascurescuriscuroscusascusescusiscusosdraiseccaseccosedaisedeisediasediesegaiseggisegheseghisegnasegnisegnoseguasegueseguiseguoselcisellaselleselliselloselvaselvesennisennosensisensosentasentesentisentoseppeseppiserbaserbeserbiserboseriaserieserioserpaserpeserpiserposerraserreserriserroservaserveserviservosessisessosestasestesestisestosettasettesettisettosfamasfamisfamosfanosfaresfasasfasisfasosfatasfatesfatisfatosfavasfavisfavosferasferesferosfidasfidesfidisfidosfigasfilasfilisfilosfinisfinosfizisfocasfocisfocosfogasfogosfumasfumisfumosfurisfusasfusesfusisfusosgelasgelisgelosgolasgolisgoloshocksiamosiedasiedesiedisiedosiepesiepisierisierosietesiglasiglesiglisiglosilossismasismisituasituisituoslangslavaslaveslavislavoslegaslegoslogaslogosmanisminasminisminosmisesmisismurasmurismurosnacksnidasnidisnidosnodasnodisnodosnudasnudisnudosoavesoavisobrisociasociesociosodaisodiisodiosoffisognasognisognosolaisolcasolcosoldisoldosolfasolfesommasommesommisommosonarsondasondesondisondosonnisonnosopiisoprasorbisorcisordasordesordisordosorgasorgesorgisorgosorsesorsisorsosortasortesortisortososiasosiesostasostesostisostosottosoundsozzasozzesozzisozzospadaspadespagospaiaspaiospalaspalispalospanaspanispanosparasparisparospasispazispedispelaspelispelosperasperisperospesaspesespesispesospiaispigaspigospinaspinespinispinospiraspirispirosplitspolaspolesporasporesportsposasposispososprayspulaspulispulospumaspumespumispumospurisputasputisputostadistaffstagestanastandstanistanostarastarestarostasastasistasostatastatestatistatostavastavistavostelestelistelostesastesestesistesostilastilestilistilostimastimestimistimostipastipistipostirastiristirostivastivestivistivostockstolastolestonastonistonostriastriostripstudistufastufestufistufostupisturasturisturosuadasuadesuadisuadosuasasuasesuasisuasosubiisuccosudaisuggasuggesuggisuggosughisuglisuinasuinesuinisuinosuitesullasullesullosummasummesuntisuntosuolasuolesuolisuolosuonasuonisuonosuorasuoresupersushisussesussisuttasuttesuttisuttosvagasvagosvanisvarisvasasvasisvasosvelasvelisvelosvenasvenisvenosviaisvilisvinasvinisvinosvisasvisisvisosvitasvitisvitoswingtaccataccitaccotaglitalpatalpetamiltanfitanfotangotantatantetantitantotapistappatappetappitappotaraitardatardetarditardotargatargotarlatarlitarlotarmatarmetarmitarmotarpatarpitarpotascatassatassetassitassotastatastitastotattitattotatuatatuitatuotazzatazzetechetediatediitediotelaitelextempitempotendatendetenditendotengatengotennetennitentatentitentotenuetenuitergatergetergitergotermeterniternoterraterreterrotersatersetersitersoterzaterzeterziterzotesaitessatessetessitessotestatestetestitestotetratetretetritetrotettatettetettitettotiaratiaretibiatibietienetienitifaitiggitiglitigretigritimertingatingetingitingotinnitinsetinsitintatintetintitintotiraitiziotoasttoccatoccotoghetoglitoldatoldetolgatolgotolsetolsitoltatoltetoltitoltotombatombetonaitondatondetonditondotonfatonfitonfotonnitonnotontatontetontitontotopoitopostoppatoppetorcatorcetorcitorcotorditordotoreatoreitoreotormatormetornatornitornotorretorritorsetorsitorsotortatortetortitortotorvatorvetorvitorvotosaitoscatoscotossetossitostatostetostitostototemtozzatozzetozzitozzotraditramatrametramitramotranstrashtravetravitrematremitremotrendtrenitrenotrinatrinetrinitrinotritatritetrititritotronitronotrotatrotetrovatrovitrovotrucetrucitrusttubaituffatuffituffotuonatuonituonoturaiturbaturbeturbiturboturcaturcoturniturnoturpeturpitutortutsituttatuttetuttituttoubbiaubbieubicaubicoubychudiraudireudirouditauditeuditiuditoudivaudiviudivougolaugoleugualulaniulanoulemauliviulivoultimultraultreultriultroululaululiululoumanaumaneumaniumanoumbraumbreumbriumbroumidaumideumidiumidoumileumiliumoreumoriunderunicauniciunicouniraunireunirounitauniteunitiunitounivauniviunivouricauriciuricourinaurineuriniurinourlaiurtaiusanousareusatausateusatiusatousavausaviusavousciiusciouserauserousinousurausureusuriusurouteriuteroutileutilivacaivaccavachivacuavacuevacuivacuovagaivaghevaghivagiivaglivalgavalgovallavallevallivallovalorvalsavalsevalsivalsovampavampevangavangovannovantavantivantovaraivarcavarcovariavarievariovarravarrovascavastavastevastivastovedravedroveglivelaivellivellovenaivendavendevendivendovengavengovennevenniventiventoverbiverboverdeverdivergavergovermevermiverraverroversaverseversiversovertavertevertivertovervevespavespevessavessivessovestavestevestivestovetrivetrovettavettevezzivezzovialevialiviarivibravibrivibrovideavideevideivideovienevienivietavietivietovigeivignavignevillavilleviltavinaivincavincevincivincovinsevinsivintavintevintivintoviolavioleviolivioloviraivirtuvirusvispavispevispivispovissevissivistavistevistivistovittivittovivaivivravivroviziaviziovizzavizzevizzivizzovociavociivociovodkavodkevogaivoghevoghivolaivoleevolgavolgevolgivolgovollevollivolpevolpivolsevolsivoltavoltevoltivoltovorravorrovotaivuolevuotavuotevuotivuotowagonwateryachtyogheyoghiyuppiyuppyyurtayurtezaffazaffizaffozainizainozampazampezampizampozannazannezappazappezappizappozeccazeppazeppezeppizeppozigaizighizincazincozirlazirlizirlozittazittezittizittozolfizolfozollazollezombizompazompizompozoomazoomizoomozoppazoppezoppizoppozuavazuavezuavizuavozuccazumaizuppazuppezuppizuppo";
+let SET = null;
+const api = { SOL, valid: w => (SET || (SET = new Set(OK.match(/.{5}/g)))).has(w) || SOL.includes(w) };
+if (typeof module !== "undefined" && module.exports) module.exports = api; else G.PAROLE = api;
+})(typeof window !== "undefined" ? window : globalThis);
+
+</script>
+<script>
+/* ============ FUORICLASSE · Logica (comparto Superiori e adulti) ============
+   Domande generate da regole e controllate per forza bruta: sempre corrette, infinite, 3 livelli.
+   Tipi: sillogismi (vero / falso / non si può dire), sequenze di numeri, «chi mente?», deduzioni. */
+(function (G) {
+'use strict';
+const R = n => Math.floor(Math.random() * n), pick = a => a[R(a.length)];
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = R(i + 1); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const take = (a, n) => shuffle(a).slice(0, n);
+const fmt = n => n.toLocaleString('it-IT');
+const NAMES = ['Anna', 'Marco', 'Giulia', 'Luca', 'Sara', 'Paolo', 'Elena', 'Davide', 'Chiara', 'Matteo', 'Marta', 'Simone', 'Laura', 'Andrea', 'Irene', 'Fabio', 'Sofia', 'Tommaso'];
+const FEM = new Set(['Anna', 'Giulia', 'Sara', 'Elena', 'Chiara', 'Marta', 'Laura', 'Irene', 'Sofia']), sto = nm => FEM.has(nm) ? 'stata' : 'stato';
+const VFN = ['Vero', 'Falso', 'Non si può dire'];
+const mk = (type, q, opts, a, exp, lv) => ({ q, opts, a, exp, topic: 'log-' + type, lv });
+
+/* ---------- 1. Sillogismi ---------- */
+const GROUPS = ['al corso di chitarra', 'alla palestra del quartiere', 'al club del libro', 'al coro della parrocchia', 'alla squadra dei Leoni', 'al corso di cucina', 'al gruppo di corsa del sabato', 'alla banda musicale'];
+// [proprietà, negazione]: sempre al singolare, così non ci sono accordi da sbagliare
+const PROPS = [['ha un cane', 'non ha un cane'], ['porta gli occhiali', 'non porta gli occhiali'], ['vive a Gallarate', 'non vive a Gallarate'], ['sa nuotare', 'non sa nuotare'], ['beve il caffè senza zucchero', 'non beve il caffè senza zucchero'],
+  ['suona il pianoforte', 'non suona il pianoforte'], ['parla spagnolo', 'non parla spagnolo'], ['va al lavoro in bicicletta', 'non va al lavoro in bicicletta'], ['ama la pizza ai funghi', 'non ama la pizza ai funghi'],
+  ['legge il giornale ogni mattina', 'non legge il giornale ogni mattina'], ['gioca a scacchi', 'non gioca a scacchi'], ['ha corso una mezza maratona', 'non ha mai corso una mezza maratona'], ['si alza prima delle sette', 'non si alza prima delle sette'], ['tifa per una squadra di Milano', 'non tifa per una squadra di Milano']];
+// parole inventate per il livello 3: la logica senza l'aiuto di quello che sappiamo
+const NONW = ['blim', 'dorpo', 'frale', 'gant', 'mirlo', 'tavo', 'plesso', 'curvo', 'brigo', 'lanfo', 'pomo', 'travo', 'velpo', 'nardo'];
+function sillogismo(lv) {
+  if (lv >= 3 && Math.random() < 0.6) return sillAstratto();
+  if (Math.random() < 0.3) return sillSe(lv);
+  const g = pick(GROUPS), [p, q] = take(PROPS, 2), n = pick(NAMES), isc = `è tra gli iscritti ${g}`, nonIsc = `non è tra gli iscritti ${g}`, ogni = `Ogni iscritto ${g}`;
+  const T = [
+    [1, [`${ogni} ${p[0]}.`, `${n} ${isc}.`], `${n} ${p[0]}`, 0, `Ogni iscritto ${p[0]} e ${n} è tra gli iscritti: quindi anche ${n} ${p[0]}.`],
+    [1, [`${ogni} ${p[0]}.`, `${n} ${p[0]}.`], `${n} ${isc}`, 2, `Sappiamo che ogni iscritto ${p[0]}, ma potrebbe farlo anche chi non è iscritto. Che ${n} ${p[0]} non basta per dire che è iscritto o iscritta.`],
+    [1, [`${ogni} ${p[0]}.`, `${n} ${p[1]}.`], `${n} ${isc}`, 1, `Se ${n} fosse iscritto o iscritta, ${p[0]}: invece ${p[1]}. Quindi ${n} non può essere tra gli iscritti.`],
+    [1, [`Nessun iscritto ${g} ${p[0]}.`, `${n} ${isc}.`], `${n} ${p[0]}`, 1, `Nessun iscritto ${p[0]} e ${n} è tra gli iscritti: quindi ${n} ${p[1]}.`],
+    [2, [`${ogni} ${p[0]}.`, `${n} ${nonIsc}.`], `${n} ${p[0]}`, 2, `La regola parla solo degli iscritti. Di chi non è iscritto non sappiamo niente: ${n} potrebbe farlo oppure no.`],
+    [2, [`Qualche iscritto ${g} ${p[0]}.`, `${n} ${isc}.`], `${n} ${p[0]}`, 2, `«Qualche iscritto» non vuol dire «tutti»: ${n} potrebbe essere tra quelli che lo fanno oppure no.`],
+    [2, [`${ogni} ${p[0]}.`, `Chi ${p[0]} ${q[0]}.`, `${n} ${isc}.`], `${n} ${q[0]}`, 0, `Catena: ${n} è iscritto o iscritta, quindi ${p[0]}; e chi ${p[0]} ${q[0]}. Allora ${n} ${q[0]}.`],
+    [2, [`${ogni} ${p[0]}.`, `Nessuno che ${p[0]} ${q[0]}.`, `${n} ${isc}.`], `${n} ${q[0]}`, 1, `${n} è iscritto o iscritta, quindi ${p[0]}; ma nessuno che ${p[0]} ${q[0]}. Allora ${n} ${q[1]}.`],
+    [3, [`Qualche iscritto ${g} ${p[0]}.`, `Qualcuno che ${p[0]} ${q[0]}.`, `${n} ${isc}.`], `${n} ${q[0]}`, 2, `Due «qualche» non si collegano tra loro: non sappiamo se le persone sono le stesse. Su ${n} non si può concludere niente.`],
+    [3, [`${ogni} ${p[0]}.`, `Chi ${p[0]} ${q[0]}.`, `${n} ${q[1]}.`], `${n} ${isc}`, 1, `Se ${n} fosse iscritto o iscritta, ${p[0]} e quindi ${q[0]}. Ma ${n} ${q[1]}: quindi non è tra gli iscritti.`]
+  ].filter(t => t[0] <= lv);
+  const t = pick(T);
+  return mk('sill', `${t[1].map(s => `<span class="prem">${s}</span>`).join('')}<b>Si può concludere che ${t[2]}?</b>`, VFN.slice(), t[3], t[4], lv);
+}
+function sillSe(lv) {
+  const C = pick([['piove', 'non piove', 'l\'allenamento si fa in palestra', 'l\'allenamento non si fa in palestra'], ['Marta finisce i compiti', 'Marta non finisce i compiti', 'esce a giocare', 'non esce a giocare'],
+    ['il treno è in ritardo', 'il treno non è in ritardo', 'Paolo arriva dopo le nove', 'Paolo non arriva dopo le nove'], ['la squadra vince', 'la squadra non vince', 'si festeggia con la pizza', 'non si festeggia con la pizza']]);
+  const T = [
+    [1, `Se ${C[0]}, ${C[2]}.`, `${cap(C[0])}.`, C[2], 0, `È la regola applicata direttamente: ${C[0]}, quindi ${C[2]}.`],
+    [2, `Se ${C[0]}, ${C[2]}.`, `${cap(C[2])}.`, C[0], 2, `La regola dice cosa succede se ${C[0]}, ma ${C[2]} potrebbe succedere anche per altri motivi. Errore classico: «affermare la conseguenza».`],
+    [2, `Se ${C[0]}, ${C[2]}.`, `${cap(C[1])}.`, C[2], 2, `La regola non dice niente su cosa succede quando ${C[1]}: potrebbe succedere comunque. Errore classico: «negare la premessa».`],
+    [3, `Se ${C[0]}, ${C[2]}.`, `${cap(C[3])}.`, C[0], 1, `Se fosse vero che ${C[0]}, allora ${C[2]}. Ma ${C[3]}: quindi ${C[1]}. È il ragionamento «per contrapposizione».`]
+  ].filter(t => t[0] <= lv), t = pick(T);
+  return mk('sill', `<span class="prem">${t[1]}</span><span class="prem">${t[2]}</span><b>Si può concludere che ${t[3]}?</b>`, VFN.slice(), t[4], t[5], lv);
+}
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+function sillAstratto() {
+  const [a, b, c] = take(NONW, 3);
+  const T = [
+    [[`Ogni ${a} è ${b}.`, `Ogni ${b} è ${c}.`], `ogni ${a} è ${c}`, 0, `Se ogni ${a} è ${b} e ogni ${b} è ${c}, allora ogni ${a} è anche ${c}.`],
+    [[`Ogni ${a} è ${b}.`, `Nessun ${b} è ${c}.`], `nessun ${a} è ${c}`, 0, `Ogni ${a} è ${b}, e nessun ${b} è ${c}: quindi nessun ${a} può essere ${c}.`],
+    [[`Ogni ${a} è ${b}.`, `Qualche ${b} è ${c}.`], `qualche ${a} è ${c}`, 2, `I ${b} che sono ${c} potrebbero non essere ${a}: non si può concludere.`],
+    [[`Nessun ${a} è ${b}.`, `Ogni ${c} è ${a}.`], `qualche ${c} è ${b}`, 1, `Ogni ${c} è ${a}, e nessun ${a} è ${b}: quindi nessun ${c} è ${b}. L'affermazione è falsa.`],
+    [[`Ogni ${a} è ${b}.`], `ogni ${b} è ${a}`, 2, `Una regola non si può rovesciare: potrebbero esistere ${b} che non sono ${a}.`],
+    [[`Nessun ${a} è ${b}.`], `nessun ${b} è ${a}`, 0, `«Nessuno» funziona nei due sensi: se nessun ${a} è ${b}, allora nessun ${b} è ${a}.`],
+    [[`Qualche ${a} è ${b}.`, `Qualche ${b} è ${c}.`], `qualche ${a} è ${c}`, 2, `I due «qualche» potrebbero riguardare cose diverse: non si può concludere.`],
+    [[`Ogni ${a} è ${b}.`, `Questo oggetto non è ${b}.`], `questo oggetto è un ${a}`, 1, `Se fosse un ${a} sarebbe ${b}; ma non è ${b}, quindi non è un ${a}.`]
+  ], t = pick(T);
+  return mk('sill', `<span class="small muted">Parole inventate: conta solo la logica.</span>${t[0].map(s => `<span class="prem">${s}</span>`).join('')}<b>Si può concludere che ${t[1]}?</b>`, VFN.slice(), t[2], t[3], 3);
+}
+
+/* ---------- 2. Sequenze di numeri ---------- */
+function sequenza(lv) {
+  const R2 = (a, b) => a + R(b - a + 1);
+  const L1 = [
+    () => { const a = R2(1, 20), d = R2(2, 9); return [Array.from({ length: 6 }, (_, i) => a + d * i), `Ogni volta si aggiunge ${d}.`]; },
+    () => { const d = R2(3, 9), a = R2(5 * d, 9 * d); return [Array.from({ length: 6 }, (_, i) => a - d * i), `Ogni volta si toglie ${d}.`]; },
+    () => { const a = R2(1, 5); return [Array.from({ length: 6 }, (_, i) => a * 2 ** i), 'Ogni numero è il doppio del precedente.']; }
+  ];
+  const L2 = [
+    () => { const a = R2(2, 10), x = R2(4, 9), y = R2(1, x - 1), s = [a]; for (let i = 1; i < 6; i++) s.push(s[i - 1] + (i % 2 ? x : -y)); return [s, `Si alternano +${x} e −${y}.`]; },
+    () => { const a = R2(1, 10), s = [a]; for (let i = 1; i < 6; i++) s.push(s[i - 1] + i); return [s, 'Si aggiunge 1, poi 2, poi 3, poi 4… e così via.']; },
+    () => { const a = R2(1, 3); return [Array.from({ length: 6 }, (_, i) => a * 3 ** i), 'Ogni numero è il triplo del precedente.']; },
+    () => { const o = R2(1, 5); return [Array.from({ length: 6 }, (_, i) => (i + o) ** 2), `Sono i quadrati: ${o}×${o}, ${o + 1}×${o + 1}, ${o + 2}×${o + 2}…`]; },
+    () => { const a = R2(1, 4), s = [a]; for (let i = 1; i < 6; i++) s.push(s[i - 1] * 2 + 1); return [s, 'Si raddoppia e si aggiunge 1.']; }
+  ];
+  const L3 = [
+    () => { const a = R2(1, 4), b = R2(a, 6), s = [a, b]; for (let i = 2; i < 7; i++) s.push(s[i - 1] + s[i - 2]); return [s, 'Ogni numero è la somma dei due precedenti (come la sequenza di Fibonacci).']; },
+    () => { const a = R2(1, 9), d = R2(2, 5), b = R2(20, 40), e = R2(1, 4), s = []; for (let i = 0; i < 7; i++) s.push(i % 2 ? b - e * (i >> 1) : a + d * (i >> 1)); return [s, `Sono due sequenze alternate: una parte da ${a} e sale di ${d}, l'altra parte da ${b} e scende di ${e}.`]; },
+    () => { const a = R2(1, 9), s = [a]; for (let i = 1; i < 6; i++) s.push(s[i - 1] + 2 ** i); return [s, 'Le differenze raddoppiano: +2, +4, +8, +16…']; },
+    () => { const o = R2(1, 3); return [Array.from({ length: 6 }, (_, i) => (i + o) ** 3), `Sono i cubi: ${o}³, ${o + 1}³, ${o + 2}³…`]; },
+    () => { const o = R2(1, 4), k = pick([1, -1]); return [Array.from({ length: 6 }, (_, i) => (i + o) ** 2 + k), `Sono i quadrati ${k > 0 ? 'più' : 'meno'} 1: ${o}×${o}${k > 0 ? '+' : '−'}1, ${o + 1}×${o + 1}${k > 0 ? '+' : '−'}1…`]; },
+    () => { const a = R2(2, 6), x = R2(2, 3), y = R2(1, 5), s = [a]; for (let i = 1; i < 6; i++) s.push(i % 2 ? s[i - 1] * x : s[i - 1] - y); return [s, `Si alternano ×${x} e −${y}.`]; }
+  ];
+  const pool = lv === 1 ? L1 : lv === 2 ? L2.concat(L1.slice(0, 1)) : L3.concat(L2.slice(0, 2));
+  for (let k = 0; k < 50; k++) {
+    const [s, rule] = pick(pool)(), show = s.slice(0, -1), ans = s[s.length - 1], last = show[show.length - 1], prev = show[show.length - 2];
+    if (ans < 0 || ans > 99999) continue;
+    const wrong = new Set([last + (last - prev), ans + 1, ans - 1, ans + (last - prev), ans - (last - prev), last * 2, ans + 2, ans - 2, ans + 10].filter(x => x !== ans && x >= 0));
+    const opts = shuffle([ans, ...shuffle([...wrong]).slice(0, 3)]);
+    if (opts.length < 4) continue;
+    return mk('seq', `Quale numero viene dopo?<div class="seqrow">${show.map(x => `<span>${fmt(x)}</span>`).join('')}<span class="seqq">?</span></div>`, opts.map(fmt), opts.indexOf(ans), `${rule} Il numero successivo è <b>${fmt(ans)}</b>.`, lv);
+  }
+  return sequenza(1);
+}
+
+/* ---------- 3. Chi mente? ---------- */
+const FATTI = ['ha rotto il vetro con il pallone', 'ha mangiato l\'ultima fetta di torta', 'ha nascosto il fischietto dell\'arbitro', 'ha lasciato le luci accese nello spogliatoio', 'ha preso le chiavi del magazzino', 'ha scritto sulla lavagna'];
+function chiMente(lv) {
+  const n = lv >= 3 ? 4 : 3, ppl = take(NAMES, n), fatto = pick(FATTI);
+  for (let tries = 0; tries < 400; tries++) {
+    const st = ppl.map((me, i) => { const j = pick(ppl.map((_, k) => k).filter(k => k !== i)), t = R(lv === 1 ? 3 : 4);
+      return t === 0 ? { s: `Non sono ${sto(me)} io.`, f: c => c !== i } : t === 1 ? { s: `È ${sto(ppl[j])} ${ppl[j]}.`, f: c => c === j } : t === 2 ? { s: `Non è ${sto(ppl[j])} ${ppl[j]}.`, f: c => c !== j } : { s: `Sono ${sto(me)} io.`, f: c => c === i }; });
+    const rule = lv === 1 ? 'liar1' : pick(['liar1', 'true1']);
+    const ok = c => { const nt = st.filter(x => x.f(c)).length; return rule === 'liar1' ? nt === n - 1 : nt === 1; };
+    const sol = ppl.map((_, c) => c).filter(ok);
+    if (sol.length !== 1 || new Set(st.map(x => x.s)).size < n) continue;
+    const c = sol[0], truth = st.map(x => x.f(c));
+    const why = ppl.map((_, k) => k).filter(k => k !== c).map(k => { const nt = st.filter(x => x.f(k)).length; return `se fosse ${sto(ppl[k])} ${ppl[k]}, ${nt === 0 ? 'nessuno direbbe' : nt === 1 ? '1 persona direbbe' : nt + ' persone direbbero'} la verità`; }).join('; ');
+    const exp = `È ${sto(ppl[c])} <b>${ppl[c]}</b>. In quel caso ${rule === 'liar1' ? `mente solo ${ppl[truth.indexOf(false)]} e gli altri dicono la verità` : `solo ${ppl[truth.indexOf(true)]} dice la verità`}, proprio come dice la regola. Le altre ipotesi non funzionano: ${why}.`;
+    return mk('menti', `Qualcuno ${fatto}. Lo ha fatto una persona sola. <b>${rule === 'liar1' ? 'Uno solo di loro mente' : 'Uno solo di loro dice la verità'}.</b>${st.map((x, i) => `<span class="prem"><b>${ppl[i]}:</b> «${x.s}»</span>`).join('')}<b>Chi è stato?</b>`, ppl.slice(), c, exp, lv);
+  }
+  return chiMente(1);
+}
+
+/* ---------- 4. Deduzioni ---------- */
+const DED = [
+  { v: 'gioca', it: ['in porta', 'in difesa', 'a centrocampo', 'in attacco'], q: x => `Chi gioca ${x}?`, q2: n => `Dove gioca ${n}?` },
+  { v: 'pratica', it: ['il nuoto', 'il tennis', 'la corsa', 'il ciclismo'], q: x => `Chi pratica ${x}?`, q2: n => `Quale sport pratica ${n}?` },
+  { v: 'beve', it: ['il caffè', 'il tè', 'la spremuta', 'la cioccolata'], q: x => `Chi beve ${x}?`, q2: n => `Che cosa beve ${n}?` },
+  { v: 'abita', it: ['a Gallarate', 'a Varese', 'a Busto Arsizio', 'a Legnano'], q: x => `Chi abita ${x}?`, q2: n => `Dove abita ${n}?` }
+];
+const perms = a => a.length <= 1 ? [a] : a.flatMap((x, i) => perms([...a.slice(0, i), ...a.slice(i + 1)]).map(p => [x, ...p]));
+function deduzione(lv) {
+  const n = lv >= 3 ? 4 : 3, T = pick(DED), ppl = take(NAMES, n), it = take(T.it, n), P = perms([...Array(n).keys()]);
+  for (let tries = 0; tries < 200; tries++) {
+    const truth = pick(P), clues = [];
+    // indizi possibili: «X non …», «X …», «… X oppure Y»
+    const all = [];
+    for (let i = 0; i < n; i++) for (let k = 0; k < n; k++) {
+      if (truth[i] !== k) all.push({ s: `${ppl[i]} non ${T.v} ${it[k]}.`, f: p => p[i] !== k });
+      else if (lv === 1) all.push({ s: `${ppl[i]} ${T.v} ${it[k]}.`, f: p => p[i] === k });
+    }
+    if (lv >= 2) for (let k = 0; k < n; k++) { const a = truth.indexOf(k), b = pick([...Array(n).keys()].filter(x => x !== a)); all.push({ s: `${cap(it[k])}: ${T.v === 'abita' ? 'ci abita' : 'lo fa'} ${a < b ? ppl[a] + ' oppure ' + ppl[b] : ppl[b] + ' oppure ' + ppl[a]}.`, f: p => p[a] === k || p[b] === k }); }
+    let pool = shuffle(all), cand = P;
+    while (cand.length > 1 && pool.length) { const c = pool.shift(), nc = cand.filter(c.f); if (nc.length < cand.length) { clues.push(c); cand = nc; } }
+    if (cand.length !== 1) continue;
+    // toglie gli indizi che non servono
+    for (let i = clues.length - 1; i >= 0; i--) { const rest = clues.filter((_, j) => j !== i); if (P.filter(p => rest.every(c => c.f(p))).length === 1) clues.splice(i, 1); }
+    if (clues.length < n - 1) continue;
+    const askP = Math.random() < 0.5, k = R(n), who = truth.indexOf(k);
+    const q = askP ? T.q(it[k]) : T.q2(ppl[k]), opts = askP ? ppl.slice() : it.map(cap), a = askP ? who : truth[k];
+    const exp = `Con tutti gli indizi c'è una sola possibilità: ${ppl.map((p, i) => `${p} ${T.v} ${it[truth[i]]}`).join(', ')}.`;
+    return mk('ded', `${ppl.join(', ')} ${T.v === 'abita' ? 'abitano in città diverse' : 'fanno scelte tutte diverse'}: ${it.join(', ')}.${clues.map(c => `<span class="prem">${c.s}</span>`).join('')}<b>${q}</b>`, opts, a, exp, lv);
+  }
+  return deduzione(1);
+}
+
+
+/* ---------- Il conto giusto (stile Countdown) e «24» ---------- */
+// cerca una combinazione con + − × ÷ (solo numeri interi positivi); all = true obbliga a usare tutti i numeri
+function solve(nums, target, all) {
+  let best = null, bestD = Infinity, steps = 0;
+  const rec = items => {
+    if (++steps > 400000 || bestD === 0) return;
+    for (const it of items) { const d = Math.abs(it.v - target); if ((!all || items.length === 1) && d < bestD) { bestD = d; best = it; if (!d) return; } }
+    for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) {
+      const a = items[i], b = items[j], rest = items.filter((_, k) => k !== i && k !== j), [x, y] = a.v >= b.v ? [a, b] : [b, a];
+      const cand = [{ v: x.v + y.v, e: `${x.e} + ${y.e}`, o: '+' }, { v: x.v * y.v, e: `${par(x, '×')} × ${par(y, '×')}`, o: '×' }];
+      if (x.v - y.v > 0) cand.push({ v: x.v - y.v, e: `${x.e} − ${par(y, '−')}`, o: '−' });
+      if (y.v > 1 && x.v % y.v === 0) cand.push({ v: x.v / y.v, e: `${par(x, '÷')} ÷ ${par(y, '÷', true)}`, o: '÷' });
+      for (const c of cand) { if (c.o === '×' && (x.v === 1 || y.v === 1) && !all) continue; rec([...rest, c]); if (bestD === 0) return; }
+    }
+  };
+  const par = (n, op, right) => n.o && (n.o === '+' || n.o === '−' || ((op === '÷' || op === '−') && right && n.o !== undefined) || (op === '÷' && n.o === '÷')) && !(op === '+' ) ? `(${n.e})` : n.e;
+  rec(nums.map(v => ({ v, e: String(v) })));
+  return { d: bestD, e: best ? best.e : '', v: best ? best.v : null };
+}
+function makeConto(lv) {
+  const R2 = (a, b) => a + R(b - a + 1);
+  for (let k = 0; k < 60; k++) {
+    let nums, target;
+    if (lv === 1) { nums = [R2(1, 10), R2(1, 10), R2(2, 10), pick([10, 25])]; target = R2(20, 99); }
+    else { const big = lv === 2 ? R2(1, 2) : R2(1, 4), L = take([25, 50, 75, 100], big), S = Array.from({ length: 6 - big }, () => R2(1, 10)); nums = shuffle([...L, ...S]); target = lv === 2 ? R2(100, 499) : R2(101, 999); }
+    if (nums.includes(target)) continue;
+    const s = solve(nums, target, false); if (s.d === 0) return { nums, target, sol: s.e, lv };
+  }
+  return makeConto(1);
+}
+function make24() {
+  for (let k = 0; k < 200; k++) { const nums = Array.from({ length: 4 }, () => 1 + R(9)), s = solve(nums, 24, true); if (s.d === 0) return { nums, target: 24, sol: s.e, all: true }; }
+  return { nums: [3, 3, 8, 8], target: 24, sol: '8 ÷ (3 − 8 ÷ 3)', all: true };
+}
+const TYPES = { sill: { t: 'Sillogismi', f: sillogismo }, seq: { t: 'Sequenze', f: sequenza }, menti: { t: 'Chi mente?', f: chiMente }, ded: { t: 'Deduzioni', f: deduzione } };
+function makeLogic(type, lv) { return TYPES[type].f(lv); }
+// una partita: 10 domande miste (o di un tipo solo)
+function makeLogicSet(lv, type, n) {
+  n = n || 10; const ks = type ? [type] : Object.keys(TYPES), out = [], seen = new Set();
+  for (let i = 0, g = 0; out.length < n && g < 200; g++) { const q = makeLogic(ks[i % ks.length], lv); if (seen.has(q.q)) continue; seen.add(q.q); out.push(q); i++; }
+  return shuffle(out);
+}
+const api = { TYPES, makeLogic, makeLogicSet, solve, makeConto, make24 };
+if (typeof module !== 'undefined' && module.exports) module.exports = api; else G.LOGICA = api;
+})(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
 /* ============ FUORICLASSE · App ============ */
 (function () {
 'use strict';
@@ -4128,7 +4397,7 @@ const missionLabel = m => m.key === 'mix' ? 'Mix ' + ({ mat: 'Matematica', ita: 
 const fmtDate = s => { if (!s) return '—'; const [y, m, d] = s.slice(0, 10).split('-'); return `${d}/${m}`; };
 const SUBJ = { mat: 'Matematica', ita: 'Italiano', eng: 'Inglese' };
 const MODE = { rigori: 'Rigori', partita: 'Partita', allenamento: 'Allenamento' };
-const MODEN = Object.assign({ ripasso: 'Ripasso errori', var: 'VAR', match: 'Campionato', cup: 'Coppa', duel: 'Sfida 1 contro 1', collega: 'Collega', riordina: 'Riordina', completa: 'Completa', fuorigioco: 'Fuorigioco', geoq: 'Geografia', geomap: 'Trova sulla mappa', geodove: 'Dove si trova?' }, MODE);
+const MODEN = Object.assign({ ripasso: 'Ripasso errori', var: 'VAR', match: 'Campionato', cup: 'Coppa', duel: 'Sfida 1 contro 1', collega: 'Collega', riordina: 'Riordina', completa: 'Completa', fuorigioco: 'Fuorigioco', geoq: 'Geografia', geomap: 'Trova sulla mappa', geodove: 'Dove si trova?', logica: 'Logica' }, MODE);
 const COLORS = ['#e63946', '#1d6fe0', '#2bb673', '#ffd23f', '#ff8a1f', '#8e5bd9', '#f1f1f1', '#1b1f2a'];
 const REASONS = ['Autonomia nei compiti', 'Organizzazione (diario e zaino)', 'Ha aiutato un compagno', 'Impegno e costanza', 'Comportamento esemplare'];
 const RIVALS = { mat: ['Real Ripasso', 'Atletico Tabellina', 'Dinamo Divisori', 'Sporting Frazioni', 'Olimpia Equivalenze'], ita: ['Unione Grammatica', 'Sporting Sintassi', 'Real Analisi Logica', 'Atletico Apostrofo', 'Dinamo Congiuntivo'], eng: ['Grammar United', 'Irregular City', 'Phrasal Rovers', 'Spelling Wanderers', 'Vocabulary Athletic'] };
@@ -4345,10 +4614,23 @@ const CH = {
   new: { n: [1], txt: () => 'Prova un argomento che non hai mai giocato' },
   mg: { n: [1], txt: () => 'Gioca un minigioco: Collega, Riordina, Completa, Fuorigioco o Geografia' }
 };
+// sfide del giorno del comparto Superiori e adulti
+const CHA = {
+  ok: { n: [8, 10, 12], txt: n => `Rispondi giusto a ${n} domande di Logica` },
+  logica: { n: [1, 2], txt: n => n === 1 ? 'Completa una partita di Logica' : `Completa ${n} partite di Logica` },
+  parola: { n: [1], txt: () => 'Gioca la Parola del giorno' },
+  conto: { n: [2, 3], txt: n => `Fai ${n} conti esatti nel Conto giusto` },
+  mg: { n: [1], txt: () => 'Gioca una partita di Geografia' },
+  p24: { n: [2], txt: n => `Risolvi ${n} volte il 24` }
+};
+const isAd = p => !!p && p.cat === 'adulti';
+const chDefs = p => isAd(p) ? CHA : CH;
+const clsLabel = p => isAd(p) ? 'Superiori e adulti' : `${p.cls}ª media`;
 function ensureCh(p) {
-  if (p.ch && p.ch.d === today()) return p.ch;
-  const r = seeded(today() + p.id), types = Object.keys(CH).filter(t => !CH[t].need || CH[t].need(p)), items = [];
-  while (items.length < 3) { const t = types[Math.floor(r() * types.length)]; if (items.some(x => x.t === t)) continue; const c = CH[t]; items.push({ t, n: c.n[Math.floor(r() * c.n.length)], s: t === 'ok' ? ['mat', 'ita', 'eng'][Math.floor(r() * 3)] : '', prog: 0 }); }
+  const D = chDefs(p);
+  if (p.ch && p.ch.d === today() && p.ch.items.every(it => D[it.t])) return p.ch;
+  const r = seeded(today() + p.id), types = Object.keys(D).filter(t => !D[t].need || D[t].need(p)), items = [];
+  while (items.length < 3) { const t = types[Math.floor(r() * types.length)]; if (items.some(x => x.t === t)) continue; const c = D[t]; items.push({ t, n: c.n[Math.floor(r() * c.n.length)], s: t === 'ok' ? (isAd(p) ? 'log' : ['mat', 'ita', 'eng'][Math.floor(r() * 3)]) : '', prog: 0 }); }
   p.ch = { d: today(), items, done: false }; return p.ch;
 }
 function chEv(p, t, data) {
@@ -4464,7 +4746,7 @@ V.home = () => {
   const demo = [['demo4', '#e63946'], ['demo2', '#ffd23f'], ['demo3', '#2bb673']].map(([id, color]) => defaultAv({ id, color }));
   const team = ps.length >= 3 ? [ps[1].av, ps[0].av, ps[2].av] : ps.length === 2 ? [ps[1].av, ps[0].av, demo[2]] : ps.length === 1 ? [demo[0], ps[0].av, demo[2]] : demo;
   const many = ps.length > 6;
-  const row = p => `<button class="hplayer" data-a="pick" data-id="${p.id}" data-n="${esc(p.nick.toLowerCase())}">${pav(p)}<span class="hpn"><b>${esc(p.nick)}</b><span class="small muted">${p.cls}ª media · ${pct(owned(p), ALB.length)}% album</span></span><span class="hlv"><small>Liv.</small>${plv(p)}${prestBadge(p)}</span></button>`;
+  const row = p => `<button class="hplayer" data-a="pick" data-id="${p.id}" data-n="${esc(p.nick.toLowerCase())}">${pav(p)}<span class="hpn"><b>${esc(p.nick)}</b><span class="small muted">${clsLabel(p)} · ${pct(owned(p), ALB.length)}% album</span></span><span class="hlv"><small>Liv.</small>${plv(p)}${prestBadge(p)}</span></button>`;
   return `<div class="wrap homew">
   <section class="hhero">${homeScene()}
     <div class="hlogo"><span class="hkick">Stagione ${(() => { const d = new Date(), y = d.getMonth() >= 7 ? d.getFullYear() : d.getFullYear() - 1; return `${String(y).slice(2)}/${String(y + 1).slice(2)}`; })()}</span><h1>Fuori<span>classe</span></h1><p>Studia, gioca, completa l'album.</p><button class="hby" data-a="nav" data-to="fc" aria-label="Un prodotto Football Center: scopri di più"><img src="${FC_LOGO}" alt="" width="120" height="113"><span><small>Un prodotto</small><b>Football Center</b></span></button></div>
@@ -4490,7 +4772,7 @@ V.campo = () => {
   return `<div class="wrap">${topBar('', 'home', `<button class="back" data-a="audio" aria-label="${FX.muted ? 'Attiva i suoni' : 'Disattiva i suoni'}" title="Suoni">${SPK(!FX.muted)}</button>${packChip(p)}`)}
   <div class="campo"><div class="stack">
     <div class="me"><button class="meav" data-a="nav" data-to="me" aria-label="Il mio giocatore" style="--xp:${pct(Lv.cur, Lv.need)}%">${avatarSVG(p.av, { crop: 'bust', still: true })}<span class="lvbadge">${Lv.n}</span></button>
-      <div class="mename"><h2>${esc(p.nick)}</h2><span class="small muted">${esc(p.av.title || 'Esordiente')} · ${p.cls}ª media</span><div class="xpline"><div class="xpbar sm"><i style="width:${pct(Lv.cur, Lv.need)}%"></i></div><span class="small muted">${Lv.cur}/${Lv.need} XP</span></div></div></div>
+      <div class="mename"><h2>${esc(p.nick)}</h2><span class="small muted">${esc(p.av.title || 'Esordiente')} · ${clsLabel(p)}</span><div class="xpline"><div class="xpbar sm"><i style="width:${pct(Lv.cur, Lv.need)}%"></i></div><span class="small muted">${Lv.cur}/${Lv.need} XP</span></div></div></div>
     <button class="nextup" data-a="nextup" data-k="${nx.k}"><span class="nxic">${nx.ic}</span><span class="nxt"><small>Prossima cosa da fare</small><b>${nx.t}</b><span>${nx.s}</span></span><span class="hplay" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg></span></button>
     <div class="kpis">
       <div class="kpi"><b>${pct(o, ALB.length)}%</b><span>album · ${o}/${ALB.length}</span><div class="bar" style="margin-top:6px"><i style="width:${pct(o, ALB.length)}%"></i></div></div>
@@ -4498,7 +4780,7 @@ V.campo = () => {
       <div class="kpi"><b>${p.stats.t ? pct(p.stats.c, p.stats.t) + '%' : '—'}</b><span>risposte giuste</span></div>
     </div>
     <div class="panel daily"><div class="row"><h2>Sfide di oggi</h2><span class="spacer"></span><span class="small ${ch.done ? 'okc' : 'muted'}">${ch.done ? 'Completate! +1 bustina' : 'Tutte e 3: +1 bustina e 50 XP'}</span></div>
-      ${ch.items.map(it => `<div class="chrow ${it.prog >= it.n ? 'done' : ''}"><span>${esc(CH[it.t].txt(it.n, it.s))}</span><b>${Math.min(it.prog, it.n)}/${it.n}</b><div class="bar"><i style="width:${pct(Math.min(it.prog, it.n), it.n)}%"></i></div></div>`).join('')}</div>
+      ${ch.items.map(it => `<div class="chrow ${it.prog >= it.n ? 'done' : ''}"><span>${esc(chDefs(p)[it.t].txt(it.n, it.s))}</span><b>${Math.min(it.prog, it.n)}/${it.n}</b><div class="bar"><i style="width:${pct(Math.min(it.prog, it.n), it.n)}%"></i></div></div>`).join('')}</div>
   </div><div class="stack">
     ${p.recap && !p.recap.seen ? `<button class="recapcta" data-a="nav" data-to="recap" style="${seasonVars(p.recap.s)}"><span class="pclv">${p.recap.tier}</span><div><span class="tag">Stagione finita</span><b>Il tuo riepilogo di ${MESI[passMonth(p.recap.s)]} è pronto</b></div><span class="chip">Guarda</span></button>` : ''}
     ${(() => { const ps = passState(p), t = passTier(ps), S = SEASONS[passMonth(ps.s)], todo = Array.from({ length: t }, (_, i) => i + 1).filter(n => !ps.cl.includes(n)).length; return `<button class="passcta season" data-a="nav" data-to="pass" style="${seasonVars(ps.s)}"><span class="pclv"><small>Liv.</small>${t}</span><div><span class="tag">Pass di ${MESI[passMonth(ps.s)].toLowerCase()} · ${esc(S.t)}</span><b>${todo ? `${todo} ${todo === 1 ? 'premio' : 'premi'} da riscattare!` : t >= PASS_TIERS ? 'Pass completato!' : `Livello ${t} di ${PASS_TIERS}`}</b><div class="xpbar sm"><i style="width:${t >= PASS_TIERS ? 100 : pct(ps.pts - t * PASS_STEP, PASS_STEP)}%"></i></div><span class="small pleft">${HOURGLASS} Finisce tra ${passLeft(ps.s)}</span></div>${todo ? '<span class="chip hot">Riscatta</span>' : '<span class="chip">Apri</span>'}</button>`; })()}
@@ -4512,6 +4794,7 @@ V.campo = () => {
   </div></div></div>`;
 };
 V.gioca = () => {
+  if (isAd(prof())) return V.giocaAd();
   const p = prof(); passState(p); const o = owned(p), mis = p.missions.filter(m => !m.done), ch = ensureCh(p), sn = streakNow(p), Lv = lvInfo(p.xp);
   const lastTopic = Object.entries(p.topics).length, fm = fmState(p), opp = oppAt(fm);
   const cs = cupState(p), cupOn = !cs.done && cs.today < CUP_PER_DAY;
@@ -4546,8 +4829,9 @@ function nextUp(p) {
   if (mis.length) return { k: 'mission', ic: NXIC.target, t: 'Missione dal tutor', s: `${MODE[mis[0].mode]} · ${missionLabel(mis[0])}` };
   if (fcPackReady(p) || p.packs) return { k: 'pack', ic: NXIC.pack, t: p.packs > 1 ? `Apri le tue ${p.packs} bustine` : p.packs ? 'Apri la bustina' : 'Apri la bustina Football Center', s: p.packs ? 'Attacca le figurine nuove nell\'album' : 'Quella di questo mese è pronta' };
   if (todo) return { k: 'pass', ic: NXIC.star, t: `Riscatta ${todo === 1 ? 'il premio' : `${todo} premi`} del Pass`, s: 'Li hai già guadagnati: vai a prenderli' };
+  if (isAd(p)) return nextUpAd(p, ch, cs);
   const it = ch.items.find(x => x.prog < x.n);
-  if (it) return { k: 'ch:' + it.t + ':' + (it.s || ''), ic: NXIC.target, t: CH[it.t].txt(it.n, it.s), s: `Sfida di oggi ${ch.items.indexOf(it) + 1} di 3 · tutte e 3 valgono una bustina` };
+  if (it) return { k: 'ch:' + it.t + ':' + (it.s || ''), ic: NXIC.target, t: chDefs(p)[it.t].txt(it.n, it.s), s: `Sfida di oggi ${ch.items.indexOf(it) + 1} di 3 · tutte e 3 valgono una bustina` };
   if (p.rev.length) return { k: 'rev', ic: NXIC.play, t: 'Sistema i tuoi errori', s: `${p.rev.length} ${p.rev.length === 1 ? 'domanda' : 'domande'} nel Ripasso · 15 XP a risposta` };
   if (!cs.done && cs.today < CUP_PER_DAY) return { k: 'cup', ic: NXIC.cup, t: `Coppa: ${CUP_ROUNDS[cs.round][0]}`, s: `Contro ${cs.opps[cs.round]}` };
   return { k: 'rigori', ic: NXIC.play, t: 'Allenati ai Rigori', s: '5 domande, 5 tiri: con 3 gol vinci una bustina' };
@@ -4556,6 +4840,8 @@ function nextGo(k) {
   const p = prof(), [t, c, sj] = k.split(':');
   if (k === 'recap') return go('recap'); if (k === 'pass') return go('pass'); if (k === 'cup') return go('coppa'); if (k === 'rev') return startReview();
   if (k === 'pack') return go('pack');
+  if (k === 'parola') return go('parola'); if (k === 'logica') return startLogica(null);
+  if (t === 'ch' && isAd(p)) return c === 'parola' ? go('parola') : c === 'conto' ? startConto('conto') : c === 'p24' ? startConto('24') : c === 'mg' ? go('geo') : startLogica(null);
   if (k === 'mission') { const m = p.missions.find(x => !x.done); return m ? A.mission({ id: m.id }) : go('gioca'); }
   if (t === 'ch') {
     if (c === 'goals' || c === 'new' || c === 'read') return go('pick', { mode: 'rigori', subj: p.cls ? 'mat' : 'mat' });
@@ -4671,9 +4957,9 @@ function feedback(g) {
   if (!g.answered) return '';
   const ok = g.choice === g.q.a, n = g.qs ? g.qs.length : 6, last = g.i === n - 1;
   if (g.mode === 'partita' && ok && !g.lastFast) return '';
-  const head = g.mode === 'ripasso' ? (ok ? 'Errore sistemato!' : 'Ancora da sistemare') : g.mode === 'cup' || g.mode === 'geoq' ? (ok ? pick(['Giusto!', 'Esatto!', 'Perfetto!']) : 'Risposta sbagliata') : g.mode === 'match' ? (g.lastEv || (ok ? 'Bella azione!' : 'Attenzione!')) : ok ? (g.mode === 'rigori' ? 'Gol!' : 'Giusto!') : (g.mode === 'rigori' ? 'Parata!' : 'Gol subito');
-  const btn = g.mode === 'partita' ? 'Riprendi la partita' : last ? ({ ripasso: 'Fine del ripasso', match: 'Fischio finale', cup: 'Fine del turno', geoq: 'Vedi il risultato' }[g.mode] || 'Fine dei rigori') : ({ ripasso: 'Prossima domanda', match: 'Continua la partita', cup: 'Prossima domanda', geoq: 'Prossima domanda' }[g.mode] || 'Prossimo rigore');
-  const canSim = !ok && g.mode !== 'geoq' && TOPIC[g.q.topic] && !TOPIC[g.q.topic].read && !g.sim;
+  const head = g.mode === 'ripasso' ? (ok ? 'Errore sistemato!' : 'Ancora da sistemare') : g.mode === 'cup' || g.mode === 'geoq' || g.mode === 'logica' ? (ok ? pick(['Giusto!', 'Esatto!', 'Perfetto!']) : 'Risposta sbagliata') : g.mode === 'match' ? (g.lastEv || (ok ? 'Bella azione!' : 'Attenzione!')) : ok ? (g.mode === 'rigori' ? 'Gol!' : 'Giusto!') : (g.mode === 'rigori' ? 'Parata!' : 'Gol subito');
+  const btn = g.mode === 'partita' ? 'Riprendi la partita' : last ? ({ ripasso: 'Fine del ripasso', match: 'Fischio finale', cup: 'Fine del turno', geoq: 'Vedi il risultato', logica: 'Vedi il risultato' }[g.mode] || 'Fine dei rigori') : ({ ripasso: 'Prossima domanda', match: 'Continua la partita', cup: 'Prossima domanda', geoq: 'Prossima domanda', logica: 'Prossima domanda' }[g.mode] || 'Prossimo rigore');
+  const canSim = !ok && g.mode !== 'geoq' && !String(g.q.topic).startsWith('log-') && TOPIC[g.q.topic] && !TOPIC[g.q.topic].read && !g.sim;
   const p = prof(), goal = (g.mode === 'rigori' && ok && !g.lastFast) || (g.mode === 'match' && g.snd === 'goal');
   return `<div class="fb ${ok ? 'ok' : ''} ${goal ? 'withcel' : ''}">${goal ? `<div class="fbcel">${avatarSVG(p.av, { cel: p.av.cel })}</div>` : ''}<h3>${head}${g.lastXp ? ` <span class="xpchip">+${g.lastXp} XP</span>` : ''}</h3>${g.lastFast ? '<p class="fast">Troppo veloce! Prenditi il tempo di leggere: le risposte date di corsa non fanno vincere bustine.</p>' : ''}<div>${!ok && g.mode === 'ripasso' ? 'Resta nel ripasso: la ritroverai la prossima volta. ' : ''}${g.q.exp}</div>
   <div class="row" style="margin-top:12px">${canSim ? '<button class="btn ghost" data-a="sim">Riprova con una simile</button>' : ''}<button class="btn wide" data-a="next" style="flex:1">${btn}</button></div>${repLink()}</div>${simBlock(g)}`;
@@ -4706,6 +4992,8 @@ V.play = () => {
   const g = UI.g, p = prof();
   if (GAMES[g.mode]) return V.mg();
   if (g.mode === 'geomap' || g.mode === 'geodove') return V.geomap();
+  if (g.mode === 'logica') return `<div class="wrap">${playBar(g.title, 'gioca', `<span class="chip">Livello ${g.lv}</span>`)}
+    <div class="qwrap logq">${dotsHTML(g, g.qs.length)}${comboChip(g)}${qBlock(g)}${feedback(g)}${KBD}</div></div>`;
   if (g.mode === 'geoq') return `<div class="wrap">${playBar(GEO_MODES[g.gmode].t, 'geo', `<span class="chip">${GEO_SCOPES[g.scope]}</span>`)}
     <div class="qwrap geoqw ${g.q.flagOpts ? 'flagopts' : ''}">${dotsHTML(g, g.qs.length)}${comboChip(g)}${qBlock(g)}${feedback(g)}${KBD}</div></div>`;
   if (g.mode === 'rigori') return `<div class="wrap">${playBar('Rigori', 'campo', `<span class="chip">${esc(g.title)}</span>`)}
@@ -4728,19 +5016,20 @@ V.play = () => {
 };
 function answer(i) {
   const g = UI.g; if (!g || g.answered || !g.q) return;
+  if (i < 0 || i >= g.q.opts.length) return;
   const p = prof(), ok = i === g.q.a;
   g.answered = true; g.choice = i; g.res.push(ok); g.sim = null;
   g.lastFast = Date.now() - (g.shownAt || 0) < minRead(g.q); if (g.lastFast) g.fast++;
-  if (ok && !g.lastFast) { g.combo = (g.combo || 0) + 1; g.lastXp = (g.mode === 'ripasso' ? 15 : g.q.topic && levelOf(p, g.q.topic) === 1 ? 8 : 10) + (g.combo >= 3 ? 5 : 0); if (g.combo === 5) passEv(p, 'combo5'); } else { g.combo = 0; g.lastXp = 0; }
+  if (ok && !g.lastFast) { g.combo = (g.combo || 0) + 1; g.lastXp = (g.mode === 'ripasso' ? 15 : g.mode === 'logica' ? 6 + 2 * g.lv : g.q.topic && levelOf(p, g.q.topic) === 1 ? 8 : 10) + (g.combo >= 3 ? 5 : 0); if (g.combo === 5) passEv(p, 'combo5'); } else { g.combo = 0; g.lastXp = 0; }
   xpAdd(p, g.lastXp); setTimeout(() => floatXP(g.lastXp), 30);
   const lvBefore = EV.lvUps.length;
-  if (g.mode === 'geoq') recordLite(p, g.q.topic, ok, plain(g.q.q).slice(0, 140), plain(g.q.opts[i]), plain(g.q.opts[g.q.a]));
+  if (g.mode === 'geoq' || String(g.q.topic).startsWith('log-')) recordLite(p, g.q.topic, ok, plain(g.q.q).slice(0, 140), plain(g.q.opts[i]), plain(g.q.opts[g.q.a]));
   else record(p, g.q, ok, g.q.opts[i], g.mode === 'match' ? 'rigori-like' : g.mode); save();
   if (EV.lvUps.length > lvBefore) { const u = EV.lvUps[EV.lvUps.length - 1]; toast(`Livello ${u.l} in ${TOPIC[u.k].title}! +1 bustina`); setTimeout(() => { FX.play('level'); FX.confetti(70); }, 700); }
   if (g.mode === 'rigori') { g.dir = pick(['l', 'c', 'r']); g.kdir = g.dir === 'c' ? pick(['l', 'r']) : g.dir === 'l' ? 'r' : 'l'; FX.play(ok ? 'goal' : 'save'); if (!ok) FX.buzz(60); render(); return; }
   if (g.mode === 'match') { matchAction(g, ok); FX.play(g.snd); if (g.snd === 'ko') FX.buzz(60); render(); return; }
   FX.play(ok ? 'ok' : 'ko'); if (!ok) FX.buzz(60);
-  if (g.mode === 'ripasso' || g.mode === 'cup' || g.mode === 'geoq') { render(); return; }
+  if (g.mode === 'ripasso' || g.mode === 'cup' || g.mode === 'geoq' || g.mode === 'logica') { render(); return; }
   if (ok && !g.lastFast) { g.me++; render(); setTimeout(() => { if (UI.g === g && UI.s === 'play') nextQ(); }, 650); }
   else if (ok) { g.me++; g.paused = true; render(); }
   else { g.cpu++; g.paused = true; render(); }
@@ -4767,7 +5056,7 @@ function nextQ() {
   const g = UI.g; if (!g) return;
   g.sim = null;
   if (g.mode === 'var') { g.i++; if (g.i >= g.items.length) return finish(); g.sel = -1; g.answered = false; g.shownAt = Date.now(); render(); window.scrollTo(0, 0); return; }
-  if (g.mode === 'rigori' || g.mode === 'ripasso' || g.mode === 'match' || g.mode === 'cup' || g.mode === 'geoq') { g.i++; if (g.i >= g.qs.length) return finish(); g.q = g.qs[g.i]; }
+  if (g.mode === 'rigori' || g.mode === 'ripasso' || g.mode === 'match' || g.mode === 'cup' || g.mode === 'geoq' || g.mode === 'logica') { g.i++; if (g.i >= g.qs.length) return finish(); g.q = g.qs[g.i]; }
   else { if (g.time <= 0) return finish(); const p = prof(); let q, n = 0; do { const k = pick(g.keys); q = makeQuestion(k, levelOf(p, k)); } while (g.seen.has(q.q) && n++ < 20); g.seen.add(q.q); g.q = q; g.paused = false; }
   g.answered = false; g.choice = -1; g.shownAt = Date.now(); render(); window.scrollTo(0, 0);
 }
@@ -4787,6 +5076,13 @@ function finish(extra) {
     const okMg = mode === 'fuorigioco' ? correct >= 8 && correct >= total * 0.7 : correct >= Math.ceil(total * (mode === 'completa' ? 2 / 3 : 0.6));
     if (okMg) { hit = true; give(1, `${GAMES[mode].t} ${correct}/${total}`); }
     p.cnt.mg = Object.assign({}, p.cnt.mg, { [mode]: ((p.cnt.mg || {})[mode] || 0) + 1 }); chEv(p, 'mg'); if (!rush) passEv(p, 'mg:' + mode);
+  }
+  if (mode === 'logica') {
+    if (correct >= 7) { hit = true; give(1, `${g.title} ${correct}/${total}`); }
+    const k = g.ltype; p.logLv = Object.assign({}, p.logLv); p.logBest = Object.assign({}, p.logBest);
+    if (correct >= 8 && !rush && (p.logLv[k] || 1) < 3) { p.logLv[k] = (p.logLv[k] || 1) + 1; notes.push(`Livello ${p.logLv[k]} sbloccato!`); }
+    const bk = k + ':' + g.lv; if (!(p.logBest[bk] >= correct)) p.logBest[bk] = correct;
+    chEv(p, 'logica'); if (!rush) passEv(p, 'logica');
   }
   let geoPts;
   if (mode === 'geoq' || mode === 'geomap' || mode === 'geodove') {
@@ -4830,9 +5126,10 @@ V.result = () => {
   else if (r.mode === 'var') { big = `${r.correct} su ${r.total}`; sub = r.correct >= 4 ? 'Occhio da arbitro internazionale!' : r.correct >= 3 ? 'Buona revisione al VAR.' : 'Rileggi con calma ogni passaggio: l\'errore si nasconde nei dettagli.'; }
   else if (r.mode === 'geodove') { big = `${r.pts.toLocaleString('it-IT')} punti`; sub = r.pts >= 20000 ? 'Hai un GPS nella testa!' : r.pts >= 15000 ? 'Ottimo senso dell\'orientamento.' : 'Guarda bene la mappa: ogni volta ti avvicini di più.'; }
   else if (r.mode === 'geoq' || r.mode === 'geomap') { big = `${r.correct} su ${r.total}`; sub = r.correct >= 9 ? 'Da vero esploratore!' : r.correct >= 7 ? 'Bel viaggio, continua così.' : 'Riprova: le mappe si imparano giocando.'; }
+  else if (r.mode === 'logica') { big = `${r.correct} su ${r.total}`; sub = r.correct >= 9 ? 'Mente lucidissima!' : r.correct >= 7 ? 'Ragionamento solido.' : 'Rileggi le spiegazioni: la logica si allena come un muscolo.'; }
   else if (GAMES[r.mode]) { big = `${r.correct} su ${r.total}`; sub = r.correct === r.total ? 'Partita perfetta!' : r.correct >= r.total * 0.6 ? 'Bel lavoro, continua così.' : 'Riprova: gli errori ti insegnano qualcosa ogni volta.'; }
   else { big = `${r.correct} su ${r.total}`; sub = 'Allenamento completato. Le carte sbagliate torneranno più spesso.'; }
-  const need = { rigori: 'Servono almeno 3 gol', ripasso: 'Sistema almeno 3 errori', var: 'Trova almeno 3 errori', allenamento: 'Servono almeno 6 risposte giuste su 10', match: 'Vinci la partita', geoq: 'Servono almeno 7 risposte giuste su 10', geomap: 'Servono almeno 7 risposte giuste al primo tentativo', geodove: 'Servono almeno 15.000 punti' }[r.mode] || (GAMES[r.mode] && GAMES[r.mode].need) || 'Servono almeno 5 risposte giuste';
+  const need = { rigori: 'Servono almeno 3 gol', ripasso: 'Sistema almeno 3 errori', var: 'Trova almeno 3 errori', allenamento: 'Servono almeno 6 risposte giuste su 10', match: 'Vinci la partita', geoq: 'Servono almeno 7 risposte giuste su 10', geomap: 'Servono almeno 7 risposte giuste al primo tentativo', geodove: 'Servono almeno 15.000 punti', logica: 'Servono almeno 7 risposte giuste su 10' }[r.mode] || (GAMES[r.mode] && GAMES[r.mode].need) || 'Servono almeno 5 risposte giuste';
   const rew = r.rush ? '<p class="fastbox">Hai risposto troppo in fretta: questa volta niente bustine. Leggi bene le domande e le bustine tornano!</p>'
     : r.earned ? `<div class="reward">${miniPack()}<b style="font-family:var(--display);font-size:1.6rem">+${r.earned} ${r.earned === 1 ? 'bustina' : 'bustine'}</b></div>`
       : r.capped ? '<p class="muted">Hai già preso tutte le bustine di oggi per gli allenamenti. Livelli, sfide e trofei ti danno ancora bustine!</p>'
@@ -5208,6 +5505,8 @@ V.student = () => {
       <button class="btn" data-a="addmission">Assegna (+1 bustina quando la completa)</button>
       ${p.missions.length ? `<div class="small">${p.missions.slice(-6).reverse().map(m => `<div>${m.done ? '✓' : '•'} ${MODE[m.mode]} · ${esc(missionLabel(m))} <span class="muted">${m.done ? 'completata il ' + fmtDate(m.done) : 'in corso'}</span></div>`).join('')}</div>` : ''}
     </div>
+    <div class="panel stack"><h2>Comparto</h2><p class="small muted" style="margin:0">Adesso: <b>${clsLabel(p)}</b>. Album, livelli e figurine restano; cambiano giochi, sfide e classifica.</p>
+      <div class="row">${isAd(p) ? [1, 2, 3].map(c => `<button class="btn ghost sm" data-a="setcat" data-v="${c}">Torna in ${c}ª media</button>`).join('') : '<button class="btn ghost" data-a="setcat" data-v="adulti">Passa a Superiori e adulti</button>'}</div></div>
     <div class="panel stack"><h2>Premia un comportamento</h2><p class="small muted">Le bustine del tutor non contano nel limite giornaliero.</p>
       <select id="reason">${REASONS.map(r => `<option>${r}</option>`).join('')}</select><button class="btn" data-a="bonus">Regala una bustina</button></div>
     <div class="panel"><h2>Storico</h2>${p.hist.length ? `<div class="scroll-x"><table class="tbl"><thead><tr><th>Data</th><th>Attività</th><th class="n">Esito</th></tr></thead><tbody>${p.hist.slice(0, 12).map(h => `<tr><td>${fmtDate(h.d)}</td><td>${MODEN[h.m] || h.m} · ${esc(h.k)}</td><td class="n">${h.sc ? h.sc + ' · ' : ''}${h.c}/${h.t}</td></tr>`).join('')}</tbody></table></div>` : '<p class="muted small">Nessuna attività.</p>'}
@@ -5267,7 +5566,7 @@ V.coppa = () => {
 };
 function startCup() {
   const p = prof(), cs = cupState(p); if (cs.done || cs.today >= CUP_PER_DAY) return;
-  const keys = TOPICS.filter(t => t.cls === p.cls && !t.read).map(t => t.key), [rn, need] = CUP_ROUNDS[cs.round], qs = makeSet(keys, 5, lvFn(p));
+  const keys = TOPICS.filter(t => t.cls === p.cls && !t.read).map(t => t.key), [rn, need] = CUP_ROUNDS[cs.round], qs = isAd(p) ? makeLogicSet(Math.min(3, 1 + Math.floor(cs.round / 2)), null, 5) : makeSet(keys, 5, lvFn(p));
   newEv(); FX.play('whistle');
   go('play', { g: { mode: 'cup', subj: 'mix', key: 'cup', title: rn, rn, need, opp: cs.opps[cs.round], qs, q: qs[0], i: 0, res: [], fast: 0, answered: false, choice: -1, shownAt: Date.now() } });
 }
@@ -5294,7 +5593,7 @@ const NICON = {
   trofei: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M8 3l4 7 4-7"/><circle cx="12" cy="15.5" r="5.5"/><path d="M12 13v5"/></svg>'
 };
 const NAVS = [['campo', 'Oggi'], ['gioca', 'Gioca'], ['album', 'Album'], ['pass', 'Pass'], ['me', 'Io']];
-const NAVMAP = { trofei: 'me', carriera: 'me', avatar: 'me', mercato: 'album', pack: 'album', retri: 'album', recap: 'pass', mgpick: 'gioca', geo: 'gioca', formazione: 'gioca', coppa: 'gioca', duelsetup: 'gioca', fc: 'campo', code: 'campo' };
+const NAVMAP = { parola: 'gioca', conto: 'gioca', trofei: 'me', carriera: 'me', avatar: 'me', mercato: 'album', pack: 'album', retri: 'album', recap: 'pass', mgpick: 'gioca', geo: 'gioca', formazione: 'gioca', coppa: 'gioca', duelsetup: 'gioca', fc: 'campo', code: 'campo' };
 function bottomNav(cur) {
   const p = prof(); if (!p) return '';
   const cs = cupState(p), ps = passState(p), dot = { campo: !!(p.recap && !p.recap.seen) || p.missions.some(m => !m.done), gioca: !cs.done && cs.today < CUP_PER_DAY, album: (p.newc || []).length > 0 || p.packs > 0 || fcPackReady(p) || !!newSerie(), pass: passTier(ps) > ps.cl.length || !!p.passNew, me: !!p.newu };
@@ -5694,7 +5993,7 @@ function rewardLine(r) {
 // --- profilo
 V.me = () => {
   const p = prof(), L = lvInfo(p.xp), nr = rewardsAt(L.n + 1), nx = rewardLine(p.prest ? Object.assign({}, nr, { items: [] }) : nr), w = weekKey();
-  const rank = DB.settings.rank !== false && DB.profiles.length > 1 ? DB.profiles.map(q => ensure(q)).map(q => ({ q, n: q.wxp && q.wxp.w === w ? q.wxp.n : 0 })).sort((a, b) => b.n - a.n).slice(0, 10) : null;
+  const same = DB.profiles.filter(q => isAd(q) === isAd(p)), rank = DB.settings.rank !== false && same.length > 1 ? same.map(q => ensure(q)).map(q => ({ q, n: q.wxp && q.wxp.w === w ? q.wxp.n : 0 })).sort((a, b) => b.n - a.n).slice(0, 10) : null;
   const k = [[p.stats.s, 'allenamenti'], [p.stats.c, 'risposte giuste'], [p.streak.best, 'record di giorni di fila'], [(p.cup && p.cup.wins) || 0, 'coppe vinte'], [p.cnt.duel || 0, 'sfide 1 contro 1 vinte'], [(p.fm && p.fm.titles) || 0, 'campionati vinti']];
   return `<div class="wrap">${topBar('Il mio giocatore', null, packChip(p))}
   <div class="mehero"><div class="futwrap">${futCard(p)}</div>
@@ -5749,7 +6048,8 @@ function avEditor(av, mode, tab, lv, p, nick) {
   let body = '';
   if (tab === 'chi' && mode === 'new') { const f = UI.form;
     body = `<label class="f">Il tuo soprannome<input type="text" id="nick" maxlength="14" autocomplete="off" value="${esc(f.nick)}" placeholder="Es. Bomber10"><span class="small muted">Usa un soprannome, non il tuo nome e cognome.</span></label>
-    <div class="f"><b>Che classe fai?</b><div class="choice">${[1, 2, 3].map(c => `<button data-a="form" data-k="cls" data-v="${c}" aria-pressed="${f.cls === c}">${c}ª</button>`).join('')}</div></div>`; }
+    <div class="f"><b>Chi gioca?</b><div class="choice"><button data-a="form" data-k="cat" data-v="medie" aria-pressed="${f.cat !== 'adulti'}">Scuole medie</button><button data-a="form" data-k="cat" data-v="adulti" aria-pressed="${f.cat === 'adulti'}">Superiori e adulti</button></div></div>
+    ${f.cat === 'adulti' ? '<p class="small muted" style="margin:0">Niente compiti: logica, Parola del giorno, Il conto giusto, geografia, Coppa e album di figurine.</p>' : `<div class="f"><b>Che classe fai?</b><div class="choice">${[1, 2, 3].map(c => `<button data-a="form" data-k="cls" data-v="${c}" aria-pressed="${f.cls === c}">${c}ª</button>`).join('')}</div></div>`}`; }
   body += AVTABS[tab].map(k => k === 'role' || k === 'foot' ? `<div class="avsec"><b>${AVC[k].t}</b><div class="seg">${AVC[k].items.map(it => `<button data-a="avset" data-k="${k}" data-v="${it.v}" aria-pressed="${av[k] === it.v}">${it.t}</button>`).join('')}</div></div>` : avSection(k, av, lv, p)).join('');
   const i = tabs.findIndex(t => t[0] === tab), last = i === tabs.length - 1;
   const foot = mode === 'new' ? `<div class="avfoot">${i > 0 ? `<button class="btn ghost" data-a="avtab" data-t="${tabs[i - 1][0]}">Indietro</button>` : ''}${last ? '<button class="btn" data-a="create" style="flex:1">Entra in campo</button>' : `<button class="btn" data-a="avtab" data-t="${tabs[i + 1][0]}" style="flex:1">Avanti</button>`}</div>`
@@ -6185,6 +6485,7 @@ const MISSIONS = [
   ['duel', 1, 'Gioca una sfida 1 contro 1'], ['perfect', 1, 'Fai 5 gol su 5 ai Rigori'], ['rev', 5, 'Sistema 5 errori nel Ripasso'], ['match', 2, 'Gioca 2 partite di campionato con la tua formazione']
 ].map(([t, n, txt]) => ({ t, n, txt }));
 // missione del mese: una grande impresa, a rotazione
+const MISS_AD = [['logica', 3, 'Gioca 3 partite di Logica'], ['parola', 4, 'Gioca 4 volte la Parola del giorno'], ['conto', 6, 'Fai 6 conti esatti nel Conto giusto'], ['p24', 4, 'Risolvi 4 volte il 24'], ['mg:geo', 3, 'Gioca 3 partite di Geografia'], ['cup', 2, 'Supera 2 turni di Coppa'], ['subj:log', 40, 'Rispondi giusto a 40 domande di Logica'], ['combo5', 2, 'Fai 2 volte una combo da 5 risposte giuste di fila']];
 const MONTH_MS = [['ok', 250, 'Rispondi giusto a 250 domande'], ['daily', 12, 'Completa 12 volte le sfide del giorno'], ['act', 30, 'Finisci 30 tra allenamenti, partite e minigiochi']];
 const MONTH_PTS = 600;
 const passKey = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'); };
@@ -6214,6 +6515,10 @@ function passState(p) {
   const ps = p.pass;
   if (!ps.snap) ps.snap = passSnap(p);
   if (!ps.mm) { const [t, n, txt] = MONTH_MS[passMonth(k) % MONTH_MS.length]; ps.mm = { t, n, txt, prog: 0, done: false }; }
+  if (ps.wk !== weekKey() && isAd(p)) {
+    const r = seeded(weekKey() + p.id + 'ad'), ms = MISS_AD.slice().sort(() => r() - 0.5).slice(0, 4);
+    ps.wk = weekKey(); ps.ms = ms.map(([t, n, txt]) => ({ t, n, txt, prog: 0, done: false }));
+  }
   if (ps.wk !== weekKey()) {
     const r = seeded(weekKey() + p.id), mg = shuffle(MISSIONS.filter(m => m.t.startsWith('mg:'))), other = MISSIONS.filter(m => !m.t.startsWith('mg:') && (m.t !== 'duel' || DB.profiles.length > 1));
     const pickO = []; while (pickO.length < 2) { const m = other[Math.floor(r() * other.length)]; if (!pickO.includes(m)) pickO.push(m); }
@@ -6282,7 +6587,7 @@ V.pass = () => {
     ${todo.length > 1 ? `<button class="btn" data-a="passall">Riscatta tutti i premi (${todo.length})</button>` : todo.length ? `<button class="btn" data-a="passgo" data-n="${todo[0]}">Hai un premio da riscattare</button>` : ''}</div>
     <div class="panel pmonth ${ps.mm.done ? 'done' : ''}" style="${seasonVars(ps.s)}"><div class="row"><h2>Impresa del mese</h2><span class="spacer"></span><span class="small ${ps.mm.done ? 'okc' : 'muted'}">${ps.mm.done ? 'Completata!' : `+${MONTH_PTS} punti e 2 bustine`}</span></div>${mrow(ps.mm)}</div>
     <div class="panel"><div class="row"><h2>Oggi</h2><span class="spacer"></span><span class="small ${ch.done ? 'okc' : 'muted'}">${ch.done ? 'Fatto! +60 punti' : 'Tutte e 3: +60 punti'}</span></div>
-      ${ch.items.map(it => mrow({ txt: CH[it.t].txt(it.n, it.s), prog: Math.min(it.prog, it.n), n: it.n, done: it.prog >= it.n })).join('')}</div>
+      ${ch.items.map(it => mrow({ txt: chDefs(p)[it.t].txt(it.n, it.s), prog: Math.min(it.prog, it.n), n: it.n, done: it.prog >= it.n })).join('')}</div>
     <div class="panel"><div class="row"><h2>Questa settimana</h2><span class="spacer"></span><span class="small muted">+150 punti ciascuna</span></div>${ps.ms.map(mrow).join('')}
       <p class="small muted" style="margin:8px 0 0">Punti anche da ogni allenamento finito (+20), dai turni di Coppa (+40) e dalle sfide 1 contro 1 (+30). Tutto si guadagna giocando: nel Pass non si compra niente. A fine mese i premi raggiunti e non riscattati arrivano da soli.</p></div>
     <div class="ptiers">${tiles}</div></div></div>`;
@@ -6562,7 +6867,7 @@ function fcShow(list, i) {
 }
 function fcAuto() { const p = UI.pid ? prof() : null; if (!p) return; const n = fcCheck(p); if (n.length) { save(); setTimeout(() => fcShow(n), 350); } }
 const IG_IC = '<svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="igG" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".35" stop-color="#fa7e1e"/><stop offset=".6" stop-color="#d62976"/><stop offset=".85" stop-color="#962fbf"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="6" fill="url(#igG)"/><rect x="6.5" y="6.5" width="11" height="11" rx="5.5" fill="none" stroke="#fff" stroke-width="2"/><circle cx="17.2" cy="6.8" r="1.3" fill="#fff"/></svg>';
-const igBlock = small => `<div class="igbox ${small ? 'sm' : ''}"><a class="igbtn" href="${FC_IG}" target="_blank" rel="noopener">${IG_IC}<span><b>Seguici su Instagram</b><small>@footballcenter2024</small></span><svg class="igarr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>${small ? '' : '<p class="small muted" style="margin:6px 2px 0">Su Instagram ci si iscrive dai 14 anni: se sei più piccolo, guardalo insieme a un genitore.</p>'}</div>`;
+const igBlock = small => `<div class="igbox ${small ? 'sm' : ''}"><a class="igbtn" href="${FC_IG}" target="_blank" rel="noopener">${IG_IC}<span><b>Seguici su Instagram</b><small>@footballcenter2024</small></span><svg class="igarr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>${small || isAd(UI.pid ? prof() : null) ? '' : '<p class="small muted" style="margin:6px 2px 0">Su Instagram ci si iscrive dai 14 anni: se sei più piccolo, guardalo insieme a un genitore.</p>'}</div>`;
 V.fc = () => {
   const p = UI.pid ? prof() : null, cs = FC_CARDS(), got = p ? cs.filter(c => p.cards[c.id]).length : 0;
   return `<div class="wrap">${topBar('Football Center', p ? 'campo' : 'home', p ? packChip(p) : '')}
@@ -6600,15 +6905,207 @@ function fcPopMaybe() {
 }
 
 /* ---------- render + azioni ---------- */
+/* ---------- Comparto Superiori e adulti: Logica, Parola del giorno, Il conto giusto ---------- */
+const { makeLogicSet, makeConto, make24, TYPES: LTYPES } = window.LOGICA;
+const PAROLE = window.PAROLE;
+SUBJ.log = 'Logica';
+for (const k of Object.keys(LTYPES)) TOPIC['log-' + k] = { key: 'log-' + k, title: LTYPES[k].t, subj: 'log', cls: 0, max: 1 };
+const SITE = 'https://footballcenterhub.github.io/fuoriclasse/';
+const LDESC = { sill: 'Vero, falso o non si può dire?', seq: 'Trova il numero che viene dopo', menti: 'Uno mente: scopri chi è stato', ded: 'Metti insieme gli indizi' };
+const LICON = {
+  sill: '<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#1d2a52"/><circle cx="48" cy="35" r="20" fill="#4ea8ff" opacity=".55"/><circle cx="72" cy="35" r="20" fill="#ffd23f" opacity=".55"/><path d="M60 19a20 20 0 0 1 0 32a20 20 0 0 1 0-32z" fill="#3ddc84"/></svg>',
+  seq: '<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#14324a"/>' + [2, 4, 8, 16].map((n, i) => `<rect x="${8 + i * 22}" y="${46 - n * 2}" width="16" height="${n * 2 + 6}" rx="3" fill="#4ea8ff"/>`).join('') + '<text x="100" y="48" font-family="Saira Extra Condensed,sans-serif" font-weight="900" font-size="30" fill="#ffd23f" text-anchor="middle">?</text></svg>',
+  menti: '<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#3a1830"/>' + [26, 60, 94].map((x, i) => `<circle cx="${x}" cy="30" r="11" fill="${i === 1 ? '#ff6b5e' : '#e8f2ec'}"/><path d="M${x - 15} 62c0-12 7-18 15-18s15 6 15 18z" fill="${i === 1 ? '#ff6b5e' : '#e8f2ec'}"/>`).join('') + '<text x="60" y="35" font-family="Saira Extra Condensed,sans-serif" font-weight="900" font-size="15" fill="#3a1830" text-anchor="middle">?</text></svg>',
+  ded: '<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#123526"/>' + [0, 1, 2].map(r => [0, 1, 2].map(c => `<rect x="${30 + c * 22}" y="${8 + r * 19}" width="20" height="17" rx="3" fill="${(r + c * 2) % 3 === 0 ? '#3ddc84' : '#1f5a3e'}"/>`).join('')).join('') + '<path d="M36 18l4 4 8-8" stroke="#123526" stroke-width="3" fill="none"/></svg>'
+};
+function startLogica(t) {
+  const p = prof(), k = t || 'mix', lv = (p.logLv || {})[k] || 1, qs = makeLogicSet(lv, t || null, 10);
+  newEv(); FX.play('whistle');
+  go('play', { g: { mode: 'logica', ltype: k, lv, subj: 'log', key: 'log-' + k, title: t ? LTYPES[t].t : 'Logica mista', qs, q: qs[0], i: 0, res: [], fast: 0, combo: 0, answered: false, choice: -1, shownAt: Date.now() } });
+}
+// fine di una partita fuori dal motore delle domande (Parola del giorno, Il conto giusto)
+function endLite(p, mode, correct, total, hit, label) {
+  let earned = 0; if (hit) earned = grant(p, 1, label, true);
+  passEv(p, 'act'); p.stats.s++; bumpStreak(p); checkTro(p);
+  const fcNew = fcCheck(p); if (fcNew.length) setTimeout(() => fcShow(fcNew), 1600);
+  p.hist.unshift({ d: today(), m: mode, s: 'log', k: label, c: correct, t: total, sc: '' }); p.hist = p.hist.slice(0, 60); p.last = today(); save();
+  return earned;
+}
+function nextUpAd(p, ch, cs) {
+  if (!wordState(p).done) return { k: 'parola', ic: NXIC.target, t: 'La parola di oggi', s: '5 lettere, 6 tentativi: uguale per tutti' };
+  const it = ch.items.find(x => x.prog < x.n);
+  if (it) return { k: 'ch:' + it.t + ':', ic: NXIC.target, t: CHA[it.t].txt(it.n, it.s), s: `Sfida di oggi ${ch.items.indexOf(it) + 1} di 3 · tutte e 3 valgono una bustina` };
+  if (!cs.done && cs.today < CUP_PER_DAY) return { k: 'cup', ic: NXIC.cup, t: `Coppa: ${CUP_ROUNDS[cs.round][0]}`, s: `Contro ${cs.opps[cs.round]} · 5 domande di logica` };
+  return { k: 'logica', ic: NXIC.play, t: 'Logica mista', s: '10 domande: sillogismi, sequenze, chi mente e deduzioni' };
+}
+V.giocaAd = () => {
+  const p = prof(), cs = cupState(p), cupOn = !cs.done && cs.today < CUP_PER_DAY, lv = p.logLv || {}, ws = wordState(p), st = p.wds || {};
+  return `<div class="wrap">${topBar('Gioca', 'campo', packChip(p))}
+  <div class="campo"><div class="stack">
+    <div class="row"><div class="eyebrow">Logica</div><span class="spacer"></span>${DB.settings.cap ? `<span class="small muted">Bustine di oggi <b style="color:var(--chalk)">${p.daily.d === today() ? p.daily.n : 0}/${DB.settings.cap}</b></span>` : ''}</div>
+    <button class="adhero" data-a="logstart" data-t=""><div><span class="tag">10 domande miste · livello ${lv.mix || 1}</span><b>Logica mista</b><span class="small">Un po' di tutto: il modo migliore per iniziare. Con 8 risposte giuste sali di livello.</span></div><span class="hplay" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg></span></button>
+    <div class="adgrid">${Object.entries(LTYPES).map(([k, T]) => `<button class="adtile" data-a="logstart" data-t="${k}">${LICON[k]}<b>${T.t}</b><span>${LDESC[k]}</span>${stars(lv[k] || 1, 3)}</button>`).join('')}</div>
+    <div class="eyebrow">Sfide</div>
+    ${cupOn ? `<button class="mission cup" data-a="nav" data-to="coppa"><span class="mic">${CUPIC}</span><div><span class="tag">Coppa Football Center · ${CUP_ROUNDS[cs.round][0]}</span><b>Contro ${esc(cs.opps[cs.round])}</b></div><span class="spacer"></span><span class="chip">Gioca</span></button>` : `<button class="mission cup off" data-a="nav" data-to="coppa"><span class="mic">${CUPIC}</span><div><span class="tag">Coppa Football Center</span><b>${cs.done ? 'Coppa di questa settimana finita: torna lunedì' : 'Turni di oggi giocati: torna domani'}</b></div></button>`}
+  </div><div class="stack">
+    <div class="eyebrow">Parole e numeri</div>
+    <button class="adwide wdl" data-a="nav" data-to="parola"><span class="wmini">${'PAROL'.split('').map((c, i) => `<i class="${['g', 'b', 'y', 'g', 'b'][i]}">${c}</i>`).join('')}</span><div><span class="tag">Ogni giorno una nuova · n. ${wdNum()}</span><b>La parola del giorno</b><span class="small">${ws.done ? (ws.win ? `Indovinata in ${ws.g.length}! Torna domani.` : 'Per oggi è andata: torna domani.') : '5 lettere, 6 tentativi. Uguale per tutti: sfida gli amici!'}${st.cur ? ` · serie di ${st.cur}` : ''}</span></div>${ws.done ? '<span class="chip">Fatto</span>' : '<span class="chip hot">Gioca</span>'}</button>
+    <button class="adwide cnt" data-a="cgstart" data-k="conto"><span class="cmini"><b>${p.contoLv >= 3 ? '742' : p.contoLv === 2 ? '358' : '64'}</b><small>25 · 6 · 3 · 8</small></span><div><span class="tag">3 conti · livello ${p.contoLv || 1}</span><b>Il conto giusto</b><span class="small">Raggiungi il numero con + − × ÷. Più ti avvicini, più punti fai.</span></div></button>
+    <button class="adwide c24" data-a="cgstart" data-k="24"><span class="cmini"><b>24</b><small>4 · 7 · 8 · 8</small></span><div><span class="tag">5 sfide · 90 secondi</span><b>Fai 24</b><span class="small">Quattro numeri: usali tutti, una volta sola, per fare 24.</span></div></button>
+    <div class="eyebrow">Geografia</div>
+    <button class="geocta" data-a="nav" data-to="geo"><span class="geoglobe">${GEO_ICON.dove}</span><div><span class="tag">Atlante · ${Object.keys(GEO_MODES).length} giochi</span><b>Geografia</b><span class="small">Bandiere, capitali, mappe da esplorare e «Dove si trova?»</span></div><span class="chip">Esplora</span></button>
+  </div></div></div>`;
+};
+
+// --- La parola del giorno (stile Wordle): stessa parola per tutti, una al giorno
+const WORDS = (() => { const r = seeded('fuoriclasse-parole'), a = PAROLE.SOL.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; })();
+const wdNum = () => { const [y, m, d] = today().split('-').map(Number); return Math.round((Date.UTC(y, m - 1, d) - Date.UTC(2026, 9, 1)) / 864e5) + 1; };
+const wdWord = n => WORDS[((n - 1) % WORDS.length + WORDS.length) % WORDS.length];
+const wnorm = k => String(k || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+function wordState(p) { const d = today(); if (!p.wd || p.wd.d !== d) p.wd = { d, g: [], done: false, win: false }; return p.wd; }
+function wdScore(g, ans) {
+  const r = Array(5).fill('b'), used = Array(5).fill(false);
+  for (let i = 0; i < 5; i++) if (g[i] === ans[i]) { r[i] = 'g'; used[i] = true; }
+  for (let i = 0; i < 5; i++) if (r[i] !== 'g') { const j = [...ans].findIndex((c, k) => !used[k] && c === g[i]); if (j >= 0) { r[i] = 'y'; used[j] = true; } }
+  return r;
+}
+function wordKey(k) {
+  const p = prof(), ws = wordState(p); if (ws.done) return; let c = UI.wcur || '';
+  if (k === 'enter') return wordSubmit();
+  if (k === 'back') c = c.slice(0, -1); else if (/^[a-z]$/.test(k) && c.length < 5) c += k; else return;
+  UI.wcur = c; UI.wflip = false; FX.play('tap'); render();
+}
+function wordSubmit() {
+  const p = prof(), ws = wordState(p), c = UI.wcur || '', ans = wdWord(wdNum());
+  const bad = msg => { toast(msg); FX.play('ko'); FX.buzz(40); const r = document.querySelector('.wrow.cur'); if (r) { r.classList.remove('shake'); void r.offsetWidth; r.classList.add('shake'); } };
+  if (c.length < 5) return bad('Servono 5 lettere');
+  if (!PAROLE.valid(c)) return bad('Questa parola non è nel nostro dizionario');
+  if (ws.g.includes(c)) return bad('Hai già provato questa parola');
+  ws.g.push(c); UI.wcur = ''; UI.wflip = true; FX.play('flip');
+  if (c === ans || ws.g.length >= 6) { ws.done = true; ws.win = c === ans; wordEnd(p, ws); }
+  save(); render();
+}
+function wordEnd(p, ws) {
+  const st = p.wds = Object.assign({ pl: 0, w: 0, cur: 0, max: 0, last: '', dist: [0, 0, 0, 0, 0, 0] }, p.wds), n = ws.g.length;
+  const y = new Date(today() + 'T12:00'); y.setDate(y.getDate() - 1); const yd = y.toISOString().slice(0, 10);
+  st.pl++; if (ws.win) { st.w++; st.dist[n - 1]++; st.cur = st.last === yd ? st.cur + 1 : 1; st.max = Math.max(st.max, st.cur); st.last = today(); } else { st.cur = 0; st.last = ''; }
+  newEv(); const xp = ws.win ? 70 - 10 * (n - 1) : 10; xpAdd(p, xp); chEv(p, 'parola'); passEv(p, 'parola');
+  const got = endLite(p, 'parola', ws.win ? 1 : 0, 1, ws.win, `Parola del giorno in ${n}/6`); ws.xp = xp; ws.pk = got;
+  setTimeout(() => { if (ws.win) { FX.play('goal'); FX.confetti(120); } else FX.play('ko'); }, 900);
+}
+function wordShare() {
+  const p = prof(), ws = wordState(p), ans = wdWord(wdNum()), em = { g: '🟩', y: '🟨', b: '⬜' };
+  shareText(`Fuoriclasse · Parola del giorno n. ${wdNum()} · ${ws.win ? ws.g.length : 'X'}/6\n\n${ws.g.map(g => wdScore(g, ans).map(s => em[s]).join('')).join('\n')}\n\nGioca anche tu: ${SITE}`);
+}
+function shareText(t) {
+  if (navigator.share) return navigator.share({ text: t }).catch(() => {});
+  if (navigator.clipboard) return navigator.clipboard.writeText(t).then(() => toast('Risultato copiato: incollalo dove vuoi!')).catch(() => toast('Non riesco a copiare il risultato.'));
+  toast('Condivisione non disponibile su questo dispositivo.');
+}
+const tillMidnight = () => { const n = new Date(), m = new Date(n); m.setHours(24, 0, 0, 0); const s = Math.max(0, (m - n) / 1000); return `${Math.floor(s / 3600)} h ${Math.floor(s % 3600 / 60)} min`; };
+V.parola = () => {
+  const p = prof(), ws = wordState(p), n = wdNum(), ans = wdWord(n), cur = UI.wcur || '', st = Object.assign({ pl: 0, w: 0, cur: 0, max: 0, dist: [0, 0, 0, 0, 0, 0] }, p.wds);
+  const rows = []; for (let r = 0; r < 6; r++) {
+    const g = ws.g[r];
+    if (g) { const sc = wdScore(g, ans), fl = UI.wflip && r === ws.g.length - 1; rows.push(`<div class="wrow ${fl ? 'flip' : ''}">${[...g].map((c, i) => `<span class="wt ${sc[i]}" style="--d:${i * 0.13}s">${c}</span>`).join('')}</div>`); }
+    else if (r === ws.g.length && !ws.done) rows.push(`<div class="wrow cur">${[0, 1, 2, 3, 4].map(i => `<span class="wt ${cur[i] ? 'f' : ''}">${cur[i] || ''}</span>`).join('')}</div>`);
+    else rows.push(`<div class="wrow">${'<span class="wt"></span>'.repeat(5)}</div>`);
+  }
+  const ks = {}; ws.g.forEach(g => wdScore(g, ans).forEach((s, i) => { const c = g[i], o = ks[c]; if (s === 'g' || (s === 'y' && o !== 'g') || (s === 'b' && !o)) ks[c] = s; }));
+  const kb = ['qwertyuiop', 'asdfghjkl', '>zxcvbnm<'].map(r => `<div class="kbr">${[...r].map(c => c === '>' ? '<button class="kk wide" data-a="wk" data-k="enter">Invio</button>' : c === '<' ? '<button class="kk wide" data-a="wk" data-k="back" aria-label="Cancella"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M21 5H8l-6 7 6 7h13z"/><path d="M12 9l6 6M18 9l-6 6"/></svg></button>' : `<button class="kk ${ks[c] || ''}" data-a="wk" data-k="${c}">${c}</button>`).join('')}</div>`).join('');
+  const mx = Math.max(1, ...st.dist);
+  const end = ws.done ? `<div class="panel wend"><h2>${ws.win ? ['Al primo colpo!', 'Fenomenale!', 'Bravissimo!', 'Ottimo!', 'Ce l\'hai fatta!', 'Per un pelo!'][ws.g.length - 1] : 'Peccato!'}</h2>
+    <p style="margin:0">La parola era <b class="wans">${ans.toUpperCase()}</b>.${ws.xp ? ` +${ws.xp} XP${ws.pk ? ' e una bustina' : ''}.` : ''}</p>
+    <div class="wstats">${[[st.pl, 'giocate'], [st.pl ? pct(st.w, st.pl) + '%' : '—', 'vinte'], [st.cur, 'serie attuale'], [st.max, 'serie record']].map(([b, s]) => `<div><b>${b}</b><span>${s}</span></div>`).join('')}</div>
+    <div class="wdist">${st.dist.map((v, i) => `<div><span>${i + 1}</span><i style="width:${Math.max(8, v / mx * 100)}%" class="${ws.win && ws.g.length === i + 1 ? 'me' : ''}">${v}</i></div>`).join('')}</div>
+    <button class="btn" data-a="wshare">Condividi il risultato</button><p class="small muted" style="margin:0">Nuova parola tra ${tillMidnight()}.</p></div>` : '';
+  return `<div class="wrap">${topBar('La parola del giorno', 'gioca', `<span class="chip">n. ${n}</span>`)}
+  <div class="wordle">${!ws.g.length ? '<p class="small muted wintro">Indovina la parola di 5 lettere in 6 tentativi. <b class="lg">Verde</b>: lettera giusta al posto giusto. <b class="ly">Giallo</b>: la lettera c\'è, ma in un altro posto. Grigio: non c\'è. Le lettere accentate valgono come normali.</p>' : ''}
+  <div class="wgrid">${rows.join('')}</div>${end}${ws.done ? '' : `<div class="kb">${kb}</div>`}<p class="small muted" style="margin:0;text-align:center;font-size:.72rem">Dizionario: Morph-it! di M. Baroni ed E. Zanchetta (Università di Bologna), licenza CC BY-SA 2.0.</p></div></div>`;
+};
+
+// --- Il conto giusto (stile Countdown) e «Fai 24»
+function startConto(kind) {
+  const p = prof(), lv = p.contoLv || 1, rounds = kind === '24' ? Array.from({ length: 5 }, make24) : Array.from({ length: 3 }, () => makeConto(lv));
+  const c = { kind, lv, rounds, i: 0, res: [] }; cgInit(c); newEv(); FX.play('whistle');
+  go('conto', { cg: c }); cgTimer();
+}
+function cgInit(c, keepTime) { const r = c.rounds[c.i]; c.tiles = r.nums.map((v, k) => ({ v, id: k })); c.nid = r.nums.length; c.sel = null; c.op = null; c.hist = []; if (!keepTime) { c.over = false; c.T = 90; c.t0 = Date.now(); } }
+function cgTimer() { stopTimer(); timer = setInterval(() => { const c = UI.cg; if (!c || UI.s !== 'conto' || c.over) return stopTimer(); const left = Math.max(0, c.T - (Date.now() - c.t0) / 1000), el = document.getElementById('cclock'); if (el) { el.querySelector('b').textContent = Math.ceil(left) + '"'; el.querySelector('i').style.width = (left / c.T * 100) + '%'; el.classList.toggle('low', left < 15); } if (left <= 0) cgStop(true); }, 250); }
+function cgOp(o) { const c = UI.cg; if (!c || c.over) return; if (c.sel == null) { toast('Prima tocca un numero'); return; } c.op = c.op === o ? null : o; FX.play('tap'); render(); }
+function cgTap(id) {
+  const c = UI.cg; if (!c || c.over) return; const t = c.tiles.find(x => x.id === id); if (!t) return;
+  if (c.sel == null || c.op == null || t.id === c.sel) { c.sel = c.sel === t.id ? null : t.id; c.op = null; FX.play('tap'); render(); return; }
+  const a = c.tiles.find(x => x.id === c.sel), o = c.op; let v;
+  if (o === '+') v = a.v + t.v; else if (o === '×') v = a.v * t.v; else if (o === '−') v = a.v - t.v; else v = a.v / t.v;
+  if (o === '−' && v <= 0) { toast('Il risultato deve essere positivo: prova a invertire i numeri'); FX.play('ko'); return; }
+  if (o === '÷' && !Number.isInteger(v)) { toast('La divisione deve dare un numero intero'); FX.play('ko'); return; }
+  c.hist.push({ tiles: c.tiles.slice(), line: `${fmtI(a.v)} ${o} ${fmtI(t.v)} = ${fmtI(v)}` });
+  const nt = { v, id: c.nid++, made: true }, ia = c.tiles.indexOf(a); c.tiles = c.tiles.filter(x => x !== t); c.tiles[c.tiles.indexOf(a)] = nt; void ia;
+  c.sel = nt.id; c.op = null; FX.play('ok');
+  const r = c.rounds[c.i];
+  if (v === r.target && (!r.all || c.tiles.length === 1)) return cgStop(false);
+  if (r.all && c.tiles.length === 1) toast(`Fa ${fmtI(v)}, non 24: annulla e riprova`);
+  render();
+}
+const fmtI = n => Number(n).toLocaleString('it-IT');
+function cgStop(timeUp) {
+  const c = UI.cg; if (!c || c.over) return; c.over = true; stopTimer();
+  const r = c.rounds[c.i]; let res;
+  if (r.all) { const ok = c.tiles.length === 1 && c.tiles[0].v === 24; res = { ok, pts: ok ? 10 : 0 }; }
+  else { const best = c.tiles.reduce((b, t) => Math.abs(t.v - r.target) < Math.abs(b.v - r.target) ? t : b, c.tiles[0]), d = Math.abs(best.v - r.target); res = { ok: d === 0, best: best.v, d, pts: d === 0 ? 10 : d <= 5 ? 7 : d <= 10 ? 5 : 0 }; }
+  res.time = timeUp; c.res.push(res);
+  FX.play(res.ok ? 'goal' : res.pts ? 'ok' : 'ko'); if (res.ok) FX.confetti(60); render();
+}
+function cgNext() {
+  const c = UI.cg; if (!c || !c.over) return;
+  if (c.i < c.rounds.length - 1) { c.i++; cgInit(c); render(); cgTimer(); return; }
+  const p = prof(), exact = c.res.filter(r => r.ok).length, pts = c.res.reduce((a, r) => a + r.pts, 0), is24 = c.kind === '24', notes = [];
+  const hit = is24 ? exact >= 3 : exact >= 2, xp = Math.max(10, is24 ? exact * 15 : pts * 3);
+  xpAdd(p, xp); for (let k = 0; k < exact; k++) { chEv(p, is24 ? 'p24' : 'conto'); passEv(p, is24 ? 'p24' : 'conto'); }
+  if (!is24 && exact === 3 && (p.contoLv || 1) < 3) { p.contoLv = (p.contoLv || 1) + 1; notes.push(`Livello ${p.contoLv} sbloccato: numeri più grandi!`); }
+  const k = is24 ? '24' : 'conto:' + c.lv; p.contoBest = Object.assign({}, p.contoBest); if (!(p.contoBest[k] >= pts)) { if (p.contoBest[k] !== undefined) notes.push('Nuovo record!'); p.contoBest[k] = pts; }
+  const got = endLite(p, is24 ? 'fai24' : 'conto', exact, c.rounds.length, hit, is24 ? `Fai 24: ${exact}/5` : `Il conto giusto: ${pts} punti`);
+  c.end = { exact, pts, xp, got, notes, hit }; FX.play(hit ? 'trophy' : 'final'); if (hit) FX.confetti(120); render();
+}
+V.conto = () => {
+  const p = prof(), c = UI.cg; if (!c) return V.gioca();
+  const is24 = c.kind === '24', N = c.rounds.length, title = is24 ? 'Fai 24' : 'Il conto giusto';
+  if (c.end) { const e = c.end; return `<div class="wrap">${topBar(title, 'gioca', packChip(p))}<div class="result"><span class="eyebrow">${title}</span><div class="big">${is24 ? `${e.exact} su 5` : `${e.pts} punti`}</div>
+    <p>${is24 ? (e.exact >= 4 ? 'Calcolatrice umana!' : e.exact >= 3 ? 'Ottimo colpo d\'occhio.' : 'Il 24 si nasconde: guarda bene le soluzioni.') : `Conti esatti: ${e.exact} su 3. ${e.exact === 3 ? 'Perfetto!' : e.exact ? 'Bel lavoro.' : 'Avvicinati il più possibile: anche lo scarto vale punti.'}`}</p>
+    ${e.notes.map(n => `<span class="chip hot">${n}</span>`).join('')}${e.got ? `<div class="reward">${miniPack()}<b style="font-family:var(--display);font-size:1.6rem">+1 bustina</b></div>` : `<p class="muted">${is24 ? 'Risolvine almeno 3 su 5' : 'Fai almeno 2 conti esatti'} per vincere una bustina.</p>`}
+    <div class="xpres"><b class="xpg">+${e.xp} XP</b></div>
+    <div class="row" style="justify-content:center">${p.packs ? '<button class="btn" data-a="nav" data-to="pack">Apri bustina</button>' : ''}<button class="btn ghost" data-a="cgstart" data-k="${c.kind}">Gioca ancora</button></div>
+    <button class="link" data-a="nav" data-to="gioca">Altri giochi</button></div></div>`; }
+  const r = c.rounds[c.i], res = c.over ? c.res[c.i] : null;
+  const tiles = c.tiles.map(t => `<button class="ctile ${t.id === c.sel ? 'sel' : ''} ${t.made ? 'made' : ''} ${t.v === r.target ? 'hit' : ''}" data-a="cgtile" data-id="${t.id}" ${c.over ? 'disabled' : ''}>${fmtI(t.v)}</button>`).join('');
+  const ops = ['+', '−', '×', '÷'].map(o => `<button class="cop ${c.op === o ? 'on' : ''}" data-a="cgop" data-o="${o}" ${c.over ? 'disabled' : ''} aria-label="${{ '+': 'più', '−': 'meno', '×': 'per', '÷': 'diviso' }[o]}">${o}</button>`).join('');
+  const left = Math.max(0, c.T - (Date.now() - c.t0) / 1000);
+  return `<div class="wrap">${playBar(title, 'gioca', `<span class="chip">${is24 ? 'Sfida' : 'Conto'} ${c.i + 1} di ${N}</span>`)}
+  <div class="qwrap conto">
+    <div class="ctarget"><small>${is24 ? 'Usa tutti e 4 i numeri' : 'Obiettivo'}</small><b>${fmtI(r.target)}</b></div>
+    <div class="clock ${left < 15 ? 'low' : ''}" id="cclock"><b>${Math.ceil(c.over ? 0 : left)}"</b><div class="bar"><i style="width:${c.over ? 0 : left / c.T * 100}%"></i></div></div>
+    <div class="ctiles">${tiles}</div>
+    <div class="cops">${ops}</div>
+    <p class="small muted chint">${c.over ? '' : c.sel == null ? 'Tocca un numero, poi un\'operazione, poi un altro numero.' : c.op == null ? 'Ora scegli l\'operazione.' : 'Ora tocca il secondo numero.'}</p>
+    ${c.hist.length ? `<div class="chist">${c.hist.map(h => `<span>${h.line}</span>`).join('')}</div>` : ''}
+    ${c.over ? `<div class="fb ${res.ok ? 'ok' : ''}"><h3>${res.ok ? (is24 ? 'Fatto 24!' : 'Esatto! +10 punti') : is24 ? (res.time ? 'Tempo scaduto' : 'Saltata') : res.pts ? `Scarto di ${res.d}: +${res.pts} punti` : res.time ? 'Tempo scaduto' : `Scarto di ${res.d}: 0 punti`}</h3>
+      <div>${is24 ? '' : `Il tuo numero: <b>${fmtI(res.best)}</b>. `}Una soluzione: <b>${r.sol} = ${fmtI(r.target)}</b></div>
+      <div class="row" style="margin-top:12px"><button class="btn wide" data-a="cgnext" style="flex:1">${c.i < N - 1 ? (is24 ? 'Prossima sfida' : 'Prossimo conto') : 'Vedi il risultato'}</button></div></div>`
+    : `<div class="row cctl"><button class="btn ghost sm" data-a="cgundo" ${c.hist.length ? '' : 'disabled'}>Annulla</button><button class="btn ghost sm" data-a="cgreset" ${c.hist.length ? '' : 'disabled'}>Ricomincia</button><span class="spacer"></span><button class="btn sm" data-a="cgstop">${is24 ? 'Salta' : 'Consegna'}</button></div>
+      <p class="small muted" style="margin:0">${is24 ? 'Ogni numero va usato una volta sola. Solo risultati interi e positivi.' : 'Non serve usare tutti i numeri. Esatto: 10 punti; scarto fino a 5: 7 punti; fino a 10: 5 punti. «Consegna» prende il numero più vicino che hai sul tavolo.'}</p>`}
+  </div></div>`;
+};
+
 /* ---------- Tour del Gallo (primo accesso) e suggerimenti alla prima visita di una sezione ---------- */
 const TOUR = [
   ['campo', 'Questa è la pagina di <b>Oggi</b>', 'Il pulsante grande ti dice sempre la prossima cosa da fare. Qui trovi anche le sfide del giorno.'],
-  ['gioca', 'Tocca qui per <b>giocare</b>', 'Allenamenti sulle materie, partite e Coppa, minigiochi e geografia: tutti i giochi sono qui.'],
+  ['gioca', 'Tocca qui per <b>giocare</b>', p => isAd(p) ? 'Logica, Parola del giorno, Il conto giusto, geografia e Coppa: tutti i giochi sono qui.' : 'Allenamenti sulle materie, partite e Coppa, minigiochi e geografia: tutti i giochi sono qui.'],
   ['album', 'Qui trovi le <b>figurine</b>', 'Apri le bustine, completa l\'album, scambia le doppie e scegli il retro delle tue figurine.'],
   ['pass', 'Il <b>Pass</b> della stagione', 'Ogni mese una stagione nuova con premi esclusivi. Tutto si guadagna giocando.']
 ];
 const HINTS = {
-  gioca: 'Le sfide di oggi ti dicono da dove partire. Ogni argomento ha 3 livelli: rispondi bene e sali!',
+  gioca: p => isAd(p) ? 'Inizia dalla Logica mista o dalla Parola del giorno: è uguale per tutti, sfida i tuoi amici!' : 'Le sfide di oggi ti dicono da dove partire. Ogni argomento ha 3 livelli: rispondi bene e sali!',
   album: 'Tocca una figurina per girarla e leggere la curiosità. Con le doppie fai calciomercato.',
   pass: 'Completa le missioni per salire di livello: ai livelli 15 e 30 ci sono le figurine esclusive del mese.',
   me: 'Questa è la tua carta giocatore: cresce con le risposte giuste. Da Personalizza cambi il tuo aspetto.',
@@ -6627,7 +7124,7 @@ function tourDraw() {
   const t = document.querySelector(`.bnav [data-to="${st[0]}"]`); if (!t) return;
   const r = t.getBoundingClientRect(), pad = 6, o = document.createElement('div'); o.id = 'tour'; o.className = 'tour'; o.setAttribute('role', 'dialog'); o.setAttribute('aria-label', 'Guida');
   o.innerHTML = `<div class="tspot" style="left:${r.left - pad}px;top:${r.top - pad}px;width:${r.width + pad * 2}px;height:${r.height + pad * 2}px"></div>
-  <div class="tbub">${GALLO()}<div><span class="eyebrow">Il Gallo ti guida · ${i + 1}/${TOUR.length}</span><h3>${st[1]}</h3><p>${st[2]}</p>
+  <div class="tbub">${GALLO()}<div><span class="eyebrow">Il Gallo ti guida · ${i + 1}/${TOUR.length}</span><h3>${st[1]}</h3><p>${typeof st[2] === 'function' ? st[2](prof()) : st[2]}</p>
   <div class="row"><button class="link" data-a="tourx">Salta</button><span class="spacer"></span><button class="btn sm" data-a="tourn">${i === TOUR.length - 1 ? 'Iniziamo!' : 'Avanti'}</button></div></div></div>`;
   document.body.appendChild(o);
   const b = o.querySelector('.tbub'), bw = b.offsetWidth, bh = b.offsetHeight, side = r.left < 120 && r.top > 60 && r.width < 140 && innerWidth > 700;
@@ -6638,7 +7135,7 @@ addEventListener('resize', () => { if (UI.tour != null) tourDraw(); });
 function hintHTML(p) {
   const k = UI.s; if (!p || !p.tour || UI.tour != null || !HINTS[k]) return '';
   p.hints = p.hints || {}; if (!p.hints[k]) { p.hints[k] = 1; save(); UI.hint = k; }
-  return UI.hint === k ? `<div class="ghint" role="status">${GALLO()}<p>${HINTS[k]}</p><button class="btn sm" data-a="hintok">Ho capito</button></div>` : '';
+  return UI.hint === k ? `<div class="ghint" role="status">${GALLO()}<p>${typeof HINTS[k] === 'function' ? HINTS[k](p) : HINTS[k]}</p><button class="btn sm" data-a="hintok">Ho capito</button></div>` : '';
 }
 
 function render() {
@@ -6690,6 +7187,14 @@ const A = {
   wskip: () => { const p = prof(); p.onb = 1; save(); go('campo'); },
   stool: d => { const p = DB.profiles.find(x => x.id === UI.sid); p[d.k] = !p[d.k]; save(); render(); },
   review: () => startReview(),
+  setcat: d => { const p = DB.profiles.find(x => x.id === UI.sid); if (!p) return; if (d.v === 'adulti') p.cat = 'adulti'; else { delete p.cat; p.cls = +d.v; } p.ch = null; if (p.pass) p.pass.wk = ''; save(); toast(`${p.nick}: comparto ${clsLabel(p)}.`); render(); },
+  logstart: d => startLogica(d.t || null),
+  cgstart: d => startConto(d.k),
+  cgtile: d => cgTap(+d.id), cgop: d => cgOp(d.o),
+  cgundo: () => { const c = UI.cg; if (!c || c.over || !c.hist.length) return; c.tiles = c.hist.pop().tiles; c.sel = null; c.op = null; FX.play('tap'); render(); },
+  cgreset: () => { const c = UI.cg; if (!c || c.over) return; cgInit(c, true); FX.play('tap'); render(); },
+  cgstop: () => cgStop(false), cgnext: () => cgNext(),
+  wk: d => wordKey(d.k), wshare: () => wordShare(),
   bksel: d => { UI.bk = d.id; FX.play('flip'); render(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
   bkuse: d => { const p = prof(), b = BACK_BY[d.id]; if (!b || !backOk(p, b)) return; p.back = b.id; save(); FX.play('coin'); toast(`Retro «${b.t}» scelto: lo vedrai aprendo le bustine.`); render(); },
   hintok: () => { UI.hint = null; const h = document.querySelector('.ghint'); if (h) h.remove(); },
@@ -6708,10 +7213,10 @@ const A = {
   fmset: d => fmSet(d.id),
   fmplay: () => startMatch(),
   lvset: d => { const p = DB.profiles.find(x => x.id === UI.sid); ensure(p); const t = TOPIC[d.k], e = p.lv[d.k] = p.lv[d.k] || { l: 1, h: '' }; e.l = Math.max(1, Math.min(t.max, e.l + +d.v)); e.h = ''; save(); render(); },
-  nav: d => { const to = d.to; if (['campo', 'gioca', 'retri', 'recap', 'album', 'pack', 'mercato', 'code', 'trofei', 'formazione', 'coppa', 'duelsetup', 'me', 'carriera', 'avatar', 'welcome', 'pass', 'mgpick', 'geo'].includes(to) && !prof()) return go('home'); if (to === 'reports' && !UI.auth) return go('pin'); if (to === 'tutor' || to === 'settings') { if (!UI.auth) return go('pin'); return go(to, { auth: true }); } go(to, { auth: UI.auth }); },
+  nav: d => { const to = d.to; if (['parola', 'conto', 'campo', 'gioca', 'retri', 'recap', 'album', 'pack', 'mercato', 'code', 'trofei', 'formazione', 'coppa', 'duelsetup', 'me', 'carriera', 'avatar', 'welcome', 'pass', 'mgpick', 'geo'].includes(to) && !prof()) return go('home'); if (to === 'reports' && !UI.auth) return go('pin'); if (to === 'tutor' || to === 'settings') { if (!UI.auth) return go('pin'); return go(to, { auth: true }); } go(to, { auth: UI.auth }); },
   pick: d => { UI.pid = d.id; const p = prof(); p.last = today(); save(); go('campo'); FX.play('tap'); },
   form: d => { const f = UI.form, n = $('#nick'); if (n) f.nick = n.value; f[d.k] = d.k === 'cls' ? +d.v : d.v; render(); },
-  create: () => { const f = UI.form, n = $('#nick'); if (n) f.nick = n.value; const nick = (f.nick || '').trim(); if (!nick) { f.tab = 'chi'; render(); toast('Scrivi il tuo soprannome.'); const m = $('#nick'); if (m) m.focus(); return; } const p = newProfile(nick, f.cls, f.av.shirt); p.av = f.av; DB.profiles.push(p); save(); UI.pid = p.id; go('welcome', { w: 0 }); FX.play('whistle'); },
+  create: () => { const f = UI.form, n = $('#nick'); if (n) f.nick = n.value; const nick = (f.nick || '').trim(); if (!nick) { f.tab = 'chi'; render(); toast('Scrivi il tuo soprannome.'); const m = $('#nick'); if (m) m.focus(); return; } const p = newProfile(nick, f.cat === 'adulti' ? 3 : f.cls, f.av.shirt); p.av = f.av; if (f.cat === 'adulti') { p.cat = 'adulti'; p.onb = 1; } DB.profiles.push(p); save(); UI.pid = p.id; if (p.cat) go('campo'); else go('welcome', { w: 0 }); FX.play('whistle'); },
   avset: d => avSet(d.k, d.v),
   vtpick: d => { const t = UI.vt, i = +d.i; if (i === VAR_EX.wrong) { t.sel = i; FX.play('ok'); FX.confetti(50); } else { if (!t.miss.includes(i)) t.miss.push(i); FX.play('ko'); } render(); },
   vartutok: () => { const p = prof(); p.tut = Object.assign({}, p.tut, { var: 1 }); save(); go('varpick'); },
@@ -6735,7 +7240,7 @@ const A = {
   mission: d => { const m = prof().missions.find(x => x.id === d.id); if (!m) return; if (m.mode === 'allenamento') return startDeck(m.key, m.id); startGame(m.mode, m.subj, m.key, m.id); },
   ans: d => answer(+d.i),
   next: () => nextQ(),
-  replay: () => { const r = UI.r.replay; if (r.scope) return startGeo(r.gmode || (r.mode === 'geomap' ? 'mappa' : 'dove'), r.scope); if (GAMES[r.mode]) return startMg(r.mode, r.subj); if (r.mode === 'allenamento') return startDeck(r.deck); startGame(r.mode, r.subj, r.key); },
+  replay: () => { const r = UI.r.replay; if (r.mode === 'logica') return startLogica(r.key === 'log-mix' ? null : r.key.slice(4)); if (r.scope) return startGeo(r.gmode || (r.mode === 'geomap' ? 'mappa' : 'dove'), r.scope); if (GAMES[r.mode]) return startMg(r.mode, r.subj); if (r.mode === 'allenamento') return startDeck(r.deck); startGame(r.mode, r.subj, r.key); },
   deck: d => startDeck(d.k),
   tear: () => pkTear(),
   pkkind: d => { UI.pk = { stage: 'sealed', kind: d.k }; UI.fcfirst = d.k === 'fc'; FX.play('tap'); render(); },
@@ -6788,6 +7293,7 @@ document.addEventListener('input', e => { if (e.target.id === 'nick' && UI.form)
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && !$('#modal').hidden) return A.close();
   if (!$('#modal').hidden) return;
+  if (UI.s === 'parola' && !e.ctrlKey && !e.metaKey && !e.altKey) { const k = e.key === 'Enter' ? 'enter' : e.key === 'Backspace' ? 'back' : wnorm(e.key); if (k === 'enter' || k === 'back' || /^[a-z]$/.test(k)) { e.preventDefault(); wordKey(k); } return; }
   if (UI.s === 'duel' && UI.d && e.key === 'Enter' && document.querySelector('[data-a="dnext"],[data-a="dready"]')) { e.preventDefault(); return UI.d.step === 'reveal' ? duelNext() : duelReady(); }
   if (UI.s === 'duel' && UI.d && UI.d.step === 'q' && /^[1-4a-dA-D]$/.test(e.key)) return duelAns('1234'.includes(e.key) ? +e.key - 1 : 'abcd'.indexOf(e.key.toLowerCase()));
   if (UI.s === 'play' && UI.g && (UI.g.mode === 'geomap' || UI.g.mode === 'geodove')) { if (e.key === 'Enter') { const b = document.querySelector('[data-a="gdconf"]:not([disabled]),[data-a="gdnext"]'); if (b) { e.preventDefault(); b.click(); } } else if (e.key === '+' || e.key === '-') geoZoom(e.key === '+' ? 1 : -1); return; }
