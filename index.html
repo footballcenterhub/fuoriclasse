@@ -1519,37 +1519,43 @@ body[data-c=ad] .hud-av{box-shadow:0 0 0 2px var(--accent)}
 /* ---------- GIOCA ---------- */
 .ghead{display:flex;align-items:center;flex-wrap:wrap;gap:var(--sp-2) var(--sp-3);padding:var(--sp-3) 0}
 .ghead h1{flex:1;font-size:var(--fs-xl);text-transform:uppercase;letter-spacing:.02em}
-/* «Riprendi»: l'ultimo gioco, con un tocco */
-.rip{display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:var(--sp-3);align-items:center;width:100%;margin-bottom:var(--sp-2);padding:12px 14px;border:0;border-radius:var(--r-l);text-align:left;color:var(--hero-ink);
+/* «Riprendi»: l'ultimo gioco, con un tocco; a sinistra il disegno del gioco */
+.rip{display:grid;grid-template-columns:auto minmax(0,1fr) 48px;gap:var(--sp-3);align-items:center;width:100%;margin-bottom:var(--sp-2);padding:12px 14px 12px 12px;border:0;border-radius:var(--r-l);text-align:left;color:var(--hero-ink);
   background:repeating-linear-gradient(90deg,var(--grass) 0 54px,var(--grass-2) 54px 108px);clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%);transition:transform var(--t-1)}
 .rip:active{transform:translateY(2px)}
 .rip:focus-visible{outline:3px solid var(--focus);outline-offset:-6px}
-.rip-ic{width:48px;height:48px;display:grid;place-items:center;border-radius:var(--r-s);background:rgba(255,255,255,.16)}
-.rip-ic .ic{width:26px;height:26px}
+.rip-art{display:block;width:92px;aspect-ratio:12/7;border-radius:var(--r-s);overflow:hidden;box-shadow:0 0 0 2px rgba(255,255,255,.45),0 4px 10px rgba(0,0,0,.3)}
+.rip-art svg{display:block;width:100%;height:100%}
+@media (max-width:380px){.rip-art{width:72px}}
 .rip-t{display:grid;gap:2px;min-width:0}
 .rip-t b{font-family:var(--display);font-weight:800;font-size:var(--fs-l);line-height:1.05;text-transform:uppercase;letter-spacing:.02em}
 .rip-t small{font-size:var(--fs-s);line-height:1.3}
 .rip-go{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);box-shadow:var(--glow)}
 .rip-go .ic{width:22px;height:22px;fill:currentColor;margin-left:3px}
 body[data-c=ad] .rip{background:linear-gradient(120deg,#1a2a48,#101a2d);border-bottom:3px solid var(--accent);color:var(--ink)}
-body[data-c=ad] .rip-ic{background:var(--surface-3);color:var(--accent)}
-/* schede: restano in alto mentre si scorre */
-.gtabs{display:flex;gap:6px;overflow-x:auto;margin:0 -16px var(--sp-2);padding:8px 16px;scrollbar-width:none}
+body[data-c=ad] .rip-art{box-shadow:0 0 0 2px var(--line-strong)}
+/* schede: icona sopra il nome, tutte larghe uguali (sul telefono si vedono tutte e 4; con 6 si scorre un poco); restano in alto mentre si scorre */
+.gtabs{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(max-content,1fr);gap:6px;overflow-x:auto;margin:0 -16px var(--sp-2);padding:8px 16px;scrollbar-width:none}
 @media (max-width:759px){.gtabs{position:sticky;top:0;z-index:15;background:var(--bg);box-shadow:0 1px 0 var(--line)}}
 .gtabs::-webkit-scrollbar{display:none}
-.gtabs button{position:relative;flex:none;min-height:44px;padding:0 16px;border-radius:var(--r-pill);border:1px solid rgba(242,246,255,.16);background:var(--surface);color:var(--ink-2);font-weight:700;font-size:var(--fs-s);white-space:nowrap}
+@media (min-width:760px){.gtabs{grid-auto-columns:minmax(112px,max-content);justify-content:start}}
+.gtabs button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:56px;min-width:72px;padding:6px 10px;border-radius:var(--r-m);border:1px solid rgba(242,246,255,.16);background:var(--surface);color:var(--ink-2);font-weight:700;font-size:var(--fs-xs);line-height:1.1;white-space:nowrap}
+.gtabs button .ic{width:22px;height:22px;flex:none}
 .gtabs button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:transparent}
 .gtabs .dot{position:absolute;top:6px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--ko)}
 .gscope{display:flex;width:max-content;max-width:100%;margin-bottom:var(--sp-3)}
-/* tessera di gioco: una sola forma per tutti i giochi */
-.gtiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.gtile{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-width:0;min-height:150px;padding:12px;border:1px solid var(--line);border-radius:var(--r-l);background:var(--surface);color:var(--ink);text-align:left;
+/* tessera di gioco: il disegno grande dice subito cosa si fa, sotto nome e una riga */
+.gtiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.gtile{position:relative;display:flex;flex-direction:column;min-width:0;padding:0;overflow:hidden;border:1px solid var(--line);border-radius:var(--r-l);background:var(--surface);color:var(--ink);text-align:left;
   clip-path:polygon(0 0,calc(100% - var(--cut)) 0,100% var(--cut),100% 100%,0 100%);transition:transform var(--t-1),border-color var(--t-1)}
 .gtile:active{transform:translateY(2px)}
 .gtile:focus-visible{outline:3px solid var(--focus);outline-offset:-4px}
-@media (hover:hover){.gtile:hover{border-color:var(--line-strong)}.gtile:hover .gt-ic{background:var(--surface-3)}}
-.gt-ic{width:48px;height:48px;flex:none;display:grid;place-items:center;background:var(--surface-2);color:var(--accent);clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%)}
-.gt-ic .ic{width:26px;height:26px}
+@media (hover:hover){.gtile:hover{border-color:var(--accent)}.gtile:hover .gt-art svg{transform:scale(1.04)}}
+.gt-art{position:relative;display:block;aspect-ratio:12/7;overflow:hidden;background:var(--surface-2)}
+.gt-art svg{display:block;width:100%;height:100%;transition:transform var(--t-2) var(--ease)}
+/* luce dei riflettori dall'alto e un po' d'ombra in basso: tutti i disegni sembrano della stessa serie */
+.gt-art::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 60% at 50% -14%,rgba(255,246,210,.2),transparent 70%),linear-gradient(180deg,transparent 58%,rgba(5,9,18,.38))}
+.gt-b{display:flex;flex-direction:column;align-items:flex-start;gap:4px;flex:1;min-width:0;padding:10px 12px 12px}
 .gtile b{font-family:var(--display);font-weight:800;font-size:var(--fs-l);line-height:1.05;text-transform:uppercase;letter-spacing:.02em;overflow-wrap:anywhere}
 .gtile small{flex:1;font-size:var(--fs-xs);line-height:1.35;color:var(--ink-2)}
 .gt-meta{display:flex;align-items:center;gap:6px;font-size:var(--fs-xs);font-weight:700}
@@ -1557,13 +1563,17 @@ body[data-c=ad] .rip-ic{background:var(--surface-3);color:var(--accent)}
 .dia{display:inline-flex;gap:5px;padding-left:2px}
 .dia i{width:9px;height:9px;transform:rotate(45deg);border:2px solid currentColor;border-radius:1px}
 .dia i.on{background:currentColor}
-.gt-tag{position:absolute;top:10px;right:18px;padding:2px 9px;border-radius:var(--r-pill);font-size:var(--fs-xs);font-weight:800;line-height:1.4;background:var(--surface-3);color:var(--ink)}
+.gt-tag{position:absolute;top:8px;right:8px;padding:2px 9px;border-radius:var(--r-pill);font-size:var(--fs-xs);font-weight:800;line-height:1.4;background:var(--surface-3);color:var(--ink);box-shadow:0 2px 6px rgba(0,0,0,.4)}
 .gt-tag.hot{background:var(--accent);color:var(--accent-ink)} .gt-tag.ok{background:var(--ok);color:var(--ok-ink)}
-.gtile.quiet .gt-ic{color:var(--ink-2)}
-.gtile.wide{grid-column:1/-1;display:grid;grid-template-columns:48px minmax(0,1fr);column-gap:12px;row-gap:2px;align-items:center;min-height:0;padding-right:100px}
-.gtile.wide .gt-ic{grid-row:1/3}
+.gtile.quiet .gt-art{opacity:.45}
+.gtile.quiet b{color:var(--ink-2)}
+/* tessera larga (fonte delle domande): disegno piccolo a sinistra */
+.gtile.wide{grid-column:1/-1;display:grid;grid-template-columns:96px minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px 12px 10px 10px}
+.gtile.wide .gt-art{border-radius:var(--r-s)}
+.gtile.wide .gt-b{padding:0}
 .gtile.wide b{font-size:var(--fs-m)}
-.gtile.wide .gt-tag{top:50%;transform:translateY(-50%)}
+.gtile.wide .gt-tag{position:static;box-shadow:none}
+@media (min-width:640px){.gtile.wide{grid-template-columns:150px minmax(0,1fr) auto}}
 .gtiles>.srcpick{grid-column:1/-1;margin:0}
 .srcpick{border-radius:var(--r-l)}
 .srcpick .chips{gap:8px}
@@ -1572,8 +1582,9 @@ body[data-c=ad] .rip-ic{background:var(--surface-3);color:var(--accent)}
 .srcpick .chips.sub button{min-height:44px;font-size:var(--fs-xs)}
 .gnote{margin:var(--sp-3) 2px 0;font-size:var(--fs-s);line-height:1.4;color:var(--ink-2)}
 .gnote.small{font-size:var(--fs-xs)}
-@media (min-width:640px){.gtiles{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (min-width:1100px){.gtiles{grid-template-columns:repeat(4,minmax(0,1fr))}.rip{max-width:600px}}
+@media (min-width:640px){.gtiles{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}}
+@media (min-width:1100px){.gtiles{grid-template-columns:repeat(4,minmax(0,1fr))}.rip{max-width:640px}}
+@media (prefers-reduced-motion:reduce){.gt-art svg{transition:none}.gtile:hover .gt-art svg{transform:none}}
 /* ---------- DOMANDA E RISPOSTA ---------- */
 .qsplit{display:grid;gap:var(--sp-3)}
 .qleft,.qright{display:grid;gap:var(--sp-3);align-content:start;min-width:0}
@@ -1773,6 +1784,28 @@ summary.small{min-height:44px;display:flex;align-items:center;cursor:pointer}
 .topic.mix{background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 60%,transparent)}
 .topic.mix b{color:var(--accent)}
 .topic.mix b::before{content:"▶  ";content:"▶  "/"";font-size:.8em}
+/* ---------- FLUIDITÀ ---------- */
+/* le figurine misurano le scritte sulla propria larghezza: nelle griglie non vanno «stirate» in altezza,
+   altrimenti il telefono ricalcola ogni figurina più volte a ogni scorrimento (album e calciomercato andavano a scatti) */
+.albumgrid,.pickgrid,.reveal{align-items:start}
+.albumgrid>button,.pickgrid>button{display:block;width:100%}
+.albumgrid .card,.pickgrid .card{width:100%}
+/* la barra in basso è già quasi opaca: la sfocatura dietro costava molto a ogni fotogramma mentre si scorre */
+.bnav{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(12,22,39,.98)}
+/* sfondo: un solo strato fisso (luci dei riflettori + bordi scuri) invece di due sovrapposti */
+body::after{content:none}
+body::before{background:radial-gradient(140% 95% at 50% 115%,transparent 55%,rgba(0,0,0,.5)),radial-gradient(60% 34% at 12% -4%,rgba(255,244,200,.14),transparent 70%),radial-gradient(60% 34% at 88% -4%,rgba(255,244,200,.14),transparent 70%),var(--bg)}
+body[data-c=ad]::before{background:radial-gradient(140% 95% at 50% 115%,transparent 55%,rgba(0,0,0,.5)),radial-gradient(90% 40% at 50% -12%,rgba(230,194,106,.07),transparent 70%),var(--bg)}
+/* riflessi animati: ridisegnano la figurina a ogni fotogramma. Negli elenchi lunghi (retri, calciomercato) restano fermi;
+   si muovono sul retro grande, sulla figurina aperta e, col mouse, su quella indicata */
+.lazyart{animation:none;background:#151d2e}
+.bkgrid .cardback::after,.bkgrid .cardback.holo::before,.pickgrid .card.r-olo .card-in::after,.pickgrid .card-name b{animation:none}
+@media (hover:hover){.bk:hover .cardback::after{animation:shine 3s linear infinite}.bk:hover .cardback.holo::before{animation:holo 4s ease-in-out infinite alternate}}
+/* segnaposto delle figurine non ancora disegnate: misura vicina a quella vera, così la pagina non «salta» mentre si scorre */
+@media (max-width:520px){.albumgrid>button,.albumgrid>.slot{contain-intrinsic-size:auto 156px}}
+.pickgrid>button{contain-intrinsic-size:auto 116px}
+/* «testo grande» sul telefono: se i tasti dell'intestazione non ci stanno vanno a capo (prima l'Album usciva dallo schermo di 12 px) */
+@media (max-width:440px){body.big .top{flex-wrap:wrap;row-gap:6px}body.big .top>.chip:last-child{margin-left:auto}}
 </style>
 <div id="boot" class="boot"><div><b>Fuoriclasse</b><p id="bootmsg">Caricamento in corso…</p>
 <p class="bh">Se resti fermo su questa schermata, il browser non sta facendo partire il gioco. Su iPhone succede quando il file si apre in <i>anteprima</i> (app File, WhatsApp, Mail, AirDrop): l'anteprima mostra la pagina ma non esegue i programmi. Apri il link del gioco con Safari.</p></div></div>
@@ -9849,6 +9882,11 @@ if (typeof module !== 'undefined' && module.exports) module.exports = api; else 
    Scrivere frasi brevi, che capisce un ragazzo di 11 anni. */
 (function (G) {
 const NOVITA = [
+  { v: '2026-10-10c', t: 'Gioca più chiaro, app più fluida', li: [
+    ['Gioca: ogni gioco ha di nuovo il suo disegno grande, così capisci subito cosa si fa.', ''],
+    ['Le schede di Gioca hanno ognuna la sua icona, e «Riprendi» mostra il disegno dell\'ultimo gioco.', ''],
+    ['Album, Retri e Calciomercato scorrono più lisci, anche sui telefoni meno potenti.', '']
+  ] },
   { v: '2026-10-10b', t: 'Fuoriclasse si rifà il look', li: [
     ['Grafica nuova in tutta l\'app, «Notte allo stadio»: più ordinata e più facile da leggere.', ''],
     ['Oggi: una sola cosa grande da fare, le sfide di oggi da toccare e il Pass in una barra.', ''],
@@ -10388,14 +10426,67 @@ V.campo = () => {
 };
 // --- Gioca (2A): «Riprendi» in alto, schede al posto della pagina lunga, una sola forma di tessera per tutti i giochi
 const GTAB = {}; let SRCOPEN = false;   // scheda aperta per ogni giocatore e scelta della fonte aperta (restano finché l'app è aperta)
-const MGIC = { collega: 'link', riordina: 'sort', completa: 'gap', fuorigioco: 'flag' };
 const MGS = { collega: 'Unisci le coppie giuste.', riordina: 'Metti i pezzi nell\'ordine giusto.', completa: 'Riempi gli spazi del testo.', fuorigioco: 'Giusta o sbagliata? 60 secondi.' };
-const GEOIC = { bandiere: 'flag', capitali: 'pin', mappa: 'map', dove: 'target' };
-const LIC = { sill: 'venn', seq: 'bars', menti: 'who', ded: 'grid', ana: 'swap', par: 'tree', cod: 'key', cal: 'cal' };
+// --- disegni dei giochi: una scena per gioco (120×70), si capisce a colpo d'occhio cosa si fa.
+// Stesso stile dell'Atlante (GEO_ICON) e dei minigiochi (MG_ICON): fondo notte colorato, forme piatte, colori del tema.
+const SAI = 'font-family="Saira Extra Condensed,sans-serif" font-weight="800" text-anchor="middle"';
+const GART = {
+  rigori: () => { let net = ''; for (let x = 32; x <= 88; x += 7) net += `M${x} 14V46`; for (let y = 19; y <= 43; y += 6) net += `M28 ${y}H92`; return `<svg viewBox="0 0 120 70" aria-hidden="true"><defs><linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#061a10"/><stop offset=".66" stop-color="#0f3a24"/><stop offset=".66" stop-color="#1e7d46"/><stop offset="1" stop-color="#13552f"/></linearGradient></defs><rect width="120" height="70" fill="url(#gA)"/><path d="M0 51h120M0 59h120" stroke="#2a9256" stroke-width="3" stroke-opacity=".5"/><path d="${net}" stroke="#e8f2ec" stroke-opacity=".22" stroke-width=".8"/><path d="M26 47V11h68v36" fill="none" stroke="#fff" stroke-width="3.4" stroke-linejoin="round"/><path d="M26 11l5 4h58l5-4" fill="none" stroke="#cfe3d6" stroke-opacity=".6"/><g transform="rotate(-24 72 30)"><rect x="62" y="25" width="22" height="10" rx="5" fill="#ffd84a"/><path d="M84 28l9-3M84 32l9 2" stroke="#ffd84a" stroke-width="3.4" stroke-linecap="round"/><circle cx="59" cy="30" r="4.6" fill="#3b2412"/></g><path d="M60 64Q50 44 42 23" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2.4" stroke-dasharray="2 3"/><circle cx="41" cy="21" r="5.4" fill="#fff"/><polygon points="41,18.2 43.6,20.1 42.6,23.1 39.4,23.1 38.4,20.1" fill="#0d1512"/><ellipse cx="60" cy="64" rx="5" ry="1.6" fill="#fff" fill-opacity=".7"/></svg>`; },
+  partita: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#05090c"/><rect x="8" y="7" width="104" height="50" rx="7" fill="#0d1712" stroke="#2c4437" stroke-width="1.5"/><text x="60" y="42" ${SAI} font-size="30" fill="#ffd84a" stroke="#ffd84a" stroke-opacity=".25" stroke-width="5">2 – 1</text><text x="60" y="42" ${SAI} font-size="30" fill="#ffd84a">2 – 1</text><rect x="18" y="15" width="16" height="10" rx="2" fill="#3ddc84"/><rect x="86" y="15" width="16" height="10" rx="2" fill="#ff6b5e"/><rect x="47" y="60" width="26" height="9" rx="4.5" fill="#ff6b5e"/><text x="60" y="67" ${SAI} font-size="8.5" fill="#fff">89'</text><circle cx="16" cy="63" r="2" fill="#fff8d0"/><circle cx="104" cy="63" r="2" fill="#fff8d0"/></svg>`,
+  var: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#1f1438"/><rect x="22" y="8" width="76" height="46" rx="5" fill="#07050d" stroke="#d6b0ff" stroke-width="2.6"/><path d="M33 20h34M33 30h46M33 40h28" stroke="#4e3f6e" stroke-width="4.5" stroke-linecap="round"/><rect x="29" y="25.5" width="54" height="9" rx="4.5" fill="none" stroke="#ff6b5e" stroke-width="1.6" stroke-dasharray="3 2"/><path d="M33 30h46" stroke="#ff6b5e" stroke-width="4.5" stroke-linecap="round"/><path d="M86 38l8 8-3 1 3 5-2 1-3-5-3 2z" fill="#fff"/><path d="M52 54v6h16v-6" fill="#1c1430"/><text x="60" y="68" ${SAI} font-size="9" fill="#d6b0ff" letter-spacing="2">VAR</text></svg>`,
+  allen: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#123526"/><ellipse cx="60" cy="62" rx="50" ry="5" fill="#000" fill-opacity=".2"/><g transform="rotate(-9 40 32)"><rect x="19" y="16" width="46" height="34" rx="6" fill="#000" fill-opacity=".25"/><rect x="17" y="13" width="46" height="34" rx="6" fill="#f6f8f4"/><text x="40" y="35" ${SAI} font-size="14" fill="#10241a">7×8</text></g><g transform="rotate(8 78 34)"><rect x="57" y="20" width="46" height="34" rx="6" fill="#000" fill-opacity=".25"/><rect x="55" y="17" width="46" height="34" rx="6" fill="#ffd84a"/><text x="78" y="39" ${SAI} font-size="14" fill="#1d1600">56</text></g><path d="M86 64h24l-12-28z" fill="#ff7a12"/><path d="M90.5 55h15M94 47h8" stroke="#fff" stroke-width="3"/><rect x="83" y="62" width="30" height="4" rx="1.5" fill="#d95a00"/></svg>`,
+  // Ripasso: la carta sbagliata torna e diventa giusta
+  ripasso: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#2b1a2e"/><g transform="rotate(-8 34 38)"><rect x="16" y="16" width="36" height="44" rx="5" fill="#e8f2ec"/><path d="M24 30h20M24 38h13M24 46h17" stroke="#9aa6b8" stroke-width="3" stroke-linecap="round"/><circle cx="49" cy="19" r="8" fill="#ff6b5e"/><path d="M46 16l6 6M52 16l-6 6" stroke="#2a0400" stroke-width="2.4" stroke-linecap="round"/></g><path d="M48 9Q66-3 82 12" fill="none" stroke="#ffd84a" stroke-width="2.6" stroke-dasharray="4 3" stroke-linecap="round"/><path d="M86 17L78 15L84 9z" fill="#ffd84a"/><g transform="rotate(7 86 40)"><rect x="68" y="18" width="36" height="44" rx="5" fill="#ffd84a"/><path d="M76 32h20M76 40h13M76 48h17" stroke="#9c7a06" stroke-width="3" stroke-linecap="round"/><circle cx="101" cy="21" r="8" fill="#3ddc84"/><path d="M97 21l3 3 5-6" stroke="#03240f" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></svg>`,
+  // Campionato / La mia formazione: la tua squadra (gialla) schierata in campo
+  camp: (() => { const me = [[10, 35], [24, 14], [24, 28], [24, 42], [24, 56], [40, 12], [40, 27], [40, 43], [40, 58], [54, 26], [54, 44]], op = [[108, 35], [94, 18], [94, 52], [84, 30], [84, 42]]; return `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#1a6e3e"/><path d="M0 0h12v70H0zM24 0h12v70H24zM48 0h12v70H48zM72 0h12v70H72zM96 0h12v70H96z" fill="#1e7d46"/><g stroke="#e9fff1" stroke-opacity=".6" fill="none" stroke-width="1.2"><rect x="4" y="4" width="112" height="62"/><path d="M60 4V66"/><circle cx="60" cy="35" r="9"/><rect x="4" y="20" width="14" height="30"/><rect x="102" y="20" width="14" height="30"/></g>${op.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="3.2" fill="#ff6b5e" stroke="#0a1220" stroke-width=".8"/>`).join('')}${me.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="3.6" fill="#ffd84a" stroke="#0a1220" stroke-width=".8"/>`).join('')}<circle cx="66" cy="35" r="2.6" fill="#fff" stroke="#0a1220" stroke-width=".6"/></svg>`; })(),
+  // Coppa: il trofeo sotto i riflettori
+  coppa: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#101c33"/><path d="M6 0l36 70H0V0zM114 0L78 70h42V0z" fill="#fff6c8" opacity=".07"/><path d="M44 10h32v13c0 11-7 18-16 18s-16-7-16-18z" fill="#ffd84a"/><path d="M60 10h16v13c0 11-7 18-16 18z" fill="#e0b21c"/><path d="M44 14h-7c0 9 4 13 9 14M76 14h7c0 9-4 13-9 14" stroke="#ffd84a" stroke-width="3" fill="none"/><path d="M60 16l2 4.2 4.6.6-3.4 3.2.9 4.6-4.1-2.3-4.1 2.3.9-4.6-3.4-3.2 4.6-.6z" fill="#fff6c8"/><rect x="56" y="41" width="8" height="8" fill="#e0b21c"/><rect x="48" y="48" width="24" height="6" rx="1.5" fill="#ffd84a"/><rect x="44" y="54" width="32" height="8" rx="2" fill="#6b4a10"/><g fill-opacity=".9"><rect x="20" y="16" width="5" height="3" fill="#4ea8ff" transform="rotate(30 22 17)"/><rect x="96" y="12" width="5" height="3" fill="#ff6b5e" transform="rotate(-25 98 13)"/><rect x="28" y="44" width="5" height="3" fill="#3ddc84" transform="rotate(-40 30 45)"/><rect x="90" y="40" width="5" height="3" fill="#c79bff" transform="rotate(20 92 41)"/><circle cx="102" cy="28" r="1.8" fill="#ffd84a"/><circle cx="16" cy="32" r="1.8" fill="#fff6c8"/></g></svg>`,
+  // Sfida 1 contro 1 (in famiglia: un ragazzo contro un adulto)
+  vs: fam => { const fig = (x, hy, r, by, c) => { const w = r * 1.6; return `<circle cx="${x}" cy="${hy}" r="${r}" fill="${c}"/><path d="M${x - w} 70C${x - w} ${by + 4} ${x - w / 2} ${by} ${x} ${by}S${x + w} ${by + 4} ${x + w} 70z" fill="${c}"/>`; }; return `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#1d2a52"/><path d="M0 0h62l-10 70H0z" fill="#4ea8ff" opacity=".16"/><path d="M62 0h58v70H52z" fill="#ff6b5e" opacity=".16"/>${fam ? fig(28, 34, 7, 44, '#4ea8ff') + fig(92, 22, 10, 36, '#ff6b5e') : fig(28, 26, 9, 40, '#4ea8ff') + fig(92, 26, 9, 40, '#ff6b5e')}<circle cx="58" cy="35" r="13" fill="#ffd84a" stroke="#0a1220" stroke-width="3"/><text x="58" y="40" ${SAI} font-size="14" fill="#0a1220">VS</text></svg>`; },
+  // La parola del giorno: tre tentativi, l'ultimo tutto verde
+  parola: (() => { const rows = [['CALCI', 'bybbb'], ['PORTE', 'ggggb'], ['PORTA', 'ggggg']], C = { g: '#2fae66', y: '#e0b21c', b: '#3a4660' }; return `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#13213d"/>${rows.map(([w, s], r) => [...w].map((ch, i) => `<rect x="${10 + i * 21}" y="${5 + r * 21}" width="17" height="17" rx="3" fill="${C[s[i]]}"/><text x="${18.5 + i * 21}" y="${18 + r * 21}" ${SAI} font-size="13" fill="${s[i] === 'y' ? '#1d1600' : '#fff'}">${ch}</text>`).join('')).join('')}</svg>`; })(),
+  // Paroliere: griglia di lettere e la parola trovata strisciando il dito; quello del giorno ha il calendario con la data di oggi
+  paroliere: day => { const L = 'CALPIROSTAMENUVO', path = [3, 6, 5, 8, 9], cell = i => [16 + (i % 4) * 14, 9 + ((i / 4) | 0) * 14];
+    const side = day ? `<rect x="80" y="10" width="30" height="34" rx="4" fill="#e8f2ec"/><rect x="80" y="10" width="30" height="10" rx="4" fill="#ff6b5e"/><rect x="80" y="16" width="30" height="4" fill="#ff6b5e"/><text x="95" y="39" ${SAI} font-size="17" fill="#13213d">${new Date().getDate()}</text><text x="95" y="60" ${SAI} font-size="11" fill="#ffd84a">2:00</text>`
+      : `<g fill="none" stroke="#ffd84a" stroke-width="3" stroke-linecap="round"><path d="M84 30a11 11 0 0 1 20-6M106 40a11 11 0 0 1-20 6"/></g><path d="M106 18v8h-8zM84 52v-8h8z" fill="#ffd84a"/>`;
+    return `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#2a2350"/>${[...L].map((ch, i) => { const [x, y] = cell(i), on = path.includes(i); return `<rect x="${x}" y="${y}" width="12" height="12" rx="2.5" fill="${on ? '#ffd84a' : '#3d3570'}"/>`; }).join('')}<path d="M${path.map(i => cell(i).map(v => v + 6).join(' ')).join('L')}" fill="none" stroke="#ff6b5e" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/>${[...L].map((ch, i) => { const [x, y] = cell(i), on = path.includes(i); return `<text x="${x + 6}" y="${y + 10}" ${SAI} font-size="10" fill="${on ? '#1d1600' : '#d8d2ff'}">${ch}</text>`; }).join('')}${side}</svg>`; },
+  // La Scalata: gradini sempre più alti fino al milione
+  scalata: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#161a3a"/>${[0, 1, 2, 3, 4, 5].map(i => `<rect x="${8 + i * 18}" y="${58 - i * 8}" width="16" height="${12 + i * 8}" rx="2" fill="${i === 5 ? '#ffd84a' : '#4ea8ff'}" fill-opacity="${i === 5 ? 1 : .45 + i * .1}"/>`).join('')}<path d="M98 6l2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.3-4.3 2.3.8-4.8-3.5-3.4 4.8-.7z" fill="#fff6c8"/><circle cx="52" cy="25" r="4" fill="#e8f2ec"/><path d="M47 42v-8a5 5 0 0 1 10 0v8z" fill="#e8f2ec"/><text x="28" y="18" ${SAI} font-size="11" fill="#ffd84a">1.000.000</text></svg>`,
+  // Logica mista: un po' di tutti i tipi
+  logica: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#1d2a52"/><rect x="12" y="5" width="46" height="28" rx="4" fill="#14324a"/><rect x="62" y="5" width="46" height="28" rx="4" fill="#2a2350"/><rect x="12" y="37" width="46" height="28" rx="4" fill="#3a1830"/><rect x="62" y="37" width="46" height="28" rx="4" fill="#123526"/><circle cx="30" cy="19" r="9" fill="#4ea8ff" opacity=".6"/><circle cx="40" cy="19" r="9" fill="#ffd84a" opacity=".6"/>${[3, 6, 10].map((h, i) => `<rect x="${70 + i * 9}" y="${27 - h * 1.6}" width="6" height="${h * 1.6}" rx="1.5" fill="#4ea8ff"/>`).join('')}<text x="100" y="27" ${SAI} font-size="16" fill="#ffd84a">?</text><circle cx="35" cy="46" r="5" fill="#ff6b5e"/><path d="M27 63c0-7 4-10 8-10s8 3 8 10z" fill="#ff6b5e"/><text x="35" y="49" ${SAI} font-size="7" fill="#3a1830">?</text>${[0, 1, 2].map(c => [0, 1].map(r => `<rect x="${71 + c * 10}" y="${42 + r * 10}" width="8" height="8" rx="1.5" fill="${(c + r) % 2 ? '#1f5a3e' : '#3ddc84'}"/>`).join('')).join('')}</svg>`,
+  // Il conto giusto: il numero da raggiungere e i numeri da usare
+  conto: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#14324a"/><rect x="32" y="5" width="56" height="26" rx="5" fill="#0a1220" stroke="#ffd84a" stroke-width="2"/><text x="60" y="25" ${SAI} font-size="19" fill="#ffd84a">358</text>${[25, 6, 3, 8, 50, 7].map((n, i) => `<rect x="${8 + i * 18}" y="38" width="15" height="13" rx="3" fill="#e8f2ec"/><text x="${15.5 + i * 18}" y="48" ${SAI} font-size="9" fill="#13213d">${n}</text>`).join('')}${['+', '−', '×', '÷'].map((o, i) => `<text x="${33 + i * 18}" y="65" ${SAI} font-size="12" fill="#4ea8ff">${o}</text>`).join('')}</svg>`,
+  // Fai 24: la carta con 4 numeri, al centro il 24
+  fai24: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#2a2350"/><rect x="40" y="15" width="40" height="40" rx="6" fill="#e8f2ec" transform="rotate(45 60 35)"/><text x="60" y="20" ${SAI} font-size="11" fill="#13213d">4</text><text x="80" y="39" ${SAI} font-size="11" fill="#13213d">7</text><text x="60" y="58" ${SAI} font-size="11" fill="#13213d">8</text><text x="40" y="39" ${SAI} font-size="11" fill="#13213d">8</text><circle cx="60" cy="35" r="12" fill="#ffd84a"/><text x="60" y="40.5" ${SAI} font-size="15" fill="#1d1600">24</text><path d="M100 22a9 9 0 1 0 .1 0zM100 26v5l3 2" fill="none" stroke="#ffd84a" stroke-width="2" stroke-linecap="round"/></svg>`,
+  // Cultura generale: libri, mondo, scienza, musica
+  cultura: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#2a1f12"/><rect x="10" y="20" width="9" height="40" rx="1.5" fill="#4ea8ff"/><rect x="20" y="16" width="11" height="44" rx="1.5" fill="#ff6b5e"/><rect x="32" y="22" width="8" height="38" rx="1.5" fill="#3ddc84" transform="rotate(8 36 41)"/><path d="M10 28h9M20 26h11" stroke="#fff" stroke-opacity=".5" stroke-width="1.5"/><circle cx="60" cy="38" r="14" fill="#1d4a6e"/><path d="M50 32q6-8 13-4t9 8-5 10-11 2-6-8z" fill="#3d8b5a"/><path d="M82 24h10M84 24v10l-6 16a3 3 0 0 0 3 4h12a3 3 0 0 0 3-4l-6-16V24" fill="#e8f2ec" fill-opacity=".9"/><path d="M80.5 44h15.5l3 6a3 3 0 0 1-3 4H81a3 3 0 0 1-3-4z" fill="#3ddc84"/><path d="M106 20v22" stroke="#ffd84a" stroke-width="2.4"/><path d="M106 20l8 3v6l-8-3z" fill="#ffd84a"/><ellipse cx="102" cy="43" rx="5" ry="4" fill="#ffd84a"/><path d="M0 62h120" stroke="#ffd84a" stroke-opacity=".25" stroke-width="2"/></svg>`,
+  regole: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#1b2d1f"/><rect x="30" y="12" width="22" height="30" rx="3" fill="#ffd84a" transform="rotate(-10 41 27)"/><rect x="58" y="14" width="22" height="30" rx="3" fill="#e63946" transform="rotate(8 69 29)"/><path d="M86 40h14a8 8 0 1 1-8 8v-2h-6z" fill="#e8f2ec"/><rect x="84" y="38" width="6" height="6" rx="1" fill="#9aa6b8"/><circle cx="100" cy="48" r="3" fill="#1b2d1f"/><path d="M14 60h92" stroke="#e8f2ec" stroke-width="2" opacity=".5"/></svg>`,
+  // Indovina il calciatore: sagoma (nessun volto) e gli indizi, il primo già scoperto
+  calc: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#14324a"/><circle cx="38" cy="26" r="13" fill="#e8f2ec"/><path d="M16 70c0-15 10-24 22-24s22 9 22 24z" fill="#e8f2ec"/><text x="38" y="33" ${SAI} font-size="19" fill="#14324a">?</text><rect x="70" y="10" width="40" height="14" rx="3" fill="#ffd84a"/><path d="M75 15h22M75 19h14" stroke="#7a5c00" stroke-width="2" stroke-linecap="round"/><rect x="70" y="28" width="40" height="14" rx="3" fill="#26405a"/><rect x="70" y="46" width="40" height="14" rx="3" fill="#26405a"/><text x="90" y="39" ${SAI} font-size="10" fill="#8fb0d0">?</text><text x="90" y="57" ${SAI} font-size="10" fill="#8fb0d0">?</text></svg>`
+};
+// tipi di logica (sillogismi, sequenze, chi mente, …)
+const LICON = {
+  sill: '<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#1d2a52"/><circle cx="48" cy="35" r="20" fill="#4ea8ff" opacity=".55"/><circle cx="72" cy="35" r="20" fill="#ffd84a" opacity=".55"/><path d="M60 19a20 20 0 0 1 0 32a20 20 0 0 1 0-32z" fill="#3ddc84"/></svg>',
+  seq: '<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#14324a"/>' + [2, 4, 8, 16].map((n, i) => `<rect x="${8 + i * 22}" y="${46 - n * 2}" width="16" height="${n * 2 + 6}" rx="3" fill="#4ea8ff"/>`).join('') + `<text x="100" y="48" ${SAI} font-size="30" fill="#ffd84a">?</text></svg>`,
+  menti: '<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#3a1830"/>' + [26, 60, 94].map((x, i) => `<circle cx="${x}" cy="30" r="11" fill="${i === 1 ? '#ff6b5e' : '#e8f2ec'}"/><path d="M${x - 15} 62c0-12 7-18 15-18s15 6 15 18z" fill="${i === 1 ? '#ff6b5e' : '#e8f2ec'}"/>`).join('') + `<text x="60" y="35" ${SAI} font-size="15" fill="#3a1830">?</text></svg>`,
+  ded: '<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#123526"/>' + [0, 1, 2].map(r => [0, 1, 2].map(c => `<rect x="${30 + c * 22}" y="${8 + r * 19}" width="20" height="17" rx="3" fill="${(r + c * 2) % 3 === 0 ? '#3ddc84' : '#1f5a3e'}"/>`).join('')).join('') + '<path d="M36 18l4 4 8-8" stroke="#123526" stroke-width="3" fill="none"/></svg>',
+  ana: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#2a2350"/><circle cx="18" cy="35" r="10" fill="#4ea8ff"/><circle cx="42" cy="35" r="5" fill="#4ea8ff"/><text x="58" y="41" ${SAI} font-size="18" fill="#e8f2ec">=</text><rect x="70" y="25" width="20" height="20" rx="3" fill="#ffd84a"/><text x="104" y="43" ${SAI} font-size="22" fill="#ffd84a">?</text></svg>`,
+  par: '<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#33261a"/><path d="M40 18h40M60 18v16M34 34h52M34 34v12M86 34v12" stroke="#e8f2ec" stroke-width="2.5" fill="none"/><circle cx="40" cy="18" r="8" fill="#4ea8ff"/><circle cx="80" cy="18" r="8" fill="#ff6b5e"/><circle cx="34" cy="52" r="8" fill="#3ddc84"/><circle cx="86" cy="52" r="8" fill="#ffd84a"/></svg>',
+  cod: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#1a2a2a"/><text x="60" y="30" ${SAI} font-size="20" fill="#e8f2ec" letter-spacing="3">CANE</text><path d="M60 35v6M56 38l4 4 4-4" stroke="#ffd84a" stroke-width="2" fill="none"/><text x="60" y="62" ${SAI} font-size="20" fill="#3ddc84" letter-spacing="3">DBOF</text></svg>`,
+  cal: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#2b1d3a"/><rect x="18" y="14" width="44" height="44" rx="5" fill="#e8f2ec"/><rect x="18" y="14" width="44" height="12" rx="5" fill="#ff6b5e"/><rect x="18" y="21" width="44" height="5" fill="#ff6b5e"/><text x="40" y="52" ${SAI} font-size="22" fill="#2b1d3a">7</text><circle cx="88" cy="36" r="17" fill="none" stroke="#ffd84a" stroke-width="3"/><path d="M88 36V25M88 36l8 5" stroke="#ffd84a" stroke-width="3" stroke-linecap="round"/></svg>`
+};
+GART.vsfam = () => GART.vs(true); GART.prday = () => GART.paroliere(true);
+// il disegno di un gioco ('rigori', 'mg:collega', 'geo:mappa', 'log:sill', …); gli id dei gradienti cambiano a ogni uso (lo stesso disegno può comparire due volte nella pagina)
+let GAN = 0;
+function gart(k) {
+  const [a, b] = String(k).split(':'), A = a === 'log' ? LICON[b] : a === 'mg' ? MG_ICON[b] : a === 'geo' ? GEO_ICON[b] : GART[a];
+  const s = typeof A === 'function' ? A() : A || GART.logica, n = ++GAN;
+  return s.indexOf('id="') < 0 ? s : s.replace(/id="([A-Za-z]+)"/g, `id="$1${n}"`).replace(/url\(#([A-Za-z]+)\)/g, `url(#$1${n})`);
+}
 const dia = (l, max) => `<span class="gt-meta"><span class="dia" aria-hidden="true">${Array.from({ length: max }, (_, i) => `<i class="${i < l ? 'on' : ''}"></i>`).join('')}</span>livello ${l}</span>`;
 const rec = t => `<span class="gt-meta">${icn('star')}${t}</span>`;
-// tessera di gioco: icona, nome, una riga, livello o record; x.d = attributi data-*
-const gtile = x => `<button class="gtile ${x.cls || ''}" data-a="${x.a}"${Object.entries(x.d || {}).map(([k, v]) => ` data-${k}="${v}"`).join('')}><span class="gt-ic">${icn(x.ic)}</span><b>${x.t}</b><small>${x.s}</small>${x.meta || ''}${x.tag ? `<span class="gt-tag ${x.tagc || ''}">${x.tag}</span>` : ''}</button>`;
+// tessera di gioco: disegno grande in alto, poi nome, una riga, livello o record; x.d = attributi data-*
+const gtile = x => `<button class="gtile ${x.cls || ''}" data-a="${x.a}"${Object.entries(x.d || {}).map(([k, v]) => ` data-${k}="${v}"`).join('')}><span class="gt-art">${gart(x.art)}</span><span class="gt-b"><b>${x.t}</b><small>${x.s}</small>${x.meta || ''}</span>${x.tag ? `<span class="gt-tag ${x.tagc || ''}">${x.tag}</span>` : ''}</button>`;
 // «Riprendi»: si ricorda l'ultimo gioco avviato (p.rip) e lo fa ripartire con un tocco
 const RIP = {
   start: d => UI.mode ? { f: 'start', m: UI.mode, s: UI.subj || 'mat', k: d.k } : null, varstart: d => ({ f: 'var', s: d.s }), deck: d => ({ f: 'deck', k: d.k }),
@@ -10407,20 +10498,20 @@ function ripInfo(p) {
   const r = p.rip, lv = p.logLv || {}; if (!r) return null;
   const tp = r.f === 'start' && TOPIC[r.k];
   switch (r.f) {
-    case 'start': return tp || r.k === 'mix' ? { ic: r.m === 'partita' ? 'clock' : 'ball', t: r.m === 'partita' ? 'Riprendi la Partita' : 'Riprendi i Rigori', s: tp ? `${tp.title} · livello ${levelOf(p, r.k)} di ${tp.max}` : `Mix di ${SUBJ[r.s]} · ${p.cls}ª media` } : null;
-    case 'var': return SUBJ[r.s] ? { ic: 'tv', t: 'Riprendi il VAR', s: SUBJ[r.s] } : null;
-    case 'deck': { const d = DECKS.find(x => x.key === r.k); return d ? { ic: 'cards', t: 'Riprendi l\'Allenamento', s: d.title } : null; }
-    case 'mg': return GAMES[r.m] ? { ic: MGIC[r.m] || 'puzzle', t: `Riprendi ${GAMES[r.m].t}`, s: r.s === 'src' ? srcLabel(srcOf(p), p) : SUBJ[r.s] || 'Minigioco' } : null;
-    case 'geo': return GEO_MODES[r.m] ? { ic: GEOIC[r.m], t: `Riprendi ${GEO_MODES[r.m].t}`, s: `Geografia · ${GEO_SCOPES[p.gsc || geoDefaultScope(p)]}` } : null;
-    case 'adplay': return { ic: r.m === 'partita' ? 'clock' : 'ball', t: r.m === 'partita' ? 'Riprendi la Partita' : 'Riprendi i Rigori', s: `Domande su: ${srcLabel(srcOf(p), p)}` };
-    case 'log': return !r.t || LTYPES[r.t] ? { ic: r.t ? LIC[r.t] || 'brain' : 'brain', t: 'Riprendi la Logica', s: `${r.t ? LTYPES[r.t].t : 'Logica mista'} · livello ${lv[r.t || 'mix'] || 1} di 3` } : null;
-    case 'cg': return { ic: 'calc', t: r.k === '24' ? 'Riprendi Fai 24' : 'Riprendi Il conto giusto', s: r.k === '24' ? '5 sfide da 90 secondi' : `3 conti · livello ${p.contoLv || 1}` };
-    case 'sc': return { ic: 'stairs', t: 'Riprendi la Scalata', s: p.scBest ? `Il tuo record è ${fmtP(p.scBest)} punti` : '15 domande, fino a 1 milione di punti' };
-    case 'rg': return REGLV[r.l - 1] ? { ic: 'whistle', t: 'Riprendi il Regolamento', s: `Livello ${REGLV[r.l - 1][0]}` } : null;
-    case 'cc': return { ic: 'who', t: 'Riprendi Indovina il calciatore', s: p.calcBest ? `Il tuo record è ${p.calcBest} punti` : 'Meno indizi usi, più punti fai' };
-    case 'pr': return { ic: 'grid', t: 'Riprendi il Paroliere', s: p.prBest ? `Il tuo record è ${p.prBest} punti` : 'Una griglia nuova a ogni partita' };
-    case 'prd': return p.prDay && p.prDay.d === today() ? null : { ic: 'grid', t: 'Paroliere del giorno', s: 'La griglia di oggi è pronta' };
-    case 'rev': return p.rev.length ? { ic: 'redo', t: 'Riprendi il Ripasso', s: `${p.rev.length} ${p.rev.length === 1 ? 'domanda' : 'domande'} da sistemare` } : null;
+    case 'start': return tp || r.k === 'mix' ? { art: r.m === 'partita' ? 'partita' : 'rigori', t: r.m === 'partita' ? 'Riprendi la Partita' : 'Riprendi i Rigori', s: tp ? `${tp.title} · livello ${levelOf(p, r.k)} di ${tp.max}` : `Mix di ${SUBJ[r.s]} · ${p.cls}ª media` } : null;
+    case 'var': return SUBJ[r.s] ? { art: 'var', t: 'Riprendi il VAR', s: SUBJ[r.s] } : null;
+    case 'deck': { const d = DECKS.find(x => x.key === r.k); return d ? { art: 'allen', t: 'Riprendi l\'Allenamento', s: d.title } : null; }
+    case 'mg': return GAMES[r.m] ? { art: 'mg:' + r.m, t: `Riprendi ${GAMES[r.m].t}`, s: r.s === 'src' ? srcLabel(srcOf(p), p) : SUBJ[r.s] || 'Minigioco' } : null;
+    case 'geo': return GEO_MODES[r.m] ? { art: 'geo:' + r.m, t: `Riprendi ${GEO_MODES[r.m].t}`, s: `Geografia · ${GEO_SCOPES[p.gsc || geoDefaultScope(p)]}` } : null;
+    case 'adplay': return { art: r.m === 'partita' ? 'partita' : 'rigori', t: r.m === 'partita' ? 'Riprendi la Partita' : 'Riprendi i Rigori', s: `Domande su: ${srcLabel(srcOf(p), p)}` };
+    case 'log': return !r.t || LTYPES[r.t] ? { art: r.t ? 'log:' + r.t : 'logica', t: 'Riprendi la Logica', s: `${r.t ? LTYPES[r.t].t : 'Logica mista'} · livello ${lv[r.t || 'mix'] || 1} di 3` } : null;
+    case 'cg': return { art: r.k === '24' ? 'fai24' : 'conto', t: r.k === '24' ? 'Riprendi Fai 24' : 'Riprendi Il conto giusto', s: r.k === '24' ? '5 sfide da 90 secondi' : `3 conti · livello ${p.contoLv || 1}` };
+    case 'sc': return { art: 'scalata', t: 'Riprendi la Scalata', s: p.scBest ? `Il tuo record è ${fmtP(p.scBest)} punti` : '15 domande, fino a 1 milione di punti' };
+    case 'rg': return REGLV[r.l - 1] ? { art: 'regole', t: 'Riprendi il Regolamento', s: `Livello ${REGLV[r.l - 1][0]}` } : null;
+    case 'cc': return { art: 'calc', t: 'Riprendi Indovina il calciatore', s: p.calcBest ? `Il tuo record è ${p.calcBest} punti` : 'Meno indizi usi, più punti fai' };
+    case 'pr': return { art: 'paroliere', t: 'Riprendi il Paroliere', s: p.prBest ? `Il tuo record è ${p.prBest} punti` : 'Una griglia nuova a ogni partita' };
+    case 'prd': return p.prDay && p.prDay.d === today() ? null : { art: 'prday', t: 'Paroliere del giorno', s: 'La griglia di oggi è pronta' };
+    case 'rev': return p.rev.length ? { art: 'ripasso', t: 'Riprendi il Ripasso', s: `${p.rev.length} ${p.rev.length === 1 ? 'domanda' : 'domande'} da sistemare` } : null;
   }
   return null;
 }
@@ -10429,49 +10520,50 @@ function ripGo() {
   const F = { start: () => startGame(r.m, r.s, r.k), var: () => startVar(r.s), deck: () => startDeck(r.k), mg: () => startMg(r.m, r.s), geo: () => startGeo(r.m, p.gsc || geoDefaultScope(p)), adplay: () => startGameSrc(r.m, srcOf(p)), log: () => startLogica(r.t || null), cg: () => startConto(r.k), sc: () => startScalata(), rg: () => startRegole(r.l), cc: () => startCalc(), pr: () => startParoliere(false), prd: () => startParoliere(true), rev: () => startReview() };
   if (F[r.f]) F[r.f]();
 }
-// le schede di Gioca: [nome, tessere, nota sotto]
+// le schede di Gioca: [nome, tessere, nota sotto]; ogni scheda ha la sua icona
+const GTAB_IC = { Materie: 'book', Sfide: 'cup', Minigiochi: 'puzzle', Geografia: 'globe', 'Per te': 'star', Cultura: 'book', Logica: 'brain', 'Parole e numeri': 'abc', Calcio: 'ball' };
 function giocaTabs(p) {
   const ad = isAd(p), cs = cupState(p), cupOn = !cs.done && cs.today < CUP_PER_DAY, fm = fmState(p), opp = oppAt(fm), lv = p.logLv || {}, sc = p.gsc || geoDefaultScope(p), best = p.geoBest || {};
-  const rev = p.rev.length ? [{ a: 'review', ic: 'redo', t: 'Ripasso errori', s: `${p.rev.length} ${p.rev.length === 1 ? 'domanda' : 'domande'} da sistemare · 15 XP a risposta`, tag: p.rev.length, tagc: 'hot' }] : [];
-  const cup = { a: 'nav', d: { to: 'coppa' }, ic: 'cup', t: 'Coppa Football Center', s: cupOn ? `${CUP_ROUNDS[cs.round][0]} · contro ${esc(cs.opps[cs.round])}` : cs.done ? 'Finita per questa settimana: torna lunedì' : 'Turni di oggi giocati: torna domani', tag: cupOn ? 'Oggi' : '', tagc: 'hot', cls: cupOn ? '' : 'quiet' };
-  const camp = { a: 'nav', d: { to: 'formazione' }, ic: 'team', t: ad ? 'Campionato' : 'La mia formazione', s: `Giornata ${fm.round + 1} di ${OPPONENTS.length} · contro ${esc(opp.n)} (${opp.r})` };
-  const mg = ks => ks.map(k => ({ a: 'mg', d: { m: k }, ic: MGIC[k], t: GAMES[k].t, s: k === 'fuorigioco' && ad ? 'Giusta o sbagliata? Con le domande che hai scelto.' : MGS[k] }));
-  const geo = [Object.entries(GEO_MODES).map(([k, M]) => { const b = best[k + ':' + sc]; return { a: 'geostart', d: { m: k }, ic: GEOIC[k], t: M.t, s: { bandiere: 'Riconosci le bandiere.', capitali: sc === 'ita' ? 'Regioni e capoluoghi.' : 'Paesi e capitali.', mappa: 'Tocca il posto giusto sulla mappa.', dove: 'Più ti avvicini, più punti fai.' }[k], meta: b !== undefined ? rec(`Record ${k === 'dove' ? fmtP(b) + ' punti' : b + '/10'}`) : '' }; }),
+  const rev = p.rev.length ? [{ a: 'review', art: 'ripasso', t: 'Ripasso errori', s: `${p.rev.length} ${p.rev.length === 1 ? 'domanda' : 'domande'} da sistemare · 15 XP a risposta`, tag: p.rev.length, tagc: 'hot' }] : [];
+  const cup = { a: 'nav', d: { to: 'coppa' }, art: 'coppa', t: 'Coppa Football Center', s: cupOn ? `${CUP_ROUNDS[cs.round][0]} · contro ${esc(cs.opps[cs.round])}` : cs.done ? 'Finita per questa settimana: torna lunedì' : 'Turni di oggi giocati: torna domani', tag: cupOn ? 'Oggi' : '', tagc: 'hot', cls: cupOn ? '' : 'quiet' };
+  const camp = { a: 'nav', d: { to: 'formazione' }, art: 'camp', t: ad ? 'Campionato' : 'La mia formazione', s: `Giornata ${fm.round + 1} di ${OPPONENTS.length} · contro ${esc(opp.n)} (${opp.r})` };
+  const mg = ks => ks.map(k => ({ a: 'mg', d: { m: k }, art: 'mg:' + k, t: GAMES[k].t, s: k === 'fuorigioco' && ad ? 'Giusta o sbagliata? Con le domande che hai scelto.' : MGS[k] }));
+  const geo = [Object.entries(GEO_MODES).map(([k, M]) => { const b = best[k + ':' + sc]; return { a: 'geostart', d: { m: k }, art: 'geo:' + k, t: M.t, s: { bandiere: 'Riconosci le bandiere.', capitali: sc === 'ita' ? 'Regioni e capoluoghi.' : 'Paesi e capitali.', mappa: 'Tocca il posto giusto sulla mappa.', dove: 'Più ti avvicini, più punti fai.' }[k], meta: b !== undefined ? rec(`Record ${k === 'dove' ? fmtP(b) + ' punti' : b + '/10'}`) : '' }; }),
     `${sc === 'ita' ? '<p class="gnote">Con l\'Italia, «Bandiere» usa le bandiere d\'Europa.</p>' : sc === 'esperto' ? '<p class="gnote"><b>Esperto:</b> Paesi meno conosciuti, capitali difficili, province, fiumi, monti e laghi d\'Italia.</p>' : ''}<p class="gnote small">Mappe: Natural Earth; confini delle regioni © ISTAT (CC-BY 4.0); bandiere: flag-icons.</p>`,
     `<div class="seg gscope" role="group" aria-label="Zona">${Object.entries(GEO_SCOPES).map(([k, t]) => `<button data-a="gsc" data-s="${k}" aria-pressed="${sc === k}">${t}</button>`).join('')}</div>`];
   if (!ad) return [
-    ['Materie', [{ a: 'mode', d: { m: 'rigori' }, ic: 'ball', t: 'Rigori', s: '5 domande, 5 tiri. Con 3 gol vinci una bustina.' }, { a: 'mode', d: { m: 'partita' }, ic: 'clock', t: 'Partita', s: `${p.slow ? 135 : 90} secondi contro una squadra rivale.` },
-      { a: 'mode', d: { m: 'var' }, ic: 'tv', t: 'VAR', s: 'Rivedi l\'azione e trova il passaggio sbagliato.' }, { a: 'mode', d: { m: 'allenamento' }, ic: 'cards', t: 'Allenamento', s: 'Carte da ripassare: scegli la risposta giusta.' }, ...rev],
+    ['Materie', [{ a: 'mode', d: { m: 'rigori' }, art: 'rigori', t: 'Rigori', s: '5 domande, 5 tiri. Con 3 gol vinci una bustina.' }, { a: 'mode', d: { m: 'partita' }, art: 'partita', t: 'Partita', s: `${p.slow ? 135 : 90} secondi contro una squadra rivale.` },
+      { a: 'mode', d: { m: 'var' }, art: 'var', t: 'VAR', s: 'Rivedi l\'azione e trova il passaggio sbagliato.' }, { a: 'mode', d: { m: 'allenamento' }, art: 'allen', t: 'Allenamento', s: 'Carte da ripassare: scegli la risposta giusta.' }, ...rev],
       '<p class="gnote">Ogni argomento ha 3 livelli: rispondi bene a 8 domande su 10 e sali, con una bustina in regalo.</p>'],
-    ['Sfide', [camp, cup, { a: 'nav', d: { to: 'duelsetup' }, ic: 'vs', t: 'Sfida un amico', s: '1 contro 1 sullo stesso dispositivo: vince chi risponde meglio.' }], '', cupOn],
+    ['Sfide', [camp, cup, { a: 'nav', d: { to: 'duelsetup' }, art: 'vs', t: 'Sfida un amico', s: '1 contro 1 sullo stesso dispositivo: vince chi risponde meglio.' }], '', cupOn],
     ['Minigiochi', mg(Object.keys(GAMES)), ''],
     ['Geografia', geo[0], geo[1], false, geo[2]]];
   const ws = wordState(p), prd = p.prDay && p.prDay.d === today();
-  const parola = { a: 'nav', d: { to: 'parola' }, ic: 'abc', t: 'La parola del giorno', s: ws.done ? (ws.win ? `Indovinata in ${ws.g.length}! Torna domani.` : 'Per oggi è andata: torna domani.') : `N. ${wdNum()} · 5 lettere, 6 tentativi. Uguale per tutti.`, tag: ws.done ? 'Fatto' : 'Oggi', tagc: ws.done ? 'ok' : 'hot' };
-  const prday = { a: 'prday', ic: 'grid', t: 'Paroliere del giorno', s: prd ? `Oggi hai fatto ${p.prDay.pts} punti.` : 'Stessa griglia per tutti, 2 minuti.', tag: prd ? 'Fatto' : 'Oggi', tagc: prd ? 'ok' : 'hot' };
-  const scal = { a: 'scstart', ic: 'stairs', t: 'La Scalata', s: '15 domande, 3 aiuti, fino a 1 milione.', meta: p.scBest ? rec(`Record ${fmtP(p.scBest)}`) : '' };
-  const logm = { a: 'logstart', d: { t: '' }, ic: 'brain', t: 'Logica mista', s: '10 domande: il modo migliore per iniziare.', meta: dia(lv.mix || 1, 3) };
+  const parola = { a: 'nav', d: { to: 'parola' }, art: 'parola', t: 'La parola del giorno', s: ws.done ? (ws.win ? `Indovinata in ${ws.g.length}! Torna domani.` : 'Per oggi è andata: torna domani.') : `N. ${wdNum()} · 5 lettere, 6 tentativi. Uguale per tutti.`, tag: ws.done ? 'Fatto' : 'Oggi', tagc: ws.done ? 'ok' : 'hot' };
+  const prday = { a: 'prday', art: 'prday', t: 'Paroliere del giorno', s: prd ? `Oggi hai fatto ${p.prDay.pts} punti.` : 'Stessa griglia per tutti, 2 minuti.', tag: prd ? 'Fatto' : 'Oggi', tagc: prd ? 'ok' : 'hot' };
+  const scal = { a: 'scstart', art: 'scalata', t: 'La Scalata', s: '15 domande, 3 aiuti, fino a 1 milione.', meta: p.scBest ? rec(`Record ${fmtP(p.scBest)}`) : '' };
+  const logm = { a: 'logstart', d: { t: '' }, art: 'logica', t: 'Logica mista', s: '10 domande: il modo migliore per iniziare.', meta: dia(lv.mix || 1, 3) };
   return [
     ['Per te', [parola, prday, scal, logm], ''],
-    ['Cultura', [{ a: 'srcopen', ic: 'book', t: `Domande su: ${esc(srcLabel(srcOf(p), p))}`, s: SRCOPEN ? 'Scegli qui sotto: vale per Rigori, Partita, Campionato e Fuorigioco.' : 'Vale per Rigori, Partita, Campionato e Fuorigioco. Tocca per cambiare.', cls: 'wide src' + (SRCOPEN ? ' open' : ''), tag: SRCOPEN ? 'Chiudi' : 'Cambia', d: { open: SRCOPEN ? 1 : 0 } },
-      scal, { a: 'adplay', d: { m: 'rigori' }, ic: 'ball', t: 'Rigori', s: '5 domande, 5 tiri. Con 3 gol vinci una bustina.' }, { a: 'adplay', d: { m: 'partita' }, ic: 'clock', t: 'Partita', s: `${p.slow ? 135 : 90} secondi contro una squadra rivale.` }, camp, ...mg(['fuorigioco']),
-      { a: 'mode', d: { m: 'var' }, ic: 'tv', t: 'VAR', s: 'Trova l\'errore in un esercizio svolto (materie scolastiche).' }, { a: 'mode', d: { m: 'allenamento' }, ic: 'cards', t: 'Allenamento', s: 'Carte da ripassare (materie scolastiche).' }, ...rev], ''],
-    ['Logica', [logm, ...Object.entries(LTYPES).map(([k, T]) => ({ a: 'logstart', d: { t: k }, ic: LIC[k] || 'brain', t: T.t, s: LDESC[k], meta: dia(lv[k] || 1, 3) }))], '<p class="gnote">Con 8 risposte giuste su 10 sali di livello; con 7 vinci una bustina.</p>'],
-    ['Parole e numeri', [parola, prday, { a: 'prstart', ic: 'grid', t: 'Paroliere', s: 'Una griglia nuova a ogni partita.', meta: p.prBest ? rec(`Record ${p.prBest}`) : '' },
-      { a: 'cgstart', d: { k: 'conto' }, ic: 'calc', t: 'Il conto giusto', s: 'Raggiungi il numero con + − × ÷.', meta: dia(p.contoLv || 1, 3) }, { a: 'cgstart', d: { k: '24' }, ic: 'calc', t: 'Fai 24', s: '4 numeri: usali tutti per fare 24.' }, ...mg(['collega', 'riordina', 'completa'])], ''],
-    ['Calcio', [{ a: 'nav', d: { to: 'regole' }, ic: 'whistle', t: 'Regolamento da arbitro', s: '300 domande sulle regole IFAB 2026/27.', meta: p.rgLv ? `<span class="gt-meta">Ultimo livello: ${REGLV[p.rgLv - 1][0]}</span>` : '' },
-      { a: 'ccstart', ic: 'who', t: 'Indovina il calciatore', s: 'Meno indizi usi, più punti fai.', meta: p.calcBest ? rec(`Record ${p.calcBest}`) : '' }, cup,
-      { a: 'nav', d: { to: 'duelsetup' }, ic: 'vs', t: 'Sfida in famiglia', s: 'Un ragazzo contro un adulto, sullo stesso telefono.' }], '', cupOn],
+    ['Cultura', [{ a: 'srcopen', art: 'cultura', t: `Domande su: ${esc(srcLabel(srcOf(p), p))}`, s: SRCOPEN ? 'Scegli qui sotto: vale per Rigori, Partita, Campionato e Fuorigioco.' : 'Vale per Rigori, Partita, Campionato e Fuorigioco. Tocca per cambiare.', cls: 'wide src' + (SRCOPEN ? ' open' : ''), tag: SRCOPEN ? 'Chiudi' : 'Cambia', d: { open: SRCOPEN ? 1 : 0 } },
+      scal, { a: 'adplay', d: { m: 'rigori' }, art: 'rigori', t: 'Rigori', s: '5 domande, 5 tiri. Con 3 gol vinci una bustina.' }, { a: 'adplay', d: { m: 'partita' }, art: 'partita', t: 'Partita', s: `${p.slow ? 135 : 90} secondi contro una squadra rivale.` }, camp, ...mg(['fuorigioco']),
+      { a: 'mode', d: { m: 'var' }, art: 'var', t: 'VAR', s: 'Trova l\'errore in un esercizio svolto (materie scolastiche).' }, { a: 'mode', d: { m: 'allenamento' }, art: 'allen', t: 'Allenamento', s: 'Carte da ripassare (materie scolastiche).' }, ...rev], ''],
+    ['Logica', [logm, ...Object.entries(LTYPES).map(([k, T]) => ({ a: 'logstart', d: { t: k }, art: 'log:' + k, t: T.t, s: LDESC[k], meta: dia(lv[k] || 1, 3) }))], '<p class="gnote">Con 8 risposte giuste su 10 sali di livello; con 7 vinci una bustina.</p>'],
+    ['Parole e numeri', [parola, prday, { a: 'prstart', art: 'paroliere', t: 'Paroliere', s: 'Una griglia nuova a ogni partita.', meta: p.prBest ? rec(`Record ${p.prBest}`) : '' },
+      { a: 'cgstart', d: { k: 'conto' }, art: 'conto', t: 'Il conto giusto', s: 'Raggiungi il numero con + − × ÷.', meta: dia(p.contoLv || 1, 3) }, { a: 'cgstart', d: { k: '24' }, art: 'fai24', t: 'Fai 24', s: '4 numeri: usali tutti per fare 24.' }, ...mg(['collega', 'riordina', 'completa'])], ''],
+    ['Calcio', [{ a: 'nav', d: { to: 'regole' }, art: 'regole', t: 'Regolamento da arbitro', s: '300 domande sulle regole IFAB 2026/27.', meta: p.rgLv ? `<span class="gt-meta">Ultimo livello: ${REGLV[p.rgLv - 1][0]}</span>` : '' },
+      { a: 'ccstart', art: 'calc', t: 'Indovina il calciatore', s: 'Meno indizi usi, più punti fai.', meta: p.calcBest ? rec(`Record ${p.calcBest}`) : '' }, cup,
+      { a: 'nav', d: { to: 'duelsetup' }, art: 'vsfam', t: 'Sfida in famiglia', s: 'Un ragazzo contro un adulto, sullo stesso telefono.' }], '', cupOn],
     ['Geografia', geo[0], geo[1], false, geo[2]]];
 }
 V.gioca = () => {
   const p = prof(), tabs = giocaTabs(p), cur = Math.min(GTAB[p.id] || 0, tabs.length - 1), [, tiles, note, , head] = tabs[cur], ri = ripInfo(p), ad = isAd(p);
-  const start = ri ? { a: 'rip', ...ri } : ad ? { a: 'logstart', d: { t: '' }, ic: 'brain', t: 'Inizia dalla Logica mista', s: '10 domande di logica: il modo migliore per cominciare' } : { a: 'mode', d: { m: 'rigori' }, ic: 'ball', t: 'Inizia dai Rigori', s: `Gli argomenti della ${p.cls}ª media: 5 domande, 5 tiri` };
+  const start = ri ? { a: 'rip', ...ri } : ad ? { a: 'logstart', d: { t: '' }, art: 'logica', t: 'Inizia dalla Logica mista', s: '10 domande di logica: il modo migliore per cominciare' } : { a: 'mode', d: { m: 'rigori' }, art: 'rigori', t: 'Inizia dai Rigori', s: `Gli argomenti della ${p.cls}ª media: 5 domande, 5 tiri` };
   const srcAt = tiles.findIndex(x => x.a === 'srcopen');
   return `<div class="wrap gioca">
   <div class="ghead"><h1>Gioca</h1><span class="chip" title="Bustine vinte oggi giocando. Livelli, sfide, trofei e Coppa ne danno altre in più.">${icn('pack')}<span>Bustine di oggi <b>${p.daily.d === today() ? p.daily.n : 0}/${DB.settings.cap || 10}</b></span></span></div>
-  <button class="rip" data-a="${start.a}"${Object.entries(start.d || {}).map(([k, v]) => ` data-${k}="${v}"`).join('')}><span class="rip-ic">${icn(start.ic)}</span><span class="rip-t"><b>${esc(start.t)}</b><small>${esc(start.s)}</small></span><span class="rip-go" aria-hidden="true">${icn('play')}</span></button>
-  <div class="gtabs" role="group" aria-label="Tipi di gioco">${tabs.map(([t, , , dot], i) => `<button data-a="gtab" data-i="${i}" aria-pressed="${i === cur}">${t}${dot && i !== cur ? '<i class="dot" aria-label="novità"></i>' : ''}</button>`).join('')}</div>
+  <button class="rip" data-a="${start.a}"${Object.entries(start.d || {}).map(([k, v]) => ` data-${k}="${v}"`).join('')}><span class="rip-art">${gart(start.art)}</span><span class="rip-t"><b>${esc(start.t)}</b><small>${esc(start.s)}</small></span><span class="rip-go" aria-hidden="true">${icn('play')}</span></button>
+  <div class="gtabs" role="group" aria-label="Tipi di gioco">${tabs.map(([t, , , dot], i) => `<button data-a="gtab" data-i="${i}" aria-pressed="${i === cur}">${icn(GTAB_IC[t] || 'play')}<span>${t}</span>${dot && i !== cur ? '<i class="dot" aria-label="novità"></i>' : ''}</button>`).join('')}</div>
   ${head || ''}
   <div class="gtiles">${tiles.map((x, i) => gtile(x) + (i === srcAt && SRCOPEN ? srcPicker(p) : '')).join('')}</div>
   ${note || ''}
