@@ -10353,15 +10353,16 @@ V.campo = () => {
   const tier = passTier(ps), S = SEASONS[passMonth(ps.s)], todo = Array.from({ length: tier }, (_, i) => i + 1).filter(n => !ps.cl.includes(n)).length;
   const chDone = ch.items.filter(it => it.prog >= it.n).length, mis = p.missions.filter(m => !m.done);
   // «Da non perdere»: al massimo 3 schede, mai la stessa cosa del riquadro grande
-  const dnp = [], add = (on, x) => { if (on && dnp.length < 3) dnp.push(x); };
-  add(!!NS, { a: 'nsgo', ic: 'spark', t: NS ? `È uscita la ${NS.t}!` : '', s: NS ? `${NS.sub} · ${CARDS.filter(c => c.serie === NS.n).length} figurine nuove` : '', cls: 'new' });
-  add(fcPackReady(p) && !(nx.k === 'pack' && !p.packs), { a: 'nav', to: 'pack', fc: 1, t: 'Bustina Football Center', s: `Quella di ${MESI[new Date().getMonth()].toLowerCase()} è pronta` });
-  add(p.packs > 0 && nx.k !== 'pack', { a: 'nav', to: 'pack', ic: 'pack', t: p.packs === 1 ? 'Hai una bustina' : `Hai ${p.packs} bustine`, s: 'Aprila e attacca le figurine' });
-  mis.slice(nx.k === 'mission' ? 1 : 0).forEach(m => add(true, { a: 'mission', id: m.id, ic: 'target', t: 'Missione dal tutor', s: `${MODE[m.mode]} · ${missionLabel(m)}` }));
-  add(ad && nx.k !== 'parola' && !wordState(p).done, { a: 'nxgo', k: 'parola', ic: 'abc', t: 'La parola del giorno', s: '5 lettere, 6 tentativi: uguale per tutti' });
-  add(ad && nx.k !== 'prday' && !(p.prDay && p.prDay.d === today()), { a: 'nxgo', k: 'prday', ic: 'grid', t: 'Paroliere del giorno', s: 'Stessa griglia per tutti · 2 minuti' });
-  add(p.rev.length > 0 && nx.k !== 'rev', { a: 'review', ic: 'redo', t: 'Ripasso errori', s: `${p.rev.length} ${p.rev.length === 1 ? 'domanda' : 'domande'} da sistemare` });
-  add(cupOn && nx.k !== 'cup', { a: 'nav', to: 'coppa', ic: 'cup', t: `Coppa · ${CUP_ROUNDS[cs.round][0]}`, s: `Contro ${cs.opps[cs.round]}` });
+  // ogni scheda si prepara solo se serve (es. a Coppa finita non c'è un «prossimo turno»)
+  const dnp = [], add = (on, f) => { if (on && dnp.length < 3) dnp.push(f()); };
+  add(!!NS, () => ({ a: 'nsgo', ic: 'spark', t: `È uscita la ${NS.t}!`, s: `${NS.sub} · ${CARDS.filter(c => c.serie === NS.n).length} figurine nuove`, cls: 'new' }));
+  add(fcPackReady(p) && !(nx.k === 'pack' && !p.packs), () => ({ a: 'nav', to: 'pack', fc: 1, t: 'Bustina Football Center', s: `Quella di ${MESI[new Date().getMonth()].toLowerCase()} è pronta` }));
+  add(p.packs > 0 && nx.k !== 'pack', () => ({ a: 'nav', to: 'pack', ic: 'pack', t: p.packs === 1 ? 'Hai una bustina' : `Hai ${p.packs} bustine`, s: 'Aprila e attacca le figurine' }));
+  mis.slice(nx.k === 'mission' ? 1 : 0).forEach(m => add(true, () => ({ a: 'mission', id: m.id, ic: 'target', t: 'Missione dal tutor', s: `${MODE[m.mode]} · ${missionLabel(m)}` })));
+  add(ad && nx.k !== 'parola' && !wordState(p).done, () => ({ a: 'nxgo', k: 'parola', ic: 'abc', t: 'La parola del giorno', s: '5 lettere, 6 tentativi: uguale per tutti' }));
+  add(ad && nx.k !== 'prday' && !(p.prDay && p.prDay.d === today()), () => ({ a: 'nxgo', k: 'prday', ic: 'grid', t: 'Paroliere del giorno', s: 'Stessa griglia per tutti · 2 minuti' }));
+  add(p.rev.length > 0 && nx.k !== 'rev', () => ({ a: 'review', ic: 'redo', t: 'Ripasso errori', s: `${p.rev.length} ${p.rev.length === 1 ? 'domanda' : 'domande'} da sistemare` }));
+  add(cupOn && nx.k !== 'cup' && !!CUP_ROUNDS[cs.round], () => ({ a: 'nav', to: 'coppa', ic: 'cup', t: `Coppa · ${CUP_ROUNDS[cs.round][0]}`, s: `Contro ${cs.opps[cs.round]}` }));
   const dnpBtn = x => `<button class="dnpc ${x.cls || ''}" data-a="${x.a}"${x.to ? ` data-to="${x.to}"` : ''}${x.k ? ` data-k="${x.k}"` : ''}${x.id ? ` data-id="${x.id}"` : ''}>${x.fc ? `<span class="dq-ic fclogo"><img src="${FC_LOGO}" alt="" width="34" height="32"></span>` : `<span class="dq-ic">${icn(x.ic)}</span>`}<span><b>${esc(x.t)}</b><small>${esc(x.s)}</small></span></button>`;
   const btnTxt = nx.k === 'pack' ? (p.packs > 1 ? 'Apri le bustine' : 'Apri la bustina') : NX_BTN[nx.k] || 'Gioca';
   return `<div class="wrap oggi">
