@@ -1817,6 +1817,16 @@ body::after{content:"";position:fixed;left:0;right:0;top:0;bottom:auto;height:en
 @media (min-width:900px){.ladder{top:calc(12px + env(safe-area-inset-top,0px))}}
 @media (min-width:1100px){.bnav{padding-top:calc(18px + env(safe-area-inset-top,0px));padding-left:max(8px,env(safe-area-inset-left,0px))}}
 .modal{padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+/* bustina aperta: la colonna non può allargarsi oltre lo schermo e le scritte lunghe («Sezione completata: …») vanno a capo
+   (prima una scritta lunga allargava tutto e la terza figurina finiva fuori dallo schermo) */
+.packstage{grid-template-columns:minmax(0,1fr)}
+.pkctl{max-width:100%}
+/* «Nuova!» / «Doppia» sotto la figurina, non sopra la riga del ruolo o della capitale */
+.reveal{row-gap:22px;margin-bottom:20px}
+.reveal .newtag{bottom:-20px}
+.pkctl .chip{white-space:normal;max-width:100%;text-align:center;justify-content:center;line-height:1.3;padding-top:6px;padding-bottom:6px}
+/* barra del titolo: quando la pagina scorre diventa piena (prima il testo si intravedeva sotto, a metà) */
+body.scrolled .top{background:var(--bg);box-shadow:0 0 0 100vmax var(--bg),0 1px 0 100vmax var(--line);clip-path:inset(0 -100vmax -1px)}
 /* ---------- SFIDA A DISTANZA e LEGA DEGLI AMICI (Blocco 5) ---------- */
 /* scelte della sfida: vanno a capo se non ci stanno (gli argomenti degli adulti sono 5) */
 .seg.rsseg{display:flex;flex-wrap:wrap;width:100%}.seg.rsseg button{flex:1 1 auto}
@@ -10023,6 +10033,10 @@ if (typeof module !== 'undefined' && module.exports) module.exports = api; else 
    Scrivere frasi brevi, che capisce un ragazzo di 11 anni. */
 (function (G) {
 const NOVITA = [
+  { v: '2026-10-11b', t: 'Abbiamo corretto un errore', li: [
+    ['Le sezioni di Natale escono il 1° dicembre, ma per sbaglio risultavano già completate: davano bustine in più e sbloccavano la figurina Training Lab. Abbiamo tolto le bustine non ancora aperte e la figurina. Le figurine che hai già trovato nelle bustine restano tue.', ''],
+    ['Bustina aperta: le scritte lunghe non escono più dallo schermo.', '']
+  ] },
   { v: '2026-10-11', t: 'Sfida gli amici a distanza e la Lega', li: [
     ['Nuova «Sfida a distanza»: giochi 8 domande, mandi un codice o un link e i tuoi amici rispondono alle stesse domande sul loro telefono. Chi vince? Lo scoprite con il codice di risposta.', ''],
     ['Nuova «Lega degli amici»: ogni settimana contano i tuoi XP. Scambiatevi il codice della settimana e salite di categoria, da Pulcini a Fuoriclasse.', ''],
@@ -10312,14 +10326,39 @@ function openPack(p) {
 }
 function checkSections(p) {
   const done = [];
-  for (const s of SECTIONS) { if (s.key === 'stagioni' || p.secDone.includes(s.key)) continue; const cs = CARDS.filter(c => c.sec === s.key); if (cs.every(c => p.cards[c.id])) { p.secDone.push(s.key); grant(p, 2, `sezione "${s.title}" completata`, false); done.push(s.title); } }
+  // una sezione senza figurine uscite (es. quelle della Serie 2 prima del 1° dicembre) non è «completata»
+  for (const s of SECTIONS) { if (s.key === 'stagioni' || p.secDone.includes(s.key)) continue; const cs = CARDS.filter(c => c.sec === s.key); if (cs.length && cs.every(c => p.cards[c.id])) { p.secDone.push(s.key); grant(p, 2, `sezione "${s.title}" completata`, false); done.push(s.title); } }
   return done;
+}
+// Correzione dell'11 ottobre 2026 (una volta per giocatore): con la versione «a2f0ddcb0e» le 3 sezioni della Serie 2, ancora vuote,
+// risultavano completate alla prima bustina: +2 bustine ciascuna, trofeo «Prima sezione», retro «Collezionista» e figurina Training Lab
+// (3 sezioni). Qui si tolgono: le sezioni non complete, le bustine date per sbaglio ancora da aprire, il trofeo e la figurina con il suo premio.
+// Le figurine già uscite da quelle bustine restano.
+function fixSezioni(p) {
+  if (!p || p.fixSez) return false; p.fixSez = 1; p.secDone = p.secDone || [];
+  const full = k => { const cs = CARDS.filter(c => c.sec === k); return cs.length > 0 && cs.every(c => p.cards[c.id]); };
+  let bad = p.secDone.filter(k => k !== 'stagioni' && !full(k)), lab = null;
+  p.secDone = p.secDone.filter(k => !bad.includes(k));
+  const L = CARDS_ALL.find(c => c.sec === 'fc' && c.fc === 'lab');
+  if (L && p.cards[L.id] && FC_GOALS.lab.prog(p)[0] < 3) {
+    lab = L; delete p.cards[L.id]; p.newc = (p.newc || []).filter(id => id !== L.id); p.own = (p.own || []).filter(x => x !== 'head:gallo');
+    if (p.av && p.av.head === 'gallo') p.av.head = 'no';
+    const more = p.secDone.filter(k => !full(k)); bad = bad.concat(more); p.secDone = p.secDone.filter(k => !more.includes(k));   // senza il Training Lab anche la sezione Football Center può non essere più completa
+  }
+  if (!bad.length && !lab) return false;
+  let owe = bad.length * 2;
+  if (p.tro && p.tro.sezione && !p.secDone.length) { delete p.tro.sezione; owe++; }
+  const back = Math.min(p.packs || 0, owe); p.packs = (p.packs || 0) - back;
+  p.bkSeen = (p.bkSeen || []).filter(id => id !== 'sezione' || p.secDone.some(k => k !== 'fc' && k !== 'stagioni'));
+  p.log = [{ d: today(), t: `correzione: ${bad.length ? `tolte ${bad.length} sezioni segnate per sbaglio` : ''}${lab ? `${bad.length ? ', ' : ''}tolta la figurina Training Lab` : ''}${back ? `, -${back} bustine` : ''}` }, ...(p.log || [])].slice(0, 40);
+  return true;
 }
 /* ---------- progressi: livelli, ripasso errori, sfide, serie, trofei ---------- */
 function ensure(p) {
   ensureBase(p); avMigrate(p); return p;
 }
 function ensureBase(p) {
+  fixSezioni(p);
   p.lv = p.lv || {}; p.rev = p.rev || []; p.streak = p.streak || { n: 0, last: '', best: 0 }; p.tro = p.tro || {};
   p.cnt = Object.assign({ perfect: 0, maxGoals: 0, read: 0, ch: 0, var: 0 }, p.cnt || {}); p.fm = p.fm || { xi: {}, coach: '', round: 0, wins: 0, played: 0, titles: 0 }; p.stats.rev = p.stats.rev || 0; p.day = p.day || { d: '', s: [] }; p.xp = p.xp || 0; xpMigrate(p); if (!p.av || !p.av.cel) p.av = Object.assign(defaultAv(p), p.av || {});
   return p;
@@ -13881,6 +13920,11 @@ function novitaCheck() {
   $('#modal').hidden = false; $('#modal').querySelector('.btn').focus({ preventScroll: true }); $('#modal').querySelector('.nvsheet').scrollTop = 0; FX.play('tap');
 }
 V.novita = () => `<div class="wrap">${topBar('Novità dell\'app', 'settings')}<div class="stack">${NOV.length ? NOV.map(n => `<div class="panel">${novHTML(n, new Set(['med', 'ad']))}</div>`).join('') : '<p class="muted">Nessuna novità registrata.</p>'}</div></div>`;
+// quando la pagina scorre la barra del titolo diventa piena (classe body.scrolled, cambia solo quando serve)
+let SCROLLED = false;
+addEventListener('scroll', () => { const s = scrollY > 4; if (s !== SCROLLED) { SCROLLED = s; document.body.classList.toggle('scrolled', s); } }, { passive: true });
+// correzione dell'11 ottobre: si controllano subito tutti i giocatori di questo dispositivo
+if (DB.profiles.map(fixSezioni).some(Boolean)) save();
 if (/debug/.test(location.hash)) window.__fc = { ui: () => UI, pack: () => openPack(prof()) };
 let LINK = (() => { const m = location.hash.match(/(sfida|lega)=([A-Za-z0-9-]+)/); return m ? m[2] : null; })();
 if (LINK) try { history.replaceState(null, '', location.pathname + location.search + (/debug/.test(location.hash) ? '#debug' : '')); } catch (e) { }

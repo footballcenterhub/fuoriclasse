@@ -1,5 +1,5 @@
-// Fuoriclasse: funziona anche senza internet. Versione a2f0ddcb0e
-const V = 'fc-a2f0ddcb0e';
+// Fuoriclasse: funziona anche senza internet. Versione 8c2974384c
+const V = 'fc-8c2974384c';
 const CORE = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'favicon-64.png'];
 self.addEventListener('install', e => e.waitUntil(caches.open(V).then(c => c.addAll(CORE)).then(() => self.skipWaiting())));
 self.addEventListener('activate', e => e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== V).map(k => caches.delete(k)))).then(() => self.clients.claim())));
