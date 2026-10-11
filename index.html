@@ -1827,6 +1827,27 @@ body::after{content:"";position:fixed;left:0;right:0;top:0;bottom:auto;height:en
 .pkctl .chip{white-space:normal;max-width:100%;text-align:center;justify-content:center;line-height:1.3;padding-top:6px;padding-bottom:6px}
 /* barra del titolo: quando la pagina scorre diventa piena (prima il testo si intravedeva sotto, a metà) */
 body.scrolled .top{background:var(--bg);box-shadow:0 0 0 100vmax var(--bg),0 1px 0 100vmax var(--line);clip-path:inset(0 -100vmax -1px)}
+/* ---------- CALCIOMERCATO ---------- */
+.mkhead{display:grid;gap:8px}
+/* prezzi: 4 caselle uguali, spente quelle che non puoi ancora pagare */
+.mkprices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.mkprices .chip{display:grid;justify-items:center;gap:1px;min-height:48px;padding:5px 4px;border-radius:var(--r-m);font-size:var(--fs-xs);line-height:1.1;text-align:center}
+.mkprices .chip b{font-family:var(--display);font-size:var(--fs-l);line-height:1}
+.mkprices .chip.off{opacity:.45}
+.mksecs{margin:0 -16px;padding-left:16px;padding-right:16px}
+/* figurina scelta: la barra resta sempre in vista, SOPRA la barra di navigazione (prima ci finiva sotto) */
+.buybar{position:sticky;bottom:calc(10px + env(safe-area-inset-bottom,0px));z-index:12;display:flex;gap:10px;align-items:center;padding:8px 8px 8px 10px;border:1px solid var(--line-strong);background:var(--surface-2);box-shadow:0 10px 30px rgba(0,0,0,.5);animation:fbIn .25s var(--ease) both}
+body.navon .buybar{bottom:calc(80px + env(safe-area-inset-bottom,0px))}
+@media (min-width:1100px){body.navon .buybar{bottom:calc(12px + env(safe-area-inset-bottom,0px))}}
+.buycard{width:46px;flex:none}
+.buycard .card{box-shadow:0 0 0 2px var(--accent)}
+.buyt{flex:1;min-width:0;display:grid;gap:2px}
+.buyt b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.buyt small{font-size:var(--fs-xs);color:var(--ink-2);line-height:1.3}
+.buybar .btn{flex:none;padding-left:16px;padding-right:16px}
+.pickgrid button[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent),var(--glow)}
+.pickgrid button.o45[aria-pressed="true"]{opacity:.75}
+@media (prefers-reduced-motion:reduce){.buybar{animation:none}}
 /* ---------- SFIDA A DISTANZA e LEGA DEGLI AMICI (Blocco 5) ---------- */
 /* scelte della sfida: vanno a capo se non ci stanno (gli argomenti degli adulti sono 5) */
 .seg.rsseg{display:flex;flex-wrap:wrap;width:100%}.seg.rsseg button{flex:1 1 auto}
@@ -10033,6 +10054,11 @@ if (typeof module !== 'undefined' && module.exports) module.exports = api; else 
    Scrivere frasi brevi, che capisce un ragazzo di 11 anni. */
 (function (G) {
 const NOVITA = [
+  { v: '2026-10-11c', t: 'Calciomercato più comodo', li: [
+    ['Quando scegli una figurina, il tasto «Prendila» resta sempre in vista, sopra la barra in basso (prima ci finiva nascosto).', ''],
+    ['Le figurine che ti mancano sono divise per sezione: trovi subito quella che cerchi.', ''],
+    ['I prezzi si vedono a colpo d\'occhio: quelli spenti non puoi ancora pagarli.', '']
+  ] },
   { v: '2026-10-11b', t: 'Abbiamo corretto un errore', li: [
     ['Le sezioni di Natale escono il 1° dicembre, ma per sbaglio risultavano già completate: davano bustine in più e sbloccavano la figurina Training Lab. Abbiamo tolto le bustine non ancora aperte e la figurina. Le figurine che hai già trovato nelle bustine restano tue.', ''],
     ['Bustina aperta: le scritte lunghe non escono più dallo schermo.', '']
@@ -11396,25 +11422,33 @@ function useSpares(p, n) {
   const list = Object.entries(p.cards).filter(([, k]) => k > 1).sort((a, b) => { const ra = ['comune', 'rara', 'oro', 'olo'].indexOf(BY_ID[a[0]].rar), rb = ['comune', 'rara', 'oro', 'olo'].indexOf(BY_ID[b[0]].rar); return ra - rb || b[1] - a[1]; });
   for (const [id] of list) { while (n > 0 && p.cards[id] > 1) { p.cards[id]--; n--; } if (!n) break; }
 }
+// --- Calciomercato: «Usa le doppie» (compri la figurina che ti manca) e «Scambia con un amico» (sullo stesso dispositivo)
+const RARG = { comune: '', rara: '◆ ', oro: '★ ', olo: '✦ ' };
 V.mercato = () => {
-  const p = prof(), sp = spare(p), tab = UI.tab || 'fondi', missing = CARDS.filter(c => !p.cards[c.id] && c.sec !== 'coppa' && c.sec !== 'fc' && c.sec !== 'stagioni');
+  const p = prof(), sp = spare(p), tab = UI.tab || 'fondi';
   const others = DB.profiles.filter(x => x.id !== p.id);
   let body = '';
   if (tab === 'fondi') {
-    const sel = UI.sel ? BY_ID[UI.sel] : null;
-    body = `<p class="muted">Hai <b class="c-ink">${sp}</b> ${sp === 1 ? 'doppia' : 'doppie'}. Prezzi: comune ${COST.comune} · rara ${COST.rara} · oro ${COST.oro} · olografica ${COST.olo}.</p>
-    ${missing.length ? `<div class="pickgrid">${missing.map(c => `<button data-a="selmiss" data-id="${c.id}" aria-pressed="${UI.sel === c.id}" ${sp < COST[c.rar] ? 'class="o45"' : ''} aria-label="${esc(c.name)}">${cardHTML(c, LAZY)}</button>`).join('')}</div>` : '<p>Hai già tutte le figurine. Campione!</p>'}
-    ${sel ? `<div class="panel row buybar"><div><b>${esc(sel.name)}</b><div class="small muted">Costo: ${COST[sel.rar]} doppie · ne hai ${sp}</div></div><span class="spacer"></span><button class="btn" data-a="fuse" ${sp < COST[sel.rar] ? 'disabled' : ''}>Prendila</button></div>` : ''}`;
+    const missing = CARDS.filter(c => !p.cards[c.id] && c.sec !== 'coppa' && c.sec !== 'fc' && c.sec !== 'stagioni');
+    const secs = SECTIONS.filter(S => missing.some(c => c.sec === S.key)), msec = secs.some(S => S.key === UI.msec) ? UI.msec : 'tutte';
+    const list = msec === 'tutte' ? missing : missing.filter(c => c.sec === msec), sel = UI.sel ? BY_ID[UI.sel] : null, can = sel && sp >= COST[sel.rar];
+    // prezzi a colpo d'occhio: spenti quelli che non puoi ancora pagare
+    const prices = Object.entries(COST).map(([r, n]) => `<span class="chip ${sp >= n ? '' : 'off'}"><span>${RARG[r]}${RAR[r].t}</span><b>${n}</b></span>`).join('');
+    body = `<div class="mkhead"><p class="m0">Hai <b class="c-ink t-disp t-l">${sp}</b> ${sp === 1 ? 'doppia' : 'doppie'}. Con le doppie prendi una figurina che ti manca:</p><div class="mkprices" aria-label="Prezzi in doppie">${prices}</div></div>
+    ${missing.length ? `<div class="secs mksecs" role="group" aria-label="Sezione"><button data-a="mksec" data-s="tutte" aria-pressed="${msec === 'tutte'}">Tutte<small>${missing.length}</small></button>${secs.map(S => `<button data-a="mksec" data-s="${S.key}" aria-pressed="${msec === S.key}">${esc(S.title)}<small>${missing.filter(c => c.sec === S.key).length}</small></button>`).join('')}</div>
+    <div class="pickgrid mkgrid">${list.map(c => `<button data-a="selmiss" data-id="${c.id}" aria-pressed="${UI.sel === c.id}" class="${sp < COST[c.rar] ? 'o45' : ''}" aria-label="${esc(c.name)}, ${RAR[c.rar].t}, costa ${COST[c.rar]} doppie">${cardHTML(c, LAZY)}</button>`).join('')}</div>` : '<div class="panel tc"><b>Hai già tutte le figurine. Campione!</b></div>'}
+    ${sel ? `<div class="panel buybar" role="region" aria-label="Figurina scelta"><div class="buycard">${cardHTML(sel)}</div><div class="buyt"><b>${esc(sel.name)}</b><small>${can ? `Costa ${COST[sel.rar]} doppie · ne hai ${sp}` : `Costa ${COST[sel.rar]} doppie: te ne mancano ${COST[sel.rar] - sp}`}</small></div><button class="btn" data-a="fuse" ${can ? '' : 'disabled'}>Prendila</button><button class="iconbtn" data-a="mkclear" aria-label="Annulla la scelta">${icn('x')}</button></div>` : ''}`;
   } else {
     const partner = others.find(x => x.id === UI.partner);
     const dupList = q => Object.entries(q.cards).filter(([, n]) => n > 1).map(([id]) => BY_ID[id]).sort((a, b) => a.n - b.n);
+    const G = UI.give && BY_ID[UI.give], T = UI.take && BY_ID[UI.take], okTrade = G && T && G.rar === T.rar;
     body = !others.length ? '<p class="muted">Per scambiare servono almeno due giocatori su questo dispositivo.</p>' : `
-    <p class="muted">Scambio di persona, sullo stesso dispositivo: ognuno sceglie una delle sue doppie da dare all'altro. <b>Solo alla pari</b> (stessa rarità) e al massimo ${TRADES_DAY} scambi al giorno a testa: oggi ne restano ${tradesLeft(p)} a ${esc(p.nick)}.</p>
+    <p class="muted m0">Scambio di persona, sullo stesso dispositivo: ognuno dà una delle sue doppie all'altro. <b>Solo alla pari</b> (stessa rarità), al massimo ${TRADES_DAY} scambi al giorno a testa: oggi te ne restano ${tradesLeft(p)}.</p>
     <div class="choice">${others.map(o => `<button data-a="partner" data-id="${o.id}" aria-pressed="${UI.partner === o.id}" class="chn">${esc(o.nick)}</button>`).join('')}</div>
     ${partner ? `<div class="trade">
-      <div class="panel"><h2>${esc(p.nick)} dà</h2>${dupList(p).length ? `<div class="pickgrid">${dupList(p).map(c => `<button data-a="give" data-id="${c.id}" aria-pressed="${UI.give === c.id}">${cardHTML(c, LAZY)}</button>`).join('')}</div>` : '<p class="small muted">Nessuna doppia.</p>'}</div>
-      <div class="panel"><h2>${esc(partner.nick)} dà</h2>${dupList(partner).length ? `<div class="pickgrid">${dupList(partner).map(c => `<button data-a="take" data-id="${c.id}" aria-pressed="${UI.take === c.id}">${cardHTML(c, LAZY)}</button>`).join('')}</div>` : '<p class="small muted">Nessuna doppia.</p>'}</div></div>
-      <button class="btn wide" data-a="trade" ${UI.give && UI.take ? '' : 'disabled'}>Confermiamo lo scambio</button>` : ''}`;
+      <div class="panel"><h2>${esc(p.nick)} dà</h2>${dupList(p).length ? `<div class="pickgrid">${dupList(p).map(c => `<button data-a="give" data-id="${c.id}" aria-pressed="${UI.give === c.id}" aria-label="${esc(c.name)}">${cardHTML(c, LAZY)}</button>`).join('')}</div>` : '<p class="small muted">Nessuna doppia.</p>'}</div>
+      <div class="panel"><h2>${esc(partner.nick)} dà</h2>${dupList(partner).length ? `<div class="pickgrid">${dupList(partner).map(c => `<button data-a="take" data-id="${c.id}" aria-pressed="${UI.take === c.id}" aria-label="${esc(c.name)}">${cardHTML(c, LAZY)}</button>`).join('')}</div>` : '<p class="small muted">Nessuna doppia.</p>'}</div></div>
+      <div class="panel buybar" role="region" aria-label="Scambio"><div class="buyt"><b>${G ? esc(G.name) : '…'} ↔ ${T ? esc(T.name) : '…'}</b><small>${!G || !T ? 'Scegliete una doppia a testa' : okTrade ? 'Stessa rarità: si può fare' : 'Rarità diverse: lo scambio deve essere alla pari'}</small></div><button class="btn" data-a="trade" ${okTrade ? '' : 'disabled'}>Scambiamo</button></div>` : ''}`;
   }
   return `<div class="wrap">${topBar('Calciomercato', 'album', `<span class="chip">Doppie <b>${sp}</b></span>`)}
   <div class="stack"><div class="seg" role="group">${[['fondi', 'Usa le doppie'], ['scambia', 'Scambia con un amico']].map(([k, t]) => `<button data-a="tab" data-t="${k}" aria-pressed="${tab === k}">${t}</button>`).join('')}</div>${body}</div></div>`;
@@ -13851,8 +13885,10 @@ const A = {
   close: () => { $('#modal').hidden = true; $('#modal').innerHTML = ''; const g = UI.g; if (g && 'qp' in g) { g.paused = g.qp; delete g.qp; } },
   reveal: (d, el) => { el.outerHTML = `<b class="c-acc">${esc(d.v)}</b>`; },
   tab: d => { UI.tab = d.t; UI.sel = null; render(); },
-  selmiss: d => { UI.sel = d.id; render(); },
-  fuse: () => { const p = prof(), c = BY_ID[UI.sel]; if (!c || spare(p) < COST[c.rar]) return; useSpares(p, COST[c.rar]); p.cards[c.id] = 1; const b = checkSections(p); save(); UI.sel = null; render(); toast(`${c.name} è nel tuo album!${b.length ? ' Sezione completata: +2 bustine!' : ''}`); },
+  selmiss: d => { UI.sel = UI.sel === d.id ? null : d.id; FX.play('tap'); render(); },
+  mksec: d => { UI.msec = d.s; FX.play('tap'); render(); },
+  mkclear: () => { UI.sel = null; render(); },
+  fuse: () => { const p = prof(), c = BY_ID[UI.sel]; if (!c || spare(p) < COST[c.rar]) return; useSpares(p, COST[c.rar]); p.cards[c.id] = 1; p.newc = Array.from(new Set([...(p.newc || []), c.id])); const b = checkSections(p); save(); UI.sel = null; render(); FX.play(b.length ? 'oro' : 'coin'); toast(`${c.name} è nel tuo album!${b.length ? ' Sezione completata: +2 bustine!' : ''}`); },
   partner: d => { UI.partner = d.id; UI.give = UI.take = null; render(); },
   give: d => { UI.give = d.id; render(); }, take: d => { UI.take = d.id; render(); },
   trade: () => { const p = prof(), q = DB.profiles.find(x => x.id === UI.partner); if (!q || !(p.cards[UI.give] > 1) || !(q.cards[UI.take] > 1)) return; if (BY_ID[UI.give].rar !== BY_ID[UI.take].rar) return toast('Lo scambio deve essere alla pari: due figurine della stessa rarità.'); if (tradesLeft(p) <= 0 || tradesLeft(ensure(q)) <= 0) return toast(`Oggi avete già fatto ${TRADES_DAY} scambi: si riprende domani.`); [p, q].forEach(x => { x.trd = x.trd && x.trd.d === today() ? { d: today(), n: x.trd.n + 1 } : { d: today(), n: 1 }; }); p.cards[UI.give]--; q.cards[UI.give] = (q.cards[UI.give] || 0) + 1; q.cards[UI.take]--; p.cards[UI.take] = (p.cards[UI.take] || 0) + 1; checkSections(p); checkSections(q); save(); toast(`Scambio fatto: ${BY_ID[UI.give].name} ⇄ ${BY_ID[UI.take].name}`); UI.give = UI.take = null; render(); },
