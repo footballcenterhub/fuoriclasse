@@ -1715,7 +1715,9 @@ body[data-c=ad] .pkglow{background:radial-gradient(circle,rgba(230,194,106,.2),t
 /* Oggi: la stessa bustina, con la seconda dietro se sono più di una */
 .nxpack{position:relative;display:block;width:100%}
 .nxpack .pkart{display:block;width:100%;height:auto}
-.nxpk-b{position:absolute;inset:0;transform:rotate(8deg) translate(6px,-2px);opacity:.55}
+/* la seconda bustina sta DIETRO la prima (prima era disegnata sopra, semitrasparente: le scritte sembravano sfocate) */
+.nxpk-b{position:absolute;inset:0;z-index:0;transform:rotate(9deg) translate(12px,-4px);opacity:.6}
+.nxpack>.pkart{position:relative;z-index:1}
 /* ---------- FIGURINE ---------- */
 /* fronte: cornice metallica per rarità (argento, blu, oro, arcobaleno), interno blu notte */
 .card-in{background:#0f1829}
@@ -1806,6 +1808,60 @@ body[data-c=ad]::before{background:radial-gradient(140% 95% at 50% 115%,transpar
 .pickgrid>button{contain-intrinsic-size:auto 116px}
 /* «testo grande» sul telefono: se i tasti dell'intestazione non ci stanno vanno a capo (prima l'Album usciva dallo schermo di 12 px) */
 @media (max-width:440px){body.big .top{flex-wrap:wrap;row-gap:6px}body.big .top>.chip:last-child{margin-left:auto}}
+/* ---------- iPhone: zona dell'orologio e dell'isola in alto (e della tacca di lato in orizzontale) ----------
+   Aperta dalla schermata Home, l'app parte sotto la barra di stato: senza questo spazio i titoli e il tasto «Esci» dei giochi
+   finivano sotto l'orologio. Sugli altri dispositivi env(...) vale 0 e non cambia niente. */
+.wrap{padding-top:calc(8px + env(safe-area-inset-top,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::after{content:"";position:fixed;left:0;right:0;top:0;bottom:auto;height:env(safe-area-inset-top,0px);z-index:26;background:var(--bg);pointer-events:none}
+@media (max-width:759px){.gtabs{top:env(safe-area-inset-top,0px)}}
+@media (min-width:900px){.ladder{top:calc(12px + env(safe-area-inset-top,0px))}}
+@media (min-width:1100px){.bnav{padding-top:calc(18px + env(safe-area-inset-top,0px));padding-left:max(8px,env(safe-area-inset-left,0px))}}
+.modal{padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+/* ---------- SFIDA A DISTANZA e LEGA DEGLI AMICI (Blocco 5) ---------- */
+/* scelte della sfida: vanno a capo se non ci stanno (gli argomenti degli adulti sono 5) */
+.seg.rsseg{display:flex;flex-wrap:wrap;width:100%}.seg.rsseg button{flex:1 1 auto}
+.codebox{display:grid;gap:8px}
+.codebox .row{gap:8px}
+.codebox .btn .ic{width:18px;height:18px}
+.codeout,.codein{width:100%;min-height:52px;padding:10px 14px;border-radius:var(--r-m);border:1px solid var(--line-strong);background:var(--surface-2);color:var(--ink);font-family:var(--display);font-weight:800;font-size:var(--fs-l);letter-spacing:.06em;text-align:center;text-transform:uppercase}
+.codeout{color:var(--accent);border-style:dashed}
+.codein::placeholder{font-family:var(--body);font-weight:400;font-size:var(--fs-s);letter-spacing:0;text-transform:none;color:var(--ink-2)}
+.rshero{display:grid;grid-template-columns:110px minmax(0,1fr);gap:14px;align-items:center;padding:12px;border-radius:var(--r-l);background:var(--surface);border:1px solid var(--line)}
+.rsart{display:block;border-radius:var(--r-s);overflow:hidden;aspect-ratio:12/7}
+.rsart svg{display:block;width:100%;height:100%}
+.rsart.big{width:min(260px,72%)}
+.rsrow{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:center;width:100%;min-height:56px;padding:8px 12px;border-radius:var(--r-l);border:1px solid var(--line);background:var(--surface);color:var(--ink);text-align:left}
+.rsico{width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:50%;background:var(--surface-3);color:var(--accent)}
+.rsico .ic{width:20px;height:20px}
+.rst{display:grid;gap:2px;min-width:0}.rst small{color:var(--ink-2);font-size:var(--fs-xs)}
+.rssc{font-family:var(--display);font-size:var(--fs-xl)}.rssc small{font-size:.55em;color:var(--ink-2)}
+.racc{justify-items:center;text-align:center}
+.rsbeat{display:grid;justify-items:center;gap:2px;padding:12px 28px}
+.rsbeat b{font-family:var(--display);font-size:3rem;line-height:1;color:var(--accent)}.rsbeat b small{font-size:.45em;color:var(--ink-2)}
+.rsbeat span{font-size:var(--fs-xs);color:var(--ink-2)}
+.note.warn{padding:10px 12px;border-radius:var(--r-m);background:rgba(255,216,74,.12);border:1px solid rgba(255,216,74,.4);font-size:var(--fs-s)}
+.rsres .dr{border-left-color:var(--surface-3)}.rsres .dr.ok{border-left-color:var(--ok)}
+.lgbadge{display:inline-block;width:40px;flex:none}.lgbadge svg{display:block;width:100%;height:auto}.lgbadge.big{width:64px}
+.lghero{display:flex;gap:14px;align-items:center;padding:14px;border-radius:var(--r-l);background:var(--surface);border:1px solid var(--line)}
+.lghero h2{font-size:var(--fs-xl);text-transform:uppercase}
+.lgtiers{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.lgtiers i{height:8px;border-radius:4px;background:var(--surface-3)}
+.lgtiers i.done{background:color-mix(in srgb,var(--lg) 45%,var(--surface-3))}
+.lgtiers i.on{background:var(--lg);box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--lg)}
+.lglast{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:var(--r-l);background:var(--surface-2);border:1px solid var(--line-strong)}
+.lglast.up{border-color:var(--ok)}.lglast.down{border-color:var(--ko)}
+.lgtable{display:grid;gap:6px}
+.lgrow{display:grid;grid-template-columns:28px 36px minmax(0,1fr) auto auto;gap:10px;align-items:center;min-height:52px;padding:6px 6px 6px 10px;border-radius:var(--r-m);background:var(--surface-2);border-left:4px solid transparent}
+.lgrow.up{border-left-color:var(--ok)}.lgrow.down{border-left-color:var(--ko)}
+.lgrow.me{background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.lgpos{font-family:var(--display);font-size:var(--fs-l);text-align:center;line-height:1}
+/* chi sale e chi scende si capisce anche senza i colori */
+.lgrow.up .lgpos::after{content:"▲";display:block;font-size:.55em;color:var(--ok)}
+.lgrow.down .lgpos::after{content:"▼";display:block;font-size:.55em;color:var(--ko)}
+.lgav{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:hsl(var(--h) 55% 38%);color:#fff;font-weight:800}
+.lgn{display:grid;gap:1px;min-width:0}.lgn b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.lgn small{color:var(--ink-2);font-size:var(--fs-xs)}
+.lgxp{font-family:var(--display);font-size:var(--fs-l)}.lgxp small{font-size:.6em;color:var(--ink-2)}
+.lgdel{width:44px;height:44px}
 </style>
 <div id="boot" class="boot"><div><b>Fuoriclasse</b><p id="bootmsg">Caricamento in corso…</p>
 <p class="bh">Se resti fermo su questa schermata, il browser non sta facendo partire il gioco. Su iPhone succede quando il file si apre in <i>anteprima</i> (app File, WhatsApp, Mail, AirDrop): l'anteprima mostra la pagina ma non esegue i programmi. Apri il link del gioco con Safari.</p></div></div>
@@ -7697,7 +7753,11 @@ const SECTIONS = [
   { key: 'speciali', title: 'Speciali Fuoriclasse', en: 'Specials', note: 'Figurine esclusive di questo album' },
   { key: 'coppa', title: 'Trofei leggendari', en: 'Legendary trophies', note: 'Non escono dalle bustine: si vincono solo con la Coppa settimanale' },
   { key: 'fc', title: 'Football Center', en: 'Football Center specials', note: 'Figurine speciali: non escono nelle bustine, si sbloccano con le imprese più difficili' },
-  { key: 'stagioni', title: 'Stagioni del Pass', en: 'Seasons', note: 'Due figurine esclusive al mese, solo con il Pass della stagione (livelli 15 e 30). Chi ne perde una la ritrova lo stesso mese dell\'anno dopo. Non contano per completare l\'album' }
+  { key: 'stagioni', title: 'Stagioni del Pass', en: 'Seasons', note: 'Due figurine esclusive al mese, solo con il Pass della stagione (livelli 15 e 30). Chi ne perde una la ritrova lo stesso mese dell\'anno dopo. Non contano per completare l\'album' },
+  // Serie 2 «Natale» (esce il 1° dicembre 2026): sezioni nuove IN FONDO, così i numeri delle cartelle delle foto non cambiano
+  { key: 'natale', title: 'Stelle di Natale', en: 'Christmas stars', note: 'I campioni e le campionesse di oggi, con il cappello di Natale' },
+  { key: 'leggnat', title: 'Leggende sotto l\'albero', en: 'Christmas legends', note: 'Grandi del passato, in versione natalizia' },
+  { key: 'calnat', title: 'Il calcio a Natale', en: 'Football at Christmas', note: 'Storie e tradizioni del calcio nel periodo delle feste' }
 ];
 // [nome, nazione, ruolo, nascita, morte|0, rarità, curiosità]
 const P = (sec, rows) => rows.map(r => ({ sec, name: r[0], nat: r[1], role: r[2], born: r[3], died: r[4] || 0, rar: r[5], fact: r[6] }));
@@ -8253,7 +8313,66 @@ CARDS.push(
   { sec: 'fc', fc: 'social', name: 'Amici Football Center', rar: 'rara', en: 'Teammate = compagno di squadra', fact: 'A Football Center si cresce insieme: questa figurina si conquista giocando 5 Sfide 1 contro 1 con amici o in famiglia.' },
   { sec: 'fc', fc: 'scudetto', name: 'Scudetto Football Center', rar: 'olo', en: 'Champion = campione', fact: 'Lo scudetto di chi ha completato metà dell\'album: una collezione da vero campione.' }
 );
-CARDS.forEach((c, i) => { c.id = 'F' + String(i + 1).padStart(3, '0'); c.fem = c.sec === 'campionesse' || ['Mia Hamm', 'Birgit Prinz', 'Carolina Morace', 'Sun Wen', 'Sarina Wiegman'].includes(c.name); });
+/* ---------- SERIE 2 «Natale» (1° dicembre 2026) · 48 figurine ----------
+   In fondo all'elenco: i codici di salvataggio leggono le figurine per posizione. Prima della data non esistono per l'app.
+   Calciatori veri come nella Serie 1 (ritratto stilizzato, nessun volto reale) con il cappello di Natale (xmas). */
+const S2 = (sec, rows, fem) => P2(sec, rows).map(c => Object.assign(c, { serie: 2, xmas: true, fem: fem.includes(c.name) }));
+CARDS.push(...S2('natale', [
+  ['Thomas Müller', 'GER', 'CEN', 1989, 0, 89, '0|corti|c|no|25', 'Campione del mondo nel 2014. Lui stesso si è definito «Raumdeuter», cioè «l\'interprete degli spazi»: trova sempre il posto giusto in area.'],
+  ['Ángel Di María', 'ARG', 'ALA', 1988, 0, 90, '1|mezzi|n|no|11', 'Ha segnato in tre finali vinte dall\'Argentina: Copa América 2021, Finalissima 2022 e Mondiale 2022.'],
+  ['Enzo Fernández', 'ARG', 'CEN', 2001, 0, 86, '1|corti|cs|no|24', 'Miglior giovane del Mondiale 2022, vinto con l\'Argentina.'],
+  ['James Rodríguez', 'COL', 'CEN', 1991, 0, 86, '1|corti|n|barbetta|10', 'Capocannoniere del Mondiale 2014 con 6 gol. Quello al volo contro l\'Uruguay ha vinto il premio Puskás per il gol più bello dell\'anno.'],
+  ['Mikel Oyarzabal', 'ESP', 'ATT', 1997, 0, 85, '0|corti|cs|no|21', 'Ha segnato il gol decisivo nella finale di Euro 2024, vinta dalla Spagna 2-1 contro l\'Inghilterra.'],
+  ['Dani Carvajal', 'ESP', 'DIF', 1992, 0, 87, '1|corti|n|barba|2', 'Ha vinto 6 Champions League con il Real Madrid e l\'Europeo 2024 con la Spagna.'],
+  ['Eduardo Camavinga', 'FRA', 'CEN', 2002, 0, 86, '4|treccine|n|no|6', 'È nato in un campo profughi in Angola, dove la sua famiglia era arrivata dal Congo. Poi è cresciuto in Francia.'],
+  ['Antonio Rüdiger', 'GER', 'DIF', 1993, 0, 86, '4|calvo|n|barba|2', 'Ha vinto la Champions League con due squadre diverse: il Chelsea nel 2021 e il Real Madrid nel 2024.'],
+  ['Ollie Watkins', 'ENG', 'ATT', 1995, 0, 84, '4|rasati|n|barbetta|19', 'Entrato dalla panchina, ha segnato all\'ultimo minuto la semifinale di Euro 2024 contro l\'Olanda.'],
+  ['Kim Min-jae', 'KOR', 'DIF', 1996, 0, 86, '1|corti|n|no|3', 'Nel 2023 ha vinto lo scudetto con il Napoli ed è stato eletto miglior difensore della Serie A.'],
+  ['Sébastien Haller', 'CIV', 'ATT', 1994, 0, 83, '4|rasati|n|barbetta|22', 'Dopo aver superato una malattia grave è tornato in campo e ha segnato il gol che ha deciso la finale della Coppa d\'Africa 2023.'],
+  ['Diogo Costa', 'POR', 'POR', 1999, 0, 85, '1|corti|n|barba|1', 'A Euro 2024 ha parato 3 rigori di fila contro la Slovenia: nessun portiere ci era mai riuscito in una serie di rigori degli Europei.'],
+  ['Jordan Pickford', 'ENG', 'POR', 1994, 0, 84, '0|corti|cs|barbetta|1', 'Sulla sua borraccia attacca un foglietto con gli appunti su come tirano i rigori gli avversari.'],
+  ['Mattia Zaccagni', 'ITA', 'ALA', 1995, 0, 82, '1|corti|n|barba|20', 'A Euro 2024 ha segnato contro la Croazia al 98° minuto: un gol a giro che ha portato l\'Italia agli ottavi.'],
+  ['Daniel Maldini', 'ITA', 'CEN', 2001, 0, 78, '0|corti|c|barbetta|10', 'Con lui i Maldini hanno giocato in Nazionale per tre generazioni: il nonno Cesare, il papà Paolo e lui.'],
+  ['Francesco Pio Esposito', 'ITA', 'ATT', 2005, 0, 77, '1|corti|n|no|9', 'Anche i suoi due fratelli più grandi, Salvatore e Sebastiano, fanno i calciatori.'],
+  ['Endrick', 'BRA', 'ATT', 2006, 0, 80, '3|ricci|n|no|9', 'A 17 anni ha segnato il gol della vittoria del Brasile a Wembley, contro l\'Inghilterra.'],
+  ['Mallory Swanson', 'USA', 'ALA', 1998, 0, 89, '0|coda|b|no|9', 'Ha segnato il gol che ha dato agli Stati Uniti l\'oro olimpico a Parigi 2024, nella finale contro il Brasile.'],
+  ['Ewa Pajor', 'POL', 'ATT', 1996, 0, 90, '0|coda|b|no|9', 'È la stella della Polonia, che nel 2025 ha giocato il suo primo Europeo femminile della storia.'],
+  ['Beth Mead', 'ENG', 'ALA', 1995, 0, 87, '0|coda|b|no|7', 'Capocannoniera e miglior giocatrice dell\'Europeo 2022, vinto dall\'Inghilterra.'],
+  ['Hannah Hampton', 'ENG', 'POR', 2000, 0, 87, '0|coda|b|no|1', 'Da piccola le dicevano che, per un problema agli occhi, non avrebbe potuto fare il portiere. Nel 2025 è diventata campionessa d\'Europa.'],
+  ['Michelle Agyemang', 'ENG', 'ATT', 2006, 0, 80, '4|treccine|n|no|20', 'A 19 anni, agli Europei 2025, è entrata dalla panchina e ha segnato due gol decisivi. L\'Inghilterra poi ha vinto il torneo.'],
+  ['Irene Paredes', 'ESP', 'DIF', 1991, 0, 86, '1|coda|n|no|4', 'Difensora della Spagna campionessa del mondo nel 2023: è fortissima di testa.'],
+  ['Lena Oberdorf', 'GER', 'CEN', 2001, 0, 86, '0|corti|cs|no|6', 'A 17 anni giocava già il Mondiale 2019 con la Germania: in mezzo al campo recupera tantissimi palloni.'],
+  ['Eugénie Le Sommer', 'FRA', 'ATT', 1989, 0, 85, '1|coda|cs|no|9', 'È la miglior marcatrice di sempre della nazionale femminile francese.'],
+  ['Hinata Miyazawa', 'JPN', 'CEN', 1999, 0, 84, '1|coda|n|no|7', 'Capocannoniera del Mondiale femminile 2023 con 5 gol.']
+], ['Mallory Swanson', 'Ewa Pajor', 'Beth Mead', 'Hannah Hampton', 'Michelle Agyemang', 'Irene Paredes', 'Lena Oberdorf', 'Eugénie Le Sommer', 'Hinata Miyazawa']));
+CARDS.push(...S2('leggnat', [
+  ['Toni Kroos', 'GER', 'CEN', 1990, 0, 94, '0|corti|b|no|8', 'Ha vinto 6 Champions League (una con il Bayern e cinque con il Real Madrid) e il Mondiale 2014. Si è ritirato nel 2024.'],
+  ['Christine Sinclair', 'CAN', 'ATT', 1983, 0, 94, '0|coda|c|no|12', 'Ha segnato 190 gol con il Canada: nessuno, uomo o donna, ne ha fatti di più con una nazionale.'],
+  ['Homare Sawa', 'JPN', 'CEN', 1978, 0, 93, '1|corti|n|no|10', 'Nel 2011 ha guidato il Giappone alla vittoria del Mondiale: miglior giocatrice e capocannoniera del torneo.'],
+  ['Carli Lloyd', 'USA', 'CEN', 1982, 0, 92, '0|coda|c|no|10', 'Nella finale del Mondiale 2015 ha segnato 3 gol in 16 minuti, uno da metà campo.'],
+  ['Formiga', 'BRA', 'CEN', 1978, 0, 91, '3|corti|n|no|8', 'Ha giocato 7 Mondiali, dal 1995 al 2019: è un record per uomini e donne.'],
+  ['Pavel Nedvěd', 'CZE', 'CEN', 1972, 0, 93, '0|lunghi|b|no|11', 'Pallone d\'Oro 2003. Per i capelli biondi e la corsa instancabile lo chiamavano «Furia ceca».'],
+  ['Gheorghe Hagi', 'ROU', 'CEN', 1965, 0, 92, '1|corti|n|no|10', 'Lo chiamavano «il Maradona dei Carpazi»: è considerato il più grande calciatore della storia della Romania.'],
+  ['Michael Laudrup', 'DEN', 'CEN', 1964, 0, 92, '0|corti|b|no|10', 'Ha vinto il campionato spagnolo sia con il Barcellona sia con il Real Madrid, le due grandi rivali.'],
+  ['Roger Milla', 'CMR', 'ATT', 1952, 0, 90, '5|corti|n|baffi|9', 'A 42 anni ha segnato al Mondiale 1994: è il marcatore più anziano della storia dei Mondiali. Festeggiava ballando vicino alla bandierina.'],
+  ['Jay-Jay Okocha', 'NGA', 'CEN', 1973, 0, 90, '5|rasati|n|no|10', 'I tifosi cantavano che era «così bravo che gli hanno dato il nome due volte». Famoso per dribbling e finte.'],
+  ['Hugo Sánchez', 'MEX', 'ATT', 1958, 0, 91, '2|corti|n|baffi|9', 'Per 5 volte capocannoniere del campionato spagnolo. Dopo ogni gol festeggiava con una capriola.'],
+  ['Lilian Thuram', 'FRA', 'DIF', 1972, 0, 91, '5|rasati|n|no|15', 'Nella semifinale del Mondiale 1998 ha segnato 2 gol alla Croazia: gli unici della sua carriera in nazionale, in 142 partite.']
+], ['Christine Sinclair', 'Homare Sawa', 'Carli Lloyd', 'Formiga']));
+// il calcio a Natale: storie vere, disegno in natArt() (nk) e una domanda sul retro (bq)
+CARDS.push(...[
+  { nk: 'tregua', name: 'La tregua di Natale', sub: 'Fronte occidentale · 1914', rar: 'olo', en: 'Truce = tregua', fact: 'Il 25 dicembre 1914, durante la Prima guerra mondiale, in alcuni punti del fronte soldati inglesi e tedeschi smisero di combattere e giocarono a pallone tra le trincee.', bq: { q: 'Dal Natale 1914 al Natale 2026: quanti anni sono passati?', a: '112 anni' } },
+  { nk: 'albero', name: 'L\'albero di Natale', sub: 'Il modulo 4-3-2-1', rar: 'oro', en: 'Formation = modulo', fact: 'Il modulo 4-3-2-1 si chiama «albero di Natale»: i giocatori formano un triangolo, come un abete. Lo ha reso famoso il Milan di Carlo Ancelotti.', bq: { q: 'Nel 4-3-2-1 quanti giocatori ci sono in campo, portiere compreso?', a: '11: 4 + 3 + 2 + 1 = 10, più il portiere' } },
+  { nk: 'boxing', name: 'Boxing Day', sub: 'Inghilterra · 26 dicembre', rar: 'rara', en: 'Boxing Day = Santo Stefano', fact: 'In Inghilterra il 26 dicembre si gioca: è una tradizione di più di cent\'anni e gli stadi si riempiono di famiglie in vacanza.', bq: { q: 'Se il 25 dicembre è un giovedì, che giorno della settimana è il Boxing Day?', a: 'Venerdì' } },
+  { nk: 'mondiale', name: 'Il Mondiale di dicembre', sub: 'Qatar 2022', rar: 'rara', en: 'World Cup = Coppa del Mondo', fact: 'Il Mondiale 2022 in Qatar si è giocato in autunno, per evitare il caldo dell\'estate: la finale, Argentina-Francia, è stata il 18 dicembre.', bq: { q: 'La finale è stata il 18 dicembre. Quanti giorni mancavano a Natale?', a: '7 giorni' } },
+  { nk: 'regali', name: 'Regali in corsia', sub: 'La squadra in ospedale', rar: 'rara', en: 'Gift = regalo', fact: 'Ogni anno, prima di Natale, tante squadre di calcio vanno a trovare i bambini in ospedale per portare regali e un po\' di allegria.', bq: { q: 'Una squadra porta 3 regali a ognuno dei 24 bambini del reparto. Quanti regali in tutto?', a: '72 regali' } },
+  { nk: 'arancione', name: 'Il pallone arancione', sub: 'Partite sulla neve', rar: 'comune', en: 'Snow = neve', fact: 'Quando nevica si gioca con un pallone arancione o giallo: sul campo bianco si vede molto meglio di quello bianco.', bq: { q: 'Un pallone pesa circa 430 grammi. Quanto pesano 5 palloni, in chili?', a: 'Circa 2,15 kg' } },
+  { nk: 'mercato', name: 'Il mercato di gennaio', sub: 'Sessione invernale', rar: 'comune', en: 'Transfer window = finestra di mercato', fact: 'A gennaio si riapre il calciomercato: per un mese le squadre possono comprare, vendere e prestare giocatori.', bq: { q: 'Se il mercato va dal 2 gennaio al 2 febbraio, quanti giorni dura contando il primo e l\'ultimo?', a: '32 giorni' } },
+  { nk: 'estate', name: 'Natale d\'estate', sub: 'Sud America', rar: 'comune', en: 'Summer = estate', fact: 'In Argentina e in Brasile il Natale arriva d\'estate: c\'è chi lo festeggia con una partita in spiaggia.', bq: { q: 'Se a Natale a Buenos Aires ci sono 30 °C e a Milano 2 °C, quanti gradi di differenza ci sono?', a: '28 gradi' } },
+  { nk: 'pausa', name: 'La pausa invernale', sub: 'Germania · Bundesliga', rar: 'comune', en: 'Break = pausa', fact: 'In Germania la Bundesliga si ferma per qualche settimana tra Natale e gennaio: i giocatori riposano e le squadre vanno in ritiro dove fa più caldo.', bq: { q: 'Se la pausa dura 3 settimane e mezza, quanti giorni sono?', a: '24 giorni e mezzo (3,5 × 7)' } },
+  { nk: 'termica', name: 'La maglia termica', sub: 'Regola 4 · L\'equipaggiamento', rar: 'comune', en: 'Cold = freddo', fact: 'Con il freddo si può mettere una maglia termica sotto la divisa, ma deve essere dello stesso colore delle maniche della maglia.', bq: { q: 'Su 20 giocatori di movimento, 3 su 4 mettono la maglia termica. Quanti sono?', a: '15 giocatori' } }
+].map(c => Object.assign(c, { sec: 'calnat', serie: 2 })));
+CARDS.forEach((c, i) => { c.id = 'F' + String(i + 1).padStart(3, '0'); c.fem = c.fem || c.sec === 'campionesse' || ['Mia Hamm', 'Birgit Prinz', 'Carolina Morace', 'Sun Wen', 'Sarina Wiegman'].includes(c.name); });
 // numero nell'album: ordine delle sezioni (i codici F… restano stabili)
 // --- Serie: le figurine nuove escono da sole alla data giusta, senza ripubblicare l'app.
 // Per preparare una Serie: aggiungere le figurine IN FONDO a CARDS con serie: N (l'ordine conta per i codici di salvataggio).
@@ -8291,6 +8410,7 @@ function enWord(c) {
 }
 // mini-sfida di matematica sul retro, calcolata dai dati veri
 function backChallenge(c) {
+  if (c.bq) return c.bq;
   if (c.sec === 'stagioni') return c.sk === 'tema' ? { q: 'Il Pass ha 30 livelli e ogni livello vale 150 punti. Quanti punti servono per completarlo?', a: '4.500 punti (30 × 150)' } : { q: 'Ogni settimana ci sono 4 missioni del Pass. In 4 settimane, quante missioni sono?', a: '16 missioni (4 × 4)' };
   if (c.sec === 'fc') return { q: 'In una partita di calcio a 7 ogni squadra ha 7 giocatori in campo. Quanti giocatori ci sono in campo in tutto, se ogni squadra fa anche 2 cambi?', a: '14: i cambi sostituiscono, non si aggiungono' };
   if (c.sec === 'regioni') return { q: `Qual è il capoluogo della regione ${c.name}?`, a: c.cap };
@@ -8314,7 +8434,7 @@ function personArt(c, uid) {
   const N = NAT[c.nat] || { c: ['#335', '#fff', '#111'] };
   let shirt = N.c[0], trim = N.c[1], sash = N.c[2];
   if (c.role === 'POR') { shirt = '#c6f432'; trim = '#111'; sash = '#111'; }
-  const coach = c.role === 'ALL', legend = c.sec === 'leggende';
+  const coach = c.role === 'ALL', legend = c.sec === 'leggende' || c.sec === 'leggnat';
   const ink = '#0d1512';
   const bgA = legend ? '#5b4630' : coach ? '#1d2b3a' : (N.c[2] === '#ffffff' || N.c[2] === '#111111') ? '#28354a' : N.c[2];
   const bgB = legend ? '#2a1f14' : '#0b1410';
@@ -8551,6 +8671,25 @@ function seasonArt(c, uid) {
   else body = bgd + Array.from({ length: 14 }, (_, i) => { const a = i * Math.PI / 7, b = a + Math.PI / 18; return `<path d="M50 48L${(50 + 140 * Math.cos(a)).toFixed(1)} ${(48 + 140 * Math.sin(a)).toFixed(1)}L${(50 + 140 * Math.cos(b)).toFixed(1)} ${(48 + 140 * Math.sin(b)).toFixed(1)}z" fill="#fff" opacity=".1"/>`; }).join('') + `<circle cx="50" cy="48" r="30" fill="none" stroke="#fff" stroke-width="1.5" opacity=".45"/><circle cx="50" cy="48" r="25" fill="${S.c2}" opacity=".35"/><g transform="translate(50 48) scale(1.4)">${ic}</g>`;
   return `<svg class="art" viewBox="0 0 100 112" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${body}</svg>`;
 }
+// --- Serie 2 «Il calcio a Natale»: una scena per ogni storia (100×112, fondo notte, neve, forme piatte)
+const SNOW = [[8, 10, 1.6], [22, 18, 1.2], [40, 7, 1.4], [64, 14, 1.8], [86, 9, 1.3], [94, 27, 1.6], [12, 33, 1.4], [79, 37, 1.2], [31, 45, 1.1], [91, 52, 1.5], [6, 60, 1.2], [57, 41, 1.3]];
+const snowDots = (fill, op) => `<g fill="${fill || '#fff'}" opacity="${op || 0.75}">${SNOW.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}"/>`).join('')}</g>`;
+const xball = (x, y, r, c, ink) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${c || '#fff'}" stroke="${ink || '#0d1512'}" stroke-width="${(r / 7).toFixed(2)}"/><polygon points="${[0, 1, 2, 3, 4].map(i => { const a = (-90 + i * 72) * Math.PI / 180; return `${(x + r * 0.42 * Math.cos(a)).toFixed(2)},${(y + r * 0.42 * Math.sin(a)).toFixed(2)}`; }).join(' ')}" fill="${ink || '#0d1512'}"/>`;
+const xtree = (x, y, s) => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M0 -20L12 0H5L15 14H-15L-5 0H-12Z" fill="#2bb673"/><rect x="-2.5" y="14" width="5" height="5" fill="#6b4a2a"/><polygon points="${starPts(0, -21, 4, 1.7)}" fill="#ffd23f"/><circle cx="-5" cy="6" r="1.6" fill="#ff5d5d"/><circle cx="6" cy="1" r="1.6" fill="#ffd23f"/><circle cx="3" cy="10" r="1.6" fill="#4ea8ff"/></g>`;
+const starPts = (cx, cy, r, ri) => Array.from({ length: 10 }, (_, i) => { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? ri : r; return `${(cx + rr * Math.cos(a)).toFixed(2)},${(cy + rr * Math.sin(a)).toFixed(2)}`; }).join(' ');
+const NAT_ART = {
+  tregua: u => `<defs><linearGradient id="n${u}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#26324a"/><stop offset="1" stop-color="#0d1420"/></linearGradient></defs><rect width="100" height="112" fill="url(#n${u})"/>${snowDots()}<circle cx="80" cy="20" r="7" fill="#f3ead0"/><circle cx="83" cy="18" r="6" fill="#26324a"/>${xtree(50, 44, 1.1)}<path d="M0 84Q50 74 100 84V112H0Z" fill="#e9eef5"/><g fill="#6b5536"><rect x="0" y="86" width="28" height="7" rx="3"/><rect x="4" y="80" width="20" height="7" rx="3"/><rect x="72" y="86" width="28" height="7" rx="3"/><rect x="76" y="80" width="20" height="7" rx="3"/></g><ellipse cx="16" cy="75" rx="10" ry="2.4" fill="#5d6b40"/><path d="M10 75Q16 65 22 75Z" fill="#76854f"/><path d="M76 77Q76 66 85 66Q94 66 94 77L96 79H74Z" fill="#6d7076"/>${xball(50, 90, 7)}`,
+  albero: u => `<rect width="100" height="112" fill="#1a6e3e"/><path d="M0 0h20v112H0zM40 0h20v112H40zM80 0h20v112H80z" fill="#1e7d46"/><g stroke="#e9fff1" stroke-opacity=".5" fill="none" stroke-width="1"><rect x="4" y="4" width="92" height="104"/><path d="M30 108v-14h40v14"/></g><polygon points="50,26 16,92 84,92" fill="#0f5132" opacity=".55"/><polygon points="${starPts(50, 18, 9, 3.8)}" fill="#ffd23f"/>${[[50, 34], [41, 52], [59, 52], [33, 70], [50, 70], [67, 70], [25, 88], [42, 88], [58, 88], [75, 88]].map(([x, y], i) => `<circle cx="${x}" cy="${y}" r="5.2" fill="${['#ff5d5d', '#ffd23f', '#4ea8ff'][i % 3]}" stroke="#0d1512" stroke-width="1.2"/><circle cx="${x - 1.6}" cy="${y - 1.8}" r="1.4" fill="#fff" opacity=".7"/>`).join('')}<circle cx="50" cy="102" r="4.4" fill="#c6f432" stroke="#0d1512" stroke-width="1.2"/>`,
+  boxing: u => `<rect width="100" height="112" fill="#2a1218"/><g opacity=".55">${Array.from({ length: 6 }, (_, r) => Array.from({ length: 11 }, (_, c) => `<circle cx="${4 + c * 9.2 + (r % 2) * 4}" cy="${10 + r * 16}" r="3.2" fill="${['#c8102e', '#f4f4f4', '#1d3d8f', '#ffd23f'][(r * 3 + c) % 4]}"/>`).join('')).join('')}</g><g transform="rotate(-6 50 56)"><rect x="27" y="28" width="46" height="52" rx="5" fill="#000" opacity=".3" transform="translate(2 3)"/><rect x="27" y="28" width="46" height="52" rx="5" fill="#f4f4f4"/><rect x="27" y="28" width="46" height="14" rx="5" fill="#c8102e"/><rect x="27" y="36" width="46" height="6" fill="#c8102e"/><text x="50" y="39" text-anchor="middle" font-family="Saira Extra Condensed,sans-serif" font-weight="800" font-size="10" fill="#fff" letter-spacing="1">DIC</text><text x="50" y="70" text-anchor="middle" font-family="Saira Extra Condensed,sans-serif" font-weight="800" font-size="26" fill="#1b1f2a">26</text></g><path d="M0 94h100v18H0z" fill="#1e7d46"/>${xball(80, 98, 6)}`,
+  mondiale: u => `<defs><radialGradient id="n${u}" cx=".5" cy=".4" r=".8"><stop offset="0" stop-color="#7a1f4d"/><stop offset="1" stop-color="#1a0814"/></radialGradient><linearGradient id="g${u}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff2b8"/><stop offset=".5" stop-color="#e3a91d"/><stop offset="1" stop-color="#a87406"/></linearGradient></defs><rect width="100" height="112" fill="url(#n${u})"/><path d="M0 14Q25 26 50 14T100 14" fill="none" stroke="#2bb673" stroke-width="2"/>${[8, 20, 32, 44, 56, 68, 80, 92].map((x, i) => `<circle cx="${x}" cy="${14 + 6 * Math.sin(i * 1.6)}" r="2.4" fill="${['#ff5d5d', '#ffd23f', '#4ea8ff', '#fff'][i % 4]}"/>`).join('')}<path d="M36 32h28v14c0 10-6 16-14 16s-14-6-14-16z" fill="url(#g${u})"/><path d="M36 36h-6c0 7 3 11 8 12M64 36h6c0 7-3 11-8 12" stroke="#e3a91d" stroke-width="2.6" fill="none"/><rect x="46" y="62" width="8" height="10" fill="#c99412"/><rect x="38" y="72" width="24" height="6" rx="1.5" fill="url(#g${u})"/><rect x="34" y="78" width="32" height="7" rx="2" fill="#5a1838"/><text x="50" y="102" text-anchor="middle" font-family="Saira Extra Condensed,sans-serif" font-weight="800" font-size="13" fill="#ffd23f" letter-spacing="1">18 · 12</text>${snowDots('#fff', 0.5)}`,
+  regali: u => `<rect width="100" height="112" fill="#0d3a22"/>${snowDots()}<g><rect x="14" y="58" width="32" height="30" rx="3" fill="#e63946"/><rect x="27" y="58" width="6" height="30" fill="#ffd23f"/><rect x="14" y="68" width="32" height="6" fill="#ffd23f"/><path d="M30 58c-6-8-14-6-12 0zM30 58c6-8 14-6 12 0z" fill="#ffd23f"/></g><g><rect x="52" y="50" width="34" height="38" rx="3" fill="#ffd23f"/><rect x="66" y="50" width="6" height="38" fill="#e63946"/><rect x="52" y="64" width="34" height="6" fill="#e63946"/><path d="M69 50c-6-8-14-6-12 0zM69 50c6-8 14-6 12 0z" fill="#e63946"/></g><rect x="36" y="78" width="26" height="18" rx="3" fill="#4ea8ff"/><rect x="47" y="78" width="4" height="18" fill="#fff"/>${xball(50, 36, 9)}<path d="M50 104c-6-5-10-8-10-12a4 4 0 0 1 10-2a4 4 0 0 1 10 2c0 4-4 7-10 12z" fill="#ff5d5d"/>`,
+  arancione: u => `<rect width="100" height="112" fill="#e3ebf4"/><g stroke="#9fb2c8" stroke-width="1.4" fill="none"><rect x="4" y="4" width="92" height="104"/><path d="M4 56H96"/><circle cx="50" cy="56" r="14"/></g>${snowDots('#9fb2c8', 0.8)}<ellipse cx="50" cy="84" rx="20" ry="4" fill="#9fb2c8" opacity=".5"/>${xball(50, 60, 19, '#ff7a12', '#5a2a00')}<path d="M36 46q14-8 28 0" stroke="#fff" stroke-width="2" fill="none" opacity=".6"/>`,
+  mercato: u => `<rect width="100" height="112" fill="#14324a"/>${snowDots('#fff', 0.4)}<rect x="32" y="12" width="36" height="34" rx="4" fill="#f4f4f4"/><rect x="32" y="12" width="36" height="11" rx="4" fill="#4ea8ff"/><rect x="32" y="18" width="36" height="5" fill="#4ea8ff"/><text x="50" y="21" text-anchor="middle" font-family="Saira Extra Condensed,sans-serif" font-weight="800" font-size="8" fill="#fff" letter-spacing="1">GEN</text><text x="50" y="41" text-anchor="middle" font-family="Saira Extra Condensed,sans-serif" font-weight="800" font-size="16" fill="#1b1f2a">2</text>${[[22, '#e63946'], [78, '#ffd23f']].map(([x, c]) => `<path d="M${x - 14} 66l9-5q5 4 10 0l9 5 6 11-6 3-3-5v24h-22v-24l-3 5-6-3z" fill="${c}"/>`).join('')}<path d="M38 70h22l-5-5M62 84H40l5 5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>`,
+  estate: u => `<defs><linearGradient id="n${u}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4fc3f7"/><stop offset="1" stop-color="#ffe0a3"/></linearGradient></defs><rect width="100" height="112" fill="url(#n${u})"/><circle cx="78" cy="22" r="11" fill="#ffd23f"/><g stroke="#ffd23f" stroke-width="2.4" stroke-linecap="round">${[0, 1, 2, 3, 4, 5, 6, 7].map(i => { const a = i * Math.PI / 4; return `<path d="M${(78 + 15 * Math.cos(a)).toFixed(1)} ${(22 + 15 * Math.sin(a)).toFixed(1)}L${(78 + 19 * Math.cos(a)).toFixed(1)} ${(22 + 19 * Math.sin(a)).toFixed(1)}"/>`; }).join('')}</g><path d="M0 70h100v10H0z" fill="#1d8fd1"/><path d="M0 78Q50 72 100 78V112H0z" fill="#f3d38a"/><path d="M22 96V52" stroke="#7a5230" stroke-width="4"/><path d="M22 52c-10-6-18-2-20 4c6-4 14-4 20-4zM22 52c10-6 18-2 20 4c-6-4-14-4-20-4zM22 52c-4-10-12-12-16-10c6 0 12 4 16 10zM22 52c4-10 12-12 16-10c-6 0-12 4-16 10z" fill="#2bb673"/>${xball(62, 92, 8)}<path d="M50 100q8-14 22-10l-4 8z" fill="#e63946"/><circle cx="74" cy="90" r="3" fill="#fff"/><path d="M48 100h24" stroke="#fff" stroke-width="3" stroke-linecap="round"/>`,
+  pausa: u => `<rect width="100" height="112" fill="#1a2333"/>${snowDots()}<path d="M0 78Q50 70 100 78V112H0z" fill="#e9eef5"/><g stroke="#9fb2c8" stroke-width="1.2" fill="none"><path d="M10 90h80M50 78v34"/></g><circle cx="50" cy="44" r="24" fill="#ffd23f"/><rect x="40" y="32" width="7" height="24" rx="2" fill="#1a2333"/><rect x="53" y="32" width="7" height="24" rx="2" fill="#1a2333"/><path d="M16 100h28v-6H16zM18 100v6M42 100v6" stroke="#8a6b3f" stroke-width="3" fill="#a87b45"/>`,
+  termica: u => `<rect width="100" height="112" fill="#102a43"/>${snowDots()}<path d="M30 30l12-6q8 6 16 0l12 6 18 42-10 4-8-24v40H30V52l-8 24-10-4z" fill="#e63946"/><path d="M42 24q8 6 16 0" stroke="#fff" stroke-width="2.4" fill="none"/><text x="50" y="66" text-anchor="middle" font-family="Saira Extra Condensed,sans-serif" font-weight="800" font-size="18" fill="#fff">4</text><g transform="translate(86 72)"><rect x="-4" y="-26" width="8" height="30" rx="4" fill="#f4f4f4"/><rect x="-1.6" y="-8" width="3.2" height="12" fill="#4ea8ff"/><circle cy="8" r="7" fill="#4ea8ff" stroke="#f4f4f4" stroke-width="2"/></g>`
+};
+function natArt(c, uid) { return `<svg class="art" viewBox="0 0 100 112" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${(NAT_ART[c.nk] || NAT_ART.albero)(uid)}</svg>`; }
 let artSeq = 0;
 function artSVG(c) {
   const uid = (++artSeq).toString(36);
@@ -8563,10 +8702,12 @@ function artSVG(c) {
   if (c.sec === 'mosse') return moveArt(c, uid);
   if (c.sec === 'speciali') return mascotArt(c, uid);
   if (c.sec === 'giro') return giroArt(c, uid);
+  if (c.sec === 'calnat') return natArt(c, uid);
   return personArt(c, uid);
 }
 function subtitle(c) {
   if (c.sec === 'stadi') return `${c.city} · ${c.born}`;
+  if (c.sec === 'calnat') return c.sub;
   if (c.sec === 'mondiali') return c.special ? 'USA · Canada · Messico' : `${c.years.length} ${c.years.length === 1 ? 'titolo' : 'titoli'}`;
   if (c.sec === 'mosse') return c.en;
   if (c.sec === 'speciali') return 'Esclusiva Fuoriclasse';
@@ -8764,7 +8905,7 @@ function statsOf(c) {
   if (!c.ovr || !c.role || c.role === 'ALL') return null;
   const prof = STAT_PROF[c.role] || STAT_PROF.CEN, gk = c.role === 'POR', h = hashStr(c.id + c.name);
   // chi gioca ancora e ha più di 30 anni perde un po' di velocità e di fisico
-  const age = ['campioni', 'campionesse'].includes(c.sec) ? Math.max(0, 2026 - c.born - 30) : 0;
+  const age = ['campioni', 'campionesse', 'natale'].includes(c.sec) ? Math.max(0, 2026 - c.born - 30) : 0;
   const ageAdj = [-1.5 * age, 0, age * 0.3, -0.5 * age, 0, -0.6 * age];
   return (gk ? STAT_LAB.gk : STAT_LAB.out).map((k, i) => [k, Math.round(Math.max(25, Math.min(99, c.ovr + prof[i] + (gk ? 0 : ageAdj[i]) + ((h >> (i * 3)) % 7) - 3)))]);
 }
@@ -9882,6 +10023,12 @@ if (typeof module !== 'undefined' && module.exports) module.exports = api; else 
    Scrivere frasi brevi, che capisce un ragazzo di 11 anni. */
 (function (G) {
 const NOVITA = [
+  { v: '2026-10-11', t: 'Sfida gli amici a distanza e la Lega', li: [
+    ['Nuova «Sfida a distanza»: giochi 8 domande, mandi un codice o un link e i tuoi amici rispondono alle stesse domande sul loro telefono. Chi vince? Lo scoprite con il codice di risposta.', ''],
+    ['Nuova «Lega degli amici»: ogni settimana contano i tuoi XP. Scambiatevi il codice della settimana e salite di categoria, da Pulcini a Fuoriclasse.', ''],
+    ['Su iPhone le schermate non finiscono più sotto l\'orologio in alto.', ''],
+    ['Le bustine in Oggi si vedono nitide.', '']
+  ] },
   { v: '2026-10-10c', t: 'Gioca più chiaro, app più fluida', li: [
     ['Gioca: ogni gioco ha di nuovo il suo disegno grande, così capisci subito cosa si fa.', ''],
     ['Le schede di Gioca hanno ognuna la sua icona, e «Riprendi» mostra il disegno dell\'ultimo gioco.', ''],
@@ -10118,6 +10265,8 @@ const HOW = {
   coppa: () => ['Coppa Football Center', `<p>Ogni settimana 4 turni: ottavi, quarti, semifinale e finale, al massimo ${CUP_PER_DAY} al giorno. In ogni turno 5 domande, e più si va avanti più risposte giuste servono.</p><p>Se perdi, riprovi lo stesso turno: nessuno ti elimina. Vincendo la Coppa sblocchi il retro «Notte di Coppa» e un premio speciale.</p>`],
   conto: () => UI.cg && UI.cg.kind === '24' ? ['Fai 24', '<p>Quattro numeri: usali tutti, una volta sola, con + − × ÷ per fare 24. Solo risultati interi e positivi.</p><p>5 sfide da 90 secondi: risolvine almeno 3 per vincere una bustina.</p>'] : ['Il conto giusto', '<p>Raggiungi il numero con + − × ÷: tocca un numero, poi l\'operazione, poi un altro numero. Non serve usarli tutti.</p><p>Esatto: 10 punti; scarto fino a 5: 7 punti; fino a 10: 5 punti. «Consegna» prende il numero più vicino che hai sul tavolo.</p><p>Fai almeno 2 conti esatti su 3 per vincere una bustina.</p>'],
   parola: ['La parola del giorno', '<p>Indovina la parola di 5 lettere in 6 tentativi. È la stessa per tutti e cambia ogni giorno: se la indovini vinci una bustina.</p><p><b class="lg">Verde</b>: lettera giusta al posto giusto. <b class="ly">Giallo</b>: la lettera c\'è, ma in un altro posto. Grigio: non c\'è. Le lettere accentate valgono come normali.</p><p class="small muted">Dizionario: Morph-it! di M. Baroni ed E. Zanchetta (Università di Bologna), licenza CC BY-SA 2.0.</p>'],
+  remota: () => ['Sfida a distanza', `<p>1. Scegli le domande e gioca: sono ${RS_N}.<br>2. Alla fine ricevi un <b>codice</b> (o un link): mandalo agli amici, anche a un gruppo.<br>3. Chi lo apre gioca <b>le stesse identiche domande</b> sul suo telefono e riceve un codice di risposta.<br>4. Quando ti rimanda il codice di risposta, inseriscilo qui: vedi chi ha vinto.</p><p>Vince chi fa più risposte giuste; a parità, chi è stato più veloce. Una sfida ricevuta si gioca una volta sola. Con almeno 5 risposte giuste vinci una bustina.</p><p class="small muted">Non servono account né internet: nel codice ci sono solo il nome, il punteggio e la «ricetta» delle domande. Se avete versioni diverse dell'app, aggiornatele: le domande potrebbero non essere uguali.</p>`],
+  lega: () => ['Lega degli amici', `<p>Ogni settimana, da lunedì a domenica, conta i <b>punti XP</b> che fai giocando. Ci sono 7 categorie: ${LG_TIERS.map(t => t[0]).join(', ')}.</p><p>Per gareggiare con gli amici scambiatevi il <b>codice della settimana</b>: chi lo inserisce ti vede nella sua classifica. Il codice fotografa i tuoi punti: rimandalo quando ne hai fatti altri. In sede, chi gioca sullo stesso dispositivo è già in lega.</p><p><b>Lunedì si fanno i conti.</b> Se in lega siete almeno in 5, i primi 3 salgono di categoria e gli ultimi 2 scendono (chi arriva all'obiettivo della settimana non scende mai). Se siete in meno di 5, sale chi arriva all'obiettivo.</p><p>Chi sale vince una bustina; chi arriva primo ne vince un'altra.</p>`],
   paroliere: ['Paroliere', '<p>Trascina il dito sulle lettere vicine (anche in diagonale) per formare parole di almeno 3 lettere; ogni casella si usa una volta sola per parola.</p><p>DL e TL: lettera doppia o tripla. DP e TP: parola doppia o tripla. 2 minuti; con 200 punti vinci una bustina.</p><p class="small muted">Dizionario: Morph-it! di M. Baroni ed E. Zanchetta (Università di Bologna), licenza CC BY-SA 2.0.</p>']
 };
 function showHow(k) {
@@ -10392,7 +10541,9 @@ V.campo = () => {
   const chDone = ch.items.filter(it => it.prog >= it.n).length, mis = p.missions.filter(m => !m.done);
   // «Da non perdere»: al massimo 3 schede, mai la stessa cosa del riquadro grande
   // ogni scheda si prepara solo se serve (es. a Coppa finita non c'è un «prossimo turno»)
-  const dnp = [], add = (on, f) => { if (on && dnp.length < 3) dnp.push(f()); };
+  if (p.lg) lgState(p);   // lunedì: si fanno i conti della lega
+  const dnp = [], add = (on, f) => { if (on && dnp.length < 3) dnp.push(f()); }, lgl = p.lg && p.lg.last && !p.lg.last.seen ? p.lg.last : null;
+  add(!!lgl, () => ({ a: 'nav', to: 'lega', ic: 'cup', t: lgl.up > 0 ? `Lega: sali in ${LG_TIERS[lgl.t1][0]}!` : 'Lega: la settimana è finita', s: `${lgl.rank}° su ${lgl.of} · guarda la classifica`, cls: 'new' }));
   add(!!NS, () => ({ a: 'nsgo', ic: 'spark', t: `È uscita la ${NS.t}!`, s: `${NS.sub} · ${CARDS.filter(c => c.serie === NS.n).length} figurine nuove`, cls: 'new' }));
   add(fcPackReady(p) && !(nx.k === 'pack' && !p.packs), () => ({ a: 'nav', to: 'pack', fc: 1, t: 'Bustina Football Center', s: `Quella di ${MESI[new Date().getMonth()].toLowerCase()} è pronta` }));
   add(p.packs > 0 && nx.k !== 'pack', () => ({ a: 'nav', to: 'pack', ic: 'pack', t: p.packs === 1 ? 'Hai una bustina' : `Hai ${p.packs} bustine`, s: 'Aprila e attacca le figurine' }));
@@ -10475,6 +10626,10 @@ const LICON = {
   cod: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#1a2a2a"/><text x="60" y="30" ${SAI} font-size="20" fill="#e8f2ec" letter-spacing="3">CANE</text><path d="M60 35v6M56 38l4 4 4-4" stroke="#ffd84a" stroke-width="2" fill="none"/><text x="60" y="62" ${SAI} font-size="20" fill="#3ddc84" letter-spacing="3">DBOF</text></svg>`,
   cal: `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#2b1d3a"/><rect x="18" y="14" width="44" height="44" rx="5" fill="#e8f2ec"/><rect x="18" y="14" width="44" height="12" rx="5" fill="#ff6b5e"/><rect x="18" y="21" width="44" height="5" fill="#ff6b5e"/><text x="40" y="52" ${SAI} font-size="22" fill="#2b1d3a">7</text><circle cx="88" cy="36" r="17" fill="none" stroke="#ffd84a" stroke-width="3"/><path d="M88 36V25M88 36l8 5" stroke="#ffd84a" stroke-width="3" stroke-linecap="round"/></svg>`
 };
+// Sfida a distanza: due telefoni, il codice che vola dall'uno all'altro
+GART.remota = `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#14283d"/>${[[8, '#4ea8ff', '6/8'], [82, '#ff6b5e', '7/8']].map(([x, c, t]) => `<rect x="${x}" y="9" width="30" height="52" rx="5" fill="#0a1220" stroke="${c}" stroke-width="2.5"/><rect x="${x + 5}" y="16" width="20" height="30" rx="2" fill="${c}" opacity=".3"/><text x="${x + 15}" y="35" ${SAI} font-size="10" fill="#fff">${t}</text><circle cx="${x + 15}" cy="53" r="2.2" fill="${c}"/>`).join('')}<path d="M40 28Q60 4 80 28" fill="none" stroke="#ffd84a" stroke-width="2" stroke-dasharray="3 3"/><path d="M52 14l16-6-6 15-3-6z" fill="#ffd84a"/><rect x="41" y="46" width="38" height="13" rx="3" fill="#ffd84a"/><text x="60" y="56" ${SAI} font-size="9" fill="#1d1600" letter-spacing="1">4K7Q-9X</text></svg>`;
+// Lega degli amici: il podio, chi sale e chi scende
+GART.lega = `<svg viewBox="0 0 120 70" aria-hidden="true"><rect width="120" height="70" fill="#1d2a52"/><rect x="46" y="32" width="28" height="38" fill="#ffd84a"/><rect x="18" y="42" width="28" height="28" fill="#c9d3dc"/><rect x="74" y="48" width="28" height="22" fill="#d39a5e"/><text x="60" y="52" ${SAI} font-size="14" fill="#1d1600">1</text><text x="32" y="60" ${SAI} font-size="13" fill="#1b1f2a">2</text><text x="88" y="64" ${SAI} font-size="12" fill="#1b1f2a">3</text>${[[60, 22, '#ff6b5e'], [32, 32, '#4ea8ff'], [88, 38, '#3ddc84']].map(([x, y, c]) => `<circle cx="${x}" cy="${y}" r="6" fill="${c}"/>`).join('')}<path d="M10 24V10M5 15l5-5 5 5" stroke="#3ddc84" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M110 10v14M105 19l5 5 5-5" stroke="#ff6b5e" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 GART.vsfam = () => GART.vs(true); GART.prday = () => GART.paroliere(true);
 // il disegno di un gioco ('rigori', 'mg:collega', 'geo:mappa', 'log:sill', …); gli id dei gradienti cambiano a ogni uso (lo stesso disegno può comparire due volte nella pagina)
 let GAN = 0;
@@ -10527,6 +10682,8 @@ function giocaTabs(p) {
   const rev = p.rev.length ? [{ a: 'review', art: 'ripasso', t: 'Ripasso errori', s: `${p.rev.length} ${p.rev.length === 1 ? 'domanda' : 'domande'} da sistemare · 15 XP a risposta`, tag: p.rev.length, tagc: 'hot' }] : [];
   const cup = { a: 'nav', d: { to: 'coppa' }, art: 'coppa', t: 'Coppa Football Center', s: cupOn ? `${CUP_ROUNDS[cs.round][0]} · contro ${esc(cs.opps[cs.round])}` : cs.done ? 'Finita per questa settimana: torna lunedì' : 'Turni di oggi giocati: torna domani', tag: cupOn ? 'Oggi' : '', tagc: 'hot', cls: cupOn ? '' : 'quiet' };
   const camp = { a: 'nav', d: { to: 'formazione' }, art: 'camp', t: ad ? 'Campionato' : 'La mia formazione', s: `Giornata ${fm.round + 1} di ${OPPONENTS.length} · contro ${esc(opp.n)} (${opp.r})` };
+  const remote = [{ a: 'nav', d: { to: 'remota' }, art: 'remota', t: 'Sfida a distanza', s: 'Manda un codice: l\'amico gioca le stesse domande sul suo telefono.' },
+    { a: 'nav', d: { to: 'lega' }, art: 'lega', t: 'Lega degli amici', s: `Sei in ${LG_TIERS[p.lg ? p.lg.tier : 0][0]}: ogni settimana si sale o si scende.`, tag: p.lg && p.lg.last && !p.lg.last.seen ? 'Risultati' : '', tagc: 'hot' }];
   const mg = ks => ks.map(k => ({ a: 'mg', d: { m: k }, art: 'mg:' + k, t: GAMES[k].t, s: k === 'fuorigioco' && ad ? 'Giusta o sbagliata? Con le domande che hai scelto.' : MGS[k] }));
   const geo = [Object.entries(GEO_MODES).map(([k, M]) => { const b = best[k + ':' + sc]; return { a: 'geostart', d: { m: k }, art: 'geo:' + k, t: M.t, s: { bandiere: 'Riconosci le bandiere.', capitali: sc === 'ita' ? 'Regioni e capoluoghi.' : 'Paesi e capitali.', mappa: 'Tocca il posto giusto sulla mappa.', dove: 'Più ti avvicini, più punti fai.' }[k], meta: b !== undefined ? rec(`Record ${k === 'dove' ? fmtP(b) + ' punti' : b + '/10'}`) : '' }; }),
     `${sc === 'ita' ? '<p class="gnote">Con l\'Italia, «Bandiere» usa le bandiere d\'Europa.</p>' : sc === 'esperto' ? '<p class="gnote"><b>Esperto:</b> Paesi meno conosciuti, capitali difficili, province, fiumi, monti e laghi d\'Italia.</p>' : ''}<p class="gnote small">Mappe: Natural Earth; confini delle regioni © ISTAT (CC-BY 4.0); bandiere: flag-icons.</p>`,
@@ -10535,7 +10692,7 @@ function giocaTabs(p) {
     ['Materie', [{ a: 'mode', d: { m: 'rigori' }, art: 'rigori', t: 'Rigori', s: '5 domande, 5 tiri. Con 3 gol vinci una bustina.' }, { a: 'mode', d: { m: 'partita' }, art: 'partita', t: 'Partita', s: `${p.slow ? 135 : 90} secondi contro una squadra rivale.` },
       { a: 'mode', d: { m: 'var' }, art: 'var', t: 'VAR', s: 'Rivedi l\'azione e trova il passaggio sbagliato.' }, { a: 'mode', d: { m: 'allenamento' }, art: 'allen', t: 'Allenamento', s: 'Carte da ripassare: scegli la risposta giusta.' }, ...rev],
       '<p class="gnote">Ogni argomento ha 3 livelli: rispondi bene a 8 domande su 10 e sali, con una bustina in regalo.</p>'],
-    ['Sfide', [camp, cup, { a: 'nav', d: { to: 'duelsetup' }, art: 'vs', t: 'Sfida un amico', s: '1 contro 1 sullo stesso dispositivo: vince chi risponde meglio.' }], '', cupOn],
+    ['Sfide', [camp, cup, { a: 'nav', d: { to: 'duelsetup' }, art: 'vs', t: 'Sfida un amico', s: '1 contro 1 sullo stesso dispositivo: vince chi risponde meglio.' }, ...remote], '', cupOn],
     ['Minigiochi', mg(Object.keys(GAMES)), ''],
     ['Geografia', geo[0], geo[1], false, geo[2]]];
   const ws = wordState(p), prd = p.prDay && p.prDay.d === today();
@@ -10553,7 +10710,7 @@ function giocaTabs(p) {
       { a: 'cgstart', d: { k: 'conto' }, art: 'conto', t: 'Il conto giusto', s: 'Raggiungi il numero con + − × ÷.', meta: dia(p.contoLv || 1, 3) }, { a: 'cgstart', d: { k: '24' }, art: 'fai24', t: 'Fai 24', s: '4 numeri: usali tutti per fare 24.' }, ...mg(['collega', 'riordina', 'completa'])], ''],
     ['Calcio', [{ a: 'nav', d: { to: 'regole' }, art: 'regole', t: 'Regolamento da arbitro', s: '300 domande sulle regole IFAB 2026/27.', meta: p.rgLv ? `<span class="gt-meta">Ultimo livello: ${REGLV[p.rgLv - 1][0]}</span>` : '' },
       { a: 'ccstart', art: 'calc', t: 'Indovina il calciatore', s: 'Meno indizi usi, più punti fai.', meta: p.calcBest ? rec(`Record ${p.calcBest}`) : '' }, cup,
-      { a: 'nav', d: { to: 'duelsetup' }, art: 'vsfam', t: 'Sfida in famiglia', s: 'Un ragazzo contro un adulto, sullo stesso telefono.' }], '', cupOn],
+      { a: 'nav', d: { to: 'duelsetup' }, art: 'vsfam', t: 'Sfida in famiglia', s: 'Un ragazzo contro un adulto, sullo stesso telefono.' }, ...remote], '', cupOn],
     ['Geografia', geo[0], geo[1], false, geo[2]]];
 }
 V.gioca = () => {
@@ -10945,7 +11102,7 @@ const oppAt = fm => { const o = OPPONENTS[fm.round] || OPPONENTS[0]; return { n:
 const SLOTS = [['ATT1', 'ATT', 20, 15], ['ATT2', 'ATT', 50, 11], ['ATT3', 'ATT', 80, 15], ['CEN1', 'CEN', 24, 40], ['CEN2', 'CEN', 50, 44], ['CEN3', 'CEN', 76, 40], ['DIF1', 'DIF', 11, 66], ['DIF2', 'DIF', 37, 70], ['DIF3', 'DIF', 63, 70], ['DIF4', 'DIF', 89, 66], ['POR', 'POR', 50, 89]];
 const SLOT_ROLE = Object.fromEntries(SLOTS.map(s => [s[0], s[1]]));
 const ROLE_NAME = { POR: 'Portiere', DIF: 'Difensore', CEN: 'Centrocampista', ATT: 'Attaccante', ALL: 'Allenatore' };
-const PERSON_SECS = ['campioni', 'campionesse', 'azzurri', 'leggende'];
+const PERSON_SECS = ['campioni', 'campionesse', 'azzurri', 'leggende', 'natale', 'leggnat'];
 const fits = (c, role) => role === 'ALL' ? c.role === 'ALL' : PERSON_SECS.includes(c.sec) && (c.role === role || (role === 'ATT' && c.role === 'ALA'));
 const shortName = n => { const q = n.match(/["«]([^"»]+)["»]/); if (q) return q[1]; const w = n.split(' '); if (w.length < 2) return n; const pre = w[w.length - 2]; return /^(di|de|del|della|van|von|mac|da|dos|el)$/i.test(pre) ? pre + ' ' + w[w.length - 1] : w[w.length - 1]; };
 
@@ -11395,7 +11552,7 @@ const NICON = {
   trofei: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M8 3l4 7 4-7"/><circle cx="12" cy="15.5" r="5.5"/><path d="M12 13v5"/></svg>'
 };
 const NAVS = [['campo', 'Oggi'], ['gioca', 'Gioca'], ['album', 'Album'], ['pass', 'Pass'], ['me', 'Io']];
-const NAVMAP = { parola: 'gioca', conto: 'gioca', scalata: 'gioca', regole: 'gioca', calc: 'gioca', paroliere: 'gioca', trofei: 'me', carriera: 'me', avatar: 'me', mercato: 'album', pack: 'album', retri: 'album', recap: 'pass', mgpick: 'gioca', geo: 'gioca', formazione: 'gioca', coppa: 'gioca', duelsetup: 'gioca', fc: 'campo', code: 'me' };
+const NAVMAP = { parola: 'gioca', conto: 'gioca', scalata: 'gioca', regole: 'gioca', calc: 'gioca', paroliere: 'gioca', trofei: 'me', carriera: 'me', avatar: 'me', mercato: 'album', pack: 'album', retri: 'album', recap: 'pass', mgpick: 'gioca', geo: 'gioca', formazione: 'gioca', coppa: 'gioca', duelsetup: 'gioca', fc: 'campo', code: 'me', remota: 'gioca', lega: 'gioca', rres: 'gioca', racc: 'gioca' };
 function bottomNav(cur) {
   const p = prof(); if (!p) return '';
   const cs = cupState(p), ps = passState(p), dot = { campo: !!(p.recap && !p.recap.seen) || p.missions.some(m => !m.done), gioca: !cs.done && cs.today < CUP_PER_DAY, album: (p.newc || []).length > 0 || p.packs > 0 || fcPackReady(p) || !!newSerie(), pass: passTier(ps) > ps.cl.length || !!p.passNew, me: !!p.newu };
@@ -11524,6 +11681,247 @@ V.duelres = () => {
     <div class="row jcc"><button class="btn" data-a="duelgo">Rivincita</button><button class="btn ghost" data-a="nav" data-to="campo">Torna al campo</button></div></div></div>`;
 };
 
+/* ---------- Sfida a distanza e Lega degli amici (Blocco 5): senza internet e senza account, con codici e link ---------- */
+// I codici usano 32 simboli senza lettere che si confondono (niente I, L, O, U): i primi 5 bit dicono versione e tipo,
+// poi i dati, in fondo un controllo. Dopo il codice, separato da un trattino, c'è il nome di chi lo manda.
+const B32 = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+const CODE_BITS = { 0: [['ad', 1], ['cls', 2], ['subj', 2], ['src', 3], ['lv', 2], ['seed', 30], ['ch', 10], ['sc', 4], ['secs', 11]], 1: [['seed', 30], ['sc', 4], ['secs', 11]], 2: [['id', 24], ['yr', 4], ['wk', 6], ['xp', 16], ['tier', 3]] };
+const bitsOf = (v, b) => (v >>> 0).toString(2).padStart(32, '0').slice(-b);
+const crc5 = s => { let h = 7; for (let i = 0; i < s.length; i++) h = (h * 5 + (+s[i]) * (i % 7 + 1)) % 32; return h; };
+const codeLen = t => Math.ceil((5 + CODE_BITS[t].reduce((a, [, b]) => a + b, 0) + 5) / 5);
+// nel codice il nome è in maiuscolo: nell'app lo scriviamo normale (SARA → Sara)
+const nameNice = n => n.charAt(0) + n.slice(1).toLowerCase();
+const nameTag = n => String(n || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 10) || 'AMICO';
+function codeMake(t, o, name) {
+  let s = bitsOf(1, 3) + bitsOf(t, 2) + CODE_BITS[t].map(([k, b]) => bitsOf(Math.max(0, Math.min(Math.round(o[k] || 0), 2 ** b - 1)), b)).join('');
+  s += bitsOf(crc5(s), 5); while (s.length % 5) s += '0';
+  let c = ''; for (let i = 0; i < s.length; i += 5) c += B32[parseInt(s.substr(i, 5), 2)];
+  return c.match(/.{1,4}/g).join('-') + '-' + nameTag(name);
+}
+function codeRead(str) {
+  let s = String(str || '').trim(); try { s = decodeURIComponent(s); } catch (e) { }
+  const eq = s.lastIndexOf('='); if (eq >= 0) s = s.slice(eq + 1);
+  s = s.toUpperCase(); let body = '', i = 0, L = 0;
+  for (; i < s.length; i++) {
+    let ch = s[i]; if (ch === '-' || ch === ' ' || ch === '·') continue; if (L && body.length >= L) break;
+    ch = ch === 'O' ? '0' : ch === 'I' || ch === 'L' ? '1' : ch; const v = B32.indexOf(ch); if (v < 0) return null; body += ch;
+    if (body.length === 1) { const t = v & 3; if (v >> 2 !== 1 || !CODE_BITS[t]) return null; L = codeLen(t); }
+  }
+  if (!L || body.length < L) return null;
+  const bits = [...body].map(c => bitsOf(B32.indexOf(c), 5)).join(''), t = parseInt(bits.slice(3, 5), 2), o = { t, name: nameNice(s.slice(i).replace(/[^A-Z0-9]/g, '').slice(0, 10) || 'AMICO') };
+  let pos = 5; for (const [k, b] of CODE_BITS[t]) { o[k] = parseInt(bits.substr(pos, b), 2); pos += b; }
+  return parseInt(bits.substr(pos, 5), 2) === crc5(bits.slice(0, pos)) ? o : null;
+}
+// riquadro con il codice da mandare: si copia, si condivide (su WhatsApp, Telegram…)
+const codeOut = (id, code, share) => `<div class="codebox"><input id="${id}" class="codeout" readonly value="${esc(code)}" aria-label="Codice" onclick="this.select()"><div class="row"><button class="btn f1" data-a="share" data-k="${share}">${icn('next')}<span>Manda agli amici</span></button><button class="btn ghost" data-a="copy" data-t="${id}">Copia</button></div></div>`;
+const codeIn = (id, ph) => `<div class="codebox"><input id="${id}" class="codein" placeholder="${ph}" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Scrivi o incolla il codice"><button class="btn" data-a="codeopen" data-t="${id}">Apri il codice</button></div>`;
+
+// --- Sfida a distanza: stesse domande su due dispositivi. Il codice contiene la «ricetta» (tipo, livello, seme) e il punteggio.
+const RS_N = 8, RS_SUBJ = ['mix', 'mat', 'ita', 'eng'], RS_SRC = ['cult', 'log', 'geo', 'reg', 'mix'];
+const RS_SRCN = { cult: 'Cultura generale', log: 'Logica', geo: 'Geografia', reg: 'Regolamento', mix: 'Un po\' di tutto' };
+const RS_LV = ['', 'Facile', 'Medio', 'Difficile'];
+const rsWhat = c => c.ad ? `${RS_SRCN[RS_SRC[c.src]] || 'Cultura'} · ${RS_LV[c.lv]}` : `${c.subj ? SUBJ[RS_SUBJ[c.subj]] : 'Tutte le materie'} · ${c.cls}ª media · ${RS_LV[c.lv]}`;
+const mmss = s => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+// impronta dei contenuti: se due dispositivi hanno versioni diverse delle domande, lo diciamo
+const rsCh = () => { let h = 0; for (const n of [TOPICS.length, SCALATA.length, REGOLE.length, ...TOPICS.map(t => t.key.length)]) h = (h * 31 + n) % 1021; return h; };
+function withSeed(seed, fn) { const M = Math.random; Math.random = seeded('rs' + seed); try { return fn(); } finally { Math.random = M; } }
+const rsPool = (A, lv, n) => { const d = [[1, 1, 2], [1, 2, 3], [2, 3, 3]][lv - 1] || [1, 2, 3], out = []; for (let k = 0; out.length < n && k < 60; k++) { const c = A.map((x, i) => i).filter(i => A[i][1] === d[k % 3] && !out.includes(i)); if (c.length) out.push(pick(c)); } return out; };
+const rsGeo = (n, lv) => { if (!GEOD) return rsPool(SCALATA, lv, n).map(scQ); let qs = []; for (let k = 0; qs.length < n && k < 6; k++) qs = qs.concat(geoQuestions('capitali', lv === 1 ? 'eu' : 'mondo').filter(q => !q.flagOpts)); return qs.slice(0, n); };
+function rsQuestions(c) {
+  return withSeed(c.seed, () => {
+    if (!c.ad) { const keys = TOPICS.filter(t => t.cls === c.cls && !t.read && (!c.subj || t.subj === RS_SUBJ[c.subj])).map(t => t.key); return makeSet(keys, RS_N, k => Math.min(c.lv, (TOPIC[k] || {}).max || 1)); }
+    const one = (s, n) => s === 'cult' ? rsPool(SCALATA, c.lv, n).map(scQ) : s === 'reg' ? rsPool(REGOLE, c.lv, n).map(regQ) : s === 'log' ? makeLogicSet(c.lv, null, n) : rsGeo(n, c.lv);
+    const s = RS_SRC[c.src] || 'cult'; return s === 'mix' ? shuffle(['cult', 'log', 'geo', 'reg'].flatMap(x => one(x, 2))) : one(s, RS_N);
+  });
+}
+function rsStart(cfg, guest) {
+  newEv(); FX.play('whistle');
+  const qs = rsQuestions(cfg), d = { cfg, qs, i: 0, ans: [], tms: [], res: [], fast: 0, guest, shownAt: Date.now() };
+  go('rplay', { d, g: { q: qs[0], choice: -1 } });
+}
+function rsGo() {
+  const p = prof(), o = UI.rsc || {}, ad = isAd(p);
+  let seed; do seed = Math.floor(Math.random() * 2 ** 30); while ((p.rch || []).some(x => x.id === seed));
+  rsStart(ad ? { ad: 1, cls: 0, subj: 0, src: o.src || 0, lv: o.lv || 2, seed } : { ad: 0, cls: p.cls || 1, subj: o.subj || 0, src: 0, lv: o.lv || 2, seed }, null);
+}
+function rsAns(i) {
+  const d = UI.d; if (!d || !d.qs || d.ans[d.i] !== undefined) return;
+  const q = d.qs[d.i], ms = Date.now() - d.shownAt, ok = i === q.a, p = ensure(prof());
+  d.ans[d.i] = i; d.tms[d.i] = ms; d.res[d.i] = ok; if (ms < minRead(q)) d.fast++;
+  if (d.cfg.ad || !TOPIC[q.topic]) recordLite(p, q.topic, ok, plain(q.q).slice(0, 140), plain(q.opts[i]), plain(q.opts[q.a])); else record(p, q, ok, q.opts[i], 'duel');
+  if (ok && ms >= minRead(q)) xpAdd(p, 10); save();
+  UI.g = { q, choice: i }; FX.play(ok ? 'ok' : 'ko'); render();
+}
+function rsNext() { const d = UI.d; if (!d || d.ans[d.i] === undefined) return; d.i++; if (d.i >= RS_N) return rsEnd(); d.shownAt = Date.now(); UI.g = { q: d.qs[d.i], choice: -1 }; render(); window.scrollTo(0, 0); }
+function rsEnd() {
+  const d = UI.d, p = ensure(prof()), c = d.cfg, sc = d.res.filter(Boolean).length, secs = Math.min(2047, Math.round(d.tms.reduce((a, b) => a + b, 0) / 1000)), rush = d.fast * 2 > RS_N;
+  const pk = sc >= 5 && !rush ? grant(p, 1, `sfida a distanza (${sc}/${RS_N})`, true) : 0;
+  p.cnt.duelp = (p.cnt.duelp || 0) + 1; p.stats.s++; bumpStreak(p); passEv(p, 'duel'); checkTro(p);
+  p.rch = p.rch || []; let e;
+  if (!d.guest) { e = { id: c.seed, mine: 1, cfg: c, me: { sc, secs }, opps: [], d: today() }; e.code = codeMake(0, Object.assign({}, c, { ch: rsCh(), sc, secs }), p.nick); p.rch.unshift(e); }
+  else { e = p.rch.find(x => x.id === c.seed && !x.mine) || { id: c.seed, cfg: c, them: d.guest }; e.me = { sc, secs }; e.done = 1; e.code = codeMake(1, { seed: c.seed, sc, secs }, p.nick); if (!p.rch.includes(e)) p.rch.unshift(e); }
+  p.rch = p.rch.slice(0, 30);
+  p.hist.unshift({ d: today(), m: 'duel', s: c.ad ? 'log' : RS_SUBJ[c.subj] || 'mix', k: d.guest ? `a distanza contro ${d.guest.n}` : 'sfida a distanza', c: sc, t: RS_N, sc: '' }); p.hist = p.hist.slice(0, 60);
+  save(); FX.play('final');
+  go('rres', { rr: { id: c.seed, mine: !d.guest, pk, rush, sc } });
+  if (d.guest) { const w = rsWin(e.me, e.them); if (w > 0) setTimeout(() => { FX.play('trophy'); FX.confetti(120); }, 800); }
+}
+// 1 = vince chi ha giocato su questo dispositivo, -1 = vince l'altro, 0 = pari (più risposte giuste, poi meno tempo)
+const rsWin = (a, b) => a.sc !== b.sc ? (a.sc > b.sc ? 1 : -1) : a.secs !== b.secs ? (a.secs < b.secs ? 1 : -1) : 0;
+// un codice arriva (scritto, incollato o da un link): sfida, risposta o lega
+function codeOpen(str) {
+  const p = prof(), o = codeRead(str); if (!p) return;
+  if (!o) { toast('Codice non valido: controlla lettere e numeri.'); FX.play('ko'); return; }
+  if (o.t === 2) return lgAdd(o);
+  p.rch = p.rch || [];
+  if (o.t === 1) {
+    const e = p.rch.find(x => x.id === o.seed && x.mine);
+    if (!e) { toast('Questa risposta è per una sfida lanciata da un altro giocatore o da un altro dispositivo.'); return; }
+    e.opps = (e.opps || []).filter(x => x.n !== o.name).concat({ n: o.name, sc: o.sc, secs: o.secs }); save(); FX.play('coin');
+    return go('rres', { rr: { id: e.id, mine: true, from: o.name } });
+  }
+  const old = p.rch.find(x => x.id === o.seed);
+  if (old && old.mine) { toast('Questa sfida l\'hai lanciata tu: mandala a un amico!'); return go('rres', { rr: { id: old.id, mine: true } }); }
+  if (old && old.done) return go('rres', { rr: { id: old.id, mine: false } });
+  if (old) { toast('Questa sfida l\'hai già iniziata: si gioca una volta sola.'); return; }
+  const cfg = { ad: o.ad, cls: Math.min(3, Math.max(1, o.cls || 1)), subj: o.subj, src: o.src, lv: Math.min(3, Math.max(1, o.lv || 2)), seed: o.seed };
+  go('racc', { ra: { cfg, them: { n: o.name, sc: o.sc, secs: o.secs }, diff: o.ch !== rsCh() } });
+}
+function rsAccept() {
+  const p = prof(), a = UI.ra; if (!a) return;
+  p.rch = p.rch || []; if (p.rch.some(x => x.id === a.cfg.seed)) return;
+  p.rch.unshift({ id: a.cfg.seed, cfg: a.cfg, them: a.them, d: today() }); save();
+  rsStart(a.cfg, a.them);
+}
+function rsShare(k) {
+  const p = prof();
+  if (k === 'lega') { const c = lgCode(p); return shareText(`Fuoriclasse · ${p.nick} ti invita nella sua lega della settimana (${LG_TIERS[lgState(p).tier][0]}).\nApri il link: ${SITE}#lega=${c}\nOppure in Gioca → Lega degli amici inserisci il codice: ${c}`); }
+  const e = (p.rch || []).find(x => x.id === (UI.rr || {}).id); if (!e) return;
+  if (e.mine) return shareText(`${p.nick} ti sfida a Fuoriclasse! ${RS_N} domande: ${rsWhat(e.cfg)}. Punteggio da battere: ${e.me.sc}/${RS_N} in ${mmss(e.me.secs)}.\nApri il link: ${SITE}#sfida=${e.code}\nOppure in Gioca → Sfida a distanza inserisci il codice: ${e.code}`);
+  shareText(`Ho giocato la tua sfida di Fuoriclasse: ${e.me.sc}/${RS_N} in ${mmss(e.me.secs)}. Inserisci questo codice in Gioca → Sfida a distanza per vedere chi ha vinto: ${e.code}`);
+}
+V.remota = () => {
+  const p = prof(), ad = isAd(p), o = UI.rsc || (UI.rsc = { subj: 0, src: 0, lv: 2 }), list = (p.rch || []).slice(0, 8);
+  const seg = (k, opts, lbl) => `<div class="seg rsseg" role="group" aria-label="${lbl}">${opts.map(([v, t]) => `<button data-a="rscfg" data-k="${k}" data-v="${v}" aria-pressed="${o[k] === v}">${t}</button>`).join('')}</div>`;
+  const row = e => { const opp = e.mine ? (e.opps || []).slice().sort((a, b) => -rsWin(a, b)) : null, best = opp && opp[0];
+    const st = e.mine ? (best ? `${opp.length} ${opp.length === 1 ? 'risposta' : 'risposte'} · ${rsWin(e.me, best) >= 0 ? 'sei in testa' : `in testa ${esc(best.n)}`}` : 'aspetti le risposte') : e.done ? (rsWin(e.me, e.them) > 0 ? 'hai vinto' : rsWin(e.me, e.them) < 0 ? `ha vinto ${esc(e.them.n)}` : 'pareggio') : 'non finita';
+    return `<button class="rsrow" data-a="rsview" data-id="${e.id}"><span class="rsico">${icn(e.mine ? 'next' : 'vs')}</span><span class="rst"><b>${e.mine ? 'La tua sfida' : `Sfida di ${esc(e.them.n)}`}</b><small>${esc(rsWhat(e.cfg))} · ${st}</small></span><b class="rssc">${e.me ? e.me.sc : '–'}<small>/${RS_N}</small></b></button>`; };
+  return `<div class="wrap">${topBar('Sfida a distanza', 'gioca', howBtn('remota'))}
+  <div class="stack">
+    <div class="rshero"><span class="rsart">${gart('remota')}</span><p class="m0">Gioca ${RS_N} domande, poi manda il codice agli amici: rispondono alle <b>stesse domande</b> sul loro telefono.</p></div>
+    <section class="panel stack"><div class="sec-h"><h2>Lancia una sfida</h2></div>
+      ${ad ? seg('src', RS_SRC.map((s, i) => [i, RS_SRCN[s]]), 'Argomento') : seg('subj', [[0, 'Tutte'], [1, 'Mate'], [2, 'Italiano'], [3, 'Inglese']], 'Materia')}
+      ${seg('lv', [[1, 'Facile'], [2, 'Medio'], [3, 'Difficile']], 'Livello')}
+      <button class="btn wide" data-a="rsgo">Gioca e sfida</button></section>
+    <section class="panel stack"><div class="sec-h"><h2>Hai ricevuto un codice?</h2></div>${codeIn('rsin', 'es. 4K7Q-9XMB-…-LUCA')}<p class="small muted m0">Vale per le sfide, per le risposte dei tuoi amici e per la lega.</p></section>
+    ${list.length ? `<section class="stack g2"><div class="sec-h"><h2>Le tue sfide</h2></div>${list.map(row).join('')}</section>` : ''}
+  </div></div>`;
+};
+V.racc = () => {
+  const a = UI.ra, p = prof();
+  return `<div class="wrap">${topBar('Sfida a distanza', 'remota')}
+  <div class="stack racc"><span class="rsart big">${gart('remota')}</span>
+    <span class="eyebrow">Hai ricevuto una sfida</span><h2 class="t-disp t-xxl m0">${esc(a.them.n)} ti sfida!</h2>
+    <p class="m0">${RS_N} domande: <b>${esc(rsWhat(a.cfg))}</b>.</p>
+    <div class="panel rsbeat"><span>Punteggio da battere</span><b>${a.them.sc}<small>/${RS_N}</small></b><span>in ${mmss(a.them.secs)}</span></div>
+    ${a.diff ? '<p class="note warn m0">Tu e chi ti sfida avete versioni diverse dell\'app: le domande potrebbero non essere uguali. Aggiornate tutti e due, se potete.</p>' : ''}
+    <p class="small muted m0">Si gioca una volta sola: quando inizi, la sfida conta.</p>
+    <button class="btn wide" data-a="rsacc">Accetta la sfida</button><button class="link" data-a="nav" data-to="remota">Non ora</button></div></div>`;
+};
+V.rplay = () => {
+  const d = UI.d, q = d.qs[d.i], a = d.ans[d.i], done = a !== undefined, ok = a === q.a, t = TOPIC[q.topic] || { title: q.tag || '' }, last = d.i === RS_N - 1;
+  const bar = playBar(d.guest ? `Sfida di ${esc(d.guest.n)}` : 'Sfida a distanza', 'remota', `<span class="chip">${d.i + 1}/${RS_N}</span>`);
+  const fb = done ? `<div class="fb ${ok ? 'ok' : 'ko'}"><div class="fb-h"><b class="fb-w">${ok ? 'Giusto!' : 'Risposta sbagliata'}</b></div>${ok ? '' : `<p class="fb-right">La risposta giusta è <b>${/<(svg|img)/.test(q.opts[q.a]) ? `la ${LET[q.a]}` : `${LET[q.a]}: ${q.opts[q.a]}`}</b></p>`}<div class="fb-x">${q.exp || ''}</div>
+    <div class="fb-act">${sayBtn('x', 'Ascolta la spiegazione')}<button class="btn" data-a="rsnext">${last ? 'Vedi il risultato' : 'Prossima domanda'}</button></div></div>` : '';
+  return `<div class="wrap">${bar}<div class="qwrap qsplit"><div class="qleft">${dotsHTML({ res: d.res, answered: done }, RS_N)}${passageBox(q, !done)}<div class="qcard">${sayBtn('q', 'Ascolta la domanda')}<div class="tp">${esc(t.title)}</div><div class="qt">${q.q}</div></div></div>
+    <div class="qright">${optsHTML(q, done, a, done ? 'none' : 'rsans')}${fb}</div></div></div>`;
+};
+V.rres = () => {
+  const p = prof(), r = UI.rr, e = (p.rch || []).find(x => x.id === r.id); if (!e) return V.remota();
+  const sc = (n, o) => `<div class="dr ${o.win ? 'ok' : ''}"><span class="rsico">${o.me ? icn('star') : icn('vs')}</span><div><b>${esc(n)}</b><span class="small muted">${mmss(o.secs)}</span></div><span class="spacer"></span><b class="rssc">${o.sc}<small>/${RS_N}</small></b></div>`;
+  const prize = r.rush ? '<p class="small muted m0">Risposte troppo veloci: niente bustina.</p>' : r.pk ? '<p class="m0"><span class="chip hot">+1 bustina</span></p>' : r.sc !== undefined && r.sc < 5 ? '<p class="small muted m0">Con almeno 5 risposte giuste si vince una bustina.</p>' : '';
+  if (e.mine) {
+    const opps = (e.opps || []).slice().sort((a, b) => -rsWin(a, b)), all = [{ n: `${p.nick} (tu)`, me: 1, sc: e.me.sc, secs: e.me.secs }, ...opps].sort((a, b) => -rsWin(a, b));
+    const lead = all[0], head = !opps.length ? `${e.me.sc} su ${RS_N}${e.me.sc >= 5 ? "!" : ""}` : lead.me ? (all[1] && !rsWin(lead, all[1]) ? 'Pareggio in testa!' : 'Sei in testa!') : `In testa c'è ${esc(lead.n)}`;
+    return `<div class="wrap">${topBar('Sfida a distanza', 'remota')}<div class="stack result rsres">
+      <span class="eyebrow">${esc(rsWhat(e.cfg))}</span><div class="big t-disp t-xxl">${head}</div>${prize}
+      ${opps.length ? `<div class="stack g2">${all.map((o, i) => sc(o.n, Object.assign({}, o, { win: i === 0 }))).join('')}</div>` : `<p class="m0">Ora tocca ai tuoi amici: mandagli il codice. Chi lo apre gioca le stesse ${RS_N} domande.</p>`}
+      <div class="panel stack"><b>Il codice della tua sfida</b>${codeOut('rscode', e.code, 'sfida')}<p class="small muted m0">Quando un amico ha giocato ti manda un <b>codice di risposta</b>: inseriscilo in Sfida a distanza per aggiornare la classifica.</p></div>
+      <div class="row jcc"><button class="btn ghost" data-a="nav" data-to="remota">Sfida a distanza</button></div></div></div>`;
+  }
+  const w = e.done ? rsWin(e.me, e.them) : 0;
+  return `<div class="wrap">${topBar('Sfida a distanza', 'remota')}<div class="stack result rsres">
+    <span class="eyebrow">Sfida di ${esc(e.them.n)} · ${esc(rsWhat(e.cfg))}</span><div class="big t-disp t-xxl">${w > 0 ? 'Hai vinto!' : w < 0 ? `Vince ${esc(e.them.n)}` : 'Pareggio!'}</div>${prize}
+    <div class="stack g2">${[[`${p.nick} (tu)`, Object.assign({ me: 1, win: w > 0 }, e.me)], [e.them.n, Object.assign({ win: w < 0 }, e.them)]].sort((a, b) => (b[1].win ? 1 : 0) - (a[1].win ? 1 : 0)).map(([n, o]) => sc(n, o)).join('')}</div>
+    <div class="panel stack"><b>Rimanda il risultato a ${esc(e.them.n)}</b>${codeOut('rscode', e.code, 'risposta')}<p class="small muted m0">${esc(e.them.n)} lo inserisce in Sfida a distanza e vede chi ha vinto.</p></div>
+    <div class="row jcc"><button class="btn ghost" data-a="nav" data-to="remota">Lancia una sfida anche tu</button></div></div></div>`;
+};
+
+// --- Lega degli amici: ogni settimana contano gli XP; ci si scambia il codice della settimana; lunedì si sale o si scende
+const LG_TIERS = [['Pulcini', '#9fb2c8'], ['Esordienti', '#7be0b0'], ['Giovanissimi', '#4ea8ff'], ['Allievi', '#c79bff'], ['Primavera', '#ff8a1f'], ['Prima squadra', '#ff6b5e'], ['Fuoriclasse', '#ffd84a']];
+const LG_GOAL = t => 200 + t * 100;   // XP della settimana che bastano per salire (e per non scendere)
+const wkOf = (yr, wk) => `${2025 + yr}-W${String(wk).padStart(2, '0')}`;
+const wkPrev = w => { const [y, n] = w.split('-W').map(Number); const d = new Date(Date.UTC(y, 0, 4 + (n - 1) * 7)); d.setUTCDate(d.getUTCDate() - 7); return weekKey(new Date(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())); };
+const xpOfWeek = (p, w) => p.wxp && p.wxp.w === w ? p.wxp.n : p.wxpPrev && p.wxpPrev.w === w ? p.wxpPrev.n : 0;
+function lgState(p) {
+  const w = weekKey();
+  if (!p.lg) p.lg = { tier: 0, id: 1 + Math.floor(Math.random() * (2 ** 24 - 1)), fr: {}, w };
+  if (p.lg.w !== w) lgRoll(p, w);
+  return p.lg;
+}
+// chi gareggia in una settimana: io, gli amici con un codice di quella settimana, i giocatori di questo dispositivo
+function lgMembers(p, w) {
+  const L = p.lg, out = [{ me: 1, n: p.nick, xp: xpOfWeek(p, w), tier: L.tier }];
+  for (const [id, f] of Object.entries(L.fr)) if (f.w === w) out.push({ id, n: f.n, xp: f.xp, tier: f.tier, at: f.at });
+  if (DB.settings.rank !== false) for (const q of DB.profiles) if (q.id !== p.id && isAd(q) === isAd(p)) { const x = xpOfWeek(q, w); if (x > 0) out.push({ dev: 1, n: q.nick, xp: x, tier: q.lg ? q.lg.tier : 0 }); }
+  return out.sort((a, b) => b.xp - a.xp || (a.me ? -1 : b.me ? 1 : 0));
+}
+// lunedì: si fanno i conti della settimana in cui si è giocato l'ultima volta
+function lgRoll(p, w) {
+  const L = p.lg, old = L.w, ms = lgMembers(p, old), me = ms.findIndex(m => m.me), mine = ms[me], n = ms.length, t0 = L.tier;
+  let up = 0;
+  if (mine.xp > 0) { if (n >= 5) up = me < 3 ? 1 : me >= n - 2 && mine.xp < LG_GOAL(t0) ? -1 : 0; else up = mine.xp >= LG_GOAL(t0) ? 1 : 0; }
+  L.tier = Math.max(0, Math.min(LG_TIERS.length - 1, t0 + up)); if (L.tier === t0) up = 0;
+  let pk = 0; if (up > 0) pk += grant(p, 1, `promozione in lega ${LG_TIERS[L.tier][0]}`, false); if (n >= 3 && me === 0 && mine.xp > 0) pk += grant(p, 1, 'primo posto in lega', false);
+  L.last = mine.xp > 0 ? { w: old, rank: me + 1, of: n, xp: mine.xp, t0, t1: L.tier, up, pk, seen: false } : null;
+  L.w = w; for (const [id, f] of Object.entries(L.fr)) if (f.w < wkPrev(w)) delete L.fr[id];   // i codici vecchi non servono più
+  save();
+}
+const lgCode = p => { const L = lgState(p), w = weekKey(), [y, n] = w.split('-W').map(Number); return codeMake(2, { id: L.id, yr: y - 2025, wk: n, xp: xpOfWeek(p, w), tier: L.tier }, p.nick); };
+function lgAdd(o) {
+  const p = prof(), L = lgState(p), w = wkOf(o.yr, o.wk);
+  if (o.id === L.id) { toast('Questo è il tuo codice: mandalo agli amici!'); return go('lega'); }
+  const f = L.fr[o.id];
+  if (f && (f.w > w || (f.w === w && f.xp > o.xp))) { toast(`Hai già un codice più recente di ${o.name}.`); return go('lega'); }
+  L.fr[o.id] = { n: o.name, xp: o.xp, w, tier: o.tier, at: Date.now() };
+  const ids = Object.keys(L.fr); if (ids.length > 40) delete L.fr[ids.sort((a, b) => L.fr[a].at - L.fr[b].at)[0]];
+  save(); FX.play('coin'); toast(w === weekKey() ? `${o.name} è nella tua lega: ${o.xp} XP questa settimana.` : `Il codice di ${o.name} è di un'altra settimana: chiedigli quello nuovo.`);
+  go('lega');
+}
+const lgBadge = (t, cls) => `<span class="lgbadge ${cls || ''}" style="--lg:${LG_TIERS[t][1]}"><svg viewBox="0 0 40 46" aria-hidden="true"><path d="M20 2l17 6v15c0 11-7 18-17 22C10 41 3 34 3 23V8z" fill="var(--lg)"/><path d="M20 7l12 4v11c0 8-5 13-12 16-7-3-12-8-12-16V11z" fill="#0a1220" opacity=".35"/><text x="20" y="29" text-anchor="middle" font-family="Saira Extra Condensed,sans-serif" font-weight="800" font-size="16" fill="#fff">${t + 1}</text></svg></span>`;
+const daysLeft = () => { const d = new Date().getDay(); return d === 0 ? 1 : 8 - d; };
+V.lega = () => {
+  const p = prof(), L = lgState(p), w = weekKey(), ms = lgMembers(p, w), n = ms.length, big = n >= 5, last = L.last && !L.last.seen ? L.last : null, mine = ms.find(m => m.me), goal = LG_GOAL(L.tier);
+  const zone = i => big ? (i < 3 ? 'up' : i >= n - 2 ? 'down' : '') : '';
+  const rowH = (m, i) => `<div class="lgrow ${m.me ? 'me' : ''} ${zone(i)}"><b class="lgpos">${i + 1}</b><span class="lgav" style="--h:${hashHue(m.n)}">${esc(m.n.slice(0, 1).toUpperCase())}</span><span class="lgn"><b>${m.me ? `${esc(p.nick)} (tu)` : esc(m.n)}</b><small>${m.me ? LG_TIERS[L.tier][0] : m.dev ? 'su questo dispositivo' : `codice di ${fmtWhen(m.at)}`}</small></span><b class="lgxp">${m.xp}<small> XP</small></b>${m.id ? `<button class="iconbtn lgdel" data-a="lgdel" data-id="${m.id}" aria-label="Togli ${esc(m.n)} dalla lega" title="Togli dalla lega">${icn('x')}</button>` : ''}</div>`;
+  const lastTxt = last && `${last.of > 1 ? `Sei arrivato ${last.rank}° su ${last.of}, con ${last.xp} XP. ` : `Hai fatto ${last.xp} XP. `}${last.up > 0 ? `Sali in <b>${LG_TIERS[last.t1][0]}</b>!` : last.up < 0 ? `Scendi in ${LG_TIERS[last.t1][0]}: questa settimana si riparte.` : `Resti in ${LG_TIERS[last.t1][0]}.`}${last.pk ? ` +${last.pk} ${last.pk === 1 ? 'bustina' : 'bustine'}` : ''}`;
+  return `<div class="wrap">${topBar('Lega degli amici', 'gioca', howBtn('lega'))}
+  <div class="stack">
+    ${last ? `<div class="lglast ${last.up > 0 ? 'up' : last.up < 0 ? 'down' : ''}">${lgBadge(last.t1)}<p class="m0"><b>Settimana finita.</b> ${lastTxt}</p></div>` : ''}
+    <div class="lghero">${lgBadge(L.tier, 'big')}<div><span class="eyebrow">La tua categoria</span><h2 class="m0">${LG_TIERS[L.tier][0]}</h2><span class="small muted">Settimana ${weekRange()} · ${daysLeft() === 1 ? 'ultimo giorno' : `mancano ${daysLeft()} giorni`}</span></div></div>
+    <div class="lgtiers" aria-label="Le 7 categorie">${LG_TIERS.map((t, i) => `<i class="${i === L.tier ? 'on' : i < L.tier ? 'done' : ''}" style="--lg:${t[1]}" title="${t[0]}"></i>`).join('')}</div>
+    <section class="panel stack"><div class="sec-h"><h2>Classifica della settimana</h2><span>${n} in lega</span></div>
+      ${big ? '<p class="small muted m0">I primi 3 salgono, gli ultimi 2 scendono (chi arriva all\'obiettivo non scende).</p>' : `<p class="small m0">${n === 1 ? "Per salire" : `Siete in ${n}: per salire`} arriva a <b>${goal} XP</b> entro domenica.</p><span class="meter xp"><i style="width:${pct(Math.min(mine.xp, goal), goal)}%"></i></span>`}
+      <div class="lgtable">${ms.map(rowH).join('')}</div>
+      ${n < 2 ? '<p class="small muted m0">Sei da solo: manda il tuo codice agli amici e chiedi il loro.</p>' : ''}</section>
+    <section class="panel stack"><div class="sec-h"><h2>Il tuo codice della settimana</h2></div>${codeOut('lgcode', lgCode(p), 'lega')}<p class="small muted m0">Dentro ci sono i tuoi ${mine.xp} XP di questa settimana: quando ne fai altri, rimandalo.</p></section>
+    <section class="panel stack"><div class="sec-h"><h2>Aggiungi un amico</h2></div>${codeIn('lgin', 'Il codice della settimana di un amico')}</section>
+  </div></div>`;
+};
+V.lega.after = () => { const p = prof(); if (p && p.lg && p.lg.last && !p.lg.last.seen) { p.lg.last.seen = true; save(); } };
+const hashHue = s => { let h = 0; for (const c of String(s)) h = (h * 31 + c.charCodeAt(0)) % 360; return h; };
+const fmtWhen = t => { if (!t) return ''; const d = new Date(t); return `${['dom', 'lun', 'mar', 'mer', 'gio', 'ven', 'sab'][d.getDay()]} ${d.getHours()}:${String(d.getMinutes()).padStart(2, '0')}`; };
+
 /* ---------- il mio giocatore: aspetto, livelli, carriera ---------- */
 function L(a) { return a.map(([v, t, lv]) => ({ v, t, lv })); }
 const KITC = [['#e63946', 'Rosso'], ['#9b1b30', 'Granata', 6], ['#1d6fe0', 'Blu'], ['#0d2a6b', 'Blu notte', 9], ['#6cc3ff', 'Celeste', 4], ['#2bb673', 'Verde'], ['#0f5132', 'Verde scuro', 12], ['#ffd23f', 'Giallo'], ['#ff8a1f', 'Arancione', 16], ['#8e5bd9', 'Viola', 21], ['#ff6fae', 'Rosa', 33], ['#f1f1f1', 'Bianco'], ['#1b1f2a', 'Nero'], ['#c9a227', 'Oro', 26]];
@@ -11585,7 +11983,7 @@ const titlesOf = p => [...LVTITLES.filter(t => t[0] <= ulv(p)).map(t => t[1]), .
 function xpAdd(p, n, quiet) {
   if (!n || !p) return;
   const before = plv(p); p.xp = (p.xp || 0) + n; p.xpl = (p.xpl || 0) + n; const w = weekKey();
-  if (!p.wxp || p.wxp.w !== w) p.wxp = { w, n: 0 }; p.wxp.n += n; EV.xp = (EV.xp || 0) + n;
+  if (!p.wxp || p.wxp.w !== w) { if (p.wxp && p.wxp.n) p.wxpPrev = p.wxp; p.wxp = { w, n: 0 }; } p.wxp.n += n; EV.xp = (EV.xp || 0) + n;
   const after = plv(p);
   for (let k = before + 1; k <= after; k++) { if (rewardsAt(k).pack) grant(p, 1, `livello giocatore ${k}`, false); (EV.plv = EV.plv || []).push(k); p.newu = true; }
   if (after > before && !quiet) setTimeout(() => { toast(`${p.nick}: livello ${after}! Nuovi premi nella Carriera`); FX.play('level'); FX.confetti(90); }, 650);
@@ -11687,6 +12085,8 @@ function avatarSVG(av, o) {
     lana: `<path d="M58 66 C56 18 144 18 142 66 Z" fill="${K1}"/><path d="M57 58 Q100 46 143 58 L143 70 Q100 58 57 70Z" fill="${K2}"/>${[70, 80, 90, 100, 110, 120, 130].map(x => `<path d="M${x} 52 V58" stroke="${shade(K2, 0.8)}" stroke-width="1.6"/>`).join('')}<circle cx="100" cy="20" r="10" fill="${K2}"/>`,
     gallo: `<path d="M72 44 C64 28 76 18 84 30 C82 10 98 4 101 24 C106 6 124 8 118 28 C128 20 140 30 130 46 Z" fill="#e41e25" stroke="#7a0d10" stroke-width="2.2" stroke-linejoin="round"/><path d="M84 30 C86 36 88 40 90 44 M101 24 C102 32 103 38 104 44 M118 28 C116 34 114 40 113 44" stroke="#a3141a" stroke-width="1.6" fill="none"/>`,
     fccap: `<path d="M138 56 C150 52 162 56 166 64 C158 66 148 66 140 66Z" fill="#e41e25"/><path d="M58 70 C56 30 144 30 142 70 Q100 58 58 70Z" fill="#141414"/><path d="M58 70 Q100 58 142 70" stroke="#e41e25" stroke-width="4" fill="none"/><circle cx="100" cy="47" r="7" fill="#fff"/><path d="M96 49 C96 44 99 42 101 44 C101 41 105 41 104 45 C106 45 106 49 104 50 Z" fill="#e41e25"/>`,
+    // cappello di Natale (figurine della Serie 2): cono rosso piegato di lato, bordo e pon pon bianchi
+    natale: `<path d="M60 64 C60 30 92 12 120 16 C140 19 156 34 162 56 L152 60 C148 46 140 38 130 36 C134 46 138 54 140 64 Z" fill="#d6262f"/><path d="M120 16 C140 19 156 34 162 56 L156 58 C150 40 138 28 122 24 Z" fill="#a8141c" opacity=".55"/><path d="M55 58 Q100 44 145 58 L145 72 Q100 58 55 72 Z" fill="#f4f4f4"/><circle cx="159" cy="62" r="9" fill="#f4f4f4"/>`,
     corona: `<path d="M70 42 L76 12 L89 28 L100 4 L111 28 L124 12 L130 42 Z" fill="#ffd23f" stroke="#b8860b" stroke-width="2" stroke-linejoin="round"/><circle cx="100" cy="31" r="4" fill="#e63946"/><circle cx="84" cy="36" r="3" fill="#1d6fe0"/><circle cx="116" cy="36" r="3" fill="#2bb673"/>`
   }[av.head] || '';
   // motivo della maglia
@@ -11765,18 +12165,21 @@ function cardAv(c) {
   let k1 = N.c[0], k2 = N.c[1] || '#ffffff'; if (k1 === k2) k2 = N.c[2] || '#1b1f2a';
   if (c.role === 'POR') { k1 = '#c6f432'; k2 = '#1b1f2a'; }
   return { skin: k.skin === undefined ? 1 : k.skin, hair: k.hair || 'corti', hairC: k.hairC || '#3b2416', eyes: c.role === 'POR' ? 'decisi' : 'tondi', mouth: coach ? 'deciso' : 'sorriso',
-    face: k.extra === 'lenti' ? 'lenti' : 'no', beard: k.beard || 'no', head: k.extra === 'fascia' ? 'fascia' : 'no', arm: c.role === 'POR' ? 'guanti' : 'no',
+    face: k.extra === 'lenti' ? 'lenti' : 'no', beard: k.beard || 'no', head: c.xmas ? 'natale' : k.extra === 'fascia' ? 'fascia' : 'no', arm: c.role === 'POR' ? 'guanti' : 'no',
     shirt: coach ? '#232a33' : k1, shirt2: coach ? (lumC(k1) > 0.85 ? k2 : k1) : k2, pat: coach ? 'giacca' : c.role === 'POR' ? 'tinta' : (KIT_PAT[c.nat] || 'tinta'),
     num: k.num || 10, shorts: k2, socks: k1, boots: '#1b1f2a', foot: 'dx' };
 }
 function cardArt(c) {
   if (!c.look) return '';
-  const N = NAT[c.nat] || { c: ['#1d6fe0', '#ffffff', '#111111'] }, old = c.sec === 'leggende' || c.sec === 'azzurri', coach = c.role === 'ALL';
+  const N = NAT[c.nat] || { c: ['#1d6fe0', '#ffffff', '#111111'] }, old = c.sec === 'leggende' || c.sec === 'azzurri' || c.sec === 'leggnat', coach = c.role === 'ALL';
   const tone = [N.c[2], N.c[0], N.c[1]].find(x => x && lumC(x) > 0.12 && lumC(x) < 0.8) || '#2b4a7a';
   const top = old ? '#6b5233' : coach ? '#24364a' : shade(tone, 0.8), bot = old ? '#22180e' : '#0a1410';
   const bg = id => [`<radialGradient id="${id}bg" cx="50%" cy="30%" r="80%"><stop offset="0" stop-color="${top}"/><stop offset="1" stop-color="${bot}"/></radialGradient>`,
     `<rect x="20" y="4" width="160" height="179" fill="url(#${id}bg)"/><g fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="2"><circle cx="100" cy="196" r="56"/><path d="M20 150H180"/></g>${old ? `<g fill="#f3d38a" opacity=".6"><polygon points="${starPts(40, 26, 8, 3.5)}"/><polygon points="${starPts(160, 26, 8, 3.5)}"/></g>` : ''}`];
-  const svg = avatarSVG(cardAv(c), { crop: 'card', still: true, cls: 'art cav', bg, id: 'k' + c.id });
+  // Serie 2 «Natale»: fiocchi di neve dietro il giocatore e un po' di neve sul fondo
+  const snow = c.xmas ? `<g fill="#fff" opacity=".8">${[[34, 22, 2.6], [58, 40, 1.8], [44, 70, 2.2], [30, 104, 1.6], [150, 18, 2.4], [168, 46, 1.8], [158, 84, 2.6], [172, 118, 1.6], [26, 134, 2], [140, 128, 1.4], [86, 12, 1.6], [118, 30, 1.4]].map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}"/>`).join('')}</g>` : '';
+  const bgx = c.xmas ? id => { const [d, b] = bg(id); return [d, b + snow]; } : bg;
+  const svg = avatarSVG(cardAv(c), { crop: 'card', still: true, cls: 'art cav', bg: bgx, id: 'k' + c.id });
   return old ? svg.replace('</svg>', '<rect x="20" y="4" width="160" height="179" fill="#7a5a26" opacity=".14"/></svg>') : svg;
 }
 const pav = (p, cls) => avatarSVG(ensure(p).av, { crop: 'bust', cls: cls || 'jersey', still: true });
@@ -13058,7 +13461,7 @@ function startRegole(lv) {
 }
 
 // --- Indovina il calciatore: indizi che si svelano uno alla volta
-const CALC_SEC = ['campioni', 'campionesse', 'leggende', 'azzurri', 'allenatori'];
+const CALC_SEC = ['campioni', 'campionesse', 'leggende', 'azzurri', 'allenatori', 'natale', 'leggnat'];
 const CALC_PTS = [100, 80, 60, 40, 20];
 function calcClues(c) {
   const R = ROLE[c.role] || ['Calciatore'], role = c.role === 'ALL' ? (c.fem ? 'Allenatrice' : 'Allenatore') : R[0], dec = Math.floor(c.born / 10) * 10;
@@ -13304,6 +13707,15 @@ const A = {
   dopp: d => { UI.ds.opp = d.id; render(); },
   dsubj: d => { UI.ds.subj = d.s; render(); },
   duelgo: () => startDuel(),
+  rscfg: d => { UI.rsc = UI.rsc || {}; UI.rsc[d.k] = +d.v; FX.play('tap'); render(); },
+  rsgo: () => rsGo(),
+  rsans: d => rsAns(+d.i),
+  rsnext: () => rsNext(),
+  rsacc: () => rsAccept(),
+  rsview: d => { const e = (prof().rch || []).find(x => x.id === +d.id); if (!e) return; if (!e.mine && !e.done) return toast('Questa sfida non l\'hai finita: si gioca una volta sola.'); go('rres', { rr: { id: e.id } }); },
+  codeopen: d => { const t = $('#' + d.t); codeOpen(t ? t.value : ''); },
+  share: d => rsShare(d.k),
+  lgdel: d => { const p = prof(), f = p.lg && p.lg.fr[d.id]; if (!f) return; delete p.lg.fr[d.id]; save(); toast(`${f.n} non è più nella tua lega.`); render(); },
   dready: () => duelReady(),
   dans: d => duelAns(+d.i),
   dnext: () => duelNext(),
@@ -13357,8 +13769,8 @@ const A = {
   fmset: d => fmSet(d.id),
   fmplay: () => startMatch(),
   lvset: d => { const p = DB.profiles.find(x => x.id === UI.sid); ensure(p); const t = TOPIC[d.k], e = p.lv[d.k] = p.lv[d.k] || { l: 1, h: '' }; e.l = Math.max(1, Math.min(t.max, e.l + +d.v)); e.h = ''; save(); render(); },
-  nav: d => { const to = d.to; if (['parola', 'conto', 'regole', 'campo', 'gioca', 'retri', 'recap', 'album', 'pack', 'mercato', 'code', 'trofei', 'formazione', 'coppa', 'duelsetup', 'me', 'carriera', 'avatar', 'welcome', 'pass', 'mgpick', 'geo'].includes(to) && !prof()) return go('home'); if (to === 'reports' && !UI.auth) return go('pin'); if (to === 'tutor') { if (!UI.auth) return go('pin', { pinTo: 'tutor' }); return go(to, { auth: true }); } go(to, { auth: ['settings', 'tutor', 'student', 'reports', 'pset'].includes(to) ? UI.auth : false }); },
-  pick: d => { UI.pid = d.id; const p = prof(); p.last = today(); save(); go('campo'); FX.play('tap'); },
+  nav: d => { const to = d.to; if (['parola', 'conto', 'regole', 'campo', 'gioca', 'retri', 'recap', 'album', 'pack', 'mercato', 'code', 'trofei', 'formazione', 'coppa', 'duelsetup', 'me', 'carriera', 'avatar', 'welcome', 'pass', 'mgpick', 'geo', 'remota', 'lega'].includes(to) && !prof()) return go('home'); if (to === 'reports' && !UI.auth) return go('pin'); if (to === 'tutor') { if (!UI.auth) return go('pin', { pinTo: 'tutor' }); return go(to, { auth: true }); } go(to, { auth: ['settings', 'tutor', 'student', 'reports', 'pset'].includes(to) ? UI.auth : false }); },
+  pick: d => { UI.pid = d.id; const p = prof(); p.last = today(); save(); go('campo'); FX.play('tap'); if (LINK) { const c = LINK; LINK = null; setTimeout(() => codeOpen(c), 60); } },
   form: d => { const f = UI.form, n = $('#nick'); if (n) f.nick = n.value; f[d.k] = d.k === 'cls' ? +d.v : d.v; render(); },
   create: () => { const f = UI.form, n = $('#nick'); if (n) f.nick = n.value; const nick = (f.nick || '').trim(); if (!nick) { f.tab = 'chi'; render(); toast('Scrivi il tuo soprannome.'); const m = $('#nick'); if (m) m.focus(); return; } const p = newProfile(nick, f.cat === 'adulti' ? 3 : f.cls, f.av.shirt); p.av = f.av; if (f.cat === 'adulti') { p.cat = 'adulti'; p.onb = 1; } DB.profiles.push(p); save(); UI.pid = p.id; if (p.cat) go('campo'); else go('welcome', { w: 0 }); FX.play('whistle'); },
   avset: d => avSet(d.k, d.v),
@@ -13469,7 +13881,9 @@ function novitaCheck() {
   $('#modal').hidden = false; $('#modal').querySelector('.btn').focus({ preventScroll: true }); $('#modal').querySelector('.nvsheet').scrollTop = 0; FX.play('tap');
 }
 V.novita = () => `<div class="wrap">${topBar('Novità dell\'app', 'settings')}<div class="stack">${NOV.length ? NOV.map(n => `<div class="panel">${novHTML(n, new Set(['med', 'ad']))}</div>`).join('') : '<p class="muted">Nessuna novità registrata.</p>'}</div></div>`;
-if (location.hash === '#debug') window.__fc = { ui: () => UI, pack: () => openPack(prof()) };
+if (/debug/.test(location.hash)) window.__fc = { ui: () => UI, pack: () => openPack(prof()) };
+let LINK = (() => { const m = location.hash.match(/(sfida|lega)=([A-Za-z0-9-]+)/); return m ? m[2] : null; })();
+if (LINK) try { history.replaceState(null, '', location.pathname + location.search + (/debug/.test(location.hash) ? '#debug' : '')); } catch (e) { }
 render();
 })();
 
