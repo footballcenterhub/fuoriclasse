@@ -528,6 +528,14 @@ body.navon .wrap{padding-bottom:calc(100px + env(safe-area-inset-bottom,0px))}
 .wpair{display:flex;gap:18px;align-items:center;justify-content:center}
 .wpair>svg{width:110px;height:auto;border-radius:var(--r-l)}
 .wcup{color:var(--flood)}.wcup svg{width:90px;height:90px}
+.avstep{flex:none;width:48px;padding:0;display:grid;place-items:center}
+.avstep svg{width:22px;height:22px}.avstep.fwd svg{transform:scaleX(-1)}
+.wlist{display:grid;gap:10px;width:100%;text-align:left}
+.welr{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:center;padding:10px 12px;border-radius:var(--r-l);background:var(--surface-2);border:1px solid var(--line)}
+.welr>div>b{display:block;font-family:var(--display);font-size:var(--fs-l);text-transform:uppercase;line-height:1.1}
+.welr>div>span{display:block;color:var(--ink-2);font-size:var(--fs-s);line-height:1.4}
+.welic{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--surface-3,var(--panel));color:var(--accent)}
+.welic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2}
 .wdots{display:flex;gap:8px}.wdots i{width:10px;height:10px;border-radius:50%;background:var(--line)}.wdots i.on{background:var(--flood);width:26px;border-radius:6px}
 /* ---- album: figurine nuove ---- */
 .badge.new{right:auto;left:-4px;background:var(--ko);color:#fff;text-transform:uppercase;letter-spacing:.04em}
@@ -624,7 +632,7 @@ body.big .fc-face b{font-size:1.5em}
 .avsec .seg{display:flex;flex-wrap:wrap}.avsec .seg button{flex:1 1 auto}
 .avsec>b{font-family:var(--display);font-size:var(--fs-m);text-transform:uppercase;letter-spacing:.04em}
 .avgrid{display:grid;gap:8px}
-.avgrid.sw{grid-template-columns:repeat(auto-fill,minmax(42px,1fr))}
+.avgrid.sw{grid-template-columns:repeat(auto-fill,minmax(44px,1fr))}   /* tasti da almeno 44 px anche sul tablet */
 .avgrid.tile{grid-template-columns:repeat(auto-fill,minmax(84px,1fr))}
 .avgrid.cel,.avgrid.choice2{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
 .swt{position:relative;aspect-ratio:1;border-radius:50%;background:var(--c);border:3px solid rgba(255,255,255,.12);padding:0}
@@ -10075,6 +10083,11 @@ if (typeof module !== 'undefined' && module.exports) module.exports = api; else 
    Scrivere frasi brevi, che capisce un ragazzo di 11 anni. */
 (function (G) {
 const NOVITA = [
+  { v: '2026-10-13d', t: 'Si entra in campo prima', li: [
+    ['Crei il tuo giocatore ed entri subito in campo: aspetto, divisa e stile li puoi cambiare quando vuoi da «Io».', ''],
+    ['Il benvenuto adesso sta in una schermata sola.', ''],
+    ['Nuova pagina per educatori e genitori: spiega come funziona Fuoriclasse e porta all\'Area educatore. È nello Spogliatoio.', '']
+  ] },
   { v: '2026-10-13c', t: 'Privacy, crediti e fine dell\'anno', li: [
     ['Nuova pagina «Privacy e dati»: spiega cosa salva l\'app, chi lo vede e come cancellarlo. È nello Spogliatoio e nelle Impostazioni.', ''],
     ['Fuoriclasse non manda niente su internet: adesso lo garantisce anche una regola di sicurezza dentro l\'app.', ''],
@@ -10863,9 +10876,19 @@ V.home = () => {
     ${many ? '<input id="hsearch" class="hsearch" type="search" placeholder="Cerca il tuo nome…" aria-label="Cerca il tuo giocatore" autocomplete="off">' : ''}
     ${ps.length ? `<div class="hplayers">${ps.map(row).join('')}</div>` : '<p class="muted small m0">Qui compariranno i giocatori creati su questo dispositivo. Se hai già giocato su un altro computer, usa il tuo codice di salvataggio.</p>'}
     <div class="row hfoot"><button class="link" data-a="nav" data-to="import">Ho un codice di salvataggio</button><span class="spacer"></span><button class="btn ghost sm" data-a="nav" data-to="settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg> Impostazioni</button></div>
-    <button class="link jsc small" data-a="nav" data-to="privacy">Privacy e dati: cosa salva l'app</button>
+    <div class="row jcc wrapf hlinks"><button class="link small" data-a="nav" data-to="educatori">Sono un educatore o un genitore</button><button class="link small" data-a="nav" data-to="privacy">Privacy e dati</button></div>
   </section></div>`;
 };
+// per chi valuta l'app (docente, genitore, responsabile di un'associazione): tre frasi e la strada per l'Area educatore
+V.educatori = () => `<div class="wrap">${topBar('Educatori e genitori', 'home')}
+  <div class="stack pdoc">
+    <div class="panel stack pbrief"><h2>Come funziona</h2>
+      <p class="m0">Fuoriclasse è un album di figurine che si completa studiando: matematica, italiano, inglese e geografia per le scuole medie, logica e cultura generale per superiori e adulti.</p>
+      <p class="m0">Le domande seguono la classe e cambiano livello da sole: chi risponde bene sale, gli errori tornano nel Ripasso finché non sono sistemati.</p>
+      <p class="m0">Nell'<b>Area educatore</b>, protetta dal PIN, vedete i progressi di ogni ragazzo, assegnate missioni, premiate e fate i backup. I dati restano su questo dispositivo.</p></div>
+    <button class="btn wide" data-a="nav" data-to="tutor">${ICON.users.replace('<svg', '<svg width="18" height="18"')} Apri l'Area educatore</button>
+    <button class="btn ghost wide" data-a="nav" data-to="privacy" data-back="educatori">${icn('shield')} Privacy e dati</button>
+  </div></div>`;
 document.addEventListener('input', e => { if (e.target.id !== 'hsearch') return; const q = e.target.value.trim().toLowerCase(); document.querySelectorAll('.hplayer').forEach(b => { b.hidden = q && !b.dataset.n.includes(q); }); });
 // --- Oggi (2A): una riga per il giocatore, Football Center, UNA cosa grande da fare, sfide di oggi, Pass, al massimo 3 «da non perdere»
 const CH_IC = { goals: 'ball', ok: 'abc', win: 'clock', flash: 'cards', rev: 'redo', read: 'book', new: 'spark', mg: 'puzzle' };
@@ -12057,18 +12080,18 @@ function quitAsk(to) {
 // figurine nuove: nastrino «Nuova» nell'album finché non le hai viste
 function clearNew(sec) { const p = prof(); if (!p || !p.newc || !p.newc.length) return; const s = sec || UI.sec; p.newc = p.newc.filter(id => BY_ID[id] && BY_ID[id].sec !== s); save(); }
 // benvenuto per i nuovi giocatori
+// benvenuto (Blocco 10): una schermata sola, con le tre cose da sapere; il resto lo spiega la guida del Gallo in Oggi
 const WSTEPS = [
-  ['Allenati e sali di livello', 'Rigori, Partita, VAR e Allenamento: rispondi alle domande di matematica, italiano e inglese. Ogni risposta giusta vale XP: sali di livello e sblocchi esultanze, capelli e maglie nuove. Leggi con calma: chi risponde di corsa non guadagna niente.', () => avatarSVG(prof().av, { cel: prof().av.cel, cls: 'loop' })],
-  ['Completa l\'album', () => `${ALB.length} figurine vere: campioni, leggende, stadi, mondiali. Ci sono quattro rarità: comune, rara, oro e olografica. Con le doppie fai calciomercato.`, () => `<div class="wcards">${['rara', 'olo', 'oro'].map(r => CARDS.find(c => c.rar === r && c.sec === 'stadi') || CARDS.find(c => c.rar === r)).map(c => cardHTML(c)).join('')}</div>`],
-  ['Squadra, Coppa e sfide', 'Schiera le tue figurine nella formazione e vinci il campionato. Ogni settimana c\'è la Coppa con un trofeo speciale in palio, e puoi sfidare un amico 1 contro 1.', () => `<div class="wpair">${miniPitch()}<span class="wcup">${ICON.cup}</span></div>`]
+  ['Allenati e sali di livello', 'Rispondi alle domande di matematica, italiano e inglese: ogni risposta giusta vale XP. Leggi con calma: chi va di corsa non guadagna niente.', () => icn('ball')],
+  ['Completa l\'album', () => `${ALB.length} figurine da trovare nelle bustine. Con le doppie fai calciomercato.`, () => ICON.album],
+  ['Squadra, Coppa e sfide', 'Schiera la formazione, gioca la Coppa della settimana e sfida un amico.', () => ICON.cup]
 ];
 V.welcome = () => {
-  const p = prof(), i = UI.w || 0, [t, d, art] = WSTEPS[i];
-  return `<div class="wrap"><div class="welcome"><span class="eyebrow">Benvenuto in Fuoriclasse, ${esc(p.nick)}</span>
-    <div class="wart">${art()}</div><h2>${t}</h2><p>${typeof d === 'function' ? d() : d}</p>
-    <div class="wdots">${WSTEPS.map((_, k) => `<i class="${k === i ? 'on' : ''}"></i>`).join('')}</div>
-    <button class="btn wide" data-a="wnext">${i < WSTEPS.length - 1 ? 'Avanti' : 'Entra in campo'}</button>
-    ${i < WSTEPS.length - 1 ? '<button class="link" data-a="wskip">Salta</button>' : ''}</div></div>`;
+  const p = prof();
+  return `<div class="wrap"><div class="welcome"><span class="eyebrow">Benvenuto in Fuoriclasse</span>
+    <div class="wart">${avatarSVG(p.av, { cel: p.av.cel, cls: 'loop' })}</div><h2>Ciao, ${esc(p.nick)}!</h2>
+    <div class="wlist">${WSTEPS.map(([t, d, ic]) => `<div class="welr"><span class="welic">${ic()}</span><div><b>${t}</b><span>${typeof d === 'function' ? d() : d}</span></div></div>`).join('')}</div>
+    <button class="btn wide" data-a="wskip">Entra in campo</button></div></div>`;
 };
 
 /* ---------- Sfida 1 contro 1: due giocatori, un dispositivo, stesse domande a turno ---------- */
@@ -12762,7 +12785,9 @@ function avEditor(av, mode, tab, lv, p, nick) {
     ${f.cat === 'adulti' ? '<p class="small muted m0">Niente compiti: logica, Parola del giorno, Il conto giusto, geografia, Coppa e album di figurine.</p>' : `<div class="f"><b>Che classe fai?</b><div class="choice">${[1, 2, 3].map(c => `<button data-a="form" data-k="cls" data-v="${c}" aria-pressed="${f.cls === c}">${c}ª</button>`).join('')}</div></div>`}`; }
   body += AVTABS[tab].map(k => k === 'role' || k === 'foot' ? `<div class="avsec"><b>${AVC[k].t}</b><div class="seg">${AVC[k].items.map(it => `<button data-a="avset" data-k="${k}" data-v="${it.v}" aria-pressed="${av[k] === it.v}">${it.t}</button>`).join('')}</div></div>` : avSection(k, av, lv, p)).join('');
   const i = tabs.findIndex(t => t[0] === tab), last = i === tabs.length - 1;
-  const foot = mode === 'new' ? `<div class="avfoot">${i > 0 ? `<button class="btn ghost" data-a="avtab" data-t="${tabs[i - 1][0]}">Indietro</button>` : ''}${last ? '<button class="btn f1" data-a="create">Entra in campo</button>' : `<button class="btn f1" data-a="avtab" data-t="${tabs[i + 1][0]}">Avanti</button>`}</div>`
+  // creazione: «Entra in campo» c'è in ogni scheda; aspetto, divisa e stile sono facoltativi e si cambiano anche dopo, da «Io»
+  const step = (t, lbl, fwd) => `<button class="btn ghost avstep ${fwd ? 'fwd' : ''}" data-a="avtab" data-t="${t}" aria-label="${lbl}" title="${lbl}">${ICON.back}</button>`;
+  const foot = mode === 'new' ? `<div class="avfoot">${i > 0 ? step(tabs[i - 1][0], 'Indietro') : ''}${last ? '' : i === 0 ? `<button class="btn ghost" data-a="avtab" data-t="${tabs[1][0]}">Personalizza</button>` : step(tabs[i + 1][0], 'Avanti', true)}<button class="btn f1" data-a="create">Entra in campo</button></div>${i === 0 ? '<p class="small muted m0 tc">Aspetto, divisa e stile li puoi cambiare quando vuoi da «Io».</p>' : ''}`
     : `<div class="avfoot"><button class="btn f1" data-a="nav" data-to="me">Fatto</button></div>`;
   return `<div class="avedit">
     <div class="avprev"><div class="avstage">${avatarSVG(av, { cel: playing ? av.cel : null, cls: 'big' })}</div>
@@ -12791,16 +12816,12 @@ function avSet(k, v) {
 
 /* ---------- backup su file ---------- */
 async function downloadText(name, text, type) {
-  if (window.claude && typeof window.claude.use === 'function') {
-    try { const dl = await window.claude.use('downloads'); if (dl) { await dl.save({ filename: name, data: text }); return 'saved'; } }
-    catch (e) { return e && e.code === 'declined' ? 'declined' : 'error'; }
-  }
   try { const b = new Blob([text], { type: type || 'application/json' }), a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 800); return 'saved'; } catch (e) { return 'error'; }
 }
 async function backupDown() {
   const r = await downloadText(`fuoriclasse-backup-${today()}.json`, JSON.stringify({ app: 'fuoriclasse', v: 1, d: today(), db: exportDB() }));
   if (r === 'saved') { DB.settings.bk = today(); save(); toast('File di backup scaricato. Conservalo in una cartella sicura.'); }
-  else toast(r === 'declined' ? 'Download annullato.' : 'Qui non si possono scaricare file: usate il codice di copia di sicurezza qui sotto.');
+  else toast('Qui non si possono scaricare file: usate il codice «Spostare tutti i giocatori» qui sotto.');
   render();
 }
 function mergeDB(o) {
