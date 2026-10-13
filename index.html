@@ -1,4 +1,4 @@
-<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data: blob:; font-src data:; media-src data: blob:; manifest-src 'self'; worker-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#0a1220"><meta name="description" content="Fuoriclasse: l'album di figurine che si completa studiando.">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Fuoriclasse">
 <link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" type="image/png" href="favicon-64.png">
@@ -312,6 +312,10 @@ textarea{min-height:110px;font-family:ui-monospace,Menlo,Consolas,monospace;font
 /* tutor */
 .pin{display:grid;grid-template-columns:repeat(3,64px);gap:10px;justify-content:center}
 .pin button{height:56px;border-radius:var(--r-l);border:1px solid var(--line);background:var(--panel);font-family:var(--display);font-weight:800;font-size:var(--fs-xl)}
+.pin button:disabled{opacity:.4;cursor:not-allowed}
+.pinbox{max-width:440px;margin:0 auto;width:100%}
+.pinwait{margin:0;padding:10px 14px;border-radius:var(--r-l);background:var(--ko-soft);color:var(--ko-soft-ink);border:1px solid var(--ko)}
+.pkout{font-family:var(--display);font-size:var(--fs-xl);letter-spacing:.12em;text-align:center}
 .pindots{display:flex;gap:10px;justify-content:center}
 .pindots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--muted)}
 .pindots i.on{background:var(--flood);border-color:var(--flood)}
@@ -1827,6 +1831,23 @@ body::after{content:"";position:fixed;left:0;right:0;top:0;bottom:auto;height:en
 .pkctl .chip{white-space:normal;max-width:100%;text-align:center;justify-content:center;line-height:1.3;padding-top:6px;padding-bottom:6px}
 /* barra del titolo: quando la pagina scorre diventa piena (prima il testo si intravedeva sotto, a metà) */
 body.scrolled .top{background:var(--bg);box-shadow:0 0 0 100vmax var(--bg),0 1px 0 100vmax var(--line);clip-path:inset(0 -100vmax -1px)}
+/* ---------- SALVATAGGI: recupero dei dati e confronto prima di sovrascrivere ---------- */
+.recupero{max-width:560px;margin:0 auto;padding-top:var(--sp-5)}
+.recupero .panel{gap:8px}
+.impcmp{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.impcmp>div{display:grid;gap:2px;padding:10px 12px;border-radius:var(--r-m);background:var(--surface-2);border:1px solid var(--line)}
+.impcmp>div:first-child{border-color:var(--accent)}
+.impcmp span{font-size:var(--fs-xs);color:var(--ink-2);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.impcmp b{font-family:var(--display);font-size:var(--fs-l)}
+.impcmp small{font-size:var(--fs-xs);color:var(--ink-2)}
+/* ---------- PRIVACY E CREDITI: pagine da leggere ---------- */
+.pdoc{max-width:720px;margin:0 auto}
+.pdoc .panel{gap:8px}
+.pdoc p,.pdoc li{line-height:1.5}
+.plist{margin:0;padding-left:1.2em;display:grid;gap:4px}
+.pbrief{border-color:var(--accent)}
+.licbox summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700;color:var(--ink-2)}
+.lic{margin:0;padding:12px;border-radius:var(--r-m);background:var(--surface-2);border:1px solid var(--line);font-size:var(--fs-xs);line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere;max-height:50vh;overflow:auto}
 /* ---------- CALCIOMERCATO ---------- */
 .mkhead{display:grid;gap:8px}
 /* prezzi: 4 caselle uguali, spente quelle che non puoi ancora pagare */
@@ -10054,6 +10075,23 @@ if (typeof module !== 'undefined' && module.exports) module.exports = api; else 
    Scrivere frasi brevi, che capisce un ragazzo di 11 anni. */
 (function (G) {
 const NOVITA = [
+  { v: '2026-10-13c', t: 'Privacy, crediti e fine dell\'anno', li: [
+    ['Nuova pagina «Privacy e dati»: spiega cosa salva l\'app, chi lo vede e come cancellarlo. È nello Spogliatoio e nelle Impostazioni.', ''],
+    ['Fuoriclasse non manda niente su internet: adesso lo garantisce anche una regola di sicurezza dentro l\'app.', ''],
+    ['Nuova pagina «Crediti e licenze», con gli autori di caratteri, mappe, bandiere e dizionario.', ''],
+    ['A fine anno l\'educatore può cancellare tutti i dati del dispositivo, dall\'Area educatore.', '']
+  ] },
+  { v: '2026-10-13b', t: 'Area educatore più protetta e nuovi Aiuti', li: [
+    ['In «Io» trovi gli Aiuti: puoi attivare da solo più tempo per rispondere e il testo grande.', ''],
+    ['L\'educatore sceglie il suo PIN la prima volta che apre l\'Area educatore. Il vecchio PIN 1234 non vale più.', ''],
+    ['Le schede dei giocatori, i backup e l\'eliminazione di un giocatore si aprono solo con il PIN.', '']
+  ] },
+  { v: '2026-10-13', t: 'I tuoi progressi più al sicuro', li: [
+    ['Se i dati salvati si rovinano, l\'app non riparte più da zero: ti mostra come recuperarli.', ''],
+    ['Se carichi un codice più vecchio dei progressi che hai qui, l\'app te lo dice e ti fa scegliere.', ''],
+    ['Se apri Fuoriclasse in due schede insieme, l\'app ti avvisa: usane una sola, così non perdi niente.', ''],
+    ['Ogni tanto in Oggi trovi «Metti al sicuro il tuo album»: copia il tuo codice e tienilo da parte.', '']
+  ] },
   { v: '2026-10-11c', t: 'Calciomercato più comodo', li: [
     ['Quando scegli una figurina, il tasto «Prendila» resta sempre in vista, sopra la barra in basso (prima ci finiva nascosto).', ''],
     ['Le figurine che ti mancano sono divise per sezione: trovi subito quella che cerchi.', ''],
@@ -10101,6 +10139,143 @@ const NOVITA = [
 ];
 if (typeof module !== 'undefined' && module.exports) module.exports = NOVITA; else G.NOVITA = NOVITA;
 })(typeof window !== 'undefined' ? window : globalThis);
+
+</script>
+<script>
+/* ============ FUORICLASSE · Licenze dei materiali di terzi ============
+   Testi ufficiali, copiati il 13/10/2026 dai depositi degli autori (google/fonts, lipis/flag-icons, topojson/world-atlas).
+   I copyright dei caratteri coincidono con quelli scritti dentro i file dei caratteri in head.html.
+   Si leggono in Impostazioni → Crediti e licenze. Non modificarli. */
+(function (G) {
+G.LIC = {
+  fonts: ["Copyright 2016 The Saira Project Authors (omnibus.type@gmail.com), with reserved font name \"Saira\".","Copyright 2020 The Archivo Project Authors (https://github.com/Omnibus-Type/Archivo)"],
+  ofl: `This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.`,
+  mit: `The MIT License (MIT)
+
+Copyright (c) 2013 Panayiotis Lipiridis
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.`,
+  isc: `Copyright 2013-2019 Michael Bostock
+
+Permission to use, copy, modify, and/or distribute this software for any purpose
+with or without fee is hereby granted, provided that the above copyright notice
+and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+THIS SOFTWARE.`
+};
+})(window);
 
 </script>
 <script>
@@ -10189,13 +10364,120 @@ const FX = (() => {
 const SPK = on => `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/>${on ? '<path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/>' : '<path d="M17 9l5 6M22 9l-5 6"/>'}</svg>`;
 
 /* ---------- archivio locale ---------- */
-const KEY = 'fuoriclasse.v1';
-const blank = () => ({ v: 1, profiles: [], settings: { pin: '1234', cap: 10, capv: 3 } });
-let DB = (() => { try { const s = JSON.parse(localStorage.getItem(KEY)); if (s && s.v === 1 && Array.isArray(s.profiles)) return s; } catch (e) { } return blank(); })();
+const KEY = 'fuoriclasse.v1', KEY_COPY = KEY + '.copia', KEY_BROKEN = KEY + '.rotto';
+const blank = () => ({ v: 1, profiles: [], settings: { cap: 10, capv: 3 } });   // il PIN dell'educatore si sceglie al primo accesso
+const dbOk = s => !!s && s.v === 1 && Array.isArray(s.profiles);
+// --- PIN dell'educatore. Fino al 13/10/2026 partiva da «1234», scritto sulla schermata del PIN: vale come «non ancora scelto».
+// Nelle impostazioni: pin (4 cifre), pk (chiave di sblocco, se si dimentica il PIN), pinf (tentativi sbagliati e attesa).
+// Non escono mai dal dispositivo: codici e file di backup usano exportDB().
+const PIN_SECRET = ['pin', 'pk', 'pinf'];
+const pinSet = () => /^\d{4}$/.test(DB.settings.pin || '') && DB.settings.pin !== '1234';
+const pinWeak = v => ['1234', '4321', '0123', '1212', '2580'].includes(v) || /^(\d)\1{3}$/.test(v);
+const PIN_WAIT = [0, 60, 300, 900];   // secondi di attesa dopo 5, 10, 15 (e più) tentativi sbagliati di fila
+const pinLeft = () => { const f = DB.settings.pinf; return f && f.t ? Math.max(0, Math.ceil((f.t - Date.now()) / 1000)) : 0; };
+function pinFail() { const f = DB.settings.pinf = DB.settings.pinf || { n: 0, t: 0 }; f.n++; if (f.n % 5 === 0) f.t = Date.now() + 1000 * PIN_WAIT[Math.min(3, f.n / 5)]; save(); }
+const pinGood = () => { if (DB.settings.pinf) { delete DB.settings.pinf; save(); } };
+const pkNorm = s => String(s || '').toUpperCase().replace(/[^0-9A-Z]/g, '');
+function pkNew() { const a = '23456789ABCDEFGHJKMNPQRSTUVWXYZ', r = crypto.getRandomValues(new Uint32Array(8)); let s = ''; for (const x of r) s += a[x % a.length]; return s.slice(0, 4) + '-' + s.slice(4); }
+const exportDB = () => Object.assign({}, DB, { settings: Object.fromEntries(Object.entries(DB.settings || {}).filter(([k]) => !PIN_SECRET.includes(k))) });
+// Se i dati salvati non si leggono (rovinati) o vengono da una versione più nuova dell'app, NON si scrive sopra:
+// si mettono da parte e si apre la schermata «Recupero» (prima l'app ripartiva vuota e al primo salvataggio cancellava tutto).
+let LOCK = null;   // { why: 'rotto' | 'nuova', raw }
+let DB = (() => {
+  let raw = null; try { raw = localStorage.getItem(KEY); } catch (e) { return blank(); }
+  if (raw === null) return blank();
+  try { const s = JSON.parse(raw); if (dbOk(s)) return s; LOCK = { why: s && typeof s.v === 'number' && s.v > 1 ? 'nuova' : 'rotto', raw }; }
+  catch (e) { LOCK = { why: 'rotto', raw }; }
+  try { if (LOCK.why === 'rotto' && !localStorage.getItem(KEY_BROKEN)) localStorage.setItem(KEY_BROKEN, raw); } catch (e) { }
+  return blank();
+})();
+if (!DB.settings || typeof DB.settings !== 'object') DB.settings = blank().settings;
 // limite fisso: massimo 10 bustine al giorno vinte giocando, per tutti (deciso a ottobre 2026)
 DB.settings.cap = 10; DB.settings.capv = 3;
 let warned = false;
-function save() { try { localStorage.setItem(KEY, JSON.stringify(DB)); } catch (e) { if (!warned) { warned = true; toast('Questo browser non sta salvando i progressi: usa il codice di salvataggio.'); } } }
+function save() {
+  if (LOCK) return;   // dati da recuperare: niente salvataggi finché non si sceglie cosa fare
+  try {
+    // copia di sicurezza: una volta al giorno, prima del primo salvataggio, si tiene lo stato del giorno prima
+    const d = today();
+    if (DB.settings.cp !== d) { try { const old = localStorage.getItem(KEY); if (old && old.length < 1.5e6) { localStorage.setItem(KEY_COPY, old); localStorage.setItem(KEY_COPY + '.d', d); } } catch (e) { } DB.settings.cp = d; }
+    localStorage.setItem(KEY, JSON.stringify(DB));
+  } catch (e) { if (!warned) { warned = true; toast('Questo browser non sta salvando i progressi: usa il codice di salvataggio.'); } }
+}
+// un'altra scheda o finestra ha salvato: si prendono i suoi dati (più nuovi) invece di scriverci sopra, e si avvisa una volta
+let OTHER_TAB = false;
+addEventListener('storage', e => {
+  // «Cancella tutti i dati» fatto in un'altra scheda: anche questa si svuota, invece di riscrivere i dati vecchi al primo salvataggio
+  if (e.key === KEY && e.newValue === null && !LOCK) { DB = blank(); UI = { s: 'home', pid: null }; A.close(); render(); return toast('I dati di questo dispositivo sono stati cancellati.'); }
+  if (e.key !== KEY || LOCK || !e.newValue) return;
+  let s; try { s = JSON.parse(e.newValue); } catch (er) { return; }
+  if (!dbOk(s)) return;
+  DB = s; if (!DB.settings) DB.settings = blank().settings;
+  if (UI.pid && !DB.profiles.some(p => p.id === UI.pid)) { UI = { s: 'home', pid: null }; }
+  const typing = document.activeElement && /^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName);
+  if (!typing && UI.s !== 'pack') render();
+  if (!OTHER_TAB) { OTHER_TAB = true; otherTabWarn(); }
+});
+function otherTabWarn() {
+  const m = $('#modal'); if (!m || !m.hidden) return toast('Fuoriclasse è aperta anche in un\'altra scheda: usane una sola.');
+  m.innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-label="Fuoriclasse è aperta due volte"><h2 class="t-disp t-xl">Fuoriclasse è aperta due volte</h2>
+    <p class="m0">L'app è aperta anche in un'altra scheda o finestra di questo browser. Abbiamo preso i progressi più recenti, ma per non perderne nessuno <b>usane una sola</b> e chiudi l'altra.</p>
+    <button class="btn wide" data-a="close">Ho capito</button></div>`;
+  m.hidden = false; m.querySelector('.btn').focus();
+}
+// --- dati che arrivano da fuori (codici di salvataggio, file di backup): si tengono solo valori sicuri.
+// Prima un codice preparato apposta poteva inserire istruzioni nella pagina (colori, testi, nomi dei campi non controllati).
+const SAFE_KEY = /^[A-Za-z0-9_:.\-]{1,60}$/, HEX = /^#[0-9a-fA-F]{3,8}$/;
+const OK_TAGS = new Set(['span', 'b', 'i', 'em', 'strong', 'sup', 'sub', 'br', 'small', 'u', 'mark', 'svg', 'g', 'path', 'rect', 'circle', 'ellipse', 'polygon', 'polyline', 'line', 'text', 'tspan', 'defs', 'lineargradient', 'radialgradient', 'stop', 'clippath', 'title']);
+const OK_ATTR = new Set(['class', 'viewbox', 'd', 'x', 'y', 'x1', 'y1', 'x2', 'y2', 'cx', 'cy', 'r', 'rx', 'ry', 'width', 'height', 'fill', 'stroke', 'stroke-width', 'stroke-linecap', 'stroke-linejoin', 'stroke-dasharray', 'opacity', 'fill-opacity', 'stroke-opacity', 'points', 'transform', 'offset', 'stop-color', 'stop-opacity', 'id', 'gradientunits', 'preserveaspectratio', 'aria-hidden', 'aria-label', 'role', 'font-size', 'font-weight', 'font-family', 'text-anchor', 'dominant-baseline', 'clip-path', 'fill-rule', 'clip-rule', 'letter-spacing']);
+// virgolette che chiuderebbero un attributo («" onclick=…» o «">»): diventano ”. Le altre restano come sono (es. "Mila" nelle spiegazioni)
+const qsafe = s => s.replace(/"(?=[\s/]*[\w:-]+\s*=|[\s/]*>)/g, '”');
+// testo con un po' di formattazione (es. le frazioni delle domande del Ripasso): via script, eventi, collegamenti, commenti e tag sconosciuti
+function safeHTML(s) {
+  if (!/[<&]/.test(s)) return qsafe(s);
+  const t = document.createElement('template'); t.innerHTML = s;   // il contenuto di un <template> non esegue niente
+  const walk = n => { for (const el of [...n.children]) { if (!OK_TAGS.has(el.tagName.toLowerCase())) { el.remove(); continue; }
+    for (const a of [...el.attributes]) if (!OK_ATTR.has(a.name.toLowerCase()) || /["'`<>=]|javascript:|data:|expression\(/i.test(a.value)) el.removeAttribute(a.name);
+    walk(el); } };
+  walk(t.content);
+  const tw = document.createTreeWalker(t.content, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_COMMENT), rm = [];
+  for (let n = tw.nextNode(); n; n = tw.nextNode()) if (n.nodeType === 8) rm.push(n); else n.data = qsafe(n.data);
+  rm.forEach(n => n.remove()); return t.innerHTML;
+}
+const plainTxt = (s, n) => String(s == null ? '' : s).replace(/<[^>]*>/g, '').replace(/[<>"`]/g, '').replace(/[\u0000-\u001f]/g, ' ').trim().slice(0, n || 200);
+function deepClean(v, d) {
+  if (d > 8) return undefined;
+  if (typeof v === 'string') return v.length > 4000 ? undefined : safeHTML(v);
+  if (typeof v === 'number') return Number.isFinite(v) ? v : 0;
+  if (typeof v === 'boolean' || v === null) return v;
+  if (Array.isArray(v)) return v.slice(0, 600).map(x => deepClean(x, d + 1)).filter(x => x !== undefined);
+  if (typeof v === 'object') { const o = {}; for (const [k, x] of Object.entries(v)) { if (!SAFE_KEY.test(k) || k === '__proto__' || k === 'constructor' || k === 'prototype') continue; const c = deepClean(x, d + 1); if (c !== undefined) o[k] = c; } return o; }
+  return undefined;
+}
+function cleanProfile(raw) {
+  const p = deepClean(raw, 0); if (!p || typeof p !== 'object' || Array.isArray(p)) throw new Error('profilo');
+  p.id = typeof p.id === 'string' && /^[A-Za-z0-9_-]{1,40}$/.test(p.id) ? p.id : uid();
+  p.nick = plainTxt(p.nick, 14) || 'Giocatore';
+  p.cls = [1, 2, 3].includes(p.cls) ? p.cls : 1; if (p.cat !== 'adulti') delete p.cat;
+  p.color = HEX.test(p.color) ? p.color : '#1d6fe0';
+  for (const k of ['packs', 'opened', 'pity', 'xp']) p[k] = Math.max(0, Math.min(1e7, Math.floor(+p[k] || 0)));
+  const cards = {}; for (const [k, n] of Object.entries(p.cards && typeof p.cards === 'object' ? p.cards : {})) if (BY_ID[k] && n > 0) cards[k] = Math.min(99, Math.floor(n)); p.cards = cards;
+  const av = {}; for (const [k, x] of Object.entries(p.av && typeof p.av === 'object' ? p.av : {})) { if (typeof x === 'number') av[k] = x; else if (k === 'title') av[k] = plainTxt(x, 30); else if (typeof x === 'string' && (HEX.test(x) || /^[A-Za-z0-9_-]{1,24}$/.test(x))) av[k] = x; }
+  p.av = av;   // se manca qualcosa, ensure() completa con l'aspetto di base
+  for (const k of ['hist', 'errs', 'missions', 'secDone', 'log', 'rev', 'own', 'ptitles', 'passDone']) if (p[k] !== undefined && !Array.isArray(p[k])) p[k] = [];
+  p.own = (p.own || []).filter(x => typeof x === 'string' && /^[a-z0-9]+:#?[A-Za-z0-9_-]{1,30}$/i.test(x)); p.ptitles = (p.ptitles || []).map(x => plainTxt(x, 40)).filter(Boolean);
+  p.secDone = (p.secDone || []).filter(k => SECTIONS.some(s => s.key === k));
+  if (!p.stats || typeof p.stats !== 'object') p.stats = { s: 0, c: 0, t: 0 };
+  if (!p.topics || typeof p.topics !== 'object' || Array.isArray(p.topics)) p.topics = {};
+  if (p.lg) { if (typeof p.lg !== 'object' || !p.lg.fr || typeof p.lg.fr !== 'object') delete p.lg; else for (const k of Object.keys(p.lg.fr)) if (!/^\d{1,9}$/.test(k)) delete p.lg.fr[k]; }
+  if (p.rch !== undefined && !Array.isArray(p.rch)) delete p.rch;
+  if (p.rch) p.rch = p.rch.filter(e => e && typeof e.id === 'number' && (e.code === undefined || /^[0-9A-Za-z-]{1,80}$/.test(e.code)));
+  p.missions = (p.missions || []).filter(m => m && typeof m.id === 'string' && /^[A-Za-z0-9_-]{1,40}$/.test(m.id) && Object.prototype.hasOwnProperty.call(MODE, m.mode));
+  return p;
+}
+// quale versione di un giocatore è più avanti: XP, poi bustine aperte, poi figurine, poi ultimo accesso
+const progressOf = p => [p.xp || 0, p.opened || 0, Object.keys(p.cards || {}).length, p.last || ''];
+const ahead = (a, b) => { const x = progressOf(a), y = progressOf(b); for (let i = 0; i < x.length; i++) if (x[i] !== y[i]) return x[i] > y[i]; return false; };
 const prof = () => { const p = DB.profiles.find(p => p.id === UI.pid); return p ? ensure(p) : p; };
 function newProfile(nick, cls, color) {
   return { id: uid(), nick, cls, color, created: today(), last: today(), packs: 2, cards: {}, opened: 0, pity: 0, stats: { s: 0, c: 0, t: 0 }, topics: {}, leit: {}, hist: [], errs: [], missions: [], daily: { d: '', n: 0 }, secDone: [], xpv: 2, avv: 2, log: [{ d: today(), t: '2 bustine di benvenuto' }] };
@@ -10205,7 +10487,11 @@ function newProfile(nick, cls, color) {
 let UI = { s: 'home', pid: null };
 let timer = null;
 function stopTimer() { if (timer) { clearInterval(timer); timer = null; } }
-function go(s, extra) { sayStop(); if (UI.s === 'album' && s !== 'album') clearNew(); if (document.querySelector('.fcpop')) fcPopClose(); stopTimer(); UI = Object.assign({ pid: UI.pid }, extra || {}, { s }); render(); window.scrollTo(0, 0); if (s === 'campo' || s === 'album') fcAuto(); if (s === 'campo') fcPopMaybe(); }
+// schermate dell'educatore: senza il PIN si passa prima dalla schermata del PIN (che poi riporta qui)
+const PROT = new Set(['tutor', 'student', 'reports', 'pset']);
+function go(s, extra) { sayStop(); if (UI.s === 'album' && s !== 'album') clearNew(); if (document.querySelector('.fcpop')) fcPopClose(); stopTimer(); UI = Object.assign({ pid: UI.pid }, extra || {}, { s });
+  if (PROT.has(s) && !UI.auth) UI = { pid: UI.pid, s: 'pin', pinTo: s, sid: UI.sid };
+  render(); window.scrollTo(0, 0); if (s === 'campo' || s === 'album') fcAuto(); if (s === 'campo') fcPopMaybe(); }
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove('on'), 3200); }
 
 /* ---------- elementi grafici ---------- */
@@ -10227,6 +10513,7 @@ const ICON = {
 };
 // Icone del sistema di design 2A: un solo stile (24×24, linea 2 px, angoli tondi). Uso: icn('flame'). Le nuove schermate usano solo queste.
 const IC = {
+  shield: '<path d="M12 3l8 3v6c0 5-3.4 8.2-8 9-4.6-.8-8-4-8-9V6z"/><path d="M8.8 12.2l2.2 2.2 4.2-4.4"/>',
   home: '<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
   ball: '<circle cx="12" cy="12" r="9"/><path d="M12 7.5l4 3-1.5 4.7h-5L8 10.5z"/>',
   album: '<rect x="3" y="4" width="8" height="16" rx="1.5"/><rect x="13" y="4" width="8" height="16" rx="1.5"/>',
@@ -10576,6 +10863,7 @@ V.home = () => {
     ${many ? '<input id="hsearch" class="hsearch" type="search" placeholder="Cerca il tuo nome…" aria-label="Cerca il tuo giocatore" autocomplete="off">' : ''}
     ${ps.length ? `<div class="hplayers">${ps.map(row).join('')}</div>` : '<p class="muted small m0">Qui compariranno i giocatori creati su questo dispositivo. Se hai già giocato su un altro computer, usa il tuo codice di salvataggio.</p>'}
     <div class="row hfoot"><button class="link" data-a="nav" data-to="import">Ho un codice di salvataggio</button><span class="spacer"></span><button class="btn ghost sm" data-a="nav" data-to="settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg> Impostazioni</button></div>
+    <button class="link jsc small" data-a="nav" data-to="privacy">Privacy e dati: cosa salva l'app</button>
   </section></div>`;
 };
 document.addEventListener('input', e => { if (e.target.id !== 'hsearch') return; const q = e.target.value.trim().toLowerCase(); document.querySelectorAll('.hplayer').forEach(b => { b.hidden = q && !b.dataset.n.includes(q); }); });
@@ -10610,6 +10898,9 @@ V.campo = () => {
   const dnp = [], add = (on, f) => { if (on && dnp.length < 3) dnp.push(f()); }, lgl = p.lg && p.lg.last && !p.lg.last.seen ? p.lg.last : null;
   add(!!lgl, () => ({ a: 'nav', to: 'lega', ic: 'cup', t: lgl.up > 0 ? `Lega: sali in ${LG_TIERS[lgl.t1][0]}!` : 'Lega: la settimana è finita', s: `${lgl.rank}° su ${lgl.of} · guarda la classifica`, cls: 'new' }));
   add(!!NS, () => ({ a: 'nsgo', ic: 'spark', t: `È uscita la ${NS.t}!`, s: `${NS.sub} · ${CARDS.filter(c => c.serie === NS.n).length} figurine nuove`, cls: 'new' }));
+  // una volta al mese, dopo la prima settimana di gioco: «metti al sicuro il tuo album» (in sede i backup li fa l'educatore).
+  // Viene prima di bustine, Ripasso e Coppa, che ci sono quasi ogni giorno: altrimenti con 3 schede piene non si vedrebbe mai
+  add(codeDue(p), () => ({ a: 'nav', to: 'code', ic: 'key', t: 'Metti al sicuro il tuo album', s: 'Copia il codice di salvataggio: ti serve se cambi telefono o se il browser cancella i dati' }));
   add(fcPackReady(p) && !(nx.k === 'pack' && !p.packs), () => ({ a: 'nav', to: 'pack', fc: 1, t: 'Bustina Football Center', s: `Quella di ${MESI[new Date().getMonth()].toLowerCase()} è pronta` }));
   add(p.packs > 0 && nx.k !== 'pack', () => ({ a: 'nav', to: 'pack', ic: 'pack', t: p.packs === 1 ? 'Hai una bustina' : `Hai ${p.packs} bustine`, s: 'Aprila e attacca le figurine' }));
   mis.slice(nx.k === 'mission' ? 1 : 0).forEach(m => add(true, () => ({ a: 'mission', id: m.id, ic: 'target', t: 'Missione dal tutor', s: `${MODE[m.mode]} · ${missionLabel(m)}` })));
@@ -11468,35 +11759,90 @@ function unpackProfile(code) {
   const o = JSON.parse(b64d(code.trim().replace(/^FC1-/, '')));
   const cards = {}; CARDS_ALL.forEach((c, i) => { const n = parseInt(o.cd[i] || '0', 36); if (n) cards[c.id] = n; });
   const lv = Object.fromEntries(Object.entries(o.lv || {}).map(([k, l]) => [k, { l, h: '' }]));
-  return { id: o.i, nick: String(o.n).slice(0, 14), cls: [1, 2, 3].includes(o.c) ? o.c : 1, color: o.k, packs: o.pk | 0, opened: o.o | 0, pity: o.pi | 0, stats: { s: o.s[0], c: o.s[1], t: o.s[2], rev: o.s[3] || 0 }, topics: o.t || {}, leit: o.l || {}, cards, secDone: o.sd || [], missions: o.m || [], lv, streak: o.st || { n: 0, last: '', best: 0 }, tro: o.tr || {}, cnt: o.cn || {}, pass: o.ps, own: o.ow || [], ptitles: o.pt || [], passDone: o.pd || [], cup: o.cu, tut: o.tu, av: o.av, xp: o.xp | 0, wxp: o.wx, geoBest: o.gb, gsc: o.gs, fcPack: o.fp, fcPop: o.fq, slow: !!(o.x && o.x[0]), big: !!(o.x && o.x[1]), fm: o.f, ...(o.z || {}) };
+  return cleanProfile({ id: o.i, nick: String(o.n).slice(0, 14), cls: [1, 2, 3].includes(o.c) ? o.c : 1, color: o.k, packs: o.pk | 0, opened: o.o | 0, pity: o.pi | 0, stats: { s: o.s[0], c: o.s[1], t: o.s[2], rev: o.s[3] || 0 }, topics: o.t || {}, leit: o.l || {}, cards, secDone: o.sd || [], missions: o.m || [], lv, streak: o.st || { n: 0, last: '', best: 0 }, tro: o.tr || {}, cnt: o.cn || {}, pass: o.ps, own: o.ow || [], ptitles: o.pt || [], passDone: o.pd || [], cup: o.cu, tut: o.tu, av: o.av, xp: o.xp | 0, wxp: o.wx, geoBest: o.gb, gsc: o.gs, fcPack: o.fp, fcPop: o.fq, slow: !!(o.x && o.x[0]), big: !!(o.x && o.x[1]), fm: o.f, ...(o.z || {}) });
+}
+function importApply(o) {
+  const ex = DB.profiles.find(p => p.id === o.id);
+  if (ex) { for (const k of Object.keys(ex)) delete ex[k]; Object.assign(ex, o, { last: today() }); }
+  else DB.profiles.push(Object.assign(newProfile(o.nick, o.cls, o.color), o, { log: [{ d: today(), t: 'album caricato da codice' }, ...(o.log || [])].slice(0, 40) }));
+  save(); UI.pid = o.id; go('campo'); toast(`Bentornato, ${o.nick}!`);
+}
+// il codice è più vecchio dei progressi di questo dispositivo: si fa scegliere, mostrando la differenza
+function impConflict(ex, o) {
+  const col = (lbl, p) => { const f = Object.keys(p.cards || {}).length, b = p.opened || 0;
+    return `<div><span>${lbl}</span><b>Livello ${plv(p)}</b><small>${f} ${f === 1 ? 'figurina' : 'figurine'} · ${b} ${b === 1 ? 'bustina aperta' : 'bustine aperte'}</small></div>`; };
+  $('#modal').innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-label="Il codice è più vecchio"><h2 class="t-disp t-xl">Il codice è più vecchio</h2>
+    <p class="m0">Su questo dispositivo <b>${esc(ex.nick)}</b> è più avanti di quanto c'è nel codice.</p><div class="impcmp">${col('Qui', ex)}${col('Nel codice', o)}</div>
+    <p class="small muted m0">Se usi il codice, i progressi fatti qui dopo quel codice si perdono.</p>
+    <div class="row"><button class="btn f1" data-a="impkeep">Tieni quelli di qui</button><button class="btn ghost" data-a="impforce">Usa il codice</button></div></div>`;
+  $('#modal').hidden = false; $('#modal').querySelector('.btn').focus();
 }
 function copyBtn(id) { return `<button class="btn sm" data-a="copy" data-t="${id}">Copia il codice</button>`; }
+const codeDue = p => !DB.settings.sede && daysSince(p.created) >= 7 && (daysSince(p.codeAt) === null || daysSince(p.codeAt) >= 30);
 V.code = () => {
   const p = prof(), code = packProfile(p);
   return `<div class="wrap">${topBar('Il mio salvataggio', 'me')}
-  <div class="stack"><p>Questo codice contiene il tuo album e i tuoi progressi. Usalo per continuare su un altro dispositivo, per esempio dal tablet della sede al tuo telefono.</p>
-  <textarea id="mycode" readonly>${code}</textarea><div class="row">${copyBtn('mycode')}<span class="small muted">Sull'altro dispositivo: Spogliatoio → "Ho un codice di salvataggio".</span></div>
-  <p class="small muted">Il codice fotografa l'album di adesso: se continui a giocare qui, generane uno nuovo prima di cambiare dispositivo.</p></div></div>`;
+  <div class="stack"><p class="m0">Questo codice contiene il tuo album e i tuoi progressi. Ti serve per continuare su un altro dispositivo, o per ripartire se il browser cancella i dati.</p>
+  <textarea id="mycode" readonly>${code}</textarea><div class="row">${copyBtn('mycode')}<button class="btn sm ghost" data-a="codeshare">Manda a te stesso</button></div>
+  <p class="small muted m0"><b>Dove tenerlo:</b> mandalo a te stesso (per esempio su WhatsApp o per email) o fallo salvare a un genitore. Sull'altro dispositivo: Spogliatoio → «Ho un codice di salvataggio».</p>
+  <p class="small muted m0">Il codice fotografa l'album di adesso: se continui a giocare qui, generane uno nuovo prima di cambiare dispositivo.</p></div></div>`;
 };
+V.code.after = () => { const p = prof(); if (p && p.codeAt !== today()) { p.codeAt = today(); save(); } };
 V.import = () => `<div class="wrap">${topBar('Carica un salvataggio', 'home')}
   <div class="stack"><label class="f">Incolla qui il tuo codice<textarea id="incode" placeholder="FC1-…"></textarea></label><button class="btn" data-a="doimport">Carica il mio album</button></div></div>`;
 
 /* ---------- area tutor ---------- */
-V.pin = () => `<div class="wrap">${topBar('Area educatore', 'settings')}
-  <div class="stack tc jic"><p class="muted">Inserisci il PIN dell’educatore.${DB.settings.pin === '1234' ? '<br><span class="small">PIN iniziale: 1234. Cambialo nell\'Area educatore.</span>' : ''}</p>
-  <div class="pindots">${[0, 1, 2, 3].map(i => `<i class="${(UI.pin || '').length > i ? 'on' : ''}"></i>`).join('')}</div>
-  <div class="pin">${[1, 2, 3, 4, 5, 6, 7, 8, 9, 'C', 0, '⌫'].map(k => `<button data-a="pinkey" data-k="${k}">${k}</button>`).join('')}</div></div></div>`;
+// passo della schermata del PIN: in (inserisci) · new1/new2 (scegli e ripeti) · key (mostra la chiave di sblocco) · lost (PIN dimenticato)
+// scegliere un PIN nuovo quando ce n'è già uno si può solo dopo il PIN o la chiave giusta (UI.auth)
+const pinStep = () => { const s = UI.pstep; if ((s === 'new1' || s === 'new2') && pinSet() && !UI.auth) return 'in'; if (s === 'key' && !UI.pkShow) return 'in'; return s || (pinSet() ? 'in' : 'new1'); };
+V.pin = () => {
+  const st = pinStep(), left = pinLeft();
+  const wait = left ? `<p class="pinwait" role="status">Troppi tentativi sbagliati. Riprova tra <b>${mmss(left)}</b>.</p>` : '';
+  if (st === 'key') return `<div class="wrap">${topBar('Area educatore', null)}
+  <div class="stack pinbox"><h2 class="t-disp t-xl m0">Chiave di sblocco</h2>
+    <p class="m0">Serve solo se un giorno dimentichi il PIN. <b>Scrivila su un foglio</b> e tienila lontana dai ragazzi: dopo questa schermata non si vede più.</p>
+    <div class="codebox"><input id="pkout" class="codeout pkout" readonly value="${esc(UI.pkShow)}" aria-label="Chiave di sblocco"><div class="row"><button class="btn ghost" data-a="copy" data-t="pkout">Copia</button></div></div>
+    <button class="btn wide" data-a="pkdone">L'ho scritta, continua</button></div></div>`;
+  if (st === 'lost') return `<div class="wrap">${topBar('PIN dimenticato', 'settings')}
+  <div class="stack pinbox">${DB.settings.pk ? `<p class="m0">Scrivi la <b>chiave di sblocco</b> che l'app ha mostrato quando hai scelto il PIN (8 lettere e numeri). Poi potrai sceglierne uno nuovo.</p>
+    ${wait}<div class="codebox"><input id="pkin" class="codein" placeholder="ABCD-EFGH" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Chiave di sblocco" ${left ? 'disabled' : ''}><button class="btn" data-a="pklost" ${left ? 'disabled' : ''}>Sblocca</button></div>`
+    : `<p class="m0">Su questo dispositivo non c'è una chiave di sblocco: il PIN è stato scelto prima che esistesse. Senza il PIN non si può reimpostare.</p><p class="small muted m0">I ragazzi possono continuare a giocare normalmente, e ognuno può salvare il proprio codice da «Io» → «Il mio salvataggio».</p>`}
+    <button class="link jss" data-a="pinback">Torna al PIN</button></div></div>`;
+  const T = { in: ['Inserisci il PIN dell\'educatore', ''], new1: [pinSet() ? 'Scegli il nuovo PIN' : 'Scegli il PIN dell\'educatore', 'Quattro cifre da non dire ai ragazzi. Protegge statistiche, schede dei giocatori e backup.'], new2: ['Scrivilo di nuovo', 'Per essere sicuri che sia quello giusto.'] }[st];
+  return `<div class="wrap">${topBar('Area educatore', 'settings')}
+  <div class="stack tc jic pinbox"><h2 class="t-disp t-xl m0">${T[0]}</h2>${T[1] ? `<p class="muted m0">${T[1]}</p>` : ''}${wait}
+  <div class="pindots" role="img" aria-label="${(UI.pin || '').length} cifre su 4">${[0, 1, 2, 3].map(i => `<i class="${(UI.pin || '').length > i ? 'on' : ''}"></i>`).join('')}</div>
+  <div class="pin">${[1, 2, 3, 4, 5, 6, 7, 8, 9, 'C', 0, '⌫'].map(k => `<button data-a="pinkey" data-k="${k}" ${k === 'C' ? 'aria-label="Cancella tutto"' : k === '⌫' ? 'aria-label="Cancella l\'ultima cifra"' : ''} ${left ? 'disabled' : ''}>${k}</button>`).join('')}</div>
+  ${st === 'in' ? '<button class="link" data-a="pinlost">Ho dimenticato il PIN</button>' : ''}</div></div>`;
+};
+// conto alla rovescia dell'attesa: la schermata si aggiorna ogni secondo finché si può riprovare
+V.pin.after = () => { if (pinLeft() && !timer) timer = setInterval(() => { if (UI.s !== 'pin') return stopTimer(); if (!pinLeft()) stopTimer(); render(); }, 1000); };
+// PIN giusto (o chiave giusta): si entra; se il dispositivo non ha ancora una chiave di sblocco, si crea e si mostra una volta
+function pinPass() {
+  pinGood(); UI.auth = true;
+  if (!DB.settings.pk) { DB.settings.pk = pkNew(); save(); UI.pkShow = DB.settings.pk; UI.pstep = 'key'; UI.pin = ''; return render(); }
+  go(UI.pinTo || 'tutor', { auth: true, sid: UI.sid });
+}
 V.tutor = () => {
   const ps = DB.profiles.slice().sort((a, b) => (b.last || '').localeCompare(a.last || ''));
   const nrep = (DB.reports || []).filter(r => !r.done).length;
   return `<div class="wrap">${topBar('Area educatore', 'settings')}
   <div class="stack">
     ${backupBanner()}
-    <div class="panel stack"><div class="row"><h2>Modalità Spazio Compiti</h2><span class="spacer"></span><button class="btn sm ${DB.settings.sede ? '' : 'ghost'}" data-a="sedeset" aria-pressed="${!!DB.settings.sede}">${DB.settings.sede ? 'Attiva' : 'Spenta'}</button></div><p class="small muted m0">Da attivare sui PC e tablet della sede: nomi, comparto, eliminazione dei giocatori, classifica e ripristino dei backup si possono cambiare solo con il PIN. Su un dispositivo di casa lasciatela spenta.</p></div>
-    <div class="panel stack"><h2>PIN dell'educatore</h2><label class="f">Nuovo PIN (4 cifre)<input type="password" id="newpin" inputmode="numeric" maxlength="4" autocomplete="off"></label><button class="btn sm jss" data-a="savepin">Salva PIN</button><p class="small muted m0">Il PIN tiene lontani i ragazzi da queste funzioni, ma non è una protezione informatica.</p></div>
     ${nrep ? `<button class="mission rev" data-a="nav" data-to="reports"><div><span class="tag">Da controllare</span><b>${nrep} ${nrep === 1 ? 'domanda segnalata' : 'domande segnalate'} dai ragazzi</b></div><span class="spacer"></span><span class="chip">Apri</span></button>` : ''}
     <div class="kpis"><div class="kpi"><b>${ps.length}</b><span>giocatori</span></div><div class="kpi"><b>${ps.filter(p => p.last === today()).length}</b><span>attivi oggi</span></div><div class="kpi"><b>${ps.reduce((a, p) => a + p.missions.filter(m => !m.done).length, 0)}</b><span>missioni aperte</span></div></div>
     ${ps.length ? `<div class="tlist">${ps.map(p => { const acc = p.stats.t ? pct(p.stats.c, p.stats.t) : null; const weak = weakTopics(p)[0]; return `<button class="trow" data-a="student" data-id="${p.id}">${pav(p)}<div><b>${esc(p.nick)}</b><div class="meta">${clsLabel(p)} · ultimo accesso ${fmtDate(p.last)} · ${p.stats.s} allenamenti · album ${pct(owned(p), ALB.length)}%${weak ? ` · da rinforzare: ${esc(TOPIC[weak.k].title)}` : ''}</div></div>${acc === null ? '<span class="pill warn">nuovo</span>' : `<span class="pill ${acc >= 75 ? 'ok' : acc >= 50 ? 'warn' : 'ko'}">${acc}%</span>`}</button>`; }).join('')}</div>` : '<p class="muted">Nessun giocatore ancora. I ragazzi si creano il profilo dallo Spogliatoio.</p>'}
+    <div class="panel stack"><h2>Backup e spostamento</h2><p class="small muted m0">Il file e il codice contengono i progressi di tutti i giocatori di questo dispositivo. Il PIN e la chiave di sblocco non ci sono.</p>
+      <div class="row wrapf"><button class="btn sm" data-a="bkdown">Scarica il file di backup</button><label class="btn ghost sm filebtn">Carica un file di backup<input type="file" id="bkfile" accept=".json,application/json"></label></div>
+      <details ${UI.allc ? 'open' : ''}><summary class="small" data-a="allc">Spostare tutti i giocatori con un codice</summary><div class="stack mt2">${UI.allc ? `<textarea id="allcode" readonly>${'FCALL-' + b64e(JSON.stringify(exportDB()))}</textarea>${copyBtn('allcode')}` : ''}
+      <label class="f">Importa da un altro dispositivo<textarea id="allin" placeholder="FCALL-…"></textarea></label><button class="btn ghost sm jss" data-a="importall">Unisci a questo dispositivo</button></div></details></div>
+    <div class="panel stack"><h2>Questo dispositivo</h2>
+      <div class="row"><span class="f1">Modalità Spazio Compiti<br><span class="small muted">sui PC e tablet della sede: i backup li fa l'educatore, quindi ai ragazzi non compare il promemoria «Metti al sicuro il tuo album». A casa lasciatela spenta.</span></span><button class="btn sm ${DB.settings.sede ? '' : 'ghost'}" data-a="sedeset" aria-pressed="${!!DB.settings.sede}">${DB.settings.sede ? 'Attiva' : 'Spenta'}</button></div>
+      <div class="row"><span class="f1">Classifica della settimana<br><span class="small muted">i punti XP dei giocatori di questo dispositivo, divisi per comparto, in «Io»</span></span><div class="choice">${[[true, 'Visibile'], [false, 'Nascosta']].map(([v, t]) => `<button data-a="rankset" data-v="${v}" aria-pressed="${(DB.settings.rank !== false) === v}">${t}</button>`).join('')}</div></div></div>
+    <div class="panel stack"><h2>PIN dell'educatore</h2><p class="small muted m0">Il PIN tiene i ragazzi lontani da queste funzioni, ma non è una protezione informatica. Dopo 5 tentativi sbagliati bisogna aspettare.</p>
+      <div class="row wrapf"><button class="btn sm ghost" data-a="pinchange">Cambia il PIN</button><button class="btn sm ghost" data-a="pknew">Nuova chiave di sblocco</button></div></div>
+    <div class="panel stack"><h2>Fine dell'anno</h2><p class="small muted m0">Cancella da questo dispositivo tutti i giocatori, le copie di sicurezza, il PIN e la chiave. Prima conviene scaricare il file di backup.</p>
+      <button class="btn sm danger jss" data-a="wipeask">Cancella tutti i dati di questo dispositivo</button></div>
   </div></div>`;
 };
 function weakTopics(p) { return Object.entries(p.topics).filter(([, v]) => v[1] >= 5).map(([k, v]) => ({ k, acc: pct(v[0], v[1]), n: v[1] })).sort((a, b) => a.acc - b.acc).filter(x => x.acc < 70); }
@@ -11523,10 +11869,12 @@ V.student = () => {
       <select id="reason">${REASONS.map(r => `<option>${r}</option>`).join('')}</select><button class="btn" data-a="bonus">Regala una bustina</button></div>
     <div class="panel"><h2>Storico</h2>${p.hist.length ? `<div class="scroll-x"><table class="tbl"><thead><tr><th>Data</th><th>Attività</th><th class="n">Esito</th></tr></thead><tbody>${p.hist.slice(0, 12).map(h => `<tr><td>${fmtDate(h.d)}</td><td>${MODEN[h.m] || h.m} · ${esc(h.k)}</td><td class="n">${h.sc ? h.sc + ' · ' : ''}${h.c}/${h.t}</td></tr>`).join('')}</tbody></table></div>` : '<p class="muted small">Nessuna attività.</p>'}
     <div class="small muted mt2">${p.log.slice(0, 6).map(l => `${fmtDate(l.d)} ${esc(l.t)}`).join('<br>')}</div></div>
-    <button class="btn ghost jss" data-a="pset" data-id="${p.id}">Nome, comparto, strumenti compensativi ed eliminazione</button>
+    <button class="btn ghost jss" data-a="pset" data-id="${p.id}">Nome, comparto, aiuti ed eliminazione</button>
   </div></div>`;
 };
-const sedeLock = () => DB.settings.sede && !UI.auth;
+// «Aiuti» (più tempo, testo grande): nella scheda del giocatore per l'educatore e in «Io» per il ragazzo
+const aiutiRows = (p, a) => [['slow', 'Più tempo', 'Partita e Fuorigioco più lunghi'], ['big', 'Testo grande', 'domande e risposte più leggibili']].map(([k, t, s]) =>
+  `<div class="row"><span class="f1">${t}<br><span class="small muted">${s}</span></span><button class="btn sm ${p[k] ? '' : 'ghost'}" data-a="${a}" data-k="${k}" aria-pressed="${!!p[k]}">${p[k] ? 'Attivo' : 'Spento'}</button></div>`).join('');
 V.settings = () => {
   const ps = DB.profiles.map(ensure).sort((a, b) => (b.last || '').localeCompare(a.last || '')), cur = UI.pid ? prof() : null;
   return `<div class="wrap">${topBar('Impostazioni', UI.pid ? 'campo' : 'home')}
@@ -11536,19 +11884,18 @@ V.settings = () => {
       <div class="row"><button class="btn ghost sm" data-a="nav" data-to="new">+ Nuovo giocatore</button><button class="btn ghost sm" data-a="nav" data-to="import">Carica un codice di salvataggio</button></div></div>
     <div class="panel stack"><h2>Preferenze</h2>
       <div class="row"><span class="f1">Suoni ed effetti</span><button class="btn sm ${FX.muted ? 'ghost' : ''}" data-a="audio">${FX.muted ? 'Spenti' : 'Attivi'}</button></div>
-      <div class="row"><span class="f1">Classifica della settimana<br><span class="small muted">i punti XP dei giocatori di questo dispositivo, divisi per comparto</span></span><div class="choice">${[[true, 'Visibile'], [false, 'Nascosta']].map(([v, t]) => `<button data-a="rankset" data-v="${v}" aria-pressed="${(DB.settings.rank !== false) === v}" ${sedeLock() ? 'disabled' : ''}>${t}</button>`).join('')}</div></div>
       <div class="row"><span class="f1">Bustine vinte giocando<br><span class="small muted">massimo 10 al giorno per ogni giocatore; premi, livelli, sfide e trofei ne danno altre</span></span><span class="chip hot">10 al giorno</span></div></div>
     <div class="panel stack"><h2>Salvataggi</h2><p class="small muted m0">I progressi restano solo su questo dispositivo: nessun dato viene inviato in rete. Per spostarli o non perderli:</p>
       ${cur ? `<div class="row"><span class="f1">Codice di ${esc(cur.nick)}<br><span class="small muted">per continuare su un altro telefono, tablet o PC</span></span><button class="btn sm ghost" data-a="nav" data-to="code">Mostra</button></div>` : ''}
-      ${backupBanner()}<div class="row"><button class="btn sm" data-a="bkdown">Scarica il file di backup</button>${sedeLock() ? '' : '<label class="btn ghost sm filebtn">Carica un file di backup<input type="file" id="bkfile" accept=".json,application/json"></label>'}</div>
-      <details ${UI.allc ? 'open' : ''}><summary class="small" data-a="allc">Spostare tutti i giocatori con un codice</summary><div class="stack mt2">${UI.allc ? `<textarea id="allcode" readonly>${'FCALL-' + b64e(JSON.stringify(DB))}</textarea>${copyBtn('allcode')}` : ''}
-      ${sedeLock() ? '' : '<label class="f">Importa da un altro dispositivo<textarea id="allin" placeholder="FCALL-…"></textarea></label><button class="btn ghost sm jss" data-a="importall">Unisci a questo dispositivo</button>'}</div></details></div>
-    <div class="panel stack"><h2>Spazio Compiti ed educatori</h2><p class="small muted m0">Statistiche dei ragazzi, missioni, premi, domande segnalate e modalità Spazio Compiti. Protetta dal PIN.</p>
+      <div class="row"><span class="f1">Backup di tutti i giocatori<br><span class="small muted">file di backup e codice per spostarli: nell'Area educatore, con il PIN</span></span><button class="btn sm ghost" data-a="nav" data-to="tutor">Apri</button></div></div>
+    <div class="panel stack"><h2>Spazio Compiti ed educatori</h2><p class="small muted m0">Statistiche dei ragazzi, missioni, premi, domande segnalate, backup e schede dei giocatori. Protetta dal PIN.</p>
       <button class="btn ghost" data-a="nav" data-to="tutor">${ICON.users.replace('<svg', '<svg width="18" height="18"')} Area educatore</button></div>
     <div class="panel stack"><h2>Informazioni</h2>
       <button class="tilebtn" data-a="nav" data-to="novita">${GALLO()} Novità dell'app${NOV.length ? ` <span class="small muted">· ${novDate(NOV[0].v)}</span>` : ''}</button>
       <button class="tilebtn fctile" data-a="nav" data-to="fc"><img src="${FC_LOGO}" alt="" width="30" height="28"> Fuoriclasse è un prodotto Football Center</button>
-      <p class="small muted m0">Mappe: Natural Earth; regioni e province: © ISTAT (CC-BY 4.0); bandiere: flag-icons (MIT); dizionario: Morph-it! di M. Baroni ed E. Zanchetta (CC BY-SA 2.0); regolamento: IFAB, Laws of the Game 2026/27. Tutti i disegni sono originali; i nomi dei calciatori sono usati a scopo educativo.</p></div>
+      <button class="tilebtn" data-a="nav" data-to="privacy" data-back="settings">${icn('shield')} Privacy e dati</button>
+      <button class="tilebtn" data-a="nav" data-to="crediti">${icn('book')} Crediti e licenze</button>
+      <p class="small muted m0">${MARCHI}</p></div>
   </div></div>`;
 };
 V.pset = () => {
@@ -11558,12 +11905,75 @@ V.pset = () => {
     <div class="panel stack"><h2>Nome</h2><label class="f">Soprannome<input type="text" id="psnick" maxlength="14" value="${esc(p.nick)}" autocomplete="off"></label><button class="btn sm jss" data-a="psnick">Salva il nome</button></div>
     <div class="panel stack"><h2>Comparto</h2><p class="small muted m0">Adesso: <b>${clsLabel(p)}</b>. Album, livelli, figurine e Pass restano; cambiano giochi, sfide e classifica.</p>
       <div class="choice">${[1, 2, 3].map(c => `<button data-a="setcat" data-v="${c}" aria-pressed="${!isAd(p) && p.cls === c}">${c}ª media</button>`).join('')}<button data-a="setcat" data-v="adulti" aria-pressed="${isAd(p)}">Superiori e adulti</button></div></div>
-    <div class="panel stack"><h2>Strumenti compensativi</h2><p class="small muted m0">Per chi ha bisogno di più tempo o di caratteri più grandi (per esempio con un PDP).</p>
-      <div class="row"><span class="f1">Tempo esteso<br><span class="small muted">Partita e Fuorigioco più lunghi</span></span><button class="btn sm ${p.slow ? '' : 'ghost'}" data-a="stool" data-k="slow" aria-pressed="${!!p.slow}">${p.slow ? 'Attivo' : 'Spento'}</button></div>
-      <div class="row"><span class="f1">Testo grande<br><span class="small muted">domande e risposte più leggibili</span></span><button class="btn sm ${p.big ? '' : 'ghost'}" data-a="stool" data-k="big" aria-pressed="${!!p.big}">${p.big ? 'Attivo' : 'Spento'}</button></div></div>
+    <div class="panel stack"><h2>Aiuti</h2><p class="small muted m0">Il ragazzo può attivarli anche da solo, in «Io».</p>${aiutiRows(p, 'stool')}</div>
     <div class="panel stack"><h2>Elimina</h2>${UI.del ? `<div class="row"><span>Eliminare davvero ${esc(p.nick)} e il suo album? Non si può annullare.</span><button class="btn danger sm" data-a="delyes">Sì, elimina</button><button class="btn ghost sm" data-a="delno">Annulla</button></div>` : '<button class="link jss" data-a="del">Elimina questo giocatore</button>'}</div>
   </div></div>`;
 };
+
+/* ---------- Privacy e dati · Crediti e licenze (Blocco 3, 13/10/2026) ---------- */
+// DA COMPILARE (Luca): chi è il titolare del trattamento e come contattarlo. Finché sono vuoti, la pagina rimanda
+// all'educatore o all'ente che propone l'app. I testi vanno fatti rivedere da un professionista prima della vendita.
+const PRIVACY = { titolare: '', contatto: '', agg: '13 ottobre 2026' };
+const MARCHI = 'I nomi di persone, squadre e competizioni e i marchi citati appartengono ai rispettivi titolari. Fuoriclasse non è affiliata a FIFA, UEFA, IFAB, federazioni o club, né approvata da loro. I nomi dei calciatori sono usati a scopo educativo.';
+const ulist = a => `<ul class="plist">${a.map(x => `<li>${x}</li>`).join('')}</ul>`;
+V.privacy = () => `<div class="wrap">${topBar('Privacy e dati', UI.back || (UI.pid ? 'settings' : 'home'))}
+  <div class="stack pdoc">
+    <div class="panel stack pbrief"><h2>In breve</h2>${ulist([
+      'Fuoriclasse non chiede account, email o password.',
+      'Tutto quello che si fa nell\'app resta <b>su questo dispositivo</b>, dentro il browser.',
+      'L\'app <b>non manda niente su internet</b>: lo impedisce anche una regola di sicurezza scritta nell\'app.',
+      'Niente pubblicità, niente cookie, niente statistiche sulle visite.'])}</div>
+    <div class="panel stack"><h2>Cosa si salva</h2>${ulist([
+      'soprannome e classe (oppure «Superiori e adulti»);',
+      'aspetto del giocatore, album, livelli, premi e trofei;',
+      'risposte date, ultimi errori e domande da ripassare;',
+      'gli Aiuti attivati (più tempo, testo grande);',
+      'le domande segnalate come sbagliate, con soprannome e classe di chi le ha segnalate;',
+      'il PIN dell\'educatore e la chiave di sblocco.'])}
+      <p class="m0"><b>Usate un soprannome</b>, non nome e cognome.</p></div>
+    <div class="panel stack"><h2>Chi li vede</h2><p class="m0">Chi usa questo dispositivo. Le statistiche di tutti i giocatori, le loro schede e i backup si aprono solo con il PIN dell'educatore. Se la classifica della settimana è attiva, in «Io» si vedono soprannome e punti dei giocatori di questo dispositivo.</p></div>
+    <div class="panel stack"><h2>Quando escono dal dispositivo</h2><p class="m0">Solo quando lo decidete voi:</p>${ulist([
+      'il <b>codice di salvataggio</b> e il <b>file di backup</b>, per spostare i progressi o metterli al sicuro;',
+      'i codici di <b>Sfida a distanza</b> e della <b>Lega</b>, che contengono soprannome e punteggio, quando li mandate a un amico (per esempio su WhatsApp).'])}
+      <p class="small muted m0">La versione online si apre da un sito ospitato su GitHub Pages. Come succede per ogni sito, il servizio che lo ospita registra alcuni dati tecnici delle visite, per esempio l'indirizzo IP. L'app non li riceve e non li usa.</p></div>
+    <div class="panel stack"><h2>Quanto restano e come cancellarli</h2>${ulist([
+      'Restano finché non li cancellate.',
+      'Un giocatore: Impostazioni → il giocatore → Elimina (serve il PIN).',
+      'Tutto: Area educatore → <b>Cancella tutti i dati di questo dispositivo</b>. Sui dispositivi della sede è consigliato alla fine dell\'anno.',
+      'Oppure dalle impostazioni del browser, cancellando i dati di questo sito.'])}</div>
+    <div class="panel stack"><h2>Chi contattare</h2>${PRIVACY.titolare ? `<p class="m0">Titolare del trattamento: <b>${esc(PRIVACY.titolare)}</b>.${PRIVACY.contatto ? ` Per domande sui dati: <b>${esc(PRIVACY.contatto)}</b>.` : ''}</p>` : '<p class="m0">Per domande sui dati rivolgetevi all\'educatore o all\'ente che vi ha proposto Fuoriclasse.</p>'}</div>
+    <p class="small muted m0 tc">Aggiornata il ${PRIVACY.agg}.</p>
+  </div></div>`;
+const licBox = (t, txt) => `<details class="licbox"><summary>${t}</summary><pre class="lic">${esc(txt)}</pre></details>`;
+V.crediti = () => { const L = window.LIC || { fonts: [], ofl: '', mit: '', isc: '' };
+  return `<div class="wrap">${topBar('Crediti e licenze', 'settings')}
+  <div class="stack pdoc">
+    <div class="panel stack"><h2>Disegni e testi</h2><p class="m0">Disegni, figurine, domande e testi sono originali di Fuoriclasse. Non ci sono foto né loghi di squadre o federazioni: l'unico logo è quello di Football Center.</p></div>
+    <div class="panel stack"><h2>Caratteri</h2><p class="m0">Saira Extra Condensed e Archivo, con licenza <b>SIL Open Font License 1.1</b>.</p>
+      ${ulist(L.fonts.map(esc))}${licBox('Testo della licenza (in inglese)', L.ofl)}</div>
+    <div class="panel stack"><h2>Mappe e bandiere</h2>${ulist([
+      'Confini del mondo: <b>Natural Earth</b> (pubblico dominio), tramite world-atlas di Michael Bostock (licenza ISC).',
+      'Regioni e province d\'Italia: <b>© ISTAT</b>, licenza CC BY 4.0, elaborazione openpolis.',
+      'Bandiere: <b>flag-icons</b> di Panayiotis Lipiridis, licenza MIT.'])}
+      ${licBox('Licenza ISC di world-atlas (in inglese)', L.isc)}${licBox('Licenza MIT di flag-icons (in inglese)', L.mit)}</div>
+    <div class="panel stack"><h2>Parole</h2><p class="m0">Il dizionario del Paroliere e le parole accettate nella Parola del giorno sono ricavati da <b>Morph-it!</b> di Marco Baroni ed Eros Zanchetta (Università di Bologna), tramite i pacchetti italian-words-dict, italian-verbs-dict e italian-adjectives-dict. Licenza Creative Commons Attribuzione – Condividi allo stesso modo 2.0 (CC BY-SA 2.0) e LGPL. Gli elenchi ricavati sono distribuiti con la stessa licenza.</p></div>
+    <div class="panel stack"><h2>Regolamento</h2><p class="m0">Le domande del Regolamento da arbitro sono scritte a partire dalle Regole del Gioco 2026/27 dell'IFAB (The International Football Association Board).</p></div>
+    <div class="panel stack"><h2>Nomi e marchi</h2><p class="m0">${MARCHI}</p></div>
+  </div></div>`; };
+// fine dell'anno: cancella tutto quello che l'app ha salvato su questo dispositivo (giocatori, copie di sicurezza, PIN, preferenze)
+function wipeAsk() {
+  const n = DB.profiles.length, r = (DB.reports || []).length;
+  $('#modal').innerHTML = `<div class="sheet" role="dialog" aria-modal="true" aria-label="Cancellare tutti i dati?"><h2 class="t-disp t-xl">Cancellare tutti i dati?</h2>
+    <p class="m0">Spariscono da questo dispositivo <b>${n} ${n === 1 ? 'giocatore' : 'giocatori'}</b> con album e progressi${r ? `, ${r} ${r === 1 ? 'domanda segnalata' : 'domande segnalate'}` : ''}, le copie di sicurezza, il PIN e la chiave di sblocco. <b>Non si può annullare.</b></p>
+    <p class="small muted m0">Se vi servono ancora, scaricate prima il file di backup.</p>
+    <div class="row wrapf"><button class="btn f1" data-a="close">Annulla</button><button class="btn ghost" data-a="bkdown">Scarica il backup</button><button class="btn danger" data-a="wipeyes">Sì, cancella tutto</button></div></div>`;
+  $('#modal').hidden = false; $('#modal').querySelector('.btn').focus();
+}
+function wipeAll() {
+  try { for (const k of Object.keys(localStorage)) if (k === KEY || k.startsWith(KEY + '.') || k.startsWith('fuoriclasse.')) localStorage.removeItem(k); } catch (e) { }
+  DB = blank(); UI = { s: 'home', pid: null }; A.close(); render(); window.scrollTo(0, 0);
+  toast('Tutti i dati di questo dispositivo sono stati cancellati.');
+}
 
 /* ---------- Coppa settimanale: 4 turni, al massimo 2 al giorno, si riparte ogni lunedì ---------- */
 const CUP_ROUNDS = [['Ottavi di finale', 3], ['Quarti di finale', 3], ['Semifinale', 4], ['Finale', 4]];
@@ -11785,8 +12195,10 @@ function codeRead(str) {
   let pos = 5; for (const [k, b] of CODE_BITS[t]) { o[k] = parseInt(bits.substr(pos, b), 2); pos += b; }
   return parseInt(bits.substr(pos, 5), 2) === crc5(bits.slice(0, pos)) ? o : null;
 }
+// toccando il codice si seleziona tutto (senza comandi dentro la pagina)
+document.addEventListener('focusin', e => { if (e.target.classList && e.target.classList.contains('codeout')) e.target.select(); });
 // riquadro con il codice da mandare: si copia, si condivide (su WhatsApp, Telegram…)
-const codeOut = (id, code, share) => `<div class="codebox"><input id="${id}" class="codeout" readonly value="${esc(code)}" aria-label="Codice" onclick="this.select()"><div class="row"><button class="btn f1" data-a="share" data-k="${share}">${icn('next')}<span>Manda agli amici</span></button><button class="btn ghost" data-a="copy" data-t="${id}">Copia</button></div></div>`;
+const codeOut = (id, code, share) => `<div class="codebox"><input id="${id}" class="codeout" readonly value="${esc(code)}" aria-label="Codice"><div class="row"><button class="btn f1" data-a="share" data-k="${share}">${icn('next')}<span>Manda agli amici</span></button><button class="btn ghost" data-a="copy" data-t="${id}">Copia</button></div></div>`;
 const codeIn = (id, ph) => `<div class="codebox"><input id="${id}" class="codein" placeholder="${ph}" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Scrivi o incolla il codice"><button class="btn" data-a="codeopen" data-t="${id}">Apri il codice</button></div>`;
 
 // --- Sfida a distanza: stesse domande su due dispositivi. Il codice contiene la «ricetta» (tipo, livello, seme) e il punteggio.
@@ -12304,6 +12716,7 @@ V.me = () => {
     </div></div>
   ${(p.passDone || []).length ? `<div class="panel mb3"><span class="eyebrow">Pass completati</span><div class="row mt2 wrapf">${p.passDone.map(k => `<span class="chip hot">${MESI[passMonth(k)]} ${k.slice(0, 4)}</span>`).join('')}</div></div>` : ''}
   <div class="kpis six">${k.map(([b, s]) => `<div class="kpi"><b>${b}</b><span>${s}</span></div>`).join('')}</div>
+  <div class="panel stack mt4"><h2>Aiuti</h2><p class="small muted m0">Se ti serve più tempo per rispondere o se leggi meglio con le lettere più grandi.</p>${aiutiRows(p, 'aiuto')}</div>
   ${rank ? `<div class="panel mt4"><div class="row"><h2>Classifica della settimana</h2><span class="spacer"></span><span class="small muted">XP da lunedì · ${weekRange()}</span></div>
     <div class="rank">${rank.map((r, i) => `<div class="rk ${r.q.id === p.id ? 'me' : ''}"><b class="pos">${i + 1}</b>${pav(r.q)}<span><b>${esc(r.q.nick)}</b><small>Liv. ${plv(r.q)} · ${esc(r.q.av.title || '')}</small></span><span class="spacer"></span><b class="xpv">${r.n} XP</b></div>`).join('')}</div></div>` : ''}
   </div>`;
@@ -12385,18 +12798,19 @@ async function downloadText(name, text, type) {
   try { const b = new Blob([text], { type: type || 'application/json' }), a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 800); return 'saved'; } catch (e) { return 'error'; }
 }
 async function backupDown() {
-  const r = await downloadText(`fuoriclasse-backup-${today()}.json`, JSON.stringify({ app: 'fuoriclasse', v: 1, d: today(), db: DB }));
+  const r = await downloadText(`fuoriclasse-backup-${today()}.json`, JSON.stringify({ app: 'fuoriclasse', v: 1, d: today(), db: exportDB() }));
   if (r === 'saved') { DB.settings.bk = today(); save(); toast('File di backup scaricato. Conservalo in una cartella sicura.'); }
   else toast(r === 'declined' ? 'Download annullato.' : 'Qui non si possono scaricare file: usate il codice di copia di sicurezza qui sotto.');
   render();
 }
 function mergeDB(o) {
   const src = o && o.db ? o.db : o; if (!src || !Array.isArray(src.profiles)) throw 0;
-  let add = 0, upd = 0;
-  for (const p of src.profiles) { const i = DB.profiles.findIndex(x => x.id === p.id); if (i >= 0) { DB.profiles[i] = p; upd++; } else { DB.profiles.push(p); add++; } }
-  if (Array.isArray(src.reports)) { DB.reports = DB.reports || []; for (const r of src.reports) if (!DB.reports.some(x => x.id === r.id)) DB.reports.push(r); }
-  save(); return [add, upd];
+  let add = 0, upd = 0, kept = 0;
+  for (const raw of src.profiles) { let p; try { p = cleanProfile(raw); } catch (e) { continue; } const i = DB.profiles.findIndex(x => x.id === p.id); if (i >= 0) { if (ahead(ensure(DB.profiles[i]), p)) kept++; else { DB.profiles[i] = p; upd++; } } else { DB.profiles.push(p); add++; } }
+  if (Array.isArray(src.reports)) { DB.reports = DB.reports || []; for (const raw of src.reports.slice(0, 500)) { const r = deepClean(raw, 0); if (!r || typeof r !== 'object' || Array.isArray(r)) continue; if (typeof r.id !== 'string' || !/^[A-Za-z0-9_-]{1,40}$/.test(r.id)) r.id = uid(); if (!DB.reports.some(x => x.id === r.id)) DB.reports.push(r); } }
+  save(); return [add, upd, kept];
 }
+const mergeMsg = ([a, u, k]) => `${a} ${a === 1 ? 'giocatore aggiunto' : 'giocatori aggiunti'}, ${u} ${u === 1 ? 'aggiornato' : 'aggiornati'}${k ? `, ${k} ${k === 1 ? "tenuto com'era perché qui era più avanti" : "tenuti com'erano perché qui erano più avanti"}` : ''}.`;
 const daysSince = d => d ? Math.round((new Date(today() + 'T12:00') - new Date(d + 'T12:00')) / 864e5) : null;
 function backupBanner() {
   if (!DB.profiles.length) return '';
@@ -13736,6 +14150,7 @@ function hintHTML(p) {
 }
 
 function render() {
+  if (LOCK) { $('#app').innerHTML = V.recupero(); document.body.classList.remove('navon'); const bt = document.getElementById('boot'); if (bt) bt.remove(); return; }
   const p = UI.pid ? prof() : null, cur = NAVMAP[UI.s] || UI.s, nav = p && NAVS.some(([k]) => k === cur);
   AVN = 0; $('#app').innerHTML = (V[UI.s] || V.home)() + (nav ? bottomNav(cur) + hintHTML(p) : '');
   document.body.classList.toggle('navon', !!nav); document.body.classList.toggle('big', !!(p && p.big));
@@ -13795,7 +14210,7 @@ const A = {
   wnext: () => { if ((UI.w || 0) < WSTEPS.length - 1) { UI.w = (UI.w || 0) + 1; render(); } else A.wskip(); },
   wskip: () => { const p = prof(); p.onb = 1; save(); go('campo'); },
   stool: d => { const p = DB.profiles.find(x => x.id === UI.sid); p[d.k] = !p[d.k]; save(); render(); },
-  pset: d => { if (DB.settings.sede && !UI.auth) return go('pin', { pinTo: 'pset', sid: d.id }); go('pset', { sid: d.id, auth: UI.auth }); },
+  pset: d => go('pset', { sid: d.id, auth: UI.auth }),
   psnick: () => { const p = DB.profiles.find(x => x.id === UI.sid), v = ($('#psnick').value || '').trim().slice(0, 14); if (!p || !v) return toast('Scrivi un soprannome.'); p.nick = v; save(); toast('Nome aggiornato.'); render(); },
   sedeset: () => { DB.settings.sede = !DB.settings.sede; save(); toast(DB.settings.sede ? 'Modalità Spazio Compiti attiva.' : 'Modalità Spazio Compiti spenta.'); render(); },
   review: () => startReview(),
@@ -13842,7 +14257,7 @@ const A = {
   fmset: d => fmSet(d.id),
   fmplay: () => startMatch(),
   lvset: d => { const p = DB.profiles.find(x => x.id === UI.sid); ensure(p); const t = TOPIC[d.k], e = p.lv[d.k] = p.lv[d.k] || { l: 1, h: '' }; e.l = Math.max(1, Math.min(t.max, e.l + +d.v)); e.h = ''; save(); render(); },
-  nav: d => { const to = d.to; if (['parola', 'conto', 'regole', 'campo', 'gioca', 'retri', 'recap', 'album', 'pack', 'mercato', 'code', 'trofei', 'formazione', 'coppa', 'duelsetup', 'me', 'carriera', 'avatar', 'welcome', 'pass', 'mgpick', 'geo', 'remota', 'lega'].includes(to) && !prof()) return go('home'); if (to === 'reports' && !UI.auth) return go('pin'); if (to === 'tutor') { if (!UI.auth) return go('pin', { pinTo: 'tutor' }); return go(to, { auth: true }); } go(to, { auth: ['settings', 'tutor', 'student', 'reports', 'pset'].includes(to) ? UI.auth : false }); },
+  nav: d => { const to = d.to; if (['parola', 'conto', 'regole', 'campo', 'gioca', 'retri', 'recap', 'album', 'pack', 'mercato', 'code', 'trofei', 'formazione', 'coppa', 'duelsetup', 'me', 'carriera', 'avatar', 'welcome', 'pass', 'mgpick', 'geo', 'remota', 'lega'].includes(to) && !prof()) return go('home'); if (to === 'reports' && !UI.auth) return go('pin'); if (to === 'tutor') { if (!UI.auth) return go('pin', { pinTo: 'tutor' }); return go(to, { auth: true }); } go(to, { auth: ['settings', 'tutor', 'student', 'reports', 'pset'].includes(to) ? UI.auth : false, back: d.back }); },
   pick: d => { UI.pid = d.id; const p = prof(); p.last = today(); save(); go('campo'); FX.play('tap'); if (LINK) { const c = LINK; LINK = null; setTimeout(() => codeOpen(c), 60); } },
   form: d => { const f = UI.form, n = $('#nick'); if (n) f.nick = n.value; f[d.k] = d.k === 'cls' ? +d.v : d.v; render(); },
   create: () => { const f = UI.form, n = $('#nick'); if (n) f.nick = n.value; const nick = (f.nick || '').trim(); if (!nick) { f.tab = 'chi'; render(); toast('Scrivi il tuo soprannome.'); const m = $('#nick'); if (m) m.focus(); return; } const p = newProfile(nick, f.cat === 'adulti' ? 3 : f.cls, f.av.shirt); p.av = f.av; if (f.cat === 'adulti') { p.cat = 'adulti'; p.onb = 1; } DB.profiles.push(p); save(); UI.pid = p.id; if (p.cat) go('campo'); else go('welcome', { w: 0 }); FX.play('whistle'); },
@@ -13893,16 +14308,45 @@ const A = {
   give: d => { UI.give = d.id; render(); }, take: d => { UI.take = d.id; render(); },
   trade: () => { const p = prof(), q = DB.profiles.find(x => x.id === UI.partner); if (!q || !(p.cards[UI.give] > 1) || !(q.cards[UI.take] > 1)) return; if (BY_ID[UI.give].rar !== BY_ID[UI.take].rar) return toast('Lo scambio deve essere alla pari: due figurine della stessa rarità.'); if (tradesLeft(p) <= 0 || tradesLeft(ensure(q)) <= 0) return toast(`Oggi avete già fatto ${TRADES_DAY} scambi: si riprende domani.`); [p, q].forEach(x => { x.trd = x.trd && x.trd.d === today() ? { d: today(), n: x.trd.n + 1 } : { d: today(), n: 1 }; }); p.cards[UI.give]--; q.cards[UI.give] = (q.cards[UI.give] || 0) + 1; q.cards[UI.take]--; p.cards[UI.take] = (p.cards[UI.take] || 0) + 1; checkSections(p); checkSections(q); save(); toast(`Scambio fatto: ${BY_ID[UI.give].name} ⇄ ${BY_ID[UI.take].name}`); UI.give = UI.take = null; render(); },
   copy: (d) => { const t = $('#' + d.t); const done = () => toast('Codice copiato.'); try { navigator.clipboard.writeText(t.value).then(done, () => { t.select(); toast('Seleziona e copia il codice a mano.'); }); } catch (e) { t.select(); toast('Seleziona e copia il codice a mano.'); } },
-  doimport: () => { try { const o = unpackProfile($('#incode').value); const ex = DB.profiles.find(p => p.id === o.id); if (ex) Object.assign(ex, o, { last: today() }); else DB.profiles.push(Object.assign(newProfile(o.nick, o.cls, o.color), o, { log: [{ d: today(), t: 'album caricato da codice' }] })); save(); UI.pid = o.id; go('campo'); toast(`Bentornato, ${o.nick}!`); } catch (e) { toast('Codice non valido. Controlla di averlo copiato tutto.'); } },
-  pinkey: d => { let v = UI.pin || ''; if (d.k === 'C') v = ''; else if (d.k === '⌫') v = v.slice(0, -1); else if (v.length < 4) v += d.k; UI.pin = v; if (v.length === 4) { if (v === DB.settings.pin) return go(UI.pinTo || 'tutor', { auth: true, sid: UI.sid }); UI.pin = ''; toast('PIN errato.'); } render(); },
-  student: d => go('student', { auth: true, sid: d.id }),
+  doimport: () => { let o; try { o = unpackProfile($('#incode').value); } catch (e) { return toast(/^\s*FC(ALL)?-/.test($('#incode').value) ? 'Codice non valido. Controlla di averlo copiato tutto.' : 'Questo non è un codice di salvataggio: inizia con «FC1-».'); }
+    const ex = DB.profiles.find(p => p.id === o.id); if (ex && ahead(ensure(ex), o)) { UI.imp = o; return impConflict(ex, o); } importApply(o); },
+  impkeep: () => { const id = UI.imp && UI.imp.id; UI.imp = null; A.close(); UI.pid = id; go('campo'); toast('Hai tenuto i progressi di questo dispositivo.'); },
+  rcreload: () => location.reload(),
+  rcdown: () => { if (LOCK) downloadText(`fuoriclasse-dati-da-recuperare-${today()}.txt`, LOCK.raw.replace(/"(pin|pk)"\s*:\s*"[^"]*"/g, '"$1":""'), 'text/plain').then(r => toast(r === 'saved' ? 'File scaricato.' : 'Qui non si possono scaricare file.')); },
+  rccopy: () => { const c = copyInfo(); if (!c) return toast('La copia di sicurezza non si legge.'); rcUnlock(c.s); toast('Copia di sicurezza ripristinata.'); },
+  rczero: () => { UI.rcz = true; render(); }, rczerono: () => { UI.rcz = false; render(); },
+  rczeroyes: () => { rcUnlock(blank()); toast('Ripartito da zero. I dati rovinati restano da parte su questo dispositivo.'); },
+  codeshare: () => { const p = prof(); if (p) shareText(`Il mio codice di salvataggio di Fuoriclasse (${p.nick}). Per ripartire: Spogliatoio → «Ho un codice di salvataggio».
+
+${packProfile(p)}`); },
+  impforce: () => { const o = UI.imp; UI.imp = null; A.close(); if (o) importApply(o); },
+  pinkey: d => {
+    if (pinLeft()) return render();
+    let v = UI.pin || ''; if (d.k === 'C') v = ''; else if (d.k === '⌫') v = v.slice(0, -1); else if (v.length < 4 && /^\d$/.test(String(d.k))) v += d.k;
+    UI.pin = v; if (v.length < 4) return render();
+    UI.pin = ''; const st = pinStep();
+    if (st === 'in') { if (v === DB.settings.pin) return pinPass(); pinFail(); toast(pinLeft() ? 'PIN errato. Troppi tentativi: bisogna aspettare.' : 'PIN errato.'); return render(); }
+    if (st === 'new1') { if (pinWeak(v)) { toast('Questo PIN è troppo facile da indovinare: scegline un altro.'); return render(); } UI.pin1 = v; UI.pstep = 'new2'; return render(); }
+    if (st === 'new2') { if (v !== UI.pin1) { UI.pin1 = ''; UI.pstep = 'new1'; toast('I due PIN non sono uguali: ricominciamo.'); return render(); }
+      DB.settings.pin = v; DB.settings.pk = pkNew(); delete DB.settings.pinf; save(); UI.pin1 = ''; UI.auth = true; UI.pkShow = DB.settings.pk; UI.pstep = 'key'; toast('PIN salvato.'); return render(); }
+  },
+  pkdone: () => { UI.pkShow = null; go(UI.pinTo || 'tutor', { auth: true, sid: UI.sid }); },
+  pinlost: () => { UI.pstep = 'lost'; UI.pin = ''; render(); },
+  pinback: () => { UI.pstep = 'in'; render(); },
+  pklost: () => { if (pinLeft()) return render(); const k = pkNorm(($('#pkin') || {}).value);
+    if (DB.settings.pk && k.length === 8 && k === pkNorm(DB.settings.pk)) { pinGood(); UI.auth = true; UI.pstep = 'new1'; UI.pin = ''; toast('Chiave giusta: scegli un PIN nuovo.'); return render(); }
+    pinFail(); toast(pinLeft() ? 'Chiave sbagliata. Troppi tentativi: bisogna aspettare.' : 'Chiave sbagliata.'); render(); },
+  wipeask: () => wipeAsk(), wipeyes: () => wipeAll(),
+  pinchange: () => go('pin', { auth: true, pstep: 'new1', pinTo: 'tutor' }),
+  pknew: () => { DB.settings.pk = pkNew(); save(); go('pin', { auth: true, pstep: 'key', pkShow: DB.settings.pk, pinTo: 'tutor' }); },
+  aiuto: d => { const p = prof(); if (!p || !['slow', 'big'].includes(d.k)) return; p[d.k] = !p[d.k]; save(); render(); toast(`${d.k === 'big' ? 'Testo grande' : 'Più tempo'}: ${p[d.k] ? 'attivo' : 'spento'}.`); },
+  student: d => go('student', { auth: UI.auth, sid: d.id }),
   addmission: () => { const p = DB.profiles.find(x => x.id === UI.sid), ms = readMs(); p.missions.push({ id: uid(), subj: ms.subj, key: ms.key, mode: ms.mode, by: today(), done: null }); save(); render(); toast(`Missione assegnata a ${p.nick}.`); },
   bonus: () => { const p = DB.profiles.find(x => x.id === UI.sid); grant(p, 1, $('#reason').value, false); save(); render(); toast(`Bustina regalata a ${p.nick}.`); },
   setcls: d => { const p = DB.profiles.find(x => x.id === UI.sid); p.cls = +d.v; save(); render(); },
   del: () => { UI.del = true; render(); }, delno: () => { UI.del = false; render(); },
   delyes: () => { DB.profiles = DB.profiles.filter(x => x.id !== UI.sid); if (UI.pid === UI.sid) UI.pid = null; save(); go('settings', { auth: UI.auth }); toast('Giocatore eliminato.'); },
-  savepin: () => { const v = $('#newpin').value; if (!/^\d{4}$/.test(v)) return toast('Il PIN deve avere 4 cifre.'); DB.settings.pin = v; save(); toast('PIN aggiornato.'); render(); },
-  importall: () => { try { const o = JSON.parse(b64d($('#allin').value.trim().replace(/^FCALL-/, ''))); if (!o || !Array.isArray(o.profiles)) throw 0; let add = 0, upd = 0; for (const p of o.profiles) { const i = DB.profiles.findIndex(x => x.id === p.id); if (i >= 0) { DB.profiles[i] = p; upd++; } else { DB.profiles.push(p); add++; } } save(); render(); toast(`${add} profili aggiunti, ${upd} aggiornati.`); } catch (e) { toast('Codice non valido.'); } }
+  importall: () => { let r; try { r = mergeDB(JSON.parse(b64d($('#allin').value.trim().replace(/^FCALL-/, '')))); } catch (e) { return toast('Codice non valido: deve iniziare con «FCALL-».'); } render(); toast(mergeMsg(r)); }
 };
 // suono alla scoperta delle figurine: più è rara, più è festa
 function revealFx(list) {
@@ -13913,16 +14357,23 @@ function readMs() { const ms = UI.ms; ms.mode = $('#ms-mode').value; ms.subj = $
 document.addEventListener('click', e => {
   const t = e.target.closest('[data-a]');
   if (!t) { if (e.target.id === 'modal') A.close(); return; }
-  const f = A[t.dataset.a]; if (f) { e.preventDefault(); ripNote(t.dataset); f(t.dataset, t); }
+  const f = A[t.dataset.a]; if (!f) return; e.preventDefault();
+  if (EDU_A.has(t.dataset.a) && !UI.auth) return go('pin', { pinTo: 'tutor' });   // azioni dell'educatore: solo dopo il PIN
+  ripNote(t.dataset); f(t.dataset, t);
 });
+const EDU_A = new Set(['wipeask', 'wipeyes', 'allc', 'bkdown', 'importall', 'pinchange', 'pknew', 'rankset', 'sedeset', 'student', 'addmission', 'bonus', 'lvset', 'repclear', 'repdone', 'repfix', 'del', 'delyes', 'psnick', 'setcat', 'stool']);
 document.addEventListener('change', e => {
-  if (e.target.id === 'bkfile' && e.target.files[0]) { const rd = new FileReader(); rd.onload = () => { try { const t = String(rd.result).trim(); const o = t.startsWith('FCALL-') ? JSON.parse(b64d(t.replace(/^FCALL-/, ''))) : JSON.parse(t); const [a, u] = mergeDB(o); render(); toast(`Backup caricato: ${a} profili aggiunti, ${u} aggiornati.`); } catch (er) { toast('Questo file non è un backup di Fuoriclasse.'); } }; rd.readAsText(e.target.files[0]); return; }
+  if (e.target.id === 'rcfile' && e.target.files[0]) { const rd = new FileReader(); rd.onload = () => { try { const t = String(rd.result).trim(), o = t.startsWith('FCALL-') ? JSON.parse(b64d(t.replace(/^FCALL-/, ''))) : JSON.parse(t), src = o && o.db ? o.db : o; if (!src || !Array.isArray(src.profiles)) throw 0; LOCK = null; DB = blank(); const r = mergeDB(o); rcUnlock(DB); toast('Backup caricato: ' + mergeMsg(r)); } catch (er) { toast('Questo file non è un backup di Fuoriclasse.'); } }; rd.readAsText(e.target.files[0]); return; }
+  if (e.target.id === 'bkfile' && e.target.files[0] && !UI.auth) { e.target.value = ''; return go('pin', { pinTo: 'tutor' }); }
+  if (e.target.id === 'bkfile' && e.target.files[0]) { const rd = new FileReader(); rd.onload = () => { try { const t = String(rd.result).trim(); const o = t.startsWith('FCALL-') ? JSON.parse(b64d(t.replace(/^FCALL-/, ''))) : JSON.parse(t); const r = mergeDB(o); render(); toast('Backup caricato: ' + mergeMsg(r)); } catch (er) { toast('Questo file non è un backup di Fuoriclasse.'); } }; rd.readAsText(e.target.files[0]); return; }
   if (e.target.dataset.c === 'ms') { const ms = UI.ms, prevMode = ms.mode, prevSubj = ms.subj; ms.mode = $('#ms-mode').value; ms.subj = $('#ms-subj').value; ms.key = $('#ms-key').value; if (ms.mode !== prevMode || ms.subj !== prevSubj) ms.key = ms.mode === 'allenamento' ? (DECKS.find(d => d.subj === ms.subj) || {}).key : 'mix'; render(); }
 });
 document.addEventListener('input', e => { if (e.target.id === 'nick' && UI.form) { UI.form.nick = e.target.value; const b = document.querySelector('.avplate b'); if (b) b.textContent = e.target.value || '?'; } });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && !$('#modal').hidden) return A.close();
   if (!$('#modal').hidden) return;
+  // PIN dal PC: cifre e Canc sulla tastiera, come il tastierino sullo schermo
+  if (UI.s === 'pin' && ['in', 'new1', 'new2'].includes(pinStep()) && !/^(INPUT|TEXTAREA)$/.test(e.target.tagName) && (/^[0-9]$/.test(e.key) || e.key === 'Backspace')) { e.preventDefault(); return A.pinkey({ k: e.key === 'Backspace' ? '⌫' : e.key }); }
   if (UI.s === 'parola' && !e.ctrlKey && !e.metaKey && !e.altKey) { const k = e.key === 'Enter' ? 'enter' : e.key === 'Backspace' ? 'back' : wnorm(e.key); if (k === 'enter' || k === 'back' || /^[a-z]$/.test(k)) { e.preventDefault(); wordKey(k); } return; }
   if (UI.s === 'duel' && UI.d && e.key === 'Enter' && document.querySelector('[data-a="dnext"],[data-a="dready"]')) { e.preventDefault(); return UI.d.step === 'reveal' ? duelNext() : duelReady(); }
   if (UI.s === 'duel' && UI.d && UI.d.step === 'q' && /^[1-4a-dA-D]$/.test(e.key)) return duelAns('1234'.includes(e.key) ? +e.key - 1 : 'abcd'.indexOf(e.key.toLowerCase()));
@@ -13955,13 +14406,32 @@ function novitaCheck() {
     <div class="row"><button class="btn f1" data-a="close">Ho capito, giochiamo!</button></div><p class="small muted m0 tc">Le trovi sempre in Impostazioni → Novità dell'app.</p></div>`;
   $('#modal').hidden = false; $('#modal').querySelector('.btn').focus({ preventScroll: true }); $('#modal').querySelector('.nvsheet').scrollTop = 0; FX.play('tap');
 }
+/* ---------- Recupero: i dati salvati non si leggono, o sono di una versione più nuova. Niente viene cancellato senza chiedere. ---------- */
+const copyInfo = () => { try { const raw = localStorage.getItem(KEY_COPY), s = raw && JSON.parse(raw); return dbOk(s) ? { s, d: localStorage.getItem(KEY_COPY + '.d') || '' } : null; } catch (e) { return null; } };
+V.recupero = () => {
+  const c = LOCK.why === 'rotto' ? copyInfo() : null, names = c ? c.s.profiles.map(p => esc(plainTxt(p.nick, 14))).slice(0, 6).join(', ') + (c.s.profiles.length > 6 ? '…' : '') : '';
+  if (LOCK.why === 'nuova') return `<div class="wrap"><div class="stack recupero"><span class="eyebrow">Salvataggi</span><h1 class="t-disp t-xl m0">Serve la versione nuova</h1>
+    <p class="m0">I progressi su questo dispositivo sono stati salvati da una <b>versione più nuova</b> di Fuoriclasse. Questa versione non li apre, per non rovinarli.</p>
+    <p class="m0">Ricarica la pagina con internet acceso. Se usi il file della sede, copia sul computer il file aggiornato.</p>
+    <button class="btn wide" data-a="rcreload">Ricarica la pagina</button><button class="btn ghost wide" data-a="rcdown">Scarica i dati (per sicurezza)</button></div></div>`;
+  return `<div class="wrap"><div class="stack recupero"><span class="eyebrow">Salvataggi</span><h1 class="t-disp t-xl m0">I dati salvati non si leggono</h1>
+    <p class="m0">Su questo dispositivo c'erano dei progressi, ma il browser li ha restituiti rovinati. <b>Non abbiamo cancellato niente</b>: li abbiamo messi da parte. Scegli come ripartire.</p>
+    ${c ? `<div class="panel stack"><b>Copia di sicurezza${c.d ? ` del ${fmtDate(c.d)}` : ''}</b><span class="small muted">${c.s.profiles.length} ${c.s.profiles.length === 1 ? 'giocatore' : 'giocatori'}: ${names}. Mancano solo i progressi fatti dopo quella data.</span><button class="btn" data-a="rccopy">Ripristina la copia di sicurezza</button></div>` : ''}
+    <div class="panel stack"><b>File di backup</b><span class="small muted">Se l'educatore ha scaricato un backup (file «fuoriclasse-backup-….json»), caricalo qui.</span><label class="btn ghost filebtn">Carica un file di backup<input type="file" id="rcfile" accept=".json,application/json,.txt"></label></div>
+    <div class="panel stack"><b>Codici di salvataggio</b><span class="small muted">Chi ha il proprio codice (FC1-…) può ripartire da zero e poi caricarlo dallo Spogliatoio.</span>
+      ${UI.rcz ? '<div class="row"><span class="f1 small">Ripartire da zero su questo dispositivo? I dati rovinati restano comunque da parte.</span><button class="btn danger sm" data-a="rczeroyes">Sì, riparti</button><button class="btn ghost sm" data-a="rczerono">Annulla</button></div>' : '<button class="btn ghost" data-a="rczero">Riparti da zero</button>'}</div>
+    <button class="link" data-a="rcdown">Scarica i dati rovinati, da mandare a chi segue l'app</button></div></div>`;
+};
+function rcUnlock(db) { LOCK = null; DB = db; if (!DB.settings) DB.settings = blank().settings; DB.settings.cap = 10; DB.settings.capv = 3; save(); UI = { s: 'home', pid: null }; render(); }
 V.novita = () => `<div class="wrap">${topBar('Novità dell\'app', 'settings')}<div class="stack">${NOV.length ? NOV.map(n => `<div class="panel">${novHTML(n, new Set(['med', 'ad']))}</div>`).join('') : '<p class="muted">Nessuna novità registrata.</p>'}</div></div>`;
 // quando la pagina scorre la barra del titolo diventa piena (classe body.scrolled, cambia solo quando serve)
 let SCROLLED = false;
 addEventListener('scroll', () => { const s = scrollY > 4; if (s !== SCROLLED) { SCROLLED = s; document.body.classList.toggle('scrolled', s); } }, { passive: true });
 // correzione dell'11 ottobre: si controllano subito tutti i giocatori di questo dispositivo
 if (DB.profiles.map(fixSezioni).some(Boolean)) save();
-if (/debug/.test(location.hash)) window.__fc = { ui: () => UI, pack: () => openPack(prof()) };
+// strumenti per le prove automatiche: solo nella versione di prova (node strumenti/monta.js . la crea a parte e accende questa riga)
+const DEBUG = false;
+if (DEBUG && /debug/.test(location.hash)) window.__fc = { ui: () => UI, pack: () => openPack(prof()), code: p => packProfile(p), uncode: c => unpackProfile(c), clean: p => cleanProfile(p) };
 let LINK = (() => { const m = location.hash.match(/(sfida|lega)=([A-Za-z0-9-]+)/); return m ? m[2] : null; })();
 if (LINK) try { history.replaceState(null, '', location.pathname + location.search + (/debug/.test(location.hash) ? '#debug' : '')); } catch (e) { }
 render();
