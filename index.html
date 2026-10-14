@@ -1098,6 +1098,7 @@ body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;bac
 @media (min-width:1000px){.homew{max-width:980px}.hhero{height:480px}}
 .hinst{display:flex;gap:12px;align-items:flex-start;width:100%;margin-top:16px;padding:12px 14px;border-radius:var(--r-l);text-align:left;color:var(--chalk);background:linear-gradient(110deg,#123a5c,#121927);border:1px solid rgba(78,168,255,.5)}
 .hinst>div{display:grid;gap:3px}.hinst b{font-weight:800}.hinst .small{color:#cfe0f0;line-height:1.4}
+.tlhelp summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:700;color:var(--ink-2)}.tlhelp[open] summary{margin-bottom:8px}
 .hiic{width:40px;height:40px;flex:none;border-radius:var(--r-l);display:grid;place-items:center;background:rgba(78,168,255,.2);color:#9cc7ff}.hiic svg{width:22px;height:22px}
 .shic{width:16px;height:16px;vertical-align:-3px;color:#9cc7ff}
 .hby{display:flex;align-items:center;gap:8px;margin-top:10px;padding:4px 14px 4px 6px;border-radius:999px;background:rgba(4,10,8,.55);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(4px)}
@@ -10494,7 +10495,11 @@ if (typeof module !== 'undefined' && module.exports) module.exports = api; else 
    Scrivere frasi brevi, che capisce un ragazzo di 11 anni. */
 (function (G) {
 const NOVITA = [
-  { v: '2026-10-14', t: 'Personaggi nuovi, Tris e feste tutto l\'anno', li: [
+  { v: '2026-10-14b', t: 'Fuoriclasse ha un indirizzo nuovo', li: [
+    ['La versione online di Fuoriclasse ora si apre da fuoriclassefc.it.', ''],
+    ['Giocavi dal vecchio indirizzo? Tocca «Porta i progressi»: album, livelli e premi arrivano tutti, con un tocco.', ''],
+    ['Avevi Fuoriclasse sulla schermata Home? Aggiungi quello nuovo e poi togli la vecchia icona.', ''] ] },
+  { v: '2026-10-14',t: 'Personaggi nuovi, Tris e feste tutto l\'anno', li: [
     ['Le figurine dei calciatori ora sono personaggi originali di Fuoriclasse: ognuno ha un soprannome, una mossa speciale e una curiosità sul suo Paese. Le figurine che hai restano tue.', ''],
     ['Le Leggende sono diventate «Leggende e Momenti»: 50 momenti veri della storia del calcio, dalle prime regole al Mondiale con 48 squadre.', ''],
     ['Nuovo gioco: Tris dei campioni! Righe e colonne sono club e nazionali: scrivi un calciatore vero che ha giocato in tutte e due. Contro il computer, 1 contro 1 o con la griglia del giorno.', ''],
@@ -14998,7 +15003,7 @@ function stopTimer() { if (timer) { clearInterval(timer); timer = null; } }
 // schermate dell'educatore: senza il PIN si passa prima dalla schermata del PIN (che poi riporta qui)
 const PROT = new Set(['tutor', 'student', 'reports', 'pset']);
 function go(s, extra) { sayStop(); if (UI.s === 'album' && s !== 'album') clearNew(); if (document.querySelector('.fcpop')) fcPopClose(); stopTimer(); UI = Object.assign({ pid: UI.pid }, extra || {}, { s });
-  if (PROT.has(s) && !UI.auth) UI = { pid: UI.pid, s: 'pin', pinTo: s, sid: UI.sid };
+  if ((PROT.has(s) || ((s === 'trasloco' || s === 'tlarrivo') && pinSet())) && !UI.auth) UI = { pid: UI.pid, s: 'pin', pinTo: s, sid: UI.sid };
   render(); window.scrollTo(0, 0); if (s === 'campo' || s === 'album') fcAuto(); if (s === 'campo') fcPopMaybe(); }
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast.h); toast.h = setTimeout(() => t.classList.remove('on'), 3200); }
 
@@ -15322,6 +15327,52 @@ let PERSIST = null;
 if (isOnlineApp() && navigator.storage && navigator.storage.persist) navigator.storage.persist().then(v => { PERSIST = !!v; }).catch(() => { });
 // su iPhone, in Safari senza installare l'app, i dati di un sito che non si apre per 7 giorni possono essere cancellati (regola di WebKit)
 const riskyStore = () => isOnlineApp() && isIOS() && !isStandalone();
+/* ---------- Indirizzo nuovo: fuoriclassefc.it (Blocco 8, ottobre 2026) ---------- */
+// Il browser lega i progressi all'indirizzo del sito. Sul vecchio (GitHub Pages) l'app propone «Porta i progressi»: apre il nuovo
+// con i giocatori di questo dispositivo nel collegamento, dopo il # (quella parte il browser non la manda a nessun sito).
+// Il nuovo chiede conferma e li unisce con mergeDB, come un backup. Il vecchio indirizzo NON deve rimandare in automatico
+// al nuovo: lì restano i dati di chi non ha ancora traslocato. Su iPhone l'app installata ha una memoria sua: si usa il codice.
+// strumenti per le prove automatiche: solo nella versione di prova (node strumenti/monta.js . la crea a parte e accende questa riga)
+const DEBUG = false;
+const CASA = Object.assign({ vecchia: 'https://footballcenterhub.github.io/fuoriclasse/', nuova: 'https://fuoriclassefc.it/' }, (DEBUG && window.__fcCasa) || {});
+const CASA_N = CASA.nuova.replace(/^https?:\/\/|\/$/g, '');   // «fuoriclassefc.it», per i testi
+const oldHome = () => (location.origin + location.pathname).startsWith(CASA.vecchia);
+const newHome = () => location.origin === new URL(CASA.nuova).origin;
+const tlPhone = () => isIOS() && isStandalone();   // iPhone con l'app installata: il collegamento si aprirebbe in Safari, che ha un'altra memoria
+let TL_IN = null;   // trasloco arrivato sul nuovo indirizzo, da confermare: { o, ps }
+const u8b64 = u => { let s = ''; for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); };
+const b64u8 = s => { s = s.replace(/-/g, '+').replace(/_/g, '/'); while (s.length % 4) s += '='; const b = atob(s), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; };
+const gzPipe = (u, T) => new Response(new Blob([u]).stream().pipeThrough(new T('gzip'))).arrayBuffer().then(b => new Uint8Array(b));
+// «z» = compresso (quasi tutti i browser di oggi), «j» = testo semplice
+async function tlPack(o) { const u = new TextEncoder().encode(JSON.stringify(o));
+  if (window.CompressionStream) try { return 'z' + u8b64(await gzPipe(u, CompressionStream)); } catch (e) { }
+  return 'j' + u8b64(u); }
+async function tlUnpack(s) { if (!/^[zj]/.test(s)) throw 0; const u = b64u8(s.slice(1)); return JSON.parse(new TextDecoder().decode(s[0] === 'z' ? await gzPipe(u, DecompressionStream) : u)); }
+// scheda dello Spogliatoio sul vecchio indirizzo (al posto di «Installa l'app»: l'app da installare è quella nuova)
+const homeMove = ps => { const d = DB.settings.trasl;
+  return `<button class="hinst hmove" data-a="nav" data-to="trasloco"><span class="hiic">${icn('home')}</span><div><b>${d ? `Ora Fuoriclasse è su ${CASA_N}` : `Fuoriclasse ha un indirizzo nuovo: ${CASA_N}`}</b><span class="small">${!ps.length ? 'Tocca qui per aprirlo.' : d ? `Progressi portati il ${fmtDate(d)}. Tocca qui per aprire il nuovo indirizzo o portarli di nuovo.` : 'Porta i tuoi progressi con un tocco: album, livelli e premi arrivano tutti.'}</span></div></button>`; };
+const tlSteps = ps => `<ol class="plist">
+    <li><b>Copia il codice</b> ${ps.length > 1 ? 'di ogni giocatore' : 'di salvataggio'}:${ps.map(p => `<div class="stack mt2">${ps.length > 1 ? `<b class="small">${esc(p.nick)}</b>` : ''}<textarea id="tlc-${p.id}" readonly aria-label="Codice di ${esc(p.nick)}">${packProfile(p)}</textarea><div class="row">${copyBtn('tlc-' + p.id)}</div></div>`).join('')}</li>
+    ${tlPhone() ? `<li>Apri <b>Safari</b> e vai su <b>${CASA_N}</b>.</li><li>Tocca <b>Condividi</b> ${SHARE_IC} e poi <b>Aggiungi alla schermata Home</b>.</li><li>Apri il Fuoriclasse nuovo dalla schermata Home, tocca <b>«Ho un codice di salvataggio»</b> e incolla il codice.</li>`
+      : `<li>Apri <b>${CASA_N}</b>.</li><li>Tocca <b>«Ho un codice di salvataggio»</b> e incolla il codice.</li>`}</ol>`;
+V.trasloco = () => { const ps = DB.profiles.map(ensure).sort((a, b) => (b.last || '').localeCompare(a.last || '')), d = DB.settings.trasl, ip = tlPhone();
+  return `<div class="wrap">${topBar('Indirizzo nuovo', 'home')}<div class="stack pdoc">
+  <p class="m0">Fuoriclasse ora abita a <b>${CASA_N}</b>. ${ps.length ? `I progressi sono salvati su questo dispositivo, legati al vecchio indirizzo: ${ip ? 'portali sul nuovo con il codice di salvataggio.' : 'con un tocco li portiamo sul nuovo.'}` : 'Su questo dispositivo non ci sono giocatori da portare.'}</p>
+  ${ps.length ? `<div class="panel stack"><h2>Cosa si porta</h2><ul class="plist">${ps.map(p => `<li><b>${esc(p.nick)}</b> · livello ${plv(p)} · ${pct(owned(p), ALB.length)}% album</li>`).join('')}</ul><p class="small muted m0">Album, livelli, premi, Pass e Coppa: tutto.</p></div>` : ''}
+  ${ip && ps.length ? `<div class="panel stack"><h2>Su iPhone, con l'app sulla schermata Home</h2>${tlSteps(ps)}<p class="small muted m0">Poi puoi togliere dalla schermata Home la vecchia icona.</p></div>`
+    : `<button class="btn wide" data-a="${ps.length ? 'tlgo' : 'tlopen'}">${ps.length ? `Porta i progressi su ${CASA_N}` : `Apri ${CASA_N}`}</button>
+    ${d && ps.length ? `<p class="small okc m0">Progressi già portati il ${fmtDate(d)}. Se nel frattempo hai giocato qui, portali di nuovo: sul nuovo indirizzo resta la versione più avanti.</p>` : ''}
+    ${ps.length ? `<p class="small muted m0">I progressi restano anche qui. Non passano da nessun server: viaggiano dentro il collegamento, su questo dispositivo.</p>
+    <details class="panel tlhelp"><summary>Non ha funzionato? Usa il codice di salvataggio</summary>${tlSteps(ps)}</details>` : ''}`}
+  </div></div>`; };
+// sul nuovo indirizzo: i giocatori arrivati, prima di unirli
+V.tlarrivo = () => { const t = TL_IN; if (!t) return V.home();
+  const here = id => DB.profiles.some(p => p.id === id);
+  return `<div class="wrap">${topBar('Trasloco', 'home')}<div class="stack pdoc">
+  <p class="m0">Benvenuto su <b>${CASA_N}</b>! Sono arrivati i progressi dal vecchio indirizzo. Li portiamo qui?</p>
+  <div class="panel stack"><ul class="plist">${t.ps.map(p => `<li><b>${esc(p.nick)}</b> · livello ${plv(p)} · ${Object.keys(p.cards || {}).length} figurine${here(p.id) ? ' · c\'è già: si tiene la versione più avanti' : ''}</li>`).join('')}</ul></div>
+  <div class="row"><button class="btn f1" data-a="tlok">Porta qui</button><button class="btn ghost" data-a="tlno">Non ora</button></div>
+  <p class="small muted m0">Con «Non ora» i progressi restano sul vecchio indirizzo: puoi riprovare quando vuoi.</p></div></div>`; };
 /* ---------- Schermata d'apertura: lo stadio di notte ---------- */
 let HSCENE = '';
 function homeScene() {
@@ -15368,12 +15419,12 @@ V.home = () => {
   </section>
   <div class="hcta">${me ? `<button class="hgo" data-a="pick" data-id="${me.id}">${pav(me, 'hgoav')}<span><small>Bentornato!</small><b>Gioca come ${esc(me.nick)}</b></span><span class="hplay" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg></span></button>`
     : `<button class="hgo" data-a="nav" data-to="new"><span class="hplus">+</span><span><small>Si parte!</small><b>Crea il tuo giocatore</b></span><span class="hplay" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z" fill="currentColor"/></svg></span></button>`}</div>
-  ${installHint()}
+  ${oldHome() ? homeMove(ps) : installHint()}
   ${ps.length ? '' : `<div class="hfeat"><div><b>${ALB.length}</b><span>figurine da collezionare</span></div><div><b>4</b><span>materie: mate, italiano, inglese, geografia</span></div><div><b>${Object.keys(GAMES).length + Object.keys(GEO_MODES).length + 7}</b><span>modi di giocare, Coppa e Pass</span></div></div>`}
   <section class="stack hlocker">
     <div class="row"><div class="eyebrow">Spogliatoio · ${ps.length ? `${ps.length} ${ps.length === 1 ? 'giocatore' : 'giocatori'}` : 'ancora vuoto'}</div><span class="spacer"></span>${ps.length ? '<button class="btn sm ghost" data-a="nav" data-to="new">+ Nuovo giocatore</button>' : ''}</div>
     ${many ? '<input id="hsearch" class="hsearch" type="search" placeholder="Cerca il tuo nome…" aria-label="Cerca il tuo giocatore" autocomplete="off">' : ''}
-    ${ps.length ? `<div class="hplayers">${ps.map(row).join('')}</div>` : '<p class="muted small m0">Qui compariranno i giocatori creati su questo dispositivo. Se hai già giocato su un altro computer, usa il tuo codice di salvataggio.</p>'}
+    ${ps.length ? `<div class="hplayers">${ps.map(row).join('')}</div>` : `<p class="muted small m0">Qui compariranno i giocatori creati su questo dispositivo. ${newHome() ? 'Giocavi già dal vecchio indirizzo? Apri il vecchio Fuoriclasse e tocca «Porta i progressi».' : 'Se hai già giocato su un altro computer, usa il tuo codice di salvataggio.'}</p>${newHome() ? '<button class="link small" data-a="tlold">Apri il vecchio indirizzo</button>' : ''}`}
     <div class="row hfoot"><button class="link" data-a="nav" data-to="import">Ho un codice di salvataggio</button><span class="spacer"></span><button class="btn ghost sm" data-a="nav" data-to="settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg> Impostazioni</button></div>
     <div class="row jcc wrapf hlinks"><button class="link small" data-a="nav" data-to="educatori">Sono un educatore o un genitore</button><button class="link small" data-a="nav" data-to="privacy">Privacy e dati</button></div>
   </section></div>`;
@@ -15418,12 +15469,13 @@ V.campo = () => {
   // ogni scheda si prepara solo se serve (es. a Coppa finita non c'è un «prossimo turno»)
   if (p.lg) lgState(p);   // lunedì: si fanno i conti della lega
   const dnp = [], add = (on, f) => { if (on && dnp.length < 3) dnp.push(f()); }, lgl = p.lg && p.lg.last && !p.lg.last.seen ? p.lg.last : null;
+  add(oldHome(), () => ({ a: 'nav', to: 'trasloco', ic: 'home', t: DB.settings.trasl ? `Ora Fuoriclasse è su ${CASA_N}` : 'Fuoriclasse ha un indirizzo nuovo', s: DB.settings.trasl ? 'Gioca dal nuovo indirizzo: i progressi sono già là' : `Porta i tuoi progressi su ${CASA_N} con un tocco`, cls: 'new' }));
   add(!!lgl, () => ({ a: 'nav', to: 'lega', ic: 'cup', t: lgl.up > 0 ? `Lega: sali in ${LG_TIERS[lgl.t1][0]}!` : 'Lega: la settimana è finita', s: `${lgl.rank}° su ${lgl.of} · guarda la classifica`, cls: 'new' }));
   add(!!NS, () => ({ a: 'nsgo', ic: 'spark', t: serieNews(NS), s: `${NS.sub} · ${CARDS.filter(c => c.serie === NS.n).length} figurine nuove`, cls: 'new' }));
   // una volta al mese, dopo la prima settimana di gioco: «metti al sicuro il tuo album» (in sede i backup li fa l'educatore).
   // Viene prima di bustine, Ripasso e Coppa, che ci sono quasi ogni giorno: altrimenti con 3 schede piene non si vedrebbe mai
   add(annoDue(p), () => ({ a: 'nav', to: 'nuovoanno', ic: 'star', t: 'È iniziato un nuovo anno scolastico!', s: `Sei ancora in ${p.cls}ª media? Dimmi in che classe sei adesso: le domande cambiano con te` }));
-  add(riskyStore() && !DB.settings.sede && (daysSince(p.installAt) === null || daysSince(p.installAt) >= 7), () => ({ a: 'nav', to: 'installa', ic: 'key', t: 'Installa Fuoriclasse sull\'iPhone', s: 'Da Safari i progressi possono sparire se non giochi per una settimana: installata è più sicura' }));
+  add(riskyStore() && !oldHome() && !DB.settings.sede && (daysSince(p.installAt) === null || daysSince(p.installAt) >= 7), () => ({ a: 'nav', to: 'installa', ic: 'key', t: 'Installa Fuoriclasse sull\'iPhone', s: 'Da Safari i progressi possono sparire se non giochi per una settimana: installata è più sicura' }));
   add(codeDue(p), () => ({ a: 'nav', to: 'code', ic: 'key', t: 'Metti al sicuro il tuo album', s: 'Copia il codice di salvataggio: ti serve se cambi telefono o se il browser cancella i dati' }));
   add(fcPackReady(p) && !(nx.k === 'pack' && !p.packs), () => ({ a: 'nav', to: 'pack', fc: 1, t: 'Bustina Football Center', s: `Quella di ${MESI[new Date().getMonth()].toLowerCase()} è pronta` }));
   add(p.packs > 0 && nx.k !== 'pack', () => ({ a: 'nav', to: 'pack', ic: 'pack', t: p.packs === 1 ? 'Hai una bustina' : `Hai ${p.packs} bustine`, s: 'Aprila e attacca le figurine' }));
@@ -16488,7 +16540,8 @@ V.privacy = () => `<div class="wrap">${topBar('Privacy e dati', UI.back || (UI.p
     <div class="panel stack"><h2>Quando escono dal dispositivo</h2><p class="m0">Solo quando lo decidete voi:</p>${ulist([
       'il <b>codice di salvataggio</b> e il <b>file di backup</b>, per spostare i progressi o metterli al sicuro;',
       'i codici di <b>Sfida a distanza</b> e della <b>Lega</b>, che contengono soprannome e punteggio, quando li mandate a un amico (per esempio su WhatsApp).'])}
-      <p class="small muted m0">La versione online si apre da un sito ospitato su GitHub Pages. Come succede per ogni sito, il servizio che lo ospita registra alcuni dati tecnici delle visite, per esempio l'indirizzo IP. L'app non li riceve e non li usa.</p></div>
+      <p class="small muted m0">La versione online si apre da <b>${CASA_N}</b>, un sito ospitato da Google (Firebase Hosting); il vecchio indirizzo è ospitato da GitHub Pages. Come succede per ogni sito, il servizio che lo ospita registra alcuni dati tecnici delle visite, per esempio l'indirizzo IP. L'app non li riceve e non li usa.</p>
+      <p class="small muted m0">Il <b>trasloco</b> dal vecchio indirizzo al nuovo avviene dentro questo dispositivo: i progressi viaggiano nel collegamento, nella parte che il browser non manda a nessun sito.</p></div>
     <div class="panel stack"><h2>Quanto restano e come cancellarli</h2>${ulist([
       'Restano finché non li cancellate.',
       'Un giocatore: Impostazioni → il giocatore → Elimina (serve il PIN).',
@@ -18251,7 +18304,7 @@ const { makeLogicSet, makeConto, make24, TYPES: LTYPES } = window.LOGICA;
 const PAROLE = window.PAROLE;
 SUBJ.log = 'Logica';
 for (const k of Object.keys(LTYPES)) TOPIC['log-' + k] = { key: 'log-' + k, title: LTYPES[k].t, subj: 'log', cls: 0, max: 1 };
-const SITE = 'https://footballcenterhub.github.io/fuoriclasse/';
+const SITE = CASA.nuova;
 const LDESC = { sill: 'Vero, falso o non si può dire?', seq: 'Trova il numero che viene dopo', menti: 'Uno mente: scopri chi è stato', ded: 'Metti insieme gli indizi', ana: 'A sta a B come C sta a…?', par: 'Cugini, zii, nipoti, suoceri…', cod: 'Decifra le parole segrete', cal: 'Giorni, orari e fusi orari' };
 function startLogica(t) {
   const p = prof(), k = t || 'mix', lv = (p.logLv || {})[k] || 1, qs = makeLogicSet(lv, t || null, 10);
@@ -19127,6 +19180,16 @@ const A = {
   give: d => { UI.give = d.id; render(); }, take: d => { UI.take = d.id; render(); },
   trade: () => { const p = prof(), q = DB.profiles.find(x => x.id === UI.partner); if (!q || !(p.cards[UI.give] > 1) || !(q.cards[UI.take] > 1)) return; if (BY_ID[UI.give].rar !== BY_ID[UI.take].rar) return toast('Lo scambio deve essere alla pari: due figurine della stessa rarità.'); if (tradesLeft(p) <= 0 || tradesLeft(ensure(q)) <= 0) return toast(`Oggi avete già fatto ${TRADES_DAY} scambi: si riprende domani.`); [p, q].forEach(x => { x.trd = x.trd && x.trd.d === today() ? { d: today(), n: x.trd.n + 1 } : { d: today(), n: 1 }; }); p.cards[UI.give]--; q.cards[UI.give] = (q.cards[UI.give] || 0) + 1; q.cards[UI.take]--; p.cards[UI.take] = (p.cards[UI.take] || 0) + 1; checkSections(p); checkSections(q); save(); toast(`Scambio fatto: ${BY_ID[UI.give].name} ⇄ ${BY_ID[UI.take].name}`); UI.give = UI.take = null; render(); },
   copy: (d) => { const t = $('#' + d.t); const done = () => toast('Codice copiato.'); try { navigator.clipboard.writeText(t.value).then(done, () => { t.select(); toast('Seleziona e copia il codice a mano.'); }); } catch (e) { t.select(); toast('Seleziona e copia il codice a mano.'); } },
+  // trasloco: dal vecchio indirizzo si apre il nuovo con i giocatori nel collegamento (dopo il #, non arriva a nessun sito)
+  tlgo: async () => { if (pinSet() && !UI.auth) return go('trasloco');
+    let s; try { s = await tlPack({ app: 'fuoriclasse', v: 1, d: today(), db: { profiles: DB.profiles, reports: DB.reports || [] } }); } catch (e) { return toast('Non è riuscito: usa il codice di salvataggio qui sotto.'); }
+    const url = CASA.nuova + '#trasloco=' + s;
+    if (url.length > 1500000) return toast('Troppi dati per un collegamento: usate il file di backup (Area educatore → Backup).');
+    DB.settings.trasl = today(); save(); location.assign(url); },
+  tlopen: () => location.assign(CASA.nuova),
+  tlold: () => location.assign(CASA.vecchia),
+  tlok: () => { if (!TL_IN) return go('home'); const r = mergeDB(TL_IN.o); TL_IN = null; go('home'); toast('Trasloco fatto: ' + mergeMsg(r).replace(/^./, c => c.toLowerCase())); },
+  tlno: () => { TL_IN = null; go('home'); },
   doimport: () => { let o; try { o = unpackProfile($('#incode').value); } catch (e) { return toast(/^\s*FC(ALL)?-/.test($('#incode').value) ? 'Codice non valido. Controlla di averlo copiato tutto.' : 'Questo non è un codice di salvataggio: inizia con «FC1-».'); }
     const ex = DB.profiles.find(p => p.id === o.id); if (ex && ahead(ensure(ex), o)) { UI.imp = o; return impConflict(ex, o); } importApply(o); },
   impkeep: () => { const id = UI.imp && UI.imp.id; UI.imp = null; A.close(); UI.pid = id; go('campo'); toast('Hai tenuto i progressi di questo dispositivo.'); },
@@ -19248,12 +19311,19 @@ let SCROLLED = false;
 addEventListener('scroll', () => { const s = scrollY > 4; if (s !== SCROLLED) { SCROLLED = s; document.body.classList.toggle('scrolled', s); } }, { passive: true });
 // correzione dell'11 ottobre: si controllano subito tutti i giocatori di questo dispositivo
 if (DB.profiles.map(fixSezioni).some(Boolean)) save();
-// strumenti per le prove automatiche: solo nella versione di prova (node strumenti/monta.js . la crea a parte e accende questa riga)
-const DEBUG = false;
+// strumenti per le prove automatiche: solo nella versione di prova (DEBUG è definito sopra, con l'indirizzo nuovo)
 if (DEBUG && /debug/.test(location.hash)) window.__fc = { ui: () => UI, pack: () => openPack(prof()), code: p => packProfile(p), uncode: c => unpackProfile(c), clean: p => cleanProfile(p) };
 let LINK = (() => { const m = location.hash.match(/(sfida|lega)=([A-Za-z0-9-]+)/); return m ? m[2] : null; })();
-if (LINK) try { history.replaceState(null, '', location.pathname + location.search + (/debug/.test(location.hash) ? '#debug' : '')); } catch (e) { }
+const TL_HASH = (() => { const m = location.hash.match(/trasloco=([A-Za-z0-9_-]+)/); return m ? m[1] : null; })();
+if (TL_HASH) LINK = null;
+if (LINK || TL_HASH) try { history.replaceState(null, '', location.pathname + location.search + (LINK && /debug/.test(location.hash) ? '#debug' : '')); } catch (e) { }
 render();
+// il trasloco arrivato: si leggono i giocatori (ripuliti come ogni dato che arriva da fuori) e si chiede conferma
+function tlArrive(code) { if (LOCK) return; tlUnpack(code).then(o => { const ps = []; for (const raw of (o && o.db && Array.isArray(o.db.profiles) ? o.db.profiles : [])) { try { ps.push(ensure(cleanProfile(JSON.parse(JSON.stringify(raw))))); } catch (e) { } }
+  if (!ps.length) throw 0; TL_IN = { o, ps }; go('tlarrivo'); }).catch(() => { go('home'); toast('Il trasloco non è riuscito: sul vecchio indirizzo usa il codice di salvataggio.'); }); }
+if (TL_HASH) tlArrive(TL_HASH);
+// se il nuovo indirizzo era già aperto, il collegamento cambia solo la parte dopo il #: la pagina non si ricarica
+addEventListener('hashchange', () => { const m = location.hash.match(/trasloco=([A-Za-z0-9_-]+)/); if (!m) return; try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { } tlArrive(m[1]); });
 })();
 
 </script>
